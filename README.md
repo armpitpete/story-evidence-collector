@@ -9,9 +9,9 @@ It is being built step by step from a safe Scrapling parser demo.
 The current version can:
 
 - read seed URLs from `seed_urls.json`
-- fetch public demo pages from `quotes.toscrape.com`
-- follow quote-demo pagination
-- extract quote text, author, tags, and source URL
+- fetch public seed pages
+- extract a general source record from each seed page
+- save page title, visible text excerpt, links found, robots status, and scrape status
 - save structured JSON
 - create a run report
 - validate the output
@@ -72,8 +72,8 @@ research_summary.md
 ## Current demo outputs
 
 ```text
-quotes_all_pages_v11.json
-scrape_report_v11.json
+sources_raw_v12.json
+source_report_v12.json
 ```
 
 ## Install
@@ -82,7 +82,13 @@ scrape_report_v11.json
 pip install -r requirements.txt
 ```
 
-## Run current scraper
+## Run current source extractor
+
+```powershell
+python .\extract_source_records_v12.py
+```
+
+## Run previous quote scraper
 
 ```powershell
 python .\scrape_all_quote_pages_v11.py
@@ -103,9 +109,10 @@ python .\scrape_all_quote_pages_v11.py
 | v0.9 | Done | robots.txt check |
 | v1.0 | Done | Public-safe project freeze |
 | v1.1 | Done | Add `seed_urls.json` input |
+| v1.2 | Done | Extract general source records |
 
 ## Notes
 
-The current scraper is still quote-demo-specific. It now reads the first seed URL from configuration instead of hard-coding the demo site in the main scraping flow.
+The current source extractor does not follow discovered links yet. It only extracts and saves the links found on the seed page.
 
-The next development step is to replace quote-demo-specific extraction with general source records.
+The next development step is to review the v1.2 source-record output and then decide how to structure safe link discovery.
