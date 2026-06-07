@@ -13,6 +13,7 @@ The current version can:
 - extract a general source record from each seed page
 - save page title, visible text excerpt, links found, robots status, and scrape status
 - create a safe pending link queue from discovered links
+- filter queued links into candidates and skipped links before fetching
 - save structured JSON
 - create a run report
 - validate the output
@@ -73,9 +74,8 @@ research_summary.md
 ## Current demo outputs
 
 ```text
-sources_raw_v13.json
-link_queue_v13.json
-source_report_v13.json
+link_queue_filtered_v14.json
+source_report_v14.json
 ```
 
 ## Install
@@ -84,7 +84,13 @@ source_report_v13.json
 pip install -r requirements.txt
 ```
 
-## Run current source extractor and queue builder
+## Run current queue filter
+
+```powershell
+python .\filter_link_queue_v14.py
+```
+
+## Run previous source extractor and queue builder
 
 ```powershell
 python .\extract_source_records_v13.py
@@ -119,9 +125,10 @@ python .\scrape_all_quote_pages_v11.py
 | v1.1 | Done | Add `seed_urls.json` input |
 | v1.2 | Done | Extract general source records |
 | v1.3 | Done | Add safe pending link queue |
+| v1.4 | Done | Filter queue before fetching |
 
 ## Notes
 
-The current queue builder does not fetch queued links. It only saves discovered links with `status: pending` so a later version can decide what is safe to fetch.
+The current queue filter does not fetch queued links. It only separates pending links into candidates and skipped links, with clear reasons.
 
-The next development step is to review the v1.3 queue output before adding any controlled link fetching.
+The next development step is to review the v1.4 filtered queue output before any controlled fetching is added.
