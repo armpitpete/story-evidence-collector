@@ -8,8 +8,9 @@ It is being built step by step from a safe Scrapling parser demo.
 
 The current version can:
 
+- read seed URLs from `seed_urls.json`
 - fetch public demo pages from `quotes.toscrape.com`
-- follow pagination
+- follow quote-demo pagination
 - extract quote text, author, tags, and source URL
 - save structured JSON
 - create a run report
@@ -34,6 +35,16 @@ The tool will:
 - follow discovered links within safe limits
 - save traceable evidence records
 - produce a readable research summary
+
+## Current seed URL file
+
+```json
+{
+  "seed_urls": [
+    "https://quotes.toscrape.com/"
+  ]
+}
+```
 
 ## Planned config
 
@@ -61,8 +72,8 @@ research_summary.md
 ## Current demo outputs
 
 ```text
-quotes_all_pages_v09.json
-scrape_report_v09.json
+quotes_all_pages_v11.json
+scrape_report_v11.json
 ```
 
 ## Install
@@ -74,7 +85,7 @@ pip install -r requirements.txt
 ## Run current scraper
 
 ```powershell
-python .\scrape_all_quote_pages_v09.py
+python .\scrape_all_quote_pages_v11.py
 ```
 
 ## Current version table
@@ -91,7 +102,10 @@ python .\scrape_all_quote_pages_v09.py
 | v0.8 | Done | Data validation |
 | v0.9 | Done | robots.txt check |
 | v1.0 | Done | Public-safe project freeze |
+| v1.1 | Done | Add `seed_urls.json` input |
 
 ## Notes
 
-The current scraper is a learning/demo scraper. The next development step is to replace the quote-demo-specific extraction with configurable seed URLs and general source records.
+The current scraper is still quote-demo-specific. It now reads the first seed URL from configuration instead of hard-coding the demo site in the main scraping flow.
+
+The next development step is to replace quote-demo-specific extraction with general source records.
