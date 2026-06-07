@@ -41,6 +41,22 @@ OPTIONAL_KNOWN_URL_FILES = [
     },
 ]
 
+SKIP_PATH_PARTS = [
+    "/login",
+    "/logout",
+    "/account",
+    "/admin",
+    "/signin",
+    "/sign-in",
+    "/signup",
+    "/sign-up",
+    "/register",
+]
+
+NAVIGATION_PATH_PARTS = [
+    "/tag/",
+]
+
 USER_AGENT = "StoryEvidenceCollector/1.6"
 REQUEST_TIMEOUT_SECONDS = 20
 TEXT_EXCERPT_CHARACTER_LIMIT = 3000
@@ -140,8 +156,46 @@ def normalize_url(raw_url, base_url=None):
     )), None
 
 
+def build_url_key(raw_url, base_url=None):
+    normalised_url, skip_reason = normalize_url(raw_url, base_url)
+
+    if skip_reason:
+        return None, skip_reason
+
+    parsed_url = urlparse(normalised_url)
+
+    # Scheme is deliberately excluded so http://example/path and
+    # https://example/path are treated as the same known page.
+    return urlunparse((
+        "",
+        parsed_url.netloc.lower(),
+        parsed_url.path or "/",
+        parsed_url.params,
+        parsed_url.query,
+        "",
+    )), None
+
+
 def is_same_domain(url, source_url):
     return urlparse(url).netloc.lower() == urlparse(source_url).netloc.lower()
+
+
+def path_contains_any(path, markers):
+    lowered_path = path.lower()
+    return any(marker in lowered_path for marker in markers)
+
+
+def classify_supported_follow_url(url):
+    parsed_url = urlparse(url)
+    path = parsed_url.path.lower()
+
+    if path_contains_any(path, SKIP_PATH_PARTS):
+        return "login_account_or_admin_link"
+
+    if path_contains_any(path, NAVIGATION_PATH_PARTS):
+        return "navigation_or_tag_link"
+
+    return None
 
 
 def fetch_html(url):
@@ -250,7 +304,7 @@ def extract_visible_text_excerpt(page):
 
 def extract_links(page, base_url):
     links = []
-    seen = set()
+    seen_keys = set()
 
     for href in page.css("a::attr(href)").getall():
         normalised_url, skip_reason = normalize_url(href, base_url)
@@ -258,40 +312,45 @@ def extract_links(page, base_url):
         if skip_reason:
             continue
 
-        if normalised_url in seen:
+        url_key, key_skip_reason = build_url_key(normalised_url)
+
+        if key_skip_reason:
             continue
 
-        seen.add(normalised_url)
+        if url_key in seen_keys:
+            continue
+
+        seen_keys.add(url_key)
         links.append(normalised_url)
 
     return links
 
 
-def add_known_url(known_urls, raw_url):
-    normalised_url, skip_reason = normalize_url(raw_url)
+def add_known_url_key(known_url_keys, raw_url):
+    url_key, skip_reason = build_url_key(raw_url)
 
     if skip_reason:
         return False
 
-    known_urls.add(normalised_url)
+    known_url_keys.add(url_key)
     return True
 
 
-def add_known_urls_from_record(known_urls, record, url_fields):
+def add_known_url_keys_from_record(known_url_keys, record, url_fields):
     added_count = 0
 
     if not isinstance(record, dict):
         return added_count
 
     for field_name in url_fields:
-        if add_known_url(known_urls, record.get(field_name)):
+        if add_known_url_key(known_url_keys, record.get(field_name)):
             added_count += 1
 
     return added_count
 
 
-def load_known_urls():
-    known_urls = set()
+def load_known_url_keys():
+    known_url_keys = set()
     file_reports = []
 
     for file_config in OPTIONAL_KNOWN_URL_FILES:
@@ -306,15 +365,15 @@ def load_known_urls():
 
         if isinstance(data, list):
             for record in data:
-                file_report["known_urls_added"] += add_known_urls_from_record(
-                    known_urls,
+                file_report["known_urls_added"] += add_known_url_keys_from_record(
+                    known_url_keys,
                     record,
                     file_config["url_fields"]
                 )
 
         elif isinstance(data, dict):
-            file_report["known_urls_added"] += add_known_urls_from_record(
-                known_urls,
+            file_report["known_urls_added"] += add_known_url_keys_from_record(
+                known_url_keys,
                 data,
                 file_config["url_fields"]
             )
@@ -325,7 +384,7 @@ def load_known_urls():
 
         file_reports.append(file_report)
 
-    return known_urls, file_reports
+    return known_url_keys, file_reports
 
 
 def get_source_page_url(candidate_record):
@@ -336,11 +395,11 @@ def get_source_page_url(candidate_record):
     )
 
 
-def build_follow_candidates(candidate_records, known_urls):
+def build_follow_candidates(candidate_records, known_url_keys):
     follow_candidates = []
     skipped_links = []
     discovered_count = 0
-    seen_this_run = set()
+    seen_this_run_keys = set()
 
     for candidate_record in candidate_records:
         if not isinstance(candidate_record, dict):
@@ -390,7 +449,27 @@ def build_follow_candidates(candidate_records, known_urls):
                 })
                 continue
 
-            if normalised_url in known_urls:
+            filter_skip_reason = classify_supported_follow_url(normalised_url)
+
+            if filter_skip_reason:
+                skipped_links.append({
+                    "url": normalised_url,
+                    "found_on": source_page_url,
+                    "skip_reason": filter_skip_reason,
+                })
+                continue
+
+            url_key, key_skip_reason = build_url_key(normalised_url)
+
+            if key_skip_reason:
+                skipped_links.append({
+                    "url": normalised_url,
+                    "found_on": source_page_url,
+                    "skip_reason": key_skip_reason,
+                })
+                continue
+
+            if url_key in known_url_keys:
                 skipped_links.append({
                     "url": normalised_url,
                     "found_on": source_page_url,
@@ -398,7 +477,7 @@ def build_follow_candidates(candidate_records, known_urls):
                 })
                 continue
 
-            if normalised_url in seen_this_run:
+            if url_key in seen_this_run_keys:
                 skipped_links.append({
                     "url": normalised_url,
                     "found_on": source_page_url,
@@ -406,9 +485,10 @@ def build_follow_candidates(candidate_records, known_urls):
                 })
                 continue
 
-            seen_this_run.add(normalised_url)
+            seen_this_run_keys.add(url_key)
             follow_candidates.append({
                 "url": normalised_url,
+                "url_key": url_key,
                 "found_on": source_page_url,
                 "status": "pending",
                 "depth": int(candidate_record.get("depth", 1) or 1) + 1,
@@ -616,10 +696,10 @@ def main():
         if isinstance(record, dict) and record.get("scrape_status") == "ok"
     ]
 
-    known_urls, known_file_reports = load_known_urls()
+    known_url_keys, known_file_reports = load_known_url_keys()
     follow_candidates, skipped_links_before_limit, discovered_links = build_follow_candidates(
         candidate_records,
-        known_urls
+        known_url_keys
     )
 
     selected_follow_candidates = follow_candidates[:MAX_FOLLOW_FETCHES]
@@ -636,7 +716,7 @@ def main():
 
     print(f"Fetched candidate pages loaded: {len(fetched_candidate_records)}")
     print(f"Links discovered from fetched candidates: {discovered_links}")
-    print(f"Known URLs loaded: {len(known_urls)}")
+    print(f"Known URL keys loaded: {len(known_url_keys)}")
     print(f"Follow candidates after known-url checks: {len(follow_candidates)}")
     print(f"Follow candidates selected: {len(selected_follow_candidates)}")
     print(f"Follow candidates skipped by limit: {len(candidates_skipped_by_limit)}")
@@ -681,7 +761,7 @@ def main():
         "candidate_records_loaded": len(candidate_records),
         "links_discovered_from_fetched_candidates": discovered_links,
         "known_url_files": known_file_reports,
-        "known_urls_loaded": len(known_urls),
+        "known_url_keys_loaded": len(known_url_keys),
         "links_ignored_as_non_http_or_unsafe": count_skips(
             skipped_links,
             {
@@ -691,6 +771,14 @@ def main():
                 "unsupported_or_malformed_url",
                 "external_domain",
             }
+        ),
+        "links_skipped_as_login_account_or_admin": count_skips(
+            skipped_links,
+            {"login_account_or_admin_link"}
+        ),
+        "links_skipped_as_navigation_or_tag": count_skips(
+            skipped_links,
+            {"navigation_or_tag_link"}
         ),
         "links_already_known": count_skips(skipped_links, {"already_known"}),
         "links_ignored_or_skipped_before_fetch": len(skipped_links),
