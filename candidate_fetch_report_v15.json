@@ -1,0 +1,22 @@
+{
+  "input_queue_file": "link_queue_filtered_v14.json",
+  "candidate_links_loaded": 10,
+  "skipped_links_ignored": 39,
+  "max_candidate_fetches": 3,
+  "candidate_links_selected": 3,
+  "links_fetched": 3,
+  "links_skipped_by_limit": 7,
+  "links_skipped_by_robots": 0,
+  "links_failed": 0,
+  "completed": true,
+  "validation_passed": true,
+  "validation_warnings": [],
+  "load_error": null,
+  "fetched_urls": [
+    "https://quotes.toscrape.com/",
+    "https://quotes.toscrape.com/author/Albert-Einstein",
+    "https://quotes.toscrape.com/author/J-K-Rowling"
+  ],
+  "robots_blocked_urls": [],
+  "failed_urls": []
+}

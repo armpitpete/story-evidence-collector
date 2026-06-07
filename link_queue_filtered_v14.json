@@ -1,0 +1,492 @@
+[
+  {
+    "url": "https://quotes.toscrape.com/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "candidate",
+    "filter_reason": "same_domain_supported_non_utility_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/login",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "login_account_or_admin_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/author/Albert-Einstein",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "candidate",
+    "filter_reason": "same_domain_supported_non_utility_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/change/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/deep-thoughts/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/thinking/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/world/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/author/J-K-Rowling",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "candidate",
+    "filter_reason": "same_domain_supported_non_utility_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/abilities/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/choices/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/inspirational/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/life/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/live/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/miracle/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/miracles/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/author/Jane-Austen",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "candidate",
+    "filter_reason": "same_domain_supported_non_utility_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/aliteracy/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/books/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/classic/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/humor/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/author/Marilyn-Monroe",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "candidate",
+    "filter_reason": "same_domain_supported_non_utility_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/be-yourself/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/adulthood/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/success/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/value/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/author/Andre-Gide",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "candidate",
+    "filter_reason": "same_domain_supported_non_utility_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/love/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/author/Thomas-A-Edison",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "candidate",
+    "filter_reason": "same_domain_supported_non_utility_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/edison/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/failure/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/paraphrased/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/author/Eleanor-Roosevelt",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "candidate",
+    "filter_reason": "same_domain_supported_non_utility_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/misattributed-eleanor-roosevelt/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/author/Steve-Martin",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "candidate",
+    "filter_reason": "same_domain_supported_non_utility_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/obvious/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/simile/page/1/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/page/2/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "candidate",
+    "filter_reason": "same_domain_supported_non_utility_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/love/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/inspirational/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/life/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/humor/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/books/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/reading/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/friendship/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/friends/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/truth/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://quotes.toscrape.com/tag/simile/",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": true,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "navigation_or_tag_link"
+  },
+  {
+    "url": "https://www.goodreads.com/quotes",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": false,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "external_domain"
+  },
+  {
+    "url": "https://www.zyte.com",
+    "found_on": "https://quotes.toscrape.com/",
+    "status": "pending",
+    "depth": 1,
+    "same_domain_as_seed": false,
+    "queued_at": "2026-06-07T14:00:17.684008+00:00",
+    "filter_status": "skipped",
+    "skip_reason": "external_domain"
+  }
+]

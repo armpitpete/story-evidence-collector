@@ -1,0 +1,28 @@
+{
+  "seed_urls_file": "seed_urls.json",
+  "seed_urls_loaded": [
+    "https://quotes.toscrape.com/"
+  ],
+  "seed_url_count": 1,
+  "seed_reports": [
+    {
+      "seed_url": "https://quotes.toscrape.com/",
+      "pages_scraped": 10,
+      "quotes_saved": 100,
+      "failed_url": null,
+      "robots_blocked_url": null,
+      "robots_txt_url": "https://quotes.toscrape.com/robots.txt",
+      "robots_txt_checked": true,
+      "robots_txt_status": "not_found_treated_as_allowed",
+      "robots_txt_error": null
+    }
+  ],
+  "pages_scraped": 10,
+  "quotes_saved": 100,
+  "failed_urls": [],
+  "load_error": null,
+  "completed": true,
+  "validation_passed": true,
+  "validation_warnings": [],
+  "robots_blocked_urls": []
+}

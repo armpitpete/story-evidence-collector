@@ -1,0 +1,14 @@
+{
+  "seed_urls_file": "seed_urls.json",
+  "seed_urls_loaded": [
+    "https://quotes.toscrape.com/"
+  ],
+  "seed_url_count": 1,
+  "source_records_saved": 1,
+  "ok_records": 1,
+  "failed_records": 0,
+  "load_error": null,
+  "completed": true,
+  "validation_passed": true,
+  "validation_warnings": []
+}

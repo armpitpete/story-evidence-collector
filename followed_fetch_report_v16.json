@@ -1,0 +1,370 @@
+{
+  "input_candidate_sources_file": "candidate_sources_raw_v15.json",
+  "followed_sources_file": "followed_sources_raw_v16.json",
+  "max_follow_fetches": 3,
+  "follow_external_domains": false,
+  "fetched_candidate_pages_loaded": 3,
+  "candidate_records_loaded": 3,
+  "links_discovered_from_fetched_candidates": 57,
+  "known_url_files": [
+    {
+      "filename": "sources_raw_v13.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 1,
+      "error": null,
+      "kind": "source_records",
+      "known_urls_added": 2
+    },
+    {
+      "filename": "source_records_v13.json",
+      "loaded": false,
+      "status": "missing",
+      "item_count": 0,
+      "error": null,
+      "kind": "source_records",
+      "known_urls_added": 0
+    },
+    {
+      "filename": "link_queue_v13.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 49,
+      "error": null,
+      "kind": "queue",
+      "known_urls_added": 49
+    },
+    {
+      "filename": "link_queue_filtered_v14.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 49,
+      "error": null,
+      "kind": "filtered_queue",
+      "known_urls_added": 49
+    },
+    {
+      "filename": "candidate_sources_raw_v15.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 3,
+      "error": null,
+      "kind": "candidate_source_records",
+      "known_urls_added": 6
+    }
+  ],
+  "known_url_keys_loaded": 51,
+  "links_ignored_as_non_http_or_unsafe": 6,
+  "links_skipped_as_login_account_or_admin": 3,
+  "links_skipped_as_navigation_or_tag": 36,
+  "links_already_known": 12,
+  "links_ignored_or_skipped_before_fetch": 57,
+  "skip_reason_counts": {
+    "already_known": 12,
+    "login_account_or_admin_link": 3,
+    "navigation_or_tag_link": 36,
+    "external_domain": 6
+  },
+  "follow_candidates_after_known_url_checks": 0,
+  "follow_links_selected": 0,
+  "links_fetched": 0,
+  "links_skipped_by_limit": 0,
+  "links_skipped_by_robots": 0,
+  "links_failed": 0,
+  "completed": true,
+  "validation_passed": true,
+  "validation_warnings": [],
+  "load_error": null,
+  "fetched_urls": [],
+  "robots_blocked_urls": [],
+  "robots_blocked_url_details": [],
+  "failed_urls": [],
+  "followed_url_sources": [],
+  "skipped_urls": [
+    {
+      "url": "https://quotes.toscrape.com/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "https://quotes.toscrape.com/login",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "login_account_or_admin_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Albert-Einstein",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/change/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/deep-thoughts/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/thinking/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/world/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/J-K-Rowling",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/abilities/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/choices/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/inspirational/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/life/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/live/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/miracle/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/miracles/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Jane-Austen",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/aliteracy/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/books/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/classic/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/humor/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Marilyn-Monroe",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/be-yourself/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/adulthood/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/success/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/value/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Andre-Gide",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/love/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Thomas-A-Edison",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/edison/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/failure/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/paraphrased/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Eleanor-Roosevelt",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/misattributed-eleanor-roosevelt/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Steve-Martin",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/obvious/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/simile/page/1/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/page/2/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/love/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/inspirational/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/life/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/humor/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/books/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/reading/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/friendship/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/friends/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/truth/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/simile/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "navigation_or_tag_link"
+    },
+    {
+      "url": "https://www.goodreads.com/quotes",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "external_domain"
+    },
+    {
+      "url": "https://www.zyte.com/",
+      "found_on": "https://quotes.toscrape.com/",
+      "skip_reason": "external_domain"
+    },
+    {
+      "url": "http://quotes.toscrape.com/",
+      "found_on": "http://quotes.toscrape.com/author/Albert-Einstein/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "http://quotes.toscrape.com/login",
+      "found_on": "http://quotes.toscrape.com/author/Albert-Einstein/",
+      "skip_reason": "login_account_or_admin_link"
+    },
+    {
+      "url": "https://www.goodreads.com/quotes",
+      "found_on": "http://quotes.toscrape.com/author/Albert-Einstein/",
+      "skip_reason": "external_domain"
+    },
+    {
+      "url": "https://www.zyte.com/",
+      "found_on": "http://quotes.toscrape.com/author/Albert-Einstein/",
+      "skip_reason": "external_domain"
+    },
+    {
+      "url": "http://quotes.toscrape.com/",
+      "found_on": "http://quotes.toscrape.com/author/J-K-Rowling/",
+      "skip_reason": "already_known"
+    },
+    {
+      "url": "http://quotes.toscrape.com/login",
+      "found_on": "http://quotes.toscrape.com/author/J-K-Rowling/",
+      "skip_reason": "login_account_or_admin_link"
+    },
+    {
+      "url": "https://www.goodreads.com/quotes",
+      "found_on": "http://quotes.toscrape.com/author/J-K-Rowling/",
+      "skip_reason": "external_domain"
+    },
+    {
+      "url": "https://www.zyte.com/",
+      "found_on": "http://quotes.toscrape.com/author/J-K-Rowling/",
+      "skip_reason": "external_domain"
+    }
+  ]
+}
