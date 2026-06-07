@@ -1,0 +1,53 @@
+name: Build v1.7 trace report
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/build-trace-report-v17.yml"
+      - "create_trace_report_v17.py"
+      - "seed_urls.json"
+      - "sources_raw_v13.json"
+      - "link_queue_v13.json"
+      - "link_queue_filtered_v14.json"
+      - "candidate_sources_raw_v15.json"
+      - "candidate_fetch_report_v15.json"
+      - "followed_sources_raw_v16.json"
+      - "followed_fetch_report_v16.json"
+
+permissions:
+  contents: write
+
+jobs:
+  build-trace-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Build trace report
+        run: python create_trace_report_v17.py
+
+      - name: Show generated files
+        run: |
+          ls -l trace_report_v17.json trace_report_v17.md
+          python -m json.tool trace_report_v17.json > /tmp/trace_report_v17.pretty.json
+          head -40 /tmp/trace_report_v17.pretty.json
+
+      - name: Commit generated trace report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add trace_report_v17.json trace_report_v17.md
+          if git diff --cached --quiet; then
+            echo "No trace report changes to commit."
+          else
+            git commit -m "Add v1.7 trace report outputs"
+            git push
+          fi
