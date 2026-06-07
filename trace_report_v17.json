@@ -1,0 +1,2986 @@
+{
+  "generated_at": "2026-06-07T20:01:23.594168+00:00",
+  "network_requests_made": false,
+  "input_files": [
+    {
+      "filename": "seed_urls.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 1,
+      "error": null,
+      "stage": "v1.1 seed URLs",
+      "required": true
+    },
+    {
+      "filename": "sources_raw_v13.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 1,
+      "error": null,
+      "stage": "v1.3 source records",
+      "required": false
+    },
+    {
+      "filename": "link_queue_v13.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 49,
+      "error": null,
+      "stage": "v1.3 pending link queue",
+      "required": false
+    },
+    {
+      "filename": "link_queue_filtered_v14.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 49,
+      "error": null,
+      "stage": "v1.4 filtered link queue",
+      "required": false
+    },
+    {
+      "filename": "candidate_sources_raw_v15.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 3,
+      "error": null,
+      "stage": "v1.5 fetched candidate sources",
+      "required": false
+    },
+    {
+      "filename": "candidate_fetch_report_v15.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 1,
+      "error": null,
+      "stage": "v1.5 candidate fetch report",
+      "required": false
+    },
+    {
+      "filename": "followed_sources_raw_v16.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 0,
+      "error": null,
+      "stage": "v1.6 followed source records",
+      "required": false
+    },
+    {
+      "filename": "followed_fetch_report_v16.json",
+      "loaded": true,
+      "status": "loaded",
+      "item_count": 1,
+      "error": null,
+      "stage": "v1.6 followed fetch report",
+      "required": false
+    }
+  ],
+  "summary_counts": {
+    "unique_urls_traced": 51,
+    "fetched_urls": 5,
+    "skipped_urls": 49,
+    "candidate_urls": 0,
+    "pending_urls": 0,
+    "seed_urls": 0,
+    "skip_reason_counts": {
+      "already_known": 10,
+      "login_account_or_admin_link": 1,
+      "navigation_or_tag_link": 36,
+      "external_domain": 2
+    },
+    "current_status_counts": {
+      "fetched": 5,
+      "skipped": 46
+    }
+  },
+  "stage_counts": {
+    "v1.1 seed URLs": {
+      "filename": "seed_urls.json",
+      "loaded": true,
+      "item_count": 1,
+      "status": "loaded"
+    },
+    "v1.3 source records": {
+      "filename": "sources_raw_v13.json",
+      "loaded": true,
+      "item_count": 1,
+      "status": "loaded"
+    },
+    "v1.3 pending link queue": {
+      "filename": "link_queue_v13.json",
+      "loaded": true,
+      "item_count": 49,
+      "status": "loaded"
+    },
+    "v1.4 filtered link queue": {
+      "filename": "link_queue_filtered_v14.json",
+      "loaded": true,
+      "item_count": 49,
+      "status": "loaded"
+    },
+    "v1.5 fetched candidate sources": {
+      "filename": "candidate_sources_raw_v15.json",
+      "loaded": true,
+      "item_count": 3,
+      "status": "loaded"
+    },
+    "v1.5 candidate fetch report": {
+      "filename": "candidate_fetch_report_v15.json",
+      "loaded": true,
+      "item_count": 1,
+      "status": "loaded"
+    },
+    "v1.6 followed source records": {
+      "filename": "followed_sources_raw_v16.json",
+      "loaded": true,
+      "item_count": 0,
+      "status": "loaded"
+    },
+    "v1.6 followed fetch report": {
+      "filename": "followed_fetch_report_v16.json",
+      "loaded": true,
+      "item_count": 1,
+      "status": "loaded"
+    }
+  },
+  "url_trace_records": [
+    {
+      "url": "http://quotes.toscrape.com/author/Albert-Einstein/",
+      "url_key": "//quotes.toscrape.com/author/Albert-Einstein/",
+      "first_seen_stage": "v1.5 fetched candidate sources",
+      "first_seen_file": "candidate_sources_raw_v15.json",
+      "stages": [
+        "v1.5 fetched candidate sources"
+      ],
+      "found_on": [],
+      "depths": [],
+      "statuses": [
+        "ok"
+      ],
+      "filter_statuses": [],
+      "filter_reasons": [],
+      "skip_reasons": [],
+      "scrape_statuses": [
+        "ok"
+      ],
+      "robots_txt_statuses": [
+        "not_found_treated_as_allowed"
+      ],
+      "page_titles": [
+        "Quotes to Scrape"
+      ],
+      "final_urls": [
+        "http://quotes.toscrape.com/author/Albert-Einstein/"
+      ],
+      "fetched": true,
+      "skipped": false,
+      "current_status": "fetched"
+    },
+    {
+      "url": "http://quotes.toscrape.com/author/J-K-Rowling/",
+      "url_key": "//quotes.toscrape.com/author/J-K-Rowling/",
+      "first_seen_stage": "v1.5 fetched candidate sources",
+      "first_seen_file": "candidate_sources_raw_v15.json",
+      "stages": [
+        "v1.5 fetched candidate sources"
+      ],
+      "found_on": [],
+      "depths": [],
+      "statuses": [
+        "ok"
+      ],
+      "filter_statuses": [],
+      "filter_reasons": [],
+      "skip_reasons": [],
+      "scrape_statuses": [
+        "ok"
+      ],
+      "robots_txt_statuses": [
+        "not_found_treated_as_allowed"
+      ],
+      "page_titles": [
+        "Quotes to Scrape"
+      ],
+      "final_urls": [
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "fetched": true,
+      "skipped": false,
+      "current_status": "fetched"
+    },
+    {
+      "url": "https://quotes.toscrape.com/",
+      "url_key": "//quotes.toscrape.com/",
+      "first_seen_stage": "v1.1 seed URLs",
+      "first_seen_file": "seed_urls.json",
+      "stages": [
+        "v1.1 seed URLs",
+        "v1.3 source records",
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.5 fetched candidate sources",
+        "v1.5 candidate fetch report",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/",
+        "http://quotes.toscrape.com/author/Albert-Einstein/",
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "seed",
+        "ok",
+        "pending",
+        "filter_candidate",
+        "fetched",
+        "skipped_already_known"
+      ],
+      "filter_statuses": [
+        "candidate"
+      ],
+      "filter_reasons": [
+        "same_domain_supported_non_utility_link"
+      ],
+      "skip_reasons": [
+        "already_known"
+      ],
+      "scrape_statuses": [
+        "ok"
+      ],
+      "robots_txt_statuses": [
+        "not_found_treated_as_allowed"
+      ],
+      "page_titles": [
+        "Quotes to Scrape"
+      ],
+      "final_urls": [
+        "https://quotes.toscrape.com/"
+      ],
+      "fetched": true,
+      "skipped": true,
+      "current_status": "fetched"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Albert-Einstein",
+      "url_key": "//quotes.toscrape.com/author/Albert-Einstein",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.5 fetched candidate sources",
+        "v1.5 candidate fetch report",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_candidate",
+        "ok",
+        "fetched",
+        "skipped_already_known"
+      ],
+      "filter_statuses": [
+        "candidate"
+      ],
+      "filter_reasons": [
+        "same_domain_supported_non_utility_link"
+      ],
+      "skip_reasons": [
+        "already_known"
+      ],
+      "scrape_statuses": [
+        "ok"
+      ],
+      "robots_txt_statuses": [
+        "not_found_treated_as_allowed"
+      ],
+      "page_titles": [
+        "Quotes to Scrape"
+      ],
+      "final_urls": [
+        "http://quotes.toscrape.com/author/Albert-Einstein/"
+      ],
+      "fetched": true,
+      "skipped": true,
+      "current_status": "fetched"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Andre-Gide",
+      "url_key": "//quotes.toscrape.com/author/Andre-Gide",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_candidate",
+        "skipped_already_known"
+      ],
+      "filter_statuses": [
+        "candidate"
+      ],
+      "filter_reasons": [
+        "same_domain_supported_non_utility_link"
+      ],
+      "skip_reasons": [
+        "already_known"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Eleanor-Roosevelt",
+      "url_key": "//quotes.toscrape.com/author/Eleanor-Roosevelt",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_candidate",
+        "skipped_already_known"
+      ],
+      "filter_statuses": [
+        "candidate"
+      ],
+      "filter_reasons": [
+        "same_domain_supported_non_utility_link"
+      ],
+      "skip_reasons": [
+        "already_known"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/J-K-Rowling",
+      "url_key": "//quotes.toscrape.com/author/J-K-Rowling",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.5 fetched candidate sources",
+        "v1.5 candidate fetch report",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_candidate",
+        "ok",
+        "fetched",
+        "skipped_already_known"
+      ],
+      "filter_statuses": [
+        "candidate"
+      ],
+      "filter_reasons": [
+        "same_domain_supported_non_utility_link"
+      ],
+      "skip_reasons": [
+        "already_known"
+      ],
+      "scrape_statuses": [
+        "ok"
+      ],
+      "robots_txt_statuses": [
+        "not_found_treated_as_allowed"
+      ],
+      "page_titles": [
+        "Quotes to Scrape"
+      ],
+      "final_urls": [
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "fetched": true,
+      "skipped": true,
+      "current_status": "fetched"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Jane-Austen",
+      "url_key": "//quotes.toscrape.com/author/Jane-Austen",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_candidate",
+        "skipped_already_known"
+      ],
+      "filter_statuses": [
+        "candidate"
+      ],
+      "filter_reasons": [
+        "same_domain_supported_non_utility_link"
+      ],
+      "skip_reasons": [
+        "already_known"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Marilyn-Monroe",
+      "url_key": "//quotes.toscrape.com/author/Marilyn-Monroe",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_candidate",
+        "skipped_already_known"
+      ],
+      "filter_statuses": [
+        "candidate"
+      ],
+      "filter_reasons": [
+        "same_domain_supported_non_utility_link"
+      ],
+      "skip_reasons": [
+        "already_known"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Steve-Martin",
+      "url_key": "//quotes.toscrape.com/author/Steve-Martin",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_candidate",
+        "skipped_already_known"
+      ],
+      "filter_statuses": [
+        "candidate"
+      ],
+      "filter_reasons": [
+        "same_domain_supported_non_utility_link"
+      ],
+      "skip_reasons": [
+        "already_known"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Thomas-A-Edison",
+      "url_key": "//quotes.toscrape.com/author/Thomas-A-Edison",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_candidate",
+        "skipped_already_known"
+      ],
+      "filter_statuses": [
+        "candidate"
+      ],
+      "filter_reasons": [
+        "same_domain_supported_non_utility_link"
+      ],
+      "skip_reasons": [
+        "already_known"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/login",
+      "url_key": "//quotes.toscrape.com/login",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/",
+        "http://quotes.toscrape.com/author/Albert-Einstein/",
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_login_account_or_admin_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "login_account_or_admin_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/page/2/",
+      "url_key": "//quotes.toscrape.com/page/2/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_candidate",
+        "skipped_already_known"
+      ],
+      "filter_statuses": [
+        "candidate"
+      ],
+      "filter_reasons": [
+        "same_domain_supported_non_utility_link"
+      ],
+      "skip_reasons": [
+        "already_known"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/abilities/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/abilities/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/adulthood/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/adulthood/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/aliteracy/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/aliteracy/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/be-yourself/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/be-yourself/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/books/",
+      "url_key": "//quotes.toscrape.com/tag/books/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/books/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/books/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/change/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/change/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/choices/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/choices/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/classic/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/classic/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/deep-thoughts/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/deep-thoughts/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/edison/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/edison/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/failure/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/failure/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/friends/",
+      "url_key": "//quotes.toscrape.com/tag/friends/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/friendship/",
+      "url_key": "//quotes.toscrape.com/tag/friendship/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/humor/",
+      "url_key": "//quotes.toscrape.com/tag/humor/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/humor/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/humor/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/inspirational/",
+      "url_key": "//quotes.toscrape.com/tag/inspirational/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/inspirational/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/inspirational/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/life/",
+      "url_key": "//quotes.toscrape.com/tag/life/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/life/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/life/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/live/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/live/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/love/",
+      "url_key": "//quotes.toscrape.com/tag/love/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/love/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/love/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/miracle/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/miracle/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/miracles/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/miracles/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/misattributed-eleanor-roosevelt/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/misattributed-eleanor-roosevelt/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/obvious/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/obvious/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/paraphrased/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/paraphrased/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/reading/",
+      "url_key": "//quotes.toscrape.com/tag/reading/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/simile/",
+      "url_key": "//quotes.toscrape.com/tag/simile/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/simile/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/simile/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/success/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/success/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/thinking/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/thinking/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/truth/",
+      "url_key": "//quotes.toscrape.com/tag/truth/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/value/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/value/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/world/page/1/",
+      "url_key": "//quotes.toscrape.com/tag/world/page/1/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_navigation_or_tag_link"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://www.goodreads.com/quotes",
+      "url_key": "//www.goodreads.com/quotes",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/",
+        "http://quotes.toscrape.com/author/Albert-Einstein/",
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_external_domain"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "external_domain"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    },
+    {
+      "url": "https://www.zyte.com/",
+      "url_key": "//www.zyte.com/",
+      "first_seen_stage": "v1.3 pending link queue",
+      "first_seen_file": "link_queue_v13.json",
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/",
+        "http://quotes.toscrape.com/author/Albert-Einstein/",
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "depths": [
+        1
+      ],
+      "statuses": [
+        "pending",
+        "filter_skipped",
+        "skipped_external_domain"
+      ],
+      "filter_statuses": [
+        "skipped"
+      ],
+      "filter_reasons": [],
+      "skip_reasons": [
+        "external_domain"
+      ],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": true,
+      "current_status": "skipped"
+    }
+  ],
+  "fetched_records": [
+    {
+      "url": "http://quotes.toscrape.com/author/Albert-Einstein/",
+      "final_url": "http://quotes.toscrape.com/author/Albert-Einstein/",
+      "page_title": "Quotes to Scrape",
+      "scrape_status": "ok",
+      "robots_txt_status": "not_found_treated_as_allowed",
+      "found_on": [],
+      "depths": [],
+      "stages": [
+        "v1.5 fetched candidate sources"
+      ]
+    },
+    {
+      "url": "http://quotes.toscrape.com/author/J-K-Rowling/",
+      "final_url": "http://quotes.toscrape.com/author/J-K-Rowling/",
+      "page_title": "Quotes to Scrape",
+      "scrape_status": "ok",
+      "robots_txt_status": "not_found_treated_as_allowed",
+      "found_on": [],
+      "depths": [],
+      "stages": [
+        "v1.5 fetched candidate sources"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/",
+      "final_url": "https://quotes.toscrape.com/",
+      "page_title": "Quotes to Scrape",
+      "scrape_status": "ok",
+      "robots_txt_status": "not_found_treated_as_allowed",
+      "found_on": [
+        "https://quotes.toscrape.com/",
+        "http://quotes.toscrape.com/author/Albert-Einstein/",
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.1 seed URLs",
+        "v1.3 source records",
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.5 fetched candidate sources",
+        "v1.5 candidate fetch report",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Albert-Einstein",
+      "final_url": "http://quotes.toscrape.com/author/Albert-Einstein/",
+      "page_title": "Quotes to Scrape",
+      "scrape_status": "ok",
+      "robots_txt_status": "not_found_treated_as_allowed",
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.5 fetched candidate sources",
+        "v1.5 candidate fetch report",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/J-K-Rowling",
+      "final_url": "http://quotes.toscrape.com/author/J-K-Rowling/",
+      "page_title": "Quotes to Scrape",
+      "scrape_status": "ok",
+      "robots_txt_status": "not_found_treated_as_allowed",
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.5 fetched candidate sources",
+        "v1.5 candidate fetch report",
+        "v1.6 followed fetch report"
+      ]
+    }
+  ],
+  "skipped_records": [
+    {
+      "url": "https://quotes.toscrape.com/",
+      "skip_reasons": [
+        "already_known"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/",
+        "http://quotes.toscrape.com/author/Albert-Einstein/",
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.1 seed URLs",
+        "v1.3 source records",
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.5 fetched candidate sources",
+        "v1.5 candidate fetch report",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Albert-Einstein",
+      "skip_reasons": [
+        "already_known"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.5 fetched candidate sources",
+        "v1.5 candidate fetch report",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Andre-Gide",
+      "skip_reasons": [
+        "already_known"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Eleanor-Roosevelt",
+      "skip_reasons": [
+        "already_known"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/J-K-Rowling",
+      "skip_reasons": [
+        "already_known"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.5 fetched candidate sources",
+        "v1.5 candidate fetch report",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Jane-Austen",
+      "skip_reasons": [
+        "already_known"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Marilyn-Monroe",
+      "skip_reasons": [
+        "already_known"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Steve-Martin",
+      "skip_reasons": [
+        "already_known"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/author/Thomas-A-Edison",
+      "skip_reasons": [
+        "already_known"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/login",
+      "skip_reasons": [
+        "login_account_or_admin_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/",
+        "http://quotes.toscrape.com/author/Albert-Einstein/",
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/page/2/",
+      "skip_reasons": [
+        "already_known"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/abilities/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/adulthood/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/aliteracy/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/be-yourself/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/books/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/books/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/change/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/choices/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/classic/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/deep-thoughts/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/edison/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/failure/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/friends/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/friendship/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/humor/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/humor/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/inspirational/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/inspirational/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/life/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/life/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/live/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/love/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/love/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/miracle/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/miracles/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/misattributed-eleanor-roosevelt/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/obvious/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/paraphrased/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/reading/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/simile/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/simile/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/success/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/thinking/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/truth/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/value/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://quotes.toscrape.com/tag/world/page/1/",
+      "skip_reasons": [
+        "navigation_or_tag_link"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://www.goodreads.com/quotes",
+      "skip_reasons": [
+        "external_domain"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/",
+        "http://quotes.toscrape.com/author/Albert-Einstein/",
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    },
+    {
+      "url": "https://www.zyte.com/",
+      "skip_reasons": [
+        "external_domain"
+      ],
+      "found_on": [
+        "https://quotes.toscrape.com/",
+        "http://quotes.toscrape.com/author/Albert-Einstein/",
+        "http://quotes.toscrape.com/author/J-K-Rowling/"
+      ],
+      "depths": [
+        1
+      ],
+      "stages": [
+        "v1.3 pending link queue",
+        "v1.4 filtered link queue",
+        "v1.6 followed fetch report"
+      ]
+    }
+  ],
+  "validation_passed": true,
+  "validation_warnings": []
+}
