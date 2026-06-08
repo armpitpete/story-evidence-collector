@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   run-pipeline:
-    name: Run current safe pipeline
+    name: Run public trace pipeline
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -26,8 +26,8 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install scrapling
 
-      - name: Run pipeline
-        run: python run_trace_pipeline_v19.py
+      - name: Run public trace pipeline
+        run: python run_public_trace_pipeline_v20.py
 
       - name: Upload generated reports
         if: always()
@@ -35,10 +35,6 @@ jobs:
         with:
           name: story-evidence-collector-reports
           path: |
-            scrape_report_v11.json
-            quotes_all_pages_v11.json
-            sources_raw_v12.json
-            source_report_v12.json
             sources_raw_v13.json
             source_report_v13.json
             link_queue_v13.json
