@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-07T20:16:50.028972+00:00",
+  "generated_at": "2026-06-08T07:41:57.927661+00:00",
   "network_requests_made": false,
   "input_files": [
     {
@@ -76,12 +76,12 @@
     }
   ],
   "summary_counts": {
-    "unique_urls_traced": 51,
+    "unique_urls_traced": 52,
     "fetched_urls": 5,
     "skipped_urls": 49,
     "candidate_urls": 0,
     "pending_urls": 0,
-    "seed_urls": 0,
+    "seed_urls": 1,
     "skip_reason_counts": {
       "already_known": 10,
       "login_account_or_admin_link": 1,
@@ -90,7 +90,8 @@
     },
     "current_status_counts": {
       "fetched": 5,
-      "skipped": 46
+      "skipped": 46,
+      "seed": 1
     }
   },
   "stage_counts": {
@@ -211,10 +212,9 @@
     {
       "url": "https://quotes.toscrape.com/",
       "url_key": "//quotes.toscrape.com/",
-      "first_seen_stage": "v1.1 seed URLs",
-      "first_seen_file": "seed_urls.json",
+      "first_seen_stage": "v1.3 source records",
+      "first_seen_file": "sources_raw_v13.json",
       "stages": [
-        "v1.1 seed URLs",
         "v1.3 source records",
         "v1.3 pending link queue",
         "v1.4 filtered link queue",
@@ -231,7 +231,6 @@
         1
       ],
       "statuses": [
-        "seed",
         "ok",
         "pending",
         "filter_candidate",
@@ -1964,6 +1963,30 @@
       "current_status": "skipped"
     },
     {
+      "url": "https://thisweekinsmoke.uk/",
+      "url_key": "//thisweekinsmoke.uk/",
+      "first_seen_stage": "v1.1 seed URLs",
+      "first_seen_file": "seed_urls.json",
+      "stages": [
+        "v1.1 seed URLs"
+      ],
+      "found_on": [],
+      "depths": [],
+      "statuses": [
+        "seed"
+      ],
+      "filter_statuses": [],
+      "filter_reasons": [],
+      "skip_reasons": [],
+      "scrape_statuses": [],
+      "robots_txt_statuses": [],
+      "page_titles": [],
+      "final_urls": [],
+      "fetched": false,
+      "skipped": false,
+      "current_status": "seed"
+    },
+    {
       "url": "https://www.goodreads.com/quotes",
       "url_key": "//www.goodreads.com/quotes",
       "first_seen_stage": "v1.3 pending link queue",
@@ -2080,7 +2103,6 @@
         1
       ],
       "stages": [
-        "v1.1 seed URLs",
         "v1.3 source records",
         "v1.3 pending link queue",
         "v1.4 filtered link queue",
@@ -2145,7 +2167,6 @@
         1
       ],
       "stages": [
-        "v1.1 seed URLs",
         "v1.3 source records",
         "v1.3 pending link queue",
         "v1.4 filtered link queue",

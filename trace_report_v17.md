@@ -1,17 +1,17 @@
 # Story Evidence Collector Trace Report v1.7
 
-Generated: `2026-06-07T20:16:50.028972+00:00`
+Generated: `2026-06-08T07:41:57.927661+00:00`
 
 ## Summary counts
 
 | Metric | Count |
 | --- | --- |
-| Unique URLs traced | 51 |
+| Unique URLs traced | 52 |
 | Fetched URLs | 5 |
 | Skipped URLs | 49 |
 | Candidate URLs | 0 |
 | Pending URLs | 0 |
-| Seed URLs | 0 |
+| Seed URLs | 1 |
 
 
 ## Pipeline stage summary
@@ -100,7 +100,7 @@ Generated: `2026-06-07T20:16:50.028972+00:00`
 | --- | --- | --- | --- |
 | http://quotes.toscrape.com/author/Albert-Einstein/ | fetched | v1.5 fetched candidate sources | http://quotes.toscrape.com/author/Albert-Einstein/ |
 | http://quotes.toscrape.com/author/J-K-Rowling/ | fetched | v1.5 fetched candidate sources | http://quotes.toscrape.com/author/J-K-Rowling/ |
-| https://quotes.toscrape.com/ | fetched | v1.1 seed URLs → v1.3 source records → v1.3 pending link queue → v1.4 filtered link queue → v1.5 fetched candidate sources → v1.5 candidate fetch report → v1.6 followed fetch report | https://quotes.toscrape.com/ → https://quotes.toscrape.com/; http://quotes.toscrape.com/author/Albert-Einstein/ → https://quotes.toscrape.com/; http://quotes.toscrape.com/author/J-K-Rowling/ → https://quotes.toscrape.com/ |
+| https://quotes.toscrape.com/ | fetched | v1.3 source records → v1.3 pending link queue → v1.4 filtered link queue → v1.5 fetched candidate sources → v1.5 candidate fetch report → v1.6 followed fetch report | https://quotes.toscrape.com/ → https://quotes.toscrape.com/; http://quotes.toscrape.com/author/Albert-Einstein/ → https://quotes.toscrape.com/; http://quotes.toscrape.com/author/J-K-Rowling/ → https://quotes.toscrape.com/ |
 | https://quotes.toscrape.com/author/Albert-Einstein | fetched | v1.3 pending link queue → v1.4 filtered link queue → v1.5 fetched candidate sources → v1.5 candidate fetch report → v1.6 followed fetch report | https://quotes.toscrape.com/ → https://quotes.toscrape.com/author/Albert-Einstein |
 | https://quotes.toscrape.com/author/Andre-Gide | skipped | v1.3 pending link queue → v1.4 filtered link queue → v1.6 followed fetch report | https://quotes.toscrape.com/ → https://quotes.toscrape.com/author/Andre-Gide |
 | https://quotes.toscrape.com/author/Eleanor-Roosevelt | skipped | v1.3 pending link queue → v1.4 filtered link queue → v1.6 followed fetch report | https://quotes.toscrape.com/ → https://quotes.toscrape.com/author/Eleanor-Roosevelt |
@@ -147,6 +147,7 @@ Generated: `2026-06-07T20:16:50.028972+00:00`
 | https://quotes.toscrape.com/tag/truth/ | skipped | v1.3 pending link queue → v1.4 filtered link queue → v1.6 followed fetch report | https://quotes.toscrape.com/ → https://quotes.toscrape.com/tag/truth/ |
 | https://quotes.toscrape.com/tag/value/page/1/ | skipped | v1.3 pending link queue → v1.4 filtered link queue → v1.6 followed fetch report | https://quotes.toscrape.com/ → https://quotes.toscrape.com/tag/value/page/1/ |
 | https://quotes.toscrape.com/tag/world/page/1/ | skipped | v1.3 pending link queue → v1.4 filtered link queue → v1.6 followed fetch report | https://quotes.toscrape.com/ → https://quotes.toscrape.com/tag/world/page/1/ |
+| https://thisweekinsmoke.uk/ | seed | v1.1 seed URLs | https://thisweekinsmoke.uk/ |
 | https://www.goodreads.com/quotes | skipped | v1.3 pending link queue → v1.4 filtered link queue → v1.6 followed fetch report | https://quotes.toscrape.com/ → https://www.goodreads.com/quotes; http://quotes.toscrape.com/author/Albert-Einstein/ → https://www.goodreads.com/quotes; http://quotes.toscrape.com/author/J-K-Rowling/ → https://www.goodreads.com/quotes |
 | https://www.zyte.com/ | skipped | v1.3 pending link queue → v1.4 filtered link queue → v1.6 followed fetch report | https://quotes.toscrape.com/ → https://www.zyte.com/; http://quotes.toscrape.com/author/Albert-Einstein/ → https://www.zyte.com/; http://quotes.toscrape.com/author/J-K-Rowling/ → https://www.zyte.com/ |
 
