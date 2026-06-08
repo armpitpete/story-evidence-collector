@@ -5,17 +5,10 @@ from pathlib import Path
 from urllib.parse import urldefrag
 
 
-PIPELINE_STEPS = [
-    "extract_source_records_v13.py",
-    "filter_link_queue_v14.py",
-    "fetch_candidate_links_v15.py",
-    "follow_fetched_candidate_links_v16.py",
-    "create_trace_report_v17.py",
-    "create_trace_report_v18.py",
-]
-
 TRACE_JSON_FILE = Path("trace_report_v18.json")
 TRACE_MARKDOWN_FILE = Path("trace_report_v18.md")
+SUBJECT_JSON_FILE = Path("subject_matches_v21.json")
+SUBJECT_MARKDOWN_FILE = Path("subject_matches_v21.md")
 
 SOURCE_RECORD_FILES_TO_SANITISE = [
     Path("sources_raw_v13.json"),
@@ -290,10 +283,23 @@ def load_trace_report():
         return None
 
 
-def print_final_summary():
-    report = load_trace_report()
+def load_subject_report():
+    if not SUBJECT_JSON_FILE.exists():
+        print(f"FAILED: {SUBJECT_JSON_FILE} not found")
+        return None
 
-    if report is None:
+    try:
+        return load_json_file(SUBJECT_JSON_FILE)
+    except json.JSONDecodeError as error:
+        print(f"FAILED: {SUBJECT_JSON_FILE} is not valid JSON: {error}")
+        return None
+
+
+def print_final_summary():
+    trace_report = load_trace_report()
+    subject_report = load_subject_report()
+
+    if trace_report is None or subject_report is None:
         return False
 
     print("")
@@ -306,8 +312,14 @@ def print_final_summary():
         print("FAILED: trace_report_v18.md not found")
         return False
 
-    network_requests_made = report.get("network_requests_made")
-    validation_passed = report.get("validation_passed")
+    if SUBJECT_MARKDOWN_FILE.exists():
+        print("subject_matches_v21.md generated")
+    else:
+        print("FAILED: subject_matches_v21.md not found")
+        return False
+
+    network_requests_made = trace_report.get("network_requests_made")
+    validation_passed = trace_report.get("validation_passed")
 
     print(f"network_requests_made: {network_requests_made}")
 
@@ -317,12 +329,14 @@ def print_final_summary():
         print("FAILED: validation did not pass")
         return False
 
-    print("Public trace pipeline complete.")
+    print(f"subject: {subject_report.get('subject')}")
+    print(f"subject matches found: {subject_report.get('matches_found')}")
+    print("Public trace and subject-match pipeline complete.")
     return True
 
 
 def main():
-    print("Story Evidence Collector public trace pipeline v2.0")
+    print("Story Evidence Collector public trace pipeline v2.1")
     print("Running general source/link/report pipeline only.")
     print("The old quote-demo scraper is not run.")
     print("No new crawling or fetching logic is added by this runner.")
@@ -349,6 +363,7 @@ def main():
         "follow_fetched_candidate_links_v16.py",
         "create_trace_report_v17.py",
         "create_trace_report_v18.py",
+        "extract_subject_matches_v21.py",
     ]:
         if not run_step(script_name):
             print("Pipeline stopped.")
