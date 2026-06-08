@@ -1,0 +1,55 @@
+name: Manual pipeline test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-pipeline:
+    name: Run current safe pipeline
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install scrapling
+
+      - name: Run pipeline
+        run: python run_trace_pipeline_v19.py
+
+      - name: Upload generated reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: story-evidence-collector-reports
+          path: |
+            scrape_report_v11.json
+            quotes_all_pages_v11.json
+            sources_raw_v12.json
+            source_report_v12.json
+            sources_raw_v13.json
+            source_report_v13.json
+            link_queue_v13.json
+            link_queue_filtered_v14.json
+            source_report_v14.json
+            candidate_sources_raw_v15.json
+            candidate_fetch_report_v15.json
+            followed_sources_raw_v16.json
+            followed_fetch_report_v16.json
+            trace_report_v17.json
+            trace_report_v17.md
+            trace_report_v18.json
+            trace_report_v18.md
+          if-no-files-found: warn
