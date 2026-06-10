@@ -19,6 +19,7 @@ The current version can:
 - validate the output
 - check `robots.txt` before scraping
 - convert Nutch-style discovery output into candidate source records
+- run a local Streamlit control panel for safe local pipeline steps
 
 ## Safety rules
 
@@ -27,6 +28,8 @@ This project is for public-source research.
 It is not designed to access private, restricted, paid, login-only, or blocked content. It should only fetch pages that are public and allowed, with polite delays and clear reports.
 
 Nutch is treated as an optional discovery layer only. Nutch may find candidate public pages. The Python evidence pipeline decides what is usable evidence.
+
+The local interface is for local use only. It does not run a live Nutch crawl in v2.4.
 
 ## Planned purpose
 
@@ -89,6 +92,23 @@ candidate_sources_discovered_v23.md
 pip install -r requirements.txt
 ```
 
+## Run v2.4 local interface
+
+This opens a local Streamlit control panel.
+
+```powershell
+streamlit run .\twis_source_engine_ui_v24.py
+```
+
+The interface can:
+
+- load known local input files
+- show `targeted`, `discovery`, and `hybrid` mode labels
+- run safe local scripts that exist in the repo
+- preview JSON and Markdown outputs
+
+It does not expose live Nutch crawling.
+
 ## Run v2.3 Nutch discovery converter
 
 This does not run a live crawl. It converts an existing Nutch-style sample file into standard candidate source records.
@@ -147,9 +167,12 @@ python .\scrape_all_quote_pages_v11.py
 | v1.4 | Done | Filter queue before fetching |
 | v2.2 | Done | Add optional Nutch discovery setup |
 | v2.3 | Done | Convert Nutch-style output into candidate source records |
+| v2.4 | Done | Add local interface to load inputs and run safe pipeline steps |
 
 ## Notes
 
 The current queue filter does not fetch queued links. It only separates pending links into candidates and skipped links, with clear reasons.
 
 The v2.3 Nutch converter does not fetch pages, run Nutch, or decide whether a page is evidence. It only converts supplied discovery records into candidate source records for later processing.
+
+The v2.4 interface is a local control panel. It is not a deployed app and does not run live crawling.
