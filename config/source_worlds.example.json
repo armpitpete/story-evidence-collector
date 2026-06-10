@@ -1,0 +1,38 @@
+{
+  "source_worlds": [
+    {
+      "name": "UK Government publications",
+      "purpose": "Find public UK Government publications that may contain evidence for TWIS subjects.",
+      "seed_urls": [
+        "https://www.gov.uk/government/publications"
+      ],
+      "allowed_domains": [
+        "www.gov.uk"
+      ],
+      "same_domain_only": true,
+      "max_depth": 1,
+      "max_pages": 10,
+      "respect_robots_txt": true,
+      "delay_seconds": 2,
+      "source_type": "government",
+      "evidence_use": "candidate_discovery"
+    },
+    {
+      "name": "UK Parliament committee publications",
+      "purpose": "Find public committee publications that may contain evidence for TWIS subjects.",
+      "seed_urls": [
+        "https://committees.parliament.uk/publications/"
+      ],
+      "allowed_domains": [
+        "committees.parliament.uk"
+      ],
+      "same_domain_only": true,
+      "max_depth": 1,
+      "max_pages": 10,
+      "respect_robots_txt": true,
+      "delay_seconds": 2,
+      "source_type": "parliament",
+      "evidence_use": "candidate_discovery"
+    }
+  ]
+}
