@@ -19,6 +19,7 @@ The current version can:
 - validate the output
 - check `robots.txt` before scraping
 - convert Nutch-style discovery output into candidate source records
+- extract candidate source/search URLs from the local TWIS website sources page
 - run a local Streamlit control panel for safe local pipeline steps
 
 ## Safety rules
@@ -29,7 +30,7 @@ It is not designed to access private, restricted, paid, login-only, or blocked c
 
 Nutch is treated as an optional discovery layer only. Nutch may find candidate public pages. The Python evidence pipeline decides what is usable evidence.
 
-The local interface is for local use only. It does not run a live Nutch crawl in v2.4.
+The local interface is for local use only. It does not run a live Nutch crawl in v2.5.
 
 ## Planned purpose
 
@@ -84,6 +85,8 @@ link_queue_filtered_v14.json
 source_report_v14.json
 candidate_sources_discovered_v23.json
 candidate_sources_discovered_v23.md
+website_source_candidates_v25.json
+website_source_candidates_v25.md
 ```
 
 ## Install
@@ -92,22 +95,45 @@ candidate_sources_discovered_v23.md
 pip install -r requirements.txt
 ```
 
-## Run v2.4 local interface
+## Run v2.5 local interface
 
 This opens a local Streamlit control panel.
 
 ```powershell
-streamlit run .\twis_source_engine_ui_v24.py
+py -m streamlit run .\twis_source_engine_ui_v24.py
 ```
 
 The interface can:
 
 - load known local input files
+- read the local TWIS website sources page
 - show `targeted`, `discovery`, and `hybrid` mode labels
 - run safe local scripts that exist in the repo
 - preview JSON and Markdown outputs
 
 It does not expose live Nutch crawling.
+
+## Run v2.5 TWIS website source extractor
+
+This does not run a live crawl. It reads the local TWIS website source map and turns each source URL, RSS URL, and secondary URL into candidate source records.
+
+Default input:
+
+```text
+../thisweekinsmoke/src/pages/sources/index.astro
+```
+
+Run:
+
+```powershell
+python .\extract_twis_website_sources_v25.py
+```
+
+Optional explicit paths:
+
+```powershell
+python .\extract_twis_website_sources_v25.py --input ..\thisweekinsmoke\src\pages\sources\index.astro --json-output .\website_source_candidates_v25.json --md-output .\website_source_candidates_v25.md
+```
 
 ## Run v2.3 Nutch discovery converter
 
@@ -168,6 +194,7 @@ python .\scrape_all_quote_pages_v11.py
 | v2.2 | Done | Add optional Nutch discovery setup |
 | v2.3 | Done | Convert Nutch-style output into candidate source records |
 | v2.4 | Done | Add local interface to load inputs and run safe pipeline steps |
+| v2.5 | Done | Extract candidate URLs from the TWIS website sources page |
 
 ## Notes
 
@@ -175,4 +202,6 @@ The current queue filter does not fetch queued links. It only separates pending 
 
 The v2.3 Nutch converter does not fetch pages, run Nutch, or decide whether a page is evidence. It only converts supplied discovery records into candidate source records for later processing.
 
-The v2.4 interface is a local control panel. It is not a deployed app and does not run live crawling.
+The v2.5 website source extractor reads the local TWIS website source map only. It does not fetch or crawl the listed sources.
+
+The v2.5 interface is a local control panel. It is not a deployed app and does not run live crawling.
