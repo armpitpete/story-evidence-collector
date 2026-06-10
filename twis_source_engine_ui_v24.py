@@ -23,27 +23,37 @@ KNOWN_INPUTS = [
     "seed_urls.json",
     "subject_query.json",
     "config/source_worlds.example.json",
+    "../thisweekinsmoke/src/pages/sources/index.astro",
     "testdata/nutch_discovery_sample_v23.json",
     "candidate_sources_discovered_v23.json",
+    "website_source_candidates_v25.json",
 ]
 
 KNOWN_OUTPUTS = [
     "candidate_sources_discovered_v23.json",
     "candidate_sources_discovered_v23.md",
+    "website_source_candidates_v25.json",
+    "website_source_candidates_v25.md",
     "subject_matches_v21.json",
     "subject_matches_v21.md",
 ]
 
 SAFE_SCRIPTS = {
     "Run v2.3 Nutch output converter": "convert_nutch_output_v23.py",
+    "Run v2.5 TWIS website source extractor": "extract_twis_website_sources_v25.py",
     "Run v2.1 subject matcher": "extract_subject_matches_v21.py",
 }
 
 
 def repo_path(relative_path: str) -> Path:
-    """Resolve a repo-relative path without allowing traversal outside the repo."""
+    """Resolve a local path while allowing the sibling TWIS repo source file."""
     clean = relative_path.strip().replace("\\", "/")
     path = (ROOT / clean).resolve()
+
+    allowed_extra = (ROOT.parent / "thisweekinsmoke" / "src" / "pages" / "sources" / "index.astro").resolve()
+
+    if path == allowed_extra:
+        return path
 
     if ROOT != path and ROOT not in path.parents:
         raise ValueError("Path is outside the repository")
@@ -134,7 +144,7 @@ def main() -> None:
     )
 
     st.title("TWIS Source Engine")
-    st.caption("Local control panel. Safe scripts only. No live Nutch crawl exposed in v2.4.")
+    st.caption("Local control panel. Safe scripts only. No live Nutch crawl exposed in v2.5.")
 
     with st.sidebar:
         st.header("Mode")
@@ -142,7 +152,7 @@ def main() -> None:
             "Choose mode",
             options=["targeted", "discovery", "hybrid"],
             index=1,
-            help="Modes are labels in v2.4. Only available local scripts can be run.",
+            help="Modes are labels in v2.5. Only available local scripts can be run.",
         )
 
         st.header("Safety lock")
@@ -156,7 +166,7 @@ def main() -> None:
     input_choice = st.selectbox(
         "Known input files",
         options=KNOWN_INPUTS,
-        index=KNOWN_INPUTS.index("testdata/nutch_discovery_sample_v23.json"),
+        index=KNOWN_INPUTS.index("../thisweekinsmoke/src/pages/sources/index.astro"),
     )
 
     custom_input = st.text_input(
@@ -183,13 +193,13 @@ def main() -> None:
     if mode == "targeted":
         st.write("Use this for known URLs and existing evidence-collector records.")
     elif mode == "discovery":
-        st.write("Use this for Nutch-style candidate discovery outputs.")
+        st.write("Use this for source discovery outputs, including Nutch-style candidates and TWIS website source-map candidates.")
     else:
         st.write("Use this later for discovery candidates passed into the evidence pipeline.")
 
     st.subheader("3. Run safe step")
 
-    st.warning("v2.4 does not run a live Nutch crawl. It can only run known local scripts.")
+    st.warning("v2.5 does not run a live Nutch crawl. It can only run known local scripts.")
 
     selected_action = st.selectbox("Safe script", options=list(SAFE_SCRIPTS.keys()))
     selected_script = SAFE_SCRIPTS[selected_action]
@@ -201,9 +211,17 @@ def main() -> None:
         disabled=selected_script != "convert_nutch_output_v23.py",
     )
 
+    website_sources_input = st.text_input(
+        "v2.5 TWIS website sources input path",
+        value="../thisweekinsmoke/src/pages/sources/index.astro",
+        disabled=selected_script != "extract_twis_website_sources_v25.py",
+    )
+
     if st.button("Run selected safe script", type="primary"):
         if selected_script == "convert_nutch_output_v23.py":
             args = ["--input", converter_input]
+        elif selected_script == "extract_twis_website_sources_v25.py":
+            args = ["--input", website_sources_input]
         else:
             args = []
 
