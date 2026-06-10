@@ -1,0 +1,41 @@
+name: Nutch smoke test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  nutch-smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 11
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+
+      - name: Download Apache Nutch 1.22
+        run: |
+          curl -fsSLO https://downloads.apache.org/nutch/1.22/apache-nutch-1.22-bin.zip
+          curl -fsSLO https://downloads.apache.org/nutch/1.22/apache-nutch-1.22-bin.zip.sha512
+
+      - name: Verify Apache Nutch checksum
+        run: |
+          sha512sum -c apache-nutch-1.22-bin.zip.sha512
+
+      - name: Unpack Apache Nutch
+        run: |
+          unzip -q apache-nutch-1.22-bin.zip
+          mv apache-nutch-1.22 nutch
+
+      - name: Check Nutch command starts
+        run: |
+          ./nutch/bin/nutch | head -40
+
+      - name: Confirm no crawl has run
+        run: |
+          echo "Smoke test only. No public crawl was run."
