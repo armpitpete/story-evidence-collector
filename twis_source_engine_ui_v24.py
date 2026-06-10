@@ -27,6 +27,7 @@ KNOWN_INPUTS = [
     "testdata/nutch_discovery_sample_v23.json",
     "candidate_sources_discovered_v23.json",
     "website_source_candidates_v25.json",
+    "seed_urls_from_website_candidates_v26.json",
 ]
 
 KNOWN_OUTPUTS = [
@@ -34,6 +35,8 @@ KNOWN_OUTPUTS = [
     "candidate_sources_discovered_v23.md",
     "website_source_candidates_v25.json",
     "website_source_candidates_v25.md",
+    "seed_urls_from_website_candidates_v26.json",
+    "seed_urls_from_website_candidates_v26.md",
     "subject_matches_v21.json",
     "subject_matches_v21.md",
 ]
@@ -41,6 +44,7 @@ KNOWN_OUTPUTS = [
 SAFE_SCRIPTS = {
     "Run v2.3 Nutch output converter": "convert_nutch_output_v23.py",
     "Run v2.5 TWIS website source extractor": "extract_twis_website_sources_v25.py",
+    "Run v2.6 seed URL builder from website candidates": "build_seed_urls_from_candidates_v26.py",
     "Run v2.1 subject matcher": "extract_subject_matches_v21.py",
 }
 
@@ -144,7 +148,7 @@ def main() -> None:
     )
 
     st.title("TWIS Source Engine")
-    st.caption("Local control panel. Safe scripts only. No live Nutch crawl exposed in v2.5.")
+    st.caption("Local control panel. Safe scripts only. No live Nutch crawl exposed in v2.6.")
 
     with st.sidebar:
         st.header("Mode")
@@ -152,7 +156,7 @@ def main() -> None:
             "Choose mode",
             options=["targeted", "discovery", "hybrid"],
             index=1,
-            help="Modes are labels in v2.5. Only available local scripts can be run.",
+            help="Modes are labels in v2.6. Only available local scripts can be run.",
         )
 
         st.header("Safety lock")
@@ -166,7 +170,7 @@ def main() -> None:
     input_choice = st.selectbox(
         "Known input files",
         options=KNOWN_INPUTS,
-        index=KNOWN_INPUTS.index("../thisweekinsmoke/src/pages/sources/index.astro"),
+        index=KNOWN_INPUTS.index("website_source_candidates_v25.json"),
     )
 
     custom_input = st.text_input(
@@ -199,7 +203,7 @@ def main() -> None:
 
     st.subheader("3. Run safe step")
 
-    st.warning("v2.5 does not run a live Nutch crawl. It can only run known local scripts.")
+    st.warning("v2.6 does not run a live Nutch crawl. It can only run known local scripts.")
 
     selected_action = st.selectbox("Safe script", options=list(SAFE_SCRIPTS.keys()))
     selected_script = SAFE_SCRIPTS[selected_action]
@@ -217,11 +221,26 @@ def main() -> None:
         disabled=selected_script != "extract_twis_website_sources_v25.py",
     )
 
+    seed_builder_input = st.text_input(
+        "v2.6 website candidate input path",
+        value="website_source_candidates_v25.json",
+        disabled=selected_script != "build_seed_urls_from_candidates_v26.py",
+    )
+
+    seed_builder_roles = st.text_input(
+        "v2.6 URL roles to include",
+        value="url",
+        disabled=selected_script != "build_seed_urls_from_candidates_v26.py",
+        help="Default is url only. Optional: url,rssUrl,secondaryUrl",
+    )
+
     if st.button("Run selected safe script", type="primary"):
         if selected_script == "convert_nutch_output_v23.py":
             args = ["--input", converter_input]
         elif selected_script == "extract_twis_website_sources_v25.py":
             args = ["--input", website_sources_input]
+        elif selected_script == "build_seed_urls_from_candidates_v26.py":
+            args = ["--input", seed_builder_input, "--roles", seed_builder_roles]
         else:
             args = []
 
