@@ -20,6 +20,7 @@ The current version can:
 - check `robots.txt` before scraping
 - convert Nutch-style discovery output into candidate source records
 - extract candidate source/search URLs from the local TWIS website sources page
+- build a separate seed URL file from website source candidates
 - run a local Streamlit control panel for safe local pipeline steps
 
 ## Safety rules
@@ -30,7 +31,7 @@ It is not designed to access private, restricted, paid, login-only, or blocked c
 
 Nutch is treated as an optional discovery layer only. Nutch may find candidate public pages. The Python evidence pipeline decides what is usable evidence.
 
-The local interface is for local use only. It does not run a live Nutch crawl in v2.5.
+The local interface is for local use only. It does not run a live Nutch crawl in v2.6.
 
 ## Planned purpose
 
@@ -87,6 +88,8 @@ candidate_sources_discovered_v23.json
 candidate_sources_discovered_v23.md
 website_source_candidates_v25.json
 website_source_candidates_v25.md
+seed_urls_from_website_candidates_v26.json
+seed_urls_from_website_candidates_v26.md
 ```
 
 ## Install
@@ -95,7 +98,7 @@ website_source_candidates_v25.md
 pip install -r requirements.txt
 ```
 
-## Run v2.5 local interface
+## Run v2.6 local interface
 
 This opens a local Streamlit control panel.
 
@@ -112,6 +115,41 @@ The interface can:
 - preview JSON and Markdown outputs
 
 It does not expose live Nutch crawling.
+
+## Run v2.6 seed URL builder
+
+This does not fetch pages and does not overwrite `seed_urls.json`. It turns website source candidates into a separate seed URL file for review.
+
+Default input:
+
+```text
+website_source_candidates_v25.json
+```
+
+Run:
+
+```powershell
+python .\build_seed_urls_from_candidates_v26.py
+```
+
+Default behaviour includes only normal source URLs:
+
+```text
+url
+```
+
+To include RSS and secondary URLs too:
+
+```powershell
+python .\build_seed_urls_from_candidates_v26.py --roles url,rssUrl,secondaryUrl
+```
+
+Outputs:
+
+```text
+seed_urls_from_website_candidates_v26.json
+seed_urls_from_website_candidates_v26.md
+```
 
 ## Run v2.5 TWIS website source extractor
 
@@ -195,6 +233,7 @@ python .\scrape_all_quote_pages_v11.py
 | v2.3 | Done | Convert Nutch-style output into candidate source records |
 | v2.4 | Done | Add local interface to load inputs and run safe pipeline steps |
 | v2.5 | Done | Extract candidate URLs from the TWIS website sources page |
+| v2.6 | Done | Build separate seed URL file from website source candidates |
 
 ## Notes
 
@@ -204,4 +243,6 @@ The v2.3 Nutch converter does not fetch pages, run Nutch, or decide whether a pa
 
 The v2.5 website source extractor reads the local TWIS website source map only. It does not fetch or crawl the listed sources.
 
-The v2.5 interface is a local control panel. It is not a deployed app and does not run live crawling.
+The v2.6 seed builder creates a separate seed file only. It does not overwrite `seed_urls.json`.
+
+The v2.6 interface is a local control panel. It is not a deployed app and does not run live crawling.
