@@ -1,0 +1,32 @@
+[
+  {
+    "url": "https://www.gov.uk/government/publications/example-report",
+    "title": "Example report",
+    "source_domain": "www.gov.uk",
+    "discovered_from": "https://www.gov.uk/government/publications",
+    "crawl_depth": 1
+  },
+  {
+    "url": "https://committees.parliament.uk/publications/example-committee-report/",
+    "title": "Example committee report",
+    "discovered_from": "https://committees.parliament.uk/publications/",
+    "crawl_depth": "1"
+  },
+  {
+    "url": "https://www.nao.org.uk/reports/example-value-for-money-report/",
+    "title": "Example value for money report",
+    "source_domain": "",
+    "discovered_from": "https://www.nao.org.uk/reports/",
+    "crawl_depth": 2,
+    "date_found": "2026-06-10"
+  },
+  {
+    "url": "",
+    "title": "Missing URL should be skipped"
+  },
+  {
+    "url": "not-a-valid-url",
+    "title": "Invalid URL should be skipped"
+  },
+  "not an object"
+]
