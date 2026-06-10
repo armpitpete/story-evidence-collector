@@ -18,12 +18,15 @@ The current version can:
 - create a run report
 - validate the output
 - check `robots.txt` before scraping
+- convert Nutch-style discovery output into candidate source records
 
 ## Safety rules
 
 This project is for public-source research.
 
 It is not designed to access private, restricted, paid, login-only, or blocked content. It should only fetch pages that are public and allowed, with polite delays and clear reports.
+
+Nutch is treated as an optional discovery layer only. Nutch may find candidate public pages. The Python evidence pipeline decides what is usable evidence.
 
 ## Planned purpose
 
@@ -76,12 +79,28 @@ research_summary.md
 ```text
 link_queue_filtered_v14.json
 source_report_v14.json
+candidate_sources_discovered_v23.json
+candidate_sources_discovered_v23.md
 ```
 
 ## Install
 
 ```powershell
 pip install -r requirements.txt
+```
+
+## Run v2.3 Nutch discovery converter
+
+This does not run a live crawl. It converts an existing Nutch-style sample file into standard candidate source records.
+
+```powershell
+python .\convert_nutch_output_v23.py
+```
+
+Optional explicit paths:
+
+```powershell
+python .\convert_nutch_output_v23.py --input .\testdata\nutch_discovery_sample_v23.json --json-output .\candidate_sources_discovered_v23.json --md-output .\candidate_sources_discovered_v23.md
 ```
 
 ## Run current queue filter
@@ -126,9 +145,11 @@ python .\scrape_all_quote_pages_v11.py
 | v1.2 | Done | Extract general source records |
 | v1.3 | Done | Add safe pending link queue |
 | v1.4 | Done | Filter queue before fetching |
+| v2.2 | Done | Add optional Nutch discovery setup |
+| v2.3 | Done | Convert Nutch-style output into candidate source records |
 
 ## Notes
 
 The current queue filter does not fetch queued links. It only separates pending links into candidates and skipped links, with clear reasons.
 
-The next development step is to review the v1.4 filtered queue output before any controlled fetching is added.
+The v2.3 Nutch converter does not fetch pages, run Nutch, or decide whether a page is evidence. It only converts supplied discovery records into candidate source records for later processing.
