@@ -21,6 +21,7 @@ The current version can:
 - convert Nutch-style discovery output into candidate source records
 - extract candidate source/search URLs from the local TWIS website sources page
 - build a separate seed URL file from website source candidates
+- fetch a small selected set of public seed URLs after robots.txt checks
 - run a local Streamlit control panel for safe local pipeline steps
 
 ## Safety rules
@@ -31,7 +32,7 @@ It is not designed to access private, restricted, paid, login-only, or blocked c
 
 Nutch is treated as an optional discovery layer only. Nutch may find candidate public pages. The Python evidence pipeline decides what is usable evidence.
 
-The local interface is for local use only. It does not run a live Nutch crawl in v2.6.
+The local interface is for local use only. It does not run a live Nutch crawl in v2.7.
 
 ## Planned purpose
 
@@ -90,6 +91,9 @@ website_source_candidates_v25.json
 website_source_candidates_v25.md
 seed_urls_from_website_candidates_v26.json
 seed_urls_from_website_candidates_v26.md
+sources_raw_v27.json
+link_queue_v27.json
+source_report_v27.json
 ```
 
 ## Install
@@ -98,7 +102,7 @@ seed_urls_from_website_candidates_v26.md
 pip install -r requirements.txt
 ```
 
-## Run v2.6 local interface
+## Run v2.7 local interface
 
 This opens a local Streamlit control panel.
 
@@ -112,9 +116,47 @@ The interface can:
 - read the local TWIS website sources page
 - show `targeted`, `discovery`, and `hybrid` mode labels
 - run safe local scripts that exist in the repo
+- fetch a small selected set of public seed URLs after robots.txt checks
 - preview JSON and Markdown outputs
 
-It does not expose live Nutch crawling.
+It does not expose live Nutch crawling or queued-link fetching.
+
+## Run v2.7 selected seed source fetcher
+
+This fetches seed URLs only. It checks `robots.txt` before each fetch and does not fetch queued links.
+
+Default input:
+
+```text
+seed_urls_from_website_candidates_v26.json
+```
+
+Run:
+
+```powershell
+python .\extract_source_records_from_seed_file_v27.py
+```
+
+Default behaviour:
+
+```text
+max seeds: 5
+delay seconds: 1
+```
+
+Optional explicit settings:
+
+```powershell
+python .\extract_source_records_from_seed_file_v27.py --input .\seed_urls_from_website_candidates_v26.json --max-seeds 5 --delay-seconds 1
+```
+
+Outputs:
+
+```text
+sources_raw_v27.json
+link_queue_v27.json
+source_report_v27.json
+```
 
 ## Run v2.6 seed URL builder
 
@@ -234,6 +276,7 @@ python .\scrape_all_quote_pages_v11.py
 | v2.4 | Done | Add local interface to load inputs and run safe pipeline steps |
 | v2.5 | Done | Extract candidate URLs from the TWIS website sources page |
 | v2.6 | Done | Build separate seed URL file from website source candidates |
+| v2.7 | Done | Fetch source records from selected seed URL file |
 
 ## Notes
 
@@ -245,4 +288,6 @@ The v2.5 website source extractor reads the local TWIS website source map only. 
 
 The v2.6 seed builder creates a separate seed file only. It does not overwrite `seed_urls.json`.
 
-The v2.6 interface is a local control panel. It is not a deployed app and does not run live crawling.
+The v2.7 selected seed fetcher fetches seed URLs only, checks `robots.txt`, applies a default max-seed limit, and does not fetch queued links.
+
+The v2.7 interface is a local control panel. It is not a deployed app and does not run live crawling.
