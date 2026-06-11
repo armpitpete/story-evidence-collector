@@ -37,6 +37,9 @@ KNOWN_OUTPUTS = [
     "website_source_candidates_v25.md",
     "seed_urls_from_website_candidates_v26.json",
     "seed_urls_from_website_candidates_v26.md",
+    "sources_raw_v27.json",
+    "link_queue_v27.json",
+    "source_report_v27.json",
     "subject_matches_v21.json",
     "subject_matches_v21.md",
 ]
@@ -45,6 +48,7 @@ SAFE_SCRIPTS = {
     "Run v2.3 Nutch output converter": "convert_nutch_output_v23.py",
     "Run v2.5 TWIS website source extractor": "extract_twis_website_sources_v25.py",
     "Run v2.6 seed URL builder from website candidates": "build_seed_urls_from_candidates_v26.py",
+    "Run v2.7 targeted source fetch from seed file": "extract_source_records_from_seed_file_v27.py",
     "Run v2.1 subject matcher": "extract_subject_matches_v21.py",
 }
 
@@ -148,20 +152,20 @@ def main() -> None:
     )
 
     st.title("TWIS Source Engine")
-    st.caption("Local control panel. Safe scripts only. No live Nutch crawl exposed in v2.6.")
+    st.caption("Local control panel. Safe scripts only. v2.7 can fetch selected public seed URLs after robots.txt checks.")
 
     with st.sidebar:
         st.header("Mode")
         mode = st.radio(
             "Choose mode",
             options=["targeted", "discovery", "hybrid"],
-            index=1,
-            help="Modes are labels in v2.6. Only available local scripts can be run.",
+            index=0,
+            help="Modes are labels in v2.7. Only available local scripts can be run.",
         )
 
         st.header("Safety lock")
-        st.write("No live crawl")
-        st.write("No public fetch from this UI")
+        st.write("No live Nutch crawl")
+        st.write("No queued-link fetch")
         st.write("No anti-bot behaviour")
         st.write("Local use only")
 
@@ -170,7 +174,7 @@ def main() -> None:
     input_choice = st.selectbox(
         "Known input files",
         options=KNOWN_INPUTS,
-        index=KNOWN_INPUTS.index("website_source_candidates_v25.json"),
+        index=KNOWN_INPUTS.index("seed_urls_from_website_candidates_v26.json"),
     )
 
     custom_input = st.text_input(
@@ -195,7 +199,7 @@ def main() -> None:
     st.info(f"Current mode: `{mode}`")
 
     if mode == "targeted":
-        st.write("Use this for known URLs and existing evidence-collector records.")
+        st.write("Use this for known URLs and selected seed files.")
     elif mode == "discovery":
         st.write("Use this for source discovery outputs, including Nutch-style candidates and TWIS website source-map candidates.")
     else:
@@ -203,7 +207,7 @@ def main() -> None:
 
     st.subheader("3. Run safe step")
 
-    st.warning("v2.6 does not run a live Nutch crawl. It can only run known local scripts.")
+    st.warning("Most steps are local-only. v2.7 fetches selected public seed URLs only after robots.txt checks.")
 
     selected_action = st.selectbox("Safe script", options=list(SAFE_SCRIPTS.keys()))
     selected_script = SAFE_SCRIPTS[selected_action]
@@ -234,6 +238,33 @@ def main() -> None:
         help="Default is url only. Optional: url,rssUrl,secondaryUrl",
     )
 
+    source_fetch_input = st.text_input(
+        "v2.7 seed URL input path",
+        value="seed_urls_from_website_candidates_v26.json",
+        disabled=selected_script != "extract_source_records_from_seed_file_v27.py",
+    )
+
+    source_fetch_max_seeds = st.number_input(
+        "v2.7 max seeds to fetch",
+        min_value=1,
+        max_value=50,
+        value=5,
+        step=1,
+        disabled=selected_script != "extract_source_records_from_seed_file_v27.py",
+    )
+
+    source_fetch_delay = st.number_input(
+        "v2.7 delay seconds between seed fetches",
+        min_value=0.0,
+        max_value=10.0,
+        value=1.0,
+        step=0.5,
+        disabled=selected_script != "extract_source_records_from_seed_file_v27.py",
+    )
+
+    if selected_script == "extract_source_records_from_seed_file_v27.py":
+        st.error("This step fetches public pages. It checks robots.txt first and fetches seed URLs only. Queued links are not fetched.")
+
     if st.button("Run selected safe script", type="primary"):
         if selected_script == "convert_nutch_output_v23.py":
             args = ["--input", converter_input]
@@ -241,6 +272,12 @@ def main() -> None:
             args = ["--input", website_sources_input]
         elif selected_script == "build_seed_urls_from_candidates_v26.py":
             args = ["--input", seed_builder_input, "--roles", seed_builder_roles]
+        elif selected_script == "extract_source_records_from_seed_file_v27.py":
+            args = [
+                "--input", source_fetch_input,
+                "--max-seeds", str(source_fetch_max_seeds),
+                "--delay-seconds", str(source_fetch_delay),
+            ]
         else:
             args = []
 
