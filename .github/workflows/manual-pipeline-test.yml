@@ -39,7 +39,10 @@ jobs:
             source_report_v13.json
             link_queue_v13.json
             link_queue_filtered_v14.json
+            link_queue_filtered_v22.json
             source_report_v14.json
+            subject_candidate_priority_report_v22.json
+            subject_candidate_priority_report_v22.md
             candidate_sources_raw_v15.json
             candidate_fetch_report_v15.json
             followed_sources_raw_v16.json
