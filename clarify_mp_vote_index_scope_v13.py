@@ -3,12 +3,22 @@ from pathlib import Path
 
 
 INPUT_JSON_FILE = Path("mp_full_vote_index_v13.json")
+QUERY_JSON_FILE = Path("mp_full_vote_query.json")
 OUTPUT_MARKDOWN_FILE = Path("mp_full_vote_index_v13.md")
 
 
 def load_json(path):
     with path.open("r", encoding="utf-8") as file:
         return json.load(file)
+
+
+def load_optional_json(path):
+    if not path.exists():
+        return {}
+    data = load_json(path)
+    if isinstance(data, dict):
+        return data
+    return {}
 
 
 def save_text(path, text):
@@ -26,6 +36,13 @@ def clean_text(value):
     return " ".join(str(value).split())
 
 
+def merged_query(report):
+    query = {}
+    query.update(load_optional_json(QUERY_JSON_FILE))
+    query.update(report.get("query", {}))
+    return query
+
+
 def markdown_table(headers, rows):
     lines = ["| " + " | ".join(headers) + " |", "| " + " | ".join(["---"] * len(headers)) + " |"]
     for row in rows:
@@ -34,8 +51,7 @@ def markdown_table(headers, rows):
     return "\n".join(lines)
 
 
-def coverage_verdict(report):
-    query = report.get("query", {})
+def coverage_verdict(report, query):
     first_found = clean_text(report.get("first_division_date_found"))
     known_start = clean_text(query.get("known_parliamentary_start_date"))
 
@@ -51,8 +67,21 @@ def coverage_verdict(report):
     return "No vote records were found in this run."
 
 
+def cleaned_coverage_warnings(report):
+    cleaned = []
+    for warning in report.get("coverage_warnings", []):
+        text = clean_text(warning)
+        if not text:
+            continue
+        if text.startswith("This is a full-career index"):
+            continue
+        cleaned.append(text)
+    cleaned.append("This report should be described as an available-source index, not a full-career record, until pre-2016 / historic voting data is added and checked.")
+    return cleaned
+
+
 def build_markdown(report):
-    query = report.get("query", {})
+    query = merged_query(report)
     votes = report.get("votes", [])
 
     lines = []
@@ -66,7 +95,7 @@ def build_markdown(report):
     lines.append("")
     lines.append("## Coverage verdict")
     lines.append("")
-    lines.append(coverage_verdict(report))
+    lines.append(coverage_verdict(report, query))
     lines.append("")
     lines.append("## MP checked")
     lines.append("")
@@ -99,9 +128,8 @@ def build_markdown(report):
     lines.append("")
     lines.append("## Coverage warnings")
     lines.append("")
-    for warning in report.get("coverage_warnings", []):
+    for warning in cleaned_coverage_warnings(report):
         lines.append(f"- {warning}")
-    lines.append("- This report should be described as an available-source index, not a full-career record, until pre-2016 / historic voting data is added and checked.")
     lines.append("")
     lines.append("## Vote index")
     lines.append("")
