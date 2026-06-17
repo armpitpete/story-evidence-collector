@@ -1,0 +1,43 @@
+{
+  "batch_id": "parlparse_2003_01",
+  "target_mp": "Corbyn, Jeremy",
+  "target_member_id": "185",
+  "date_range": {
+    "start_date": "2003-01-01",
+    "end_date": "2003-01-31"
+  },
+  "limits": {
+    "max_xml_files": 31,
+    "max_rows": 500,
+    "stop_if_failed_files_exceed": 5,
+    "stop_if_missing_required_fields": true,
+    "stop_if_duplicate_keys_found": true
+  },
+  "source_files": {
+    "generated": 31,
+    "parsed": 16,
+    "not_available": 15,
+    "failed": 0
+  },
+  "rows": {
+    "produced": 33,
+    "recorded_aye": 7,
+    "recorded_no": 11,
+    "not_recorded": 15,
+    "unable_to_determine": 0
+  },
+  "checks": {
+    "missing_required_fields": 0,
+    "duplicate_keys_found": 0,
+    "duplicate_keys": [],
+    "hard_stop_reasons": [],
+    "safe_to_merge_later": true
+  },
+  "outputs": {
+    "manifest_file": "parlparse_batches/parlparse_2003_01_manifest.json",
+    "rows_file": "parlparse_batches/parlparse_2003_01_rows.json",
+    "report_file": "parlparse_batches/parlparse_2003_01_report.md"
+  },
+  "merge_now": false,
+  "coverage_note": "This is one production-safe ParlParse batch only. It is not merged into the main MP vote index and does not claim complete 2001-2016 coverage."
+}
