@@ -1,0 +1,60 @@
+{
+  "version": "v1.9",
+  "purpose": "Plan safe 2001-2016 ParlParse import batches without fetching, importing, or merging data in this issue.",
+  "target_mp": "Corbyn, Jeremy",
+  "target_member_id": "185",
+  "total_target_range": {
+    "start_date": "2001-06-07",
+    "end_date": "2016-04-25"
+  },
+  "batch_model": {
+    "unit": "month",
+    "batch_id_format": "parlparse_YYYY_MM",
+    "first_production_safe_batch": "parlparse_2003_01",
+    "base_url_pattern": "https://www.theyworkforyou.com/pwdata/scrapedxml/debates/debates{date}.xml"
+  },
+  "hard_limits_per_batch": {
+    "max_xml_files": 31,
+    "max_rows": 500,
+    "stop_if_failed_files_exceed": 5,
+    "stop_if_missing_required_fields": true,
+    "stop_if_duplicate_keys_found": true
+  },
+  "output_rules": {
+    "batch_folder": "parlparse_batches",
+    "rows_filename_format": "parlparse_batches/{batch_id}_rows.json",
+    "report_filename_format": "parlparse_batches/{batch_id}_report.md",
+    "manifest_filename_format": "parlparse_batches/{batch_id}_manifest.json"
+  },
+  "dedupe_rule": {
+    "key_fields": [
+      "source_system",
+      "division_id",
+      "target_mp"
+    ],
+    "note": "Do not merge rows with duplicate keys until a review step explains the duplicate."
+  },
+  "traceability_fields_required": [
+    "source_system",
+    "source_xml_url",
+    "source_url",
+    "division_id",
+    "division_number",
+    "date",
+    "recorded_side",
+    "evidence_status"
+  ],
+  "future_merge_rules": [
+    "Preserve Commons Votes API rows unchanged.",
+    "Keep ParlParse rows marked as source_system: parlparse.",
+    "Do not claim full-career coverage until 1983-2001 is solved or clearly excluded.",
+    "Keep each row traceable to a source XML URL and division ID.",
+    "Do not infer human political meaning from vote titles."
+  ],
+  "not_in_scope": [
+    "No fetching in v1.9.",
+    "No full 2001-2016 import in v1.9.",
+    "No merge into the main MP vote index in v1.9.",
+    "No raw XML publishing in v1.9."
+  ]
+}
