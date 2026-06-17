@@ -1,0 +1,36 @@
+name: ParlParse structure inspection test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-parlparse-structure-inspection:
+    name: Run ParlParse structure inspection
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run ParlParse structure inspection
+        run: python inspect_parlparse_structure_v15.py
+
+      - name: Upload ParlParse structure inspection report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parlparse-structure-inspection-report
+          path: |
+            parlparse_source_probe_v15.json
+            parlparse_structure_report_v15.json
+            parlparse_structure_report_v15.md
+          if-no-files-found: warn
