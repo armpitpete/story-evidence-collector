@@ -1,0 +1,35 @@
+[
+  {
+    "date": "2026-01-01",
+    "division_number": "101",
+    "motion_title": "Library Opening Review",
+    "plain_aye_effect": "voting for adding an annual library opening review",
+    "plain_no_effect": "voting against adding an annual library opening review",
+    "topic": "libraries",
+    "source_url": "https://example.invalid/divisions/101",
+    "aye_members": ["Example Person"],
+    "no_members": []
+  },
+  {
+    "date": "2026-01-08",
+    "division_number": "102",
+    "motion_title": "Parks Maintenance Report",
+    "plain_aye_effect": "voting for requiring regular parks maintenance reports",
+    "plain_no_effect": "voting against requiring regular parks maintenance reports",
+    "topic": "parks",
+    "source_url": "https://example.invalid/divisions/102",
+    "aye_members": [],
+    "no_members": ["Example Person"]
+  },
+  {
+    "date": "2026-01-15",
+    "division_number": "103",
+    "motion_title": "Meeting Notes Publication",
+    "plain_aye_effect": "voting for publishing meeting notes",
+    "plain_no_effect": "voting against publishing meeting notes",
+    "topic": "openness",
+    "source_url": "https://example.invalid/divisions/103",
+    "aye_members": ["Another Person"],
+    "no_members": []
+  }
+]
