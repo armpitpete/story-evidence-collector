@@ -1,4 +1,5 @@
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -9,6 +10,8 @@ TRACE_JSON_FILE = Path("trace_report_v18.json")
 TRACE_MARKDOWN_FILE = Path("trace_report_v18.md")
 SUBJECT_JSON_FILE = Path("subject_matches_v21.json")
 SUBJECT_MARKDOWN_FILE = Path("subject_matches_v21.md")
+PRIORITISED_QUEUE_FILE = Path("link_queue_filtered_v22.json")
+FETCH_QUEUE_FILE = Path("link_queue_filtered_v14.json")
 
 SOURCE_RECORD_FILES_TO_SANITISE = [
     Path("sources_raw_v13.json"),
@@ -39,6 +42,19 @@ def run_step(script_name):
         return False
 
     print(f"OK: {script_name}")
+    return True
+
+
+def use_prioritised_queue_for_candidate_fetch():
+    if not PRIORITISED_QUEUE_FILE.exists():
+        print(f"FAILED: prioritised queue not found: {PRIORITISED_QUEUE_FILE}")
+        return False
+
+    shutil.copyfile(PRIORITISED_QUEUE_FILE, FETCH_QUEUE_FILE)
+    print("")
+    print("Using prioritised queue for candidate fetch")
+    print("-----------------------------------------")
+    print(f"Copied {PRIORITISED_QUEUE_FILE} to {FETCH_QUEUE_FILE}")
     return True
 
 
@@ -336,10 +352,11 @@ def print_final_summary():
 
 
 def main():
-    print("Story Evidence Collector public trace pipeline v2.1")
+    print("Story Evidence Collector public trace pipeline v2.2")
     print("Running general source/link/report pipeline only.")
     print("The old quote-demo scraper is not run.")
     print("No new crawling or fetching logic is added by this runner.")
+    print("Subject-matching candidate URLs are prioritised before fetch within existing limits.")
 
     if not run_step("extract_source_records_v13.py"):
         print("Pipeline stopped.")
@@ -352,6 +369,14 @@ def main():
         return 1
 
     sanitise_after_queue_filter()
+
+    if not run_step("prioritise_subject_candidates_v22.py"):
+        print("Pipeline stopped.")
+        return 1
+
+    if not use_prioritised_queue_for_candidate_fetch():
+        print("Pipeline stopped.")
+        return 1
 
     if not run_step("fetch_candidate_links_v15.py"):
         print("Pipeline stopped.")
