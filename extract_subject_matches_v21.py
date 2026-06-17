@@ -1,5 +1,4 @@
 import json
-import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -167,16 +166,6 @@ def find_first_match_position(text, matched_terms):
         return 0
 
     return min(positions)
-
-
-def highlight_terms(excerpt, matched_terms):
-    highlighted = excerpt
-
-    for term in sorted(matched_terms, key=len, reverse=True):
-        pattern = re.compile(re.escape(term), re.IGNORECASE)
-        highlighted = pattern.sub(lambda match: f"**{match.group(0)}**", highlighted)
-
-    return highlighted
 
 
 def build_relevant_excerpt(text, matched_terms):
@@ -388,8 +377,7 @@ def build_markdown_report(report):
         lines.append("")
         lines.append(f"Matched terms: {', '.join([f'`{term}`' for term in match['matched_terms']])}")
         lines.append("")
-        excerpt = highlight_terms(match["relevant_excerpt"], match["matched_terms"])
-        lines.append(excerpt or "No excerpt available.")
+        lines.append(match["relevant_excerpt"] or "No excerpt available.")
         lines.append("")
 
     return "\n".join(lines) + "\n"
