@@ -1,0 +1,36 @@
+name: ParlParse vote row sample test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-parlparse-vote-row-sample:
+    name: Run ParlParse vote row sample
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run ParlParse vote row sample parser
+        run: python parse_parlparse_vote_rows_sample_v17.py
+
+      - name: Upload ParlParse vote row sample report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parlparse-vote-row-sample-report
+          path: |
+            parlparse_vote_row_sample_query_v17.json
+            parlparse_vote_rows_sample_v17.json
+            parlparse_vote_rows_sample_v17.md
+          if-no-files-found: warn
