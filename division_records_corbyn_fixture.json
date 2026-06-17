@@ -1,0 +1,90 @@
+[
+  {
+    "date": "2026-06-16",
+    "division_number": "24",
+    "motion_title": "Cyber Security and Resilience (Network and Information Systems) Bill Remaining Stages: New Clause 13",
+    "plain_aye_effect": "voting for New Clause 13 at the Cyber Security and Resilience Bill remaining stages",
+    "plain_no_effect": "voting against New Clause 13 at the Cyber Security and Resilience Bill remaining stages",
+    "topic": "cyber security",
+    "source_url": "https://votes.parliament.uk/votes/commons/division/2374",
+    "aye_members": ["Corbyn, Jeremy"],
+    "no_members": []
+  },
+  {
+    "date": "2026-06-16",
+    "division_number": "25",
+    "motion_title": "Cyber Security and Resilience (Network and Information Systems) Bill Remaining Stages: New Clause 14",
+    "plain_aye_effect": "voting for New Clause 14 at the Cyber Security and Resilience Bill remaining stages",
+    "plain_no_effect": "voting against New Clause 14 at the Cyber Security and Resilience Bill remaining stages",
+    "topic": "cyber security",
+    "source_url": "https://votes.parliament.uk/votes/commons/division/2375",
+    "aye_members": [],
+    "no_members": ["Corbyn, Jeremy"]
+  },
+  {
+    "date": "2026-06-16",
+    "division_number": "26",
+    "motion_title": "Cyber Security and Resilience (Network and Information Systems) Bill Remaining Stages: Amendment 3",
+    "plain_aye_effect": "voting for Amendment 3 at the Cyber Security and Resilience Bill remaining stages",
+    "plain_no_effect": "voting against Amendment 3 at the Cyber Security and Resilience Bill remaining stages",
+    "topic": "cyber security",
+    "source_url": "https://votes.parliament.uk/votes/commons/division/2376",
+    "aye_members": ["Corbyn, Jeremy"],
+    "no_members": []
+  },
+  {
+    "date": "2026-06-16",
+    "division_number": "27",
+    "motion_title": "Draft Clean Air Zones Central Services (Fees) (England) (Amendment) Regulations 2026",
+    "plain_aye_effect": "voting for approving the draft Clean Air Zones Central Services fees amendment regulations",
+    "plain_no_effect": "voting against approving the draft Clean Air Zones Central Services fees amendment regulations",
+    "topic": "clean air zones",
+    "source_url": "https://votes.parliament.uk/votes/commons/division/2377",
+    "aye_members": ["Corbyn, Jeremy"],
+    "no_members": []
+  },
+  {
+    "date": "2026-06-10",
+    "division_number": "19",
+    "motion_title": "Railways Bill Remaining Stages: New Clause 1",
+    "plain_aye_effect": "voting for New Clause 1 at the Railways Bill remaining stages",
+    "plain_no_effect": "voting against New Clause 1 at the Railways Bill remaining stages",
+    "topic": "railways",
+    "source_url": "https://votes.parliament.uk/votes/commons/division/2369",
+    "aye_members": ["Corbyn, Jeremy"],
+    "no_members": []
+  },
+  {
+    "date": "2026-06-10",
+    "division_number": "21",
+    "motion_title": "Railways Bill Remaining Stages: Amendment 148",
+    "plain_aye_effect": "voting for Amendment 148 at the Railways Bill remaining stages",
+    "plain_no_effect": "voting against Amendment 148 at the Railways Bill remaining stages",
+    "topic": "railways",
+    "source_url": "https://votes.parliament.uk/votes/commons/division/2371",
+    "aye_members": [],
+    "no_members": ["Corbyn, Jeremy"]
+  },
+  {
+    "date": "2026-06-10",
+    "division_number": "22",
+    "motion_title": "Railways Bill: Third Reading",
+    "plain_aye_effect": "voting for the Railways Bill at Third Reading",
+    "plain_no_effect": "voting against the Railways Bill at Third Reading",
+    "topic": "railways",
+    "source_url": "https://votes.parliament.uk/votes/commons/division/2372",
+    "aye_members": ["Corbyn, Jeremy"],
+    "no_members": []
+  },
+  {
+    "date": "2026-06-15",
+    "division_number": "23",
+    "motion_title": "Royal Albert Hall Bill [Lords]: Revival",
+    "plain_aye_effect": "voting for reviving the Royal Albert Hall Bill",
+    "plain_no_effect": "voting against reviving the Royal Albert Hall Bill",
+    "topic": "private bill procedure",
+    "source_url": "https://votes.parliament.uk/votes/commons/division/2373",
+    "aye_members": [],
+    "no_members": []
+  }
+]
