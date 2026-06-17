@@ -1,6 +1,6 @@
 # Story Evidence Collector Trace Report v1.7
 
-Generated: `2026-06-08T07:41:57.927661+00:00`
+Generated: `2026-06-17T09:35:50.321221+00:00`
 
 ## Summary counts
 
