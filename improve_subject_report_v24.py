@@ -4,6 +4,11 @@ from pathlib import Path
 
 INPUT_JSON_FILE = Path("subject_matches_v21.json")
 OUTPUT_MARKDOWN_FILE = Path("subject_matches_v21.md")
+SOURCE_RECORD_FILES = [
+    Path("sources_raw_v13.json"),
+    Path("candidate_sources_raw_v15.json"),
+    Path("followed_sources_raw_v16.json"),
+]
 MAX_EXCERPTS_PER_PAGE = 3
 EXCERPT_RADIUS = 190
 
@@ -13,14 +18,27 @@ def load_json(path):
         return json.load(file)
 
 
+def load_optional_json(path):
+    if not path.exists():
+        return []
+    data = load_json(path)
+    if isinstance(data, list):
+        return data
+    return []
+
+
 def save_text(path, text):
     with path.open("w", encoding="utf-8") as file:
         file.write(text)
 
 
 def clean_text(value):
-    if not value:
+    if value is None:
         return ""
+    if value is False:
+        return "False"
+    if value is True:
+        return "True"
     return " ".join(str(value).split())
 
 
@@ -30,6 +48,31 @@ def table(headers, rows):
         cells = [clean_text(cell).replace("|", "\\|") for cell in row]
         lines.append("| " + " | ".join(cells) + " |")
     return "\n".join(lines)
+
+
+def normalise_url_key(value):
+    text = clean_text(value).strip().lower()
+    if text.endswith("/") and text != "/":
+        text = text[:-1]
+    return text
+
+
+def build_source_text_lookup():
+    lookup = {}
+    for path in SOURCE_RECORD_FILES:
+        for record in load_optional_json(path):
+            if not isinstance(record, dict):
+                continue
+            text_parts = [
+                record.get("page_title"),
+                record.get("text_excerpt"),
+            ]
+            source_text = clean_text(" ".join([str(part) for part in text_parts if part]))
+            for url_field in ["source_url", "final_url"]:
+                key = normalise_url_key(record.get(url_field))
+                if key and source_text:
+                    lookup[key] = source_text
+    return lookup
 
 
 def find_positions(text, terms):
@@ -69,7 +112,12 @@ def score_excerpt(excerpt, terms, subject):
     return score
 
 
-def get_match_text(match):
+def get_match_text(match, source_lookup):
+    for field in ["url", "final_url", "source_url"]:
+        key = normalise_url_key(match.get(field))
+        if key in source_lookup:
+            return source_lookup[key]
+
     parts = [
         match.get("page_title"),
         match.get("relevant_excerpt"),
@@ -80,9 +128,9 @@ def get_match_text(match):
     return clean_text(" ".join([str(part) for part in parts if part]))
 
 
-def strongest_excerpts(match, subject):
+def strongest_excerpts(match, subject, source_lookup):
     terms = match.get("matched_terms") or []
-    text = get_match_text(match)
+    text = get_match_text(match, source_lookup)
     positions = find_positions(text, terms)
     excerpts = []
     seen = set()
@@ -128,7 +176,7 @@ def plain_answer(report):
     return f"The collected records mention {subject}, but no fetched page in this run gave a strong readable match."
 
 
-def build_markdown(report):
+def build_markdown(report, source_lookup):
     subject = report.get("subject", "Subject")
     matches = report.get("matches") or []
     lines = []
@@ -192,7 +240,7 @@ def build_markdown(report):
         lines.append("")
         lines.append(f"What this page says about the subject: {page_note(match)}")
         lines.append("")
-        excerpts = strongest_excerpts(match, subject)
+        excerpts = strongest_excerpts(match, subject, source_lookup)
         if excerpts:
             for excerpt_index, item in enumerate(excerpts, start=1):
                 lines.append(f"**Excerpt {excerpt_index}:**")
@@ -234,11 +282,13 @@ def main():
     print("Starting subject report improvement v2.4")
     print("No network requests will be made.")
     report = load_json(INPUT_JSON_FILE)
-    save_text(OUTPUT_MARKDOWN_FILE, build_markdown(report))
+    source_lookup = build_source_text_lookup()
+    save_text(OUTPUT_MARKDOWN_FILE, build_markdown(report, source_lookup))
     print("Final summary")
     print("-------------")
     print(f"Subject: {report.get('subject')}")
     print(f"Matches found: {report.get('matches_found')}")
+    print(f"Source text records loaded: {len(source_lookup)}")
     print(f"Markdown output: {OUTPUT_MARKDOWN_FILE}")
     return 0
 
