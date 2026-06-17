@@ -1,0 +1,36 @@
+name: ParlParse import batch plan test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-parlparse-import-batch-plan:
+    name: Run ParlParse import batch plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run ParlParse import batch plan
+        run: python plan_parlparse_import_batches_v19.py
+
+      - name: Upload ParlParse import batch plan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parlparse-import-batch-plan-report
+          path: |
+            parlparse_import_batch_plan_v19.json
+            parlparse_import_batch_plan_report_v19.json
+            parlparse_import_batch_plan_v19.md
+          if-no-files-found: warn
