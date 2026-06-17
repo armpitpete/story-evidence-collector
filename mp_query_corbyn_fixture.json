@@ -2,5 +2,7 @@
   "mp_name": "Corbyn, Jeremy",
   "member_id": "",
   "constituency": "Islington North",
-  "party": "Not verified by this fixture"
+  "party": "Your Party",
+  "party_source_status": "fixture supplied; verify against official/public source before treating as current parliamentary listing",
+  "parliamentary_listing": "not checked by this fixture"
 }
