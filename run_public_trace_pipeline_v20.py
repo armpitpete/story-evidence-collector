@@ -352,11 +352,12 @@ def print_final_summary():
 
 
 def main():
-    print("Story Evidence Collector public trace pipeline v2.3")
+    print("Story Evidence Collector public trace pipeline v2.4")
     print("Running general source/link/report pipeline only.")
     print("The old quote-demo scraper is not run.")
     print("No new crawling or fetching logic is added by this runner.")
     print("Subject-matching candidate and follow links are prioritised within existing limits.")
+    print("The final subject Markdown report is reformatted as a readable evidence summary.")
 
     if not run_step("extract_source_records_v13.py"):
         print("Pipeline stopped.")
@@ -393,6 +394,7 @@ def main():
         "create_trace_report_v17.py",
         "create_trace_report_v18.py",
         "extract_subject_matches_v21.py",
+        "improve_subject_report_v24.py",
     ]:
         if not run_step(script_name):
             print("Pipeline stopped.")
