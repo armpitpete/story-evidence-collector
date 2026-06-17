@@ -352,11 +352,11 @@ def print_final_summary():
 
 
 def main():
-    print("Story Evidence Collector public trace pipeline v2.2")
+    print("Story Evidence Collector public trace pipeline v2.3")
     print("Running general source/link/report pipeline only.")
     print("The old quote-demo scraper is not run.")
     print("No new crawling or fetching logic is added by this runner.")
-    print("Subject-matching candidate URLs are prioritised before fetch within existing limits.")
+    print("Subject-matching candidate and follow links are prioritised within existing limits.")
 
     if not run_step("extract_source_records_v13.py"):
         print("Pipeline stopped.")
@@ -383,6 +383,10 @@ def main():
         return 1
 
     sanitise_after_candidate_fetch()
+
+    if not run_step("prioritise_subject_follow_candidates_v23.py"):
+        print("Pipeline stopped.")
+        return 1
 
     for script_name in [
         "follow_fetched_candidate_links_v16.py",
