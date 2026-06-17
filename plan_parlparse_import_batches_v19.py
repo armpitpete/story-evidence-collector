@@ -1,3 +1,4 @@
+import calendar
 import json
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -49,14 +50,9 @@ def parse_date(value):
     return datetime.strptime(clean_text(value), "%Y-%m-%d").date()
 
 
-def month_end(year, month):
-    if month == 12:
-        return date(year, 12, 31)
-    return date(year, month + 1, 1).replace(day=1).toordinal() - 1
-
-
 def month_end_date(year, month):
-    return date.fromordinal(month_end(year, month))
+    last_day = calendar.monthrange(year, month)[1]
+    return date(year, month, last_day)
 
 
 def next_month(current):
@@ -118,7 +114,7 @@ def build_manifest_template(plan):
         "checks": {
             "missing_required_fields": 0,
             "duplicate_keys_found": 0,
-            "safe_to_merge_later": false
+            "safe_to_merge_later": False
         },
         "outputs": {
             "rows_file": "",
