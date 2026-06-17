@@ -1,0 +1,37 @@
+name: Long-serving MP fixture test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-long-serving-mp-fixture:
+    name: Run long-serving MP fixture
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run long-serving MP fixture
+        run: python build_mp_voting_positions_fixture_v12.py
+
+      - name: Upload long-serving MP fixture report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: long-serving-mp-fixture-report
+          path: |
+            mp_query_corbyn_fixture.json
+            division_records_corbyn_fixture.json
+            mp_voting_positions_corbyn_fixture_v12.json
+            mp_voting_positions_corbyn_fixture_v12.md
+          if-no-files-found: warn
