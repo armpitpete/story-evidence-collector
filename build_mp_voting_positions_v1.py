@@ -141,6 +141,25 @@ def build_vote_position(record, mp_query):
     }
 
 
+def describe_recorded_side_pattern(mp_name, side_counts):
+    aye_count = side_counts.get("Aye", 0)
+    no_count = side_counts.get("No", 0)
+
+    if aye_count == 0 and no_count == 0:
+        return f"{mp_name} was not recorded as voting Aye or No in the supplied sample records."
+
+    if aye_count == no_count:
+        return (
+            f"{mp_name} was recorded equally on the Aye and No sides in the supplied sample records "
+            f"({aye_count} each), so this run does not show a single most frequent recorded side."
+        )
+
+    if aye_count > no_count:
+        return f"{mp_name} was more often recorded on the Aye side than the No side in the supplied sample records."
+
+    return f"{mp_name} was more often recorded on the No side than the Aye side in the supplied sample records."
+
+
 def build_pattern_paragraph(mp_query, vote_positions):
     mp_name = mp_query["mp_name"]
     recorded_positions = [item for item in vote_positions if item["recorded_side"] in {"Aye", "No"}]
@@ -154,11 +173,11 @@ def build_pattern_paragraph(mp_query, vote_positions):
     topic_counts = Counter(item["topic"] or "uncategorised" for item in recorded_positions)
     side_counts = Counter(item["recorded_side"] for item in recorded_positions)
     strongest_topics = ", ".join([topic for topic, _count in topic_counts.most_common(3)])
-    main_side = side_counts.most_common(1)[0][0]
+    side_pattern = describe_recorded_side_pattern(mp_name, side_counts)
 
     return (
-        f"Across the divisions checked in this run, {mp_name} was most often recorded on the {main_side} side of the supplied division records. "
-        f"The recorded positions most often appeared under these topic label(s): {strongest_topics}. "
+        f"Across the divisions checked in this run, {side_pattern} "
+        f"The recorded positions appeared under these topic label(s): {strongest_topics}. "
         "This is a summary of recorded votes in the supplied sample only. It does not prove motive, private belief, or complete voting history."
     )
 
