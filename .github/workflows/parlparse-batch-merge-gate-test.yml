@@ -1,0 +1,66 @@
+name: ParlParse batch merge gate test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-parlparse-batch-merge-gate:
+    name: Run ParlParse batch merge gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Restore v2.0 batch fixture
+        run: |
+          python - <<'PY'
+          import base64
+          import io
+          import zipfile
+          from pathlib import Path
+
+          fixture = Path('fixtures/parlparse-single-batch-report-v20.zip.b64')
+          raw = base64.b64decode(''.join(fixture.read_text(encoding='utf-8').split()))
+          allowed_prefix = 'parlparse_batches/'
+          allowed_names = {
+              'parlparse_batches/parlparse_2003_01_manifest.json',
+              'parlparse_batches/parlparse_2003_01_rows.json',
+              'parlparse_batches/parlparse_2003_01_report.md',
+          }
+          with zipfile.ZipFile(io.BytesIO(raw), 'r') as archive:
+              for name in archive.namelist():
+                  if name not in allowed_names:
+                      continue
+                  if not name.startswith(allowed_prefix):
+                      continue
+                  target = Path(name)
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(archive.read(name))
+          PY
+
+      - name: Run ParlParse batch merge gate
+        run: python validate_parlparse_batch_merge_gate_v21.py
+
+      - name: Upload ParlParse batch merge gate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parlparse-batch-merge-gate-report
+          path: |
+            validate_parlparse_batch_merge_gate_v21.py
+            parlparse_batch_merge_gate_v21.json
+            parlparse_batch_merge_gate_v21.md
+            parlparse_batches/parlparse_2003_01_manifest.json
+            parlparse_batches/parlparse_2003_01_rows.json
+            parlparse_batches/parlparse_2003_01_report.md
+          if-no-files-found: warn
