@@ -3,9 +3,9 @@ import time
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
-from urllib.error import HTTPError, URLError
 
 
 QUERY_FILE = Path("mp_full_vote_query.json")
@@ -19,10 +19,14 @@ REQUEST_TIMEOUT_SECONDS = 30
 POLITE_DELAY_SECONDS = 0.05
 
 PAGINATION_STRATEGIES = [
-    "page",
-    "page_number",
-    "skip_take",
-    "skip_results_per_page",
+    "query_page",
+    "query_page_number",
+    "query_skip_take",
+    "query_skip_results_per_page",
+    "top_page",
+    "top_page_number",
+    "top_skip_take",
+    "top_skip_results_per_page",
 ]
 
 
@@ -103,24 +107,51 @@ def fetch_json(url):
         return json.loads(response.read().decode("utf-8"))
 
 
-def build_search_url(member_id, page, results_per_page, strategy):
-    params = {
-        "queryParameters.memberId": member_id,
-        "queryParameters.includeWhenMemberWasTeller": "false",
-    }
+def add_member_filters(params, member_id, query_prefix):
+    if query_prefix:
+        params[f"{query_prefix}.memberId"] = member_id
+        params[f"{query_prefix}.includeWhenMemberWasTeller"] = "false"
+    else:
+        params["memberId"] = member_id
+        params["includeWhenMemberWasTeller"] = "false"
 
-    if strategy == "page":
-        params["queryParameters.page"] = page
-        params["queryParameters.resultsPerPage"] = results_per_page
-    elif strategy == "page_number":
-        params["queryParameters.pageNumber"] = page
-        params["queryParameters.resultsPerPage"] = results_per_page
-    elif strategy == "skip_take":
-        params["queryParameters.skip"] = (page - 1) * results_per_page
-        params["queryParameters.take"] = results_per_page
-    elif strategy == "skip_results_per_page":
-        params["queryParameters.skip"] = (page - 1) * results_per_page
-        params["queryParameters.resultsPerPage"] = results_per_page
+
+def build_search_url(member_id, page, results_per_page, strategy):
+    params = {}
+    use_query_prefix = strategy.startswith("query_")
+    prefix = "queryParameters" if use_query_prefix else ""
+    mode = strategy.replace("query_", "").replace("top_", "")
+
+    add_member_filters(params, member_id, prefix)
+
+    if mode == "page":
+        if prefix:
+            params[f"{prefix}.page"] = page
+            params[f"{prefix}.resultsPerPage"] = results_per_page
+        else:
+            params["page"] = page
+            params["resultsPerPage"] = results_per_page
+    elif mode == "page_number":
+        if prefix:
+            params[f"{prefix}.pageNumber"] = page
+            params[f"{prefix}.resultsPerPage"] = results_per_page
+        else:
+            params["pageNumber"] = page
+            params["resultsPerPage"] = results_per_page
+    elif mode == "skip_take":
+        if prefix:
+            params[f"{prefix}.skip"] = (page - 1) * results_per_page
+            params[f"{prefix}.take"] = results_per_page
+        else:
+            params["skip"] = (page - 1) * results_per_page
+            params["take"] = results_per_page
+    elif mode == "skip_results_per_page":
+        if prefix:
+            params[f"{prefix}.skip"] = (page - 1) * results_per_page
+            params[f"{prefix}.resultsPerPage"] = results_per_page
+        else:
+            params["skip"] = (page - 1) * results_per_page
+            params["resultsPerPage"] = results_per_page
     else:
         raise RuntimeError(f"Unknown pagination strategy: {strategy}")
 
@@ -152,24 +183,31 @@ def extract_division_id(item):
     return clean_text(first_present(item, ["divisionId", "DivisionId", "id", "Id"], ""))
 
 
-def division_id_set(items):
-    return {extract_division_id(item) for item in items if extract_division_id(item)}
+def division_id_signature(items):
+    return tuple(sorted({extract_division_id(item) for item in items if extract_division_id(item)}))
+
+
+def fetch_search_page(query, strategy, page):
+    url = build_search_url(query["member_id"], page, query["results_per_page"], strategy)
+    response = fetch_json(url)
+    items = extract_items(response)
+    return url, response, items, division_id_signature(items)
 
 
 def probe_pagination_strategy(query, strategy):
     events = []
-    page_results = []
+    page_data = []
 
     for page in [1, 2]:
         url = build_search_url(query["member_id"], page, query["results_per_page"], strategy)
         try:
             response = fetch_json(url)
             items = extract_items(response)
-            ids = division_id_set(items)
-            page_results.append({
+            signature = division_id_signature(items)
+            page_data.append({
                 "page": page,
                 "items": items,
-                "ids": ids,
+                "signature": signature,
                 "total_results": extract_total_results(response),
             })
             events.append({
@@ -179,7 +217,7 @@ def probe_pagination_strategy(query, strategy):
                 "url": url,
                 "status": "ok",
                 "items": len(items),
-                "unique_division_ids": len(ids),
+                "unique_division_ids": len(signature),
             })
         except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as error:
             events.append({
@@ -191,55 +229,46 @@ def probe_pagination_strategy(query, strategy):
                 "error": str(error),
             })
             return {
-                "strategy": strategy,
                 "usable": False,
                 "reason": "probe_request_failed",
                 "events": events,
-                "first_page_items": [],
                 "total_results": None,
             }
 
-    first_items = page_results[0]["items"] if page_results else []
-    first_ids = page_results[0]["ids"] if page_results else set()
-    second_ids = page_results[1]["ids"] if len(page_results) > 1 else set()
+    first_items = page_data[0]["items"]
+    first_signature = page_data[0]["signature"]
+    second_items = page_data[1]["items"]
+    second_signature = page_data[1]["signature"]
 
     if not first_items:
         return {
-            "strategy": strategy,
             "usable": False,
             "reason": "first_page_empty",
             "events": events,
-            "first_page_items": [],
             "total_results": None,
         }
 
-    if second_ids and first_ids != second_ids:
+    if second_items and first_signature != second_signature:
         return {
-            "strategy": strategy,
             "usable": True,
             "reason": "second_page_differs",
             "events": events,
-            "first_page_items": first_items,
-            "total_results": page_results[0].get("total_results"),
+            "total_results": page_data[0].get("total_results"),
         }
 
-    if len(first_items) < query["results_per_page"]:
+    if not second_items:
         return {
-            "strategy": strategy,
             "usable": True,
-            "reason": "single_page_result_set",
+            "reason": "second_page_empty_single_page_or_end_reached",
             "events": events,
-            "first_page_items": first_items,
-            "total_results": page_results[0].get("total_results"),
+            "total_results": page_data[0].get("total_results"),
         }
 
     return {
-        "strategy": strategy,
         "usable": False,
         "reason": "second_page_repeated_first_page",
         "events": events,
-        "first_page_items": first_items,
-        "total_results": page_results[0].get("total_results"),
+        "total_results": page_data[0].get("total_results"),
     }
 
 
@@ -249,7 +278,6 @@ def choose_pagination_strategy(query):
     for strategy in PAGINATION_STRATEGIES:
         result = probe_pagination_strategy(query, strategy)
         all_events.extend(result["events"])
-
         all_events.append({
             "stage": "pagination_strategy_result",
             "strategy": strategy,
@@ -260,9 +288,9 @@ def choose_pagination_strategy(query):
         if result["usable"]:
             return strategy, result.get("total_results"), all_events
 
-    return "page", None, all_events + [{
+    return PAGINATION_STRATEGIES[0], None, all_events + [{
         "stage": "pagination_strategy_result",
-        "strategy": "page",
+        "strategy": PAGINATION_STRATEGIES[0],
         "status": "fallback",
         "reason": "no_probe_strategy_verified",
     }]
@@ -271,8 +299,8 @@ def choose_pagination_strategy(query):
 def fetch_member_division_search_pages(query):
     all_items = []
     source_events = []
-    total_results = None
     seen_page_signatures = set()
+    total_results = None
 
     strategy, probe_total_results, probe_events = choose_pagination_strategy(query)
     total_results = probe_total_results
@@ -300,7 +328,7 @@ def fetch_member_division_search_pages(query):
 
         items = extract_items(response)
         total_results = total_results or extract_total_results(response)
-        ids = tuple(sorted(division_id_set(items)))
+        signature = division_id_signature(items)
 
         source_events.append({
             "stage": "search_page",
@@ -309,13 +337,13 @@ def fetch_member_division_search_pages(query):
             "url": url,
             "status": "ok",
             "items": len(items),
-            "unique_division_ids": len(ids),
+            "unique_division_ids": len(signature),
         })
 
         if not items:
             break
 
-        if ids and ids in seen_page_signatures:
+        if signature and signature in seen_page_signatures:
             source_events.append({
                 "stage": "search_page",
                 "page": page,
@@ -323,18 +351,14 @@ def fetch_member_division_search_pages(query):
                 "url": url,
                 "status": "stopped_repeated_page",
                 "items": len(items),
-                "unique_division_ids": len(ids),
+                "unique_division_ids": len(signature),
             })
             break
 
-        if ids:
-            seen_page_signatures.add(ids)
+        if signature:
+            seen_page_signatures.add(signature)
 
         all_items.extend(items)
-
-        if len(items) < query["results_per_page"]:
-            break
-
         time.sleep(POLITE_DELAY_SECONDS)
 
     return all_items, total_results, source_events, strategy
@@ -471,7 +495,6 @@ def build_vote_index(query):
         rows.append(build_vote_index_row(item, detail, query))
 
     rows.sort(key=lambda item: (item.get("date") or "", item.get("division_id") or ""))
-
     return rows, total_results, source_events, detail_fetches, pagination_strategy
 
 
@@ -489,6 +512,7 @@ def build_report(query, rows, total_results, source_events, detail_fetches, pagi
     side_counts = Counter(row["recorded_side"] for row in rows)
     failed_events = [event for event in source_events if event.get("status") == "failed"]
     repeated_events = [event for event in source_events if event.get("status") == "stopped_repeated_page"]
+    fallback_events = [event for event in source_events if event.get("status") == "fallback"]
 
     coverage_warnings = [
         "This is a full-career index across the official/public vote records available to this run, not a claim that every possible historical record exists in the source.",
@@ -501,6 +525,8 @@ def build_report(query, rows, total_results, source_events, detail_fetches, pagi
         coverage_warnings.append("Some source requests failed; check the source report before relying on coverage.")
     if repeated_events:
         coverage_warnings.append("Pagination returned a repeated page and the run stopped to avoid duplicate collection.")
+    if fallback_events:
+        coverage_warnings.append("No pagination strategy was verified by probing; the run used a fallback and should not be treated as full coverage.")
     if total_results is not None and len(rows) < int(total_results):
         coverage_warnings.append("The source reported more total results than were written; check pagination and hard limits.")
     if len(rows) >= query["max_division_detail_fetches"]:
