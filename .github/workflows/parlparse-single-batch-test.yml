@@ -1,0 +1,38 @@
+name: ParlParse single batch test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-parlparse-single-batch:
+    name: Run ParlParse single batch
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run single ParlParse batch
+        run: python run_parlparse_batch_v20.py
+
+      - name: Upload single ParlParse batch report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parlparse-single-batch-report
+          path: |
+            parlparse_import_batch_plan_v19.json
+            run_parlparse_batch_v20.py
+            parlparse_batches/parlparse_2003_01_manifest.json
+            parlparse_batches/parlparse_2003_01_rows.json
+            parlparse_batches/parlparse_2003_01_report.md
+          if-no-files-found: warn
