@@ -1,0 +1,36 @@
+name: Selected records normalise test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-selected-records-normaliser:
+    name: Run selected records normaliser
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run selected records normaliser
+        run: python build_mp_division_records_v11.py
+
+      - name: Upload selected records report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: selected-records-normaliser-report
+          path: |
+            mp_division_sources.json
+            division_records_v11.json
+            division_records_report_v11.md
+          if-no-files-found: warn
