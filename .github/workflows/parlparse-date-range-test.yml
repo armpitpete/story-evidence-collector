@@ -1,0 +1,36 @@
+name: ParlParse date range test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-parlparse-date-range:
+    name: Run ParlParse date range parser
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run ParlParse date range parser
+        run: python parse_parlparse_date_range_v18.py
+
+      - name: Upload ParlParse date range report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parlparse-date-range-report
+          path: |
+            parlparse_date_range_query_v18.json
+            parlparse_date_range_rows_v18.json
+            parlparse_date_range_rows_v18.md
+          if-no-files-found: warn
