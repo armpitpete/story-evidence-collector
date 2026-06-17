@@ -45,6 +45,8 @@ jobs:
             subject_candidate_priority_report_v22.md
             candidate_sources_raw_v15.json
             candidate_fetch_report_v15.json
+            subject_follow_priority_report_v23.json
+            subject_follow_priority_report_v23.md
             followed_sources_raw_v16.json
             followed_fetch_report_v16.json
             trace_report_v17.json
