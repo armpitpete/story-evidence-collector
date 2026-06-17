@@ -1,0 +1,36 @@
+name: ParlParse XML sample inspection test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-parlparse-xml-sample-inspection:
+    name: Run ParlParse XML sample inspection
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run ParlParse XML sample inspection
+        run: python inspect_parlparse_xml_samples_v16.py
+
+      - name: Upload ParlParse XML sample inspection report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parlparse-xml-sample-inspection-report
+          path: |
+            parlparse_xml_sample_probe_v16.json
+            parlparse_xml_sample_report_v16.json
+            parlparse_xml_sample_report_v16.md
+          if-no-files-found: warn
