@@ -24,6 +24,9 @@ jobs:
       - name: Run MP full vote index
         run: python build_mp_full_vote_index_v13.py
 
+      - name: Clarify MP vote index scope
+        run: python clarify_mp_vote_index_scope_v13.py
+
       - name: Upload MP full vote index report
         if: always()
         uses: actions/upload-artifact@v4
