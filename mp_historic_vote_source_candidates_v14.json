@@ -1,0 +1,67 @@
+{
+  "purpose": "Identify a safe source route for pre-2016 historic MP division records before merging historic records into the main vote index.",
+  "target_mp": {
+    "mp_name": "Corbyn, Jeremy",
+    "member_id": "185",
+    "known_parliamentary_start_date": "1983-06-09",
+    "current_available_commons_votes_start_date": "2016-04-26"
+  },
+  "candidates": [
+    {
+      "source_id": "parlparse_raw_data",
+      "name": "ParlParse raw data",
+      "source_url": "https://parser.theyworkforyou.com/",
+      "source_type": "raw structured parliamentary data",
+      "known_value": "ParlParse describes itself as structured versions of publicly available UK Parliament data and the engine behind TheyWorkForYou and Public Whip.",
+      "likely_date_coverage": "potentially historic; exact division coverage must be inspected",
+      "can_identify_mp_consistently": "likely, because member files include current and past members, affiliations and constituencies",
+      "can_provide_division_date_title_url_side": "unknown until the division data shape is inspected",
+      "licensing_or_attribution": "must check mySociety / TheyWorkForYou terms before publishing derived data",
+      "bulk_suitability": "strong candidate; TheyWorkForYou API docs recommend raw data for analysis over long periods",
+      "risk": "raw data may need parsing and schema inspection before use",
+      "verdict": "best first candidate"
+    },
+    {
+      "source_id": "theyworkforyou_api",
+      "name": "TheyWorkForYou API",
+      "source_url": "https://www.theyworkforyou.com/api/docs/",
+      "source_type": "API",
+      "known_value": "The API can query the TheyWorkForYou database and has documented JSON/XML outputs.",
+      "likely_date_coverage": "unknown for complete vote history; API docs point to raw data for long-period bulk analysis",
+      "can_identify_mp_consistently": "likely through person / MP endpoints",
+      "can_provide_division_date_title_url_side": "unclear; vote-specific bulk extraction is not the best fit based on docs",
+      "licensing_or_attribution": "API key, usage terms, pricing and attribution requirements apply",
+      "bulk_suitability": "weak for this use case; better for lookup than full historic vote indexing",
+      "risk": "paid/keyed API and not recommended for long-period bulk analysis",
+      "verdict": "use only for identity/helping metadata unless raw data route fails"
+    },
+    {
+      "source_id": "public_whip_web_or_data",
+      "name": "Public Whip",
+      "source_url": "https://www.publicwhip.org.uk/",
+      "source_type": "historic voting analysis site / possible source data",
+      "known_value": "Public Whip tracks UK parliamentary votes and is connected historically with TheyWorkForYou / ParlParse tooling.",
+      "likely_date_coverage": "potentially useful for historic votes; exact accessible data route must be inspected",
+      "can_identify_mp_consistently": "likely, but source shape must be checked",
+      "can_provide_division_date_title_url_side": "possible, but not confirmed by this report",
+      "licensing_or_attribution": "must inspect terms / data licence before use",
+      "bulk_suitability": "unknown until source shape and licence are checked",
+      "risk": "may be web-page-first rather than clean data-first; avoid broad scraping",
+      "verdict": "second candidate after ParlParse raw data"
+    },
+    {
+      "source_id": "official_historic_hansard",
+      "name": "Official historic Hansard / Parliament archive material",
+      "source_url": "https://api.parliament.uk/historic-hansard/index.html",
+      "source_type": "official historic parliamentary record",
+      "known_value": "Official historic Hansard exists, but division/member-vote extraction shape is not yet known for this project.",
+      "likely_date_coverage": "historic; exact Commons division-list coverage must be inspected",
+      "can_identify_mp_consistently": "unknown",
+      "can_provide_division_date_title_url_side": "unknown; may require text parsing rather than structured vote rows",
+      "licensing_or_attribution": "official reuse terms must be checked",
+      "bulk_suitability": "unclear; likely harder than ParlParse if the data is not already structured as division rows",
+      "risk": "could become a parsing project rather than a simple source integration",
+      "verdict": "official fallback candidate, but not the fastest route"
+    }
+  ]
+}
