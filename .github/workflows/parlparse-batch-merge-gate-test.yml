@@ -24,28 +24,49 @@ jobs:
       - name: Restore v2.0 batch fixture
         run: |
           python - <<'PY'
-          import base64
-          import io
-          import zipfile
+          import json
           from pathlib import Path
 
-          fixture = Path('fixtures/parlparse-single-batch-report-v20.zip.b64')
-          raw = base64.b64decode(''.join(fixture.read_text(encoding='utf-8').split()))
-          allowed_prefix = 'parlparse_batches/'
-          allowed_names = {
-              'parlparse_batches/parlparse_2003_01_manifest.json',
-              'parlparse_batches/parlparse_2003_01_rows.json',
-              'parlparse_batches/parlparse_2003_01_report.md',
+          batch_dir = Path('parlparse_batches')
+          batch_dir.mkdir(parents=True, exist_ok=True)
+
+          manifest = json.loads(Path('fixtures/parlparse_2003_01_manifest_fixture.json').read_text(encoding='utf-8'))
+          Path('parlparse_batches/parlparse_2003_01_manifest.json').write_text(
+              json.dumps(manifest, indent=2, ensure_ascii=False),
+              encoding='utf-8',
+          )
+
+          side_sequence = ['Aye'] * 7 + ['No'] * 11 + ['Not recorded'] * 15
+          evidence_for_side = {
+              'Aye': 'mp_found_in_aye_list',
+              'No': 'mp_found_in_no_list',
+              'Not recorded': 'mp_not_found_in_sample_division',
           }
-          with zipfile.ZipFile(io.BytesIO(raw), 'r') as archive:
-              for name in archive.namelist():
-                  if name not in allowed_names:
-                      continue
-                  if not name.startswith(allowed_prefix):
-                      continue
-                  target = Path(name)
-                  target.parent.mkdir(parents=True, exist_ok=True)
-                  target.write_bytes(archive.read(name))
+          rows = []
+          for index, side in enumerate(side_sequence, start=1):
+              rows.append({
+                  'date': '2003-01-07',
+                  'division_id': f'fixture.parlparse/2003-01/{index:03d}',
+                  'division_number': str(index),
+                  'motion_title': f'Fixture ParlParse division {index} for merge-gate validation',
+                  'recorded_side': side,
+                  'meaning_quality': 'needs_review',
+                  'topic': 'uncategorised',
+                  'source_url': f'https://www.theyworkforyou.com/pwdata/scrapedxml/debates/debates2003-01-07.xml#fixture-{index:03d}',
+                  'source_system': 'parlparse',
+                  'evidence_status': evidence_for_side[side],
+                  'source_xml_url': 'https://www.theyworkforyou.com/pwdata/scrapedxml/debates/debates2003-01-07.xml',
+                  'available_trace_fields': ['date', 'division_id', 'division_number', 'source_url', 'source_xml_url'],
+              })
+
+          Path('parlparse_batches/parlparse_2003_01_rows.json').write_text(
+              json.dumps(rows, indent=2, ensure_ascii=False),
+              encoding='utf-8',
+          )
+          Path('parlparse_batches/parlparse_2003_01_report.md').write_text(
+              '# ParlParse Batch Fixture Report\n\nFixture restored for v2.1 merge-gate validation only. No merge happened.\n',
+              encoding='utf-8',
+          )
           PY
 
       - name: Run ParlParse batch merge gate
