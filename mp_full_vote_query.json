@@ -5,6 +5,8 @@
   "party": "Your Party",
   "party_source_status": "fixture supplied; verify against official/public source before treating as current parliamentary listing",
   "parliamentary_listing": "not checked by this run",
+  "known_parliamentary_start_date": "1983-06-09",
+  "known_parliamentary_start_source_status": "project supplied; verify before publication",
   "source": "commons_votes_api",
   "max_pages": 100,
   "results_per_page": 100,
