@@ -1,0 +1,42 @@
+{
+  "source_id": "parlparse_raw_data",
+  "source_url": "https://parser.theyworkforyou.com/",
+  "target_mp": "Corbyn, Jeremy",
+  "target_member_id": "185",
+  "wanted_date_range": {
+    "start": "1983-06-09",
+    "end": "2016-04-25"
+  },
+  "max_source_requests": 5,
+  "allow_network_probe": true,
+  "probe_urls": [
+    {
+      "label": "ParlParse overview",
+      "url": "https://parser.theyworkforyou.com/",
+      "expected_value": "Confirms ParlParse is structured public UK Parliament data and engine behind TheyWorkForYou/Public Whip."
+    },
+    {
+      "label": "ParlParse Hansard data notes",
+      "url": "https://parser.theyworkforyou.com/hansard.html",
+      "expected_value": "Confirms XML debates data and whether divisions/votes are labelled."
+    },
+    {
+      "label": "ParlParse members data notes",
+      "url": "https://parser.theyworkforyou.com/members.html",
+      "expected_value": "Confirms member identifiers and where voting-record data is directed."
+    },
+    {
+      "label": "ParlParse GitHub repository",
+      "url": "https://github.com/mysociety/parlparse",
+      "expected_value": "Confirms repository structure and available directories."
+    }
+  ],
+  "inspection_questions": [
+    "Does the source expose structured division/vote records?",
+    "Does it cover pre-2016?",
+    "Does it go back to the 1983 start point needed for Corbyn?",
+    "Can Jeremy Corbyn be matched by stable person/member ID?",
+    "Can future rows be traced to a source URL or source identifier?",
+    "What licence or attribution notes must be kept?"
+  ]
+}
