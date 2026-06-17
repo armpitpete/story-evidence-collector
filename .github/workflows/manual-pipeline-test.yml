@@ -48,4 +48,6 @@ jobs:
             trace_report_v17.md
             trace_report_v18.json
             trace_report_v18.md
+            subject_matches_v21.json
+            subject_matches_v21.md
           if-no-files-found: warn
