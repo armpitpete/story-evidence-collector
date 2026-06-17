@@ -1,0 +1,40 @@
+{
+  "source_id": "parlparse_xml_samples",
+  "purpose": "Inspect actual ParlParse XML samples to test whether they can produce current-style MP vote index rows for the 2001-2016 gap.",
+  "target_mp": "Corbyn, Jeremy",
+  "target_member_id": "185",
+  "wanted_date_range": {
+    "start": "2001-06-07",
+    "end": "2016-04-25"
+  },
+  "allow_network_probe": true,
+  "max_index_requests": 2,
+  "max_xml_requests": 2,
+  "index_urls": [
+    {
+      "label": "ParlParse divisions-only XML index",
+      "url": "https://www.theyworkforyou.com/pwdata/scrapedxml/divisionsonly/"
+    },
+    {
+      "label": "ParlParse debates XML index",
+      "url": "https://www.theyworkforyou.com/pwdata/scrapedxml/debates/"
+    }
+  ],
+  "preferred_filename_patterns": [
+    "2003",
+    "2005",
+    "2010",
+    "2015"
+  ],
+  "future_row_shape": {
+    "date": "",
+    "division_id": "",
+    "division_number": "",
+    "motion_title": "",
+    "recorded_side": "Aye|No|Not recorded|Unable to determine",
+    "meaning_quality": "needs_review",
+    "topic": "uncategorised",
+    "source_url": "",
+    "source_system": "parlparse"
+  }
+}
