@@ -16,7 +16,14 @@ SOURCE_REPORT_FILE = Path("mp_vote_index_source_report_v13.md")
 COMMONS_VOTES_API_BASE = "https://commonsvotes-api.parliament.uk/data"
 USER_AGENT = "StoryEvidenceCollector/MPVoteIndex/1.3"
 REQUEST_TIMEOUT_SECONDS = 30
-POLITE_DELAY_SECONDS = 0.2
+POLITE_DELAY_SECONDS = 0.05
+
+PAGINATION_STRATEGIES = [
+    "page",
+    "page_number",
+    "skip_take",
+    "skip_results_per_page",
+]
 
 
 def utc_now_iso():
@@ -83,10 +90,10 @@ def load_query():
         "party_source_status": clean_text(data.get("party_source_status")),
         "parliamentary_listing": clean_text(data.get("parliamentary_listing")),
         "source": clean_text(data.get("source")) or "commons_votes_api",
-        "max_pages": int(data.get("max_pages", 200)),
-        "results_per_page": int(data.get("results_per_page", 25)),
+        "max_pages": int(data.get("max_pages", 100)),
+        "results_per_page": int(data.get("results_per_page", 100)),
         "fetch_division_details": bool(data.get("fetch_division_details", True)),
-        "max_division_detail_fetches": int(data.get("max_division_detail_fetches", 5000)),
+        "max_division_detail_fetches": int(data.get("max_division_detail_fetches", 2500)),
     }
 
 
@@ -96,13 +103,27 @@ def fetch_json(url):
         return json.loads(response.read().decode("utf-8"))
 
 
-def build_search_url(member_id, page, results_per_page):
+def build_search_url(member_id, page, results_per_page, strategy):
     params = {
         "queryParameters.memberId": member_id,
-        "queryParameters.page": page,
-        "queryParameters.resultsPerPage": results_per_page,
         "queryParameters.includeWhenMemberWasTeller": "false",
     }
+
+    if strategy == "page":
+        params["queryParameters.page"] = page
+        params["queryParameters.resultsPerPage"] = results_per_page
+    elif strategy == "page_number":
+        params["queryParameters.pageNumber"] = page
+        params["queryParameters.resultsPerPage"] = results_per_page
+    elif strategy == "skip_take":
+        params["queryParameters.skip"] = (page - 1) * results_per_page
+        params["queryParameters.take"] = results_per_page
+    elif strategy == "skip_results_per_page":
+        params["queryParameters.skip"] = (page - 1) * results_per_page
+        params["queryParameters.resultsPerPage"] = results_per_page
+    else:
+        raise RuntimeError(f"Unknown pagination strategy: {strategy}")
+
     return f"{COMMONS_VOTES_API_BASE}/divisions.json/search?{urlencode(params)}"
 
 
@@ -127,19 +148,150 @@ def extract_total_results(search_response):
     return first_present(search_response, ["totalResults", "TotalResults", "total", "Total"], None)
 
 
+def extract_division_id(item):
+    return clean_text(first_present(item, ["divisionId", "DivisionId", "id", "Id"], ""))
+
+
+def division_id_set(items):
+    return {extract_division_id(item) for item in items if extract_division_id(item)}
+
+
+def probe_pagination_strategy(query, strategy):
+    events = []
+    page_results = []
+
+    for page in [1, 2]:
+        url = build_search_url(query["member_id"], page, query["results_per_page"], strategy)
+        try:
+            response = fetch_json(url)
+            items = extract_items(response)
+            ids = division_id_set(items)
+            page_results.append({
+                "page": page,
+                "items": items,
+                "ids": ids,
+                "total_results": extract_total_results(response),
+            })
+            events.append({
+                "stage": "pagination_probe",
+                "strategy": strategy,
+                "page": page,
+                "url": url,
+                "status": "ok",
+                "items": len(items),
+                "unique_division_ids": len(ids),
+            })
+        except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as error:
+            events.append({
+                "stage": "pagination_probe",
+                "strategy": strategy,
+                "page": page,
+                "url": url,
+                "status": "failed",
+                "error": str(error),
+            })
+            return {
+                "strategy": strategy,
+                "usable": False,
+                "reason": "probe_request_failed",
+                "events": events,
+                "first_page_items": [],
+                "total_results": None,
+            }
+
+    first_items = page_results[0]["items"] if page_results else []
+    first_ids = page_results[0]["ids"] if page_results else set()
+    second_ids = page_results[1]["ids"] if len(page_results) > 1 else set()
+
+    if not first_items:
+        return {
+            "strategy": strategy,
+            "usable": False,
+            "reason": "first_page_empty",
+            "events": events,
+            "first_page_items": [],
+            "total_results": None,
+        }
+
+    if second_ids and first_ids != second_ids:
+        return {
+            "strategy": strategy,
+            "usable": True,
+            "reason": "second_page_differs",
+            "events": events,
+            "first_page_items": first_items,
+            "total_results": page_results[0].get("total_results"),
+        }
+
+    if len(first_items) < query["results_per_page"]:
+        return {
+            "strategy": strategy,
+            "usable": True,
+            "reason": "single_page_result_set",
+            "events": events,
+            "first_page_items": first_items,
+            "total_results": page_results[0].get("total_results"),
+        }
+
+    return {
+        "strategy": strategy,
+        "usable": False,
+        "reason": "second_page_repeated_first_page",
+        "events": events,
+        "first_page_items": first_items,
+        "total_results": page_results[0].get("total_results"),
+    }
+
+
+def choose_pagination_strategy(query):
+    all_events = []
+
+    for strategy in PAGINATION_STRATEGIES:
+        result = probe_pagination_strategy(query, strategy)
+        all_events.extend(result["events"])
+
+        all_events.append({
+            "stage": "pagination_strategy_result",
+            "strategy": strategy,
+            "status": "usable" if result["usable"] else "not_usable",
+            "reason": result["reason"],
+        })
+
+        if result["usable"]:
+            return strategy, result.get("total_results"), all_events
+
+    return "page", None, all_events + [{
+        "stage": "pagination_strategy_result",
+        "strategy": "page",
+        "status": "fallback",
+        "reason": "no_probe_strategy_verified",
+    }]
+
+
 def fetch_member_division_search_pages(query):
     all_items = []
     source_events = []
     total_results = None
+    seen_page_signatures = set()
+
+    strategy, probe_total_results, probe_events = choose_pagination_strategy(query)
+    total_results = probe_total_results
+    source_events.extend(probe_events)
+    source_events.append({
+        "stage": "pagination_strategy_chosen",
+        "strategy": strategy,
+        "status": "chosen",
+    })
 
     for page in range(1, query["max_pages"] + 1):
-        url = build_search_url(query["member_id"], page, query["results_per_page"])
+        url = build_search_url(query["member_id"], page, query["results_per_page"], strategy)
         try:
             response = fetch_json(url)
         except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as error:
             source_events.append({
                 "stage": "search_page",
                 "page": page,
+                "strategy": strategy,
                 "url": url,
                 "status": "failed",
                 "error": str(error),
@@ -148,17 +300,35 @@ def fetch_member_division_search_pages(query):
 
         items = extract_items(response)
         total_results = total_results or extract_total_results(response)
+        ids = tuple(sorted(division_id_set(items)))
 
         source_events.append({
             "stage": "search_page",
             "page": page,
+            "strategy": strategy,
             "url": url,
             "status": "ok",
             "items": len(items),
+            "unique_division_ids": len(ids),
         })
 
         if not items:
             break
+
+        if ids and ids in seen_page_signatures:
+            source_events.append({
+                "stage": "search_page",
+                "page": page,
+                "strategy": strategy,
+                "url": url,
+                "status": "stopped_repeated_page",
+                "items": len(items),
+                "unique_division_ids": len(ids),
+            })
+            break
+
+        if ids:
+            seen_page_signatures.add(ids)
 
         all_items.extend(items)
 
@@ -167,11 +337,7 @@ def fetch_member_division_search_pages(query):
 
         time.sleep(POLITE_DELAY_SECONDS)
 
-    return all_items, total_results, source_events
-
-
-def extract_division_id(item):
-    return first_present(item, ["divisionId", "DivisionId", "id", "Id"], "")
+    return all_items, total_results, source_events, strategy
 
 
 def build_division_detail_url(division_id):
@@ -269,7 +435,7 @@ def build_vote_index_row(search_item, detail, query):
 
 
 def build_vote_index(query):
-    search_items, total_results, source_events = fetch_member_division_search_pages(query)
+    search_items, total_results, source_events, pagination_strategy = fetch_member_division_search_pages(query)
     rows = []
     detail_fetches = 0
     seen_division_ids = set()
@@ -306,7 +472,7 @@ def build_vote_index(query):
 
     rows.sort(key=lambda item: (item.get("date") or "", item.get("division_id") or ""))
 
-    return rows, total_results, source_events, detail_fetches
+    return rows, total_results, source_events, detail_fetches, pagination_strategy
 
 
 def safe_min_date(rows):
@@ -319,9 +485,10 @@ def safe_max_date(rows):
     return max(dates) if dates else ""
 
 
-def build_report(query, rows, total_results, source_events, detail_fetches):
+def build_report(query, rows, total_results, source_events, detail_fetches, pagination_strategy):
     side_counts = Counter(row["recorded_side"] for row in rows)
     failed_events = [event for event in source_events if event.get("status") == "failed"]
+    repeated_events = [event for event in source_events if event.get("status") == "stopped_repeated_page"]
 
     coverage_warnings = [
         "This is a full-career index across the official/public vote records available to this run, not a claim that every possible historical record exists in the source.",
@@ -332,13 +499,18 @@ def build_report(query, rows, total_results, source_events, detail_fetches):
         coverage_warnings.append(f"This run found records dated from {safe_min_date(rows)} to {safe_max_date(rows)} in the selected source.")
     if failed_events:
         coverage_warnings.append("Some source requests failed; check the source report before relying on coverage.")
+    if repeated_events:
+        coverage_warnings.append("Pagination returned a repeated page and the run stopped to avoid duplicate collection.")
     if total_results is not None and len(rows) < int(total_results):
         coverage_warnings.append("The source reported more total results than were written; check pagination and hard limits.")
+    if len(rows) >= query["max_division_detail_fetches"]:
+        coverage_warnings.append("The detail-fetch hard limit was reached before all rows could be checked in detail.")
 
     return {
         "generated_at": utc_now_iso(),
         "query": query,
         "source": "commons_votes_api",
+        "pagination_strategy": pagination_strategy,
         "network_requests_made": True,
         "total_results_reported_by_source": total_results,
         "divisions_indexed": len(rows),
@@ -380,6 +552,7 @@ def build_markdown(report):
     lines.append("## Coverage summary")
     lines.append("")
     lines.append(markdown_table(["Metric", "Count / value"], [
+        ["Pagination strategy", report.get("pagination_strategy", "")],
         ["Total results reported by source", report.get("total_results_reported_by_source", "")],
         ["Divisions indexed", report["divisions_indexed"]],
         ["Division details fetched", report["division_details_fetched"]],
@@ -434,15 +607,17 @@ def build_source_markdown(report):
     lines.append("## Source events")
     lines.append("")
     lines.append(markdown_table(
-        ["Stage", "Page / division", "Status", "Items", "URL", "Error"],
+        ["Stage", "Strategy", "Page / division", "Status", "Items", "Unique IDs", "URL", "Error / reason"],
         [
             [
                 event.get("stage", ""),
+                event.get("strategy", ""),
                 event.get("page", event.get("division_id", "")),
                 event.get("status", ""),
                 event.get("items", ""),
+                event.get("unique_division_ids", ""),
                 event.get("url", ""),
-                event.get("error", ""),
+                event.get("error", event.get("reason", "")),
             ]
             for event in report["source_events"]
         ],
@@ -458,8 +633,8 @@ def main():
         print(f"FAILED: {error}")
         return 1
 
-    rows, total_results, source_events, detail_fetches = build_vote_index(query)
-    report = build_report(query, rows, total_results, source_events, detail_fetches)
+    rows, total_results, source_events, detail_fetches, pagination_strategy = build_vote_index(query)
+    report = build_report(query, rows, total_results, source_events, detail_fetches, pagination_strategy)
 
     save_json(OUTPUT_JSON_FILE, report)
     save_text(OUTPUT_MARKDOWN_FILE, build_markdown(report))
@@ -468,6 +643,7 @@ def main():
     print("Final summary")
     print("-------------")
     print(f"MP: {query['mp_name']}")
+    print(f"Pagination strategy: {pagination_strategy}")
     print(f"Divisions indexed: {report['divisions_indexed']}")
     print(f"First division date found: {report['first_division_date_found']}")
     print(f"Latest division date found: {report['latest_division_date_found']}")
