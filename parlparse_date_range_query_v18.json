@@ -1,0 +1,14 @@
+{
+  "source_id": "parlparse_date_range_sample",
+  "purpose": "Parse a bounded ParlParse date range into current-style vote index rows without merging into the main MP index.",
+  "target_mp": "Corbyn, Jeremy",
+  "target_member_id": "185",
+  "start_date": "2003-01-01",
+  "end_date": "2003-01-31",
+  "max_xml_files": 31,
+  "allow_network_probe": true,
+  "base_url_pattern": "https://www.theyworkforyou.com/pwdata/scrapedxml/debates/debates{date}.xml",
+  "source_system": "parlparse",
+  "meaning_quality": "needs_review",
+  "topic": "uncategorised"
+}
