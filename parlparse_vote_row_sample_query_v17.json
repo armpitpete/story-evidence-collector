@@ -1,0 +1,15 @@
+{
+  "source_id": "parlparse_vote_row_sample",
+  "purpose": "Parse bounded ParlParse XML sample files into current-style vote index rows without merging into the main MP index.",
+  "target_mp": "Corbyn, Jeremy",
+  "target_member_id": "185",
+  "max_xml_files": 2,
+  "allow_network_probe": true,
+  "xml_files": [
+    "https://www.theyworkforyou.com/pwdata/scrapedxml/debates/debates2003-01-07.xml",
+    "https://www.theyworkforyou.com/pwdata/scrapedxml/debates/debates2005-01-10.xml"
+  ],
+  "source_system": "parlparse",
+  "meaning_quality": "needs_review",
+  "topic": "uncategorised"
+}
