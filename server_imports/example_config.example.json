@@ -1,0 +1,14 @@
+{
+  "archive_root": "/srv/story-evidence-collector",
+  "database_path": "db/mp_evidence_cache.sqlite",
+  "schema_path": "server_imports/mp_evidence_cache_schema.sql",
+  "log_dir": "logs/imports",
+  "minimum_free_gb": 40,
+  "expected_user": "storyevidence",
+  "allow_network": false,
+  "inputs": {
+    "commons_votes_index": "",
+    "parlparse_batch_rows": "",
+    "manual_merge_plan": ""
+  }
+}
