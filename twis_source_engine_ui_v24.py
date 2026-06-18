@@ -190,6 +190,8 @@ def render_simple_step(
     number: int,
     title: str,
     explanation: str,
+    looking_for: str,
+    creates: str,
     button_label: str,
     script_name: str,
     args: list[str],
@@ -199,6 +201,17 @@ def render_simple_step(
 ) -> None:
     st.markdown(f"### Step {number} — {title}")
     st.write(explanation)
+
+    col_a, col_b, col_c = st.columns(3)
+    with col_a:
+        st.markdown("**Looking for**")
+        st.write(looking_for)
+    with col_b:
+        st.markdown("**Creates**")
+        st.write(creates)
+    with col_c:
+        st.markdown("**Press this**")
+        st.write(button_label)
 
     script_missing = not path_exists(script_name)
     missing_inputs = [path for path in required_files if not path_exists(path)]
@@ -214,7 +227,7 @@ def render_simple_step(
     else:
         st.success("Ready.")
 
-    with st.expander("Files used by this step", expanded=False):
+    with st.expander("Technical files used by this step", expanded=False):
         st.dataframe(
             file_rows([script_name, *required_files, *output_files]),
             width="stretch",
@@ -227,17 +240,39 @@ def render_simple_step(
     st.divider()
 
 
+def render_simple_intro() -> None:
+    st.subheader("What this app is looking for")
+    st.write("This app starts with the source list on the TWIS website, then turns it into small local review files.")
+
+    st.markdown(
+        """
+| It looks for | In plain language |
+|---|---|
+| TWIS source list | The website page where trusted source organisations are listed. |
+| Website addresses | The main web address for each source. |
+| Seed list | A short list of source websites to test first. |
+| Five public pages | A small safe sample to fetch and review. |
+"""
+    )
+
+    st.info("Normal use: run Step 1, then Step 2, then Step 3, then review Step 4. Stop there.")
+
+
 def render_simple_mode() -> None:
     st.subheader("Simple mode")
     st.write("Use these steps in order. Do not change paths. Stop after Step 3 and review the files.")
 
     st.info("This page only runs local safe scripts. Step 3 fetches five selected seed pages after robots.txt checks. Queued links are not fetched.")
 
+    render_simple_intro()
+
     render_simple_step(
         number=1,
-        title="Use TWIS source list",
-        explanation="Read the source list from the TWIS website repo and make a candidate source file.",
-        button_label="Run Step 1",
+        title="Find the TWIS source list",
+        explanation="This checks the TWIS website source page and copies its source entries into a local candidate file.",
+        looking_for="The TWIS source page in the sibling TWIS repo.",
+        creates="A local candidate source list.",
+        button_label="Make candidate source list",
         script_name="extract_twis_website_sources_v25.py",
         args=["--input", SIMPLE_SOURCE_INPUT],
         required_files=[SIMPLE_SOURCE_INPUT],
@@ -246,9 +281,11 @@ def render_simple_mode() -> None:
 
     render_simple_step(
         number=2,
-        title="Build seed list",
-        explanation="Turn the checked website source candidates into a small seed list.",
-        button_label="Run Step 2",
+        title="Find the main website addresses",
+        explanation="This takes the candidate list and keeps the normal website address for each source.",
+        looking_for="The candidate source list from Step 1.",
+        creates="A shorter seed list of source websites.",
+        button_label="Build safe seed list",
         script_name="build_seed_urls_from_candidates_v26.py",
         args=["--input", SIMPLE_CANDIDATE_INPUT, "--roles", "url"],
         required_files=[SIMPLE_CANDIDATE_INPUT],
@@ -257,9 +294,11 @@ def render_simple_mode() -> None:
 
     render_simple_step(
         number=3,
-        title="Fetch 5 safe seed pages",
-        explanation="Fetch only the first five selected public seed pages. This creates local review files.",
-        button_label="Run Step 3",
+        title="Fetch five pages safely",
+        explanation="This tests the first five seed websites and saves what it found for review.",
+        looking_for="The seed list from Step 2.",
+        creates="Fetched source records, a link queue, and a report.",
+        button_label="Fetch 5 safe pages",
         script_name="extract_source_records_from_seed_file_v27.py",
         args=["--input", SIMPLE_SEED_INPUT, "--max-seeds", "5", "--delay-seconds", "1"],
         required_files=[SIMPLE_SEED_INPUT],
@@ -267,8 +306,13 @@ def render_simple_mode() -> None:
         warning="This step uses the web. It checks robots.txt first. It does not fetch queued links.",
     )
 
-    st.markdown("### Step 4 — Review results")
-    st.write("Open one output file and check what happened before doing anything else.")
+    st.markdown("### Step 4 — Review what happened")
+    st.write("Choose one review file. This is for checking only. Do not commit these fetched outputs automatically.")
+
+    st.markdown("**Looking for**")
+    st.write("A clear report of what Step 3 fetched, failed, or queued for later review.")
+    st.markdown("**Creates**")
+    st.write("Nothing new. This step only shows local files.")
 
     output_choice = st.selectbox(
         "Choose a review file",
