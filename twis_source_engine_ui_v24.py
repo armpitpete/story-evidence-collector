@@ -204,16 +204,29 @@ def missing_pipeline_files() -> list[str]:
     return missing
 
 
+def plain_report_summary() -> dict[str, int | None]:
+    return {
+        "pages_checked": safe_count("sources_raw_v27.json"),
+        "links_saved_not_checked": safe_count("link_queue_v27.json"),
+    }
+
+
+def render_technical_log(result: subprocess.CompletedProcess[str]) -> None:
+    if result.stdout or result.stderr:
+        with st.expander("Show technical log", expanded=False):
+            if result.stdout:
+                st.code(result.stdout, language="text")
+            if result.stderr:
+                st.code(result.stderr, language="text")
+
+
 def render_run_result(result: subprocess.CompletedProcess[str]) -> None:
     if result.returncode == 0:
         st.success("Done. This part worked.")
     else:
         st.error(f"This part stopped with code {result.returncode}.")
 
-    if result.stdout:
-        st.code(result.stdout, language="text")
-    if result.stderr:
-        st.code(result.stderr, language="text")
+    render_technical_log(result)
 
 
 def run_and_show(script_name: str, args: list[str]) -> subprocess.CompletedProcess[str] | None:
@@ -303,12 +316,17 @@ def render_simple_runner() -> None:
 
     if st.button("Refresh safe source check", type="primary", key="run-simple-pipeline"):
         for index, step in enumerate(SIMPLE_PIPELINE_STEPS, start=1):
-            st.markdown(f"#### {index}. {step['label']}")
-            result = run_and_show(step["script"], step["args"])
+            with st.spinner(f"Working: {step['label']}"):
+                result = run_and_show(step["script"], step["args"])
             if result is None or result.returncode != 0:
                 st.error("Stopped here. Later parts were not run.")
                 return
-        st.success("Finished. Now read the review report below.")
+
+        summary = plain_report_summary()
+        st.success("Safe check finished. Read the review report below.")
+        col_a, col_b = st.columns(2)
+        col_a.metric("Pages checked", summary["pages_checked"] if summary["pages_checked"] is not None else "See report")
+        col_b.metric("Links saved, not checked", summary["links_saved_not_checked"] if summary["links_saved_not_checked"] is not None else "See report")
 
 
 def render_simple_review() -> None:
