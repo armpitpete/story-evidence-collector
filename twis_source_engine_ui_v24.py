@@ -157,6 +157,15 @@ def status_badge(relative_path: str) -> None:
         st.warning(f"Missing: `{relative_path}`")
 
 
+def safe_count(relative_path: str) -> int | None:
+    if not path_exists(relative_path):
+        return None
+    try:
+        return count_json_items(load_json(relative_path))
+    except Exception:  # noqa: BLE001 - best-effort status only
+        return None
+
+
 def show_json_preview(relative_path: str) -> None:
     try:
         data = load_json(relative_path)
@@ -218,36 +227,58 @@ def run_and_show(script_name: str, args: list[str]) -> subprocess.CompletedProce
     return result
 
 
+def render_simple_status_board() -> None:
+    st.subheader("Current source check")
+    st.write("The app checks existing local files when the page opens. Nothing is fetched from the web until you press the refresh button.")
+
+    candidate_count = safe_count("website_source_candidates_v25.json")
+    seed_count = safe_count("seed_urls_from_website_candidates_v26.json")
+    fetched_count = safe_count("sources_raw_v27.json")
+    queue_count = safe_count("link_queue_v27.json")
+
+    col_a, col_b, col_c, col_d = st.columns(4)
+    col_a.metric("TWIS source list", "Found" if path_exists(SIMPLE_SOURCE_INPUT) else "Missing")
+    col_b.metric("Source candidates", str(candidate_count) if candidate_count is not None else "Missing")
+    col_c.metric("Seed websites", str(seed_count) if seed_count is not None else "Missing")
+    col_d.metric("Fetched pages", str(fetched_count) if fetched_count is not None else "Missing")
+
+    if queue_count is not None:
+        st.caption(f"Queued links saved for later review: {queue_count}. These are not fetched automatically.")
+
+    if path_exists("source_report_v27.json"):
+        st.success("A review report is available below.")
+    else:
+        st.info("No review report yet. Press refresh when you want to run a safe web check.")
+
+
 def render_simple_intro() -> None:
-    st.subheader("What this app is looking for")
-    st.write("It looks for public source websites listed on TWIS, then makes small local review files.")
+    st.subheader("What this page does")
+    st.write("It helps TWIS check public source websites without asking you to understand the internal scripts.")
 
     st.markdown(
         """
-| It looks for | In plain language |
+| What it uses | What that means |
 |---|---|
-| TWIS source list | The website page where source organisations are listed. |
-| Website addresses | The normal web address for each source. |
-| Seed list | A short list of source websites to test first. |
+| TWIS source list | The page where TWIS lists source organisations. |
+| Seed websites | The main website addresses taken from that list. |
 | Five public pages | A small safe sample to fetch and review. |
+| Review report | A local file showing what worked and what failed. |
 """
     )
 
-    st.info("Normal use: press one button, wait, then read the review report.")
-
 
 def render_pipeline_details() -> None:
-    with st.expander("Show what the button does", expanded=False):
+    with st.expander("Show what refresh does", expanded=False):
         st.markdown(
             """
-| Order | Action | Looking for | Creates |
-|---|---|---|---|
-| 1 | Read TWIS source list | The TWIS sources page | Candidate source files |
-| 2 | Build seed list | Main website addresses | Safe seed list |
-| 3 | Fetch 5 safe pages | First five seed URLs | Review report and local fetched records |
+| Order | Action | Creates |
+|---|---|---|
+| 1 | Read the TWIS source list | Candidate source files |
+| 2 | Build the seed list | Safe seed website list |
+| 3 | Fetch five public pages | Review report and local fetched records |
 """
         )
-        st.warning("Step 3 uses the web. It checks robots.txt first. It does not fetch queued links.")
+        st.warning("The web fetch checks robots.txt first. It does not fetch queued links.")
 
         all_files: list[str] = []
         for step in SIMPLE_PIPELINE_STEPS:
@@ -256,20 +287,20 @@ def render_pipeline_details() -> None:
 
 
 def render_simple_runner() -> None:
-    st.subheader("Run safe source check")
-    st.write("This runs the safe source check from start to review files. You do not need to choose scripts or paths.")
+    st.subheader("Refresh")
+    st.write("Use this only when you want to update the local review files.")
 
     missing = missing_pipeline_files()
     if missing:
-        st.error("This cannot run yet because a required file is missing.")
+        st.error("Refresh cannot run because a required file is missing.")
         with st.expander("Show missing files", expanded=True):
             for path in missing:
                 st.write(f"- `{path}`")
         return
 
-    st.success("Ready. This will read the TWIS source list, build a seed list, then fetch five safe pages.")
+    st.success("Ready. Refresh will use the TWIS source list, build the seed list, then fetch five safe pages.")
 
-    if st.button("Run safe source check", type="primary", key="run-simple-pipeline"):
+    if st.button("Refresh safe source check", type="primary", key="run-simple-pipeline"):
         for index, step in enumerate(SIMPLE_PIPELINE_STEPS, start=1):
             st.markdown(f"#### {index}. {step['label']}")
             result = run_and_show(step["script"], step["args"])
@@ -280,11 +311,11 @@ def render_simple_runner() -> None:
 
 
 def render_simple_review() -> None:
-    st.subheader("Review results")
-    st.write("This only shows local files. Do not commit fetched outputs automatically.")
+    st.subheader("Review report")
+    st.write("This shows local files. Fetched outputs are for review, not automatic GitHub commits.")
 
     output_choice = st.selectbox(
-        "Choose a review file",
+        "Choose what to view",
         options=SIMPLE_OUTPUTS,
         index=SIMPLE_OUTPUTS.index("source_report_v27.json"),
         key="simple-output-choice",
@@ -302,14 +333,15 @@ def render_simple_review() -> None:
 
 def render_simple_mode() -> None:
     st.subheader("Simple mode")
-    st.write("One safe button. No path choices. No script choices. Stop after reviewing the report.")
+    st.write("This is a status page first. It finds existing local results when it opens.")
 
-    st.info("This is local-only. It does not run Nutch. It does not fetch queued links. It does not change evidence rules.")
+    st.info("Nothing is fetched from the web on page open. Web fetching only happens when you press Refresh safe source check.")
 
+    render_simple_status_board()
     render_simple_intro()
-    render_pipeline_details()
-    render_simple_runner()
     render_simple_review()
+    render_simple_runner()
+    render_pipeline_details()
 
 
 def render_advanced_mode() -> None:
