@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Controlled server evidence-cache importer.
 
 This script prepares and seeds the private server evidence cache for the MP
