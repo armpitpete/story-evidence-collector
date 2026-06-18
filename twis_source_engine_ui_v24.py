@@ -88,6 +88,24 @@ SIMPLE_OUTPUTS = [
     "website_source_candidates_v25.md",
 ]
 
+MAIN_REVIEW_FILES = [
+    {
+        "plain_name": "Review report",
+        "file": "source_report_v27.json",
+        "meaning": "Summary of what worked and what failed.",
+    },
+    {
+        "plain_name": "Pages checked",
+        "file": "sources_raw_v27.json",
+        "meaning": "The public pages that were checked.",
+    },
+    {
+        "plain_name": "Links saved, not checked",
+        "file": "link_queue_v27.json",
+        "meaning": "Links found on pages. These were saved only, not opened.",
+    },
+]
+
 
 def repo_path(relative_path: str) -> Path:
     """Resolve a local path while allowing the sibling TWIS repo source file."""
@@ -264,6 +282,22 @@ def render_simple_status_board() -> None:
         st.info("No report yet. Press refresh when you want to run a safe web check.")
 
 
+def render_file_location() -> None:
+    st.subheader("Where the files are saved")
+    st.write("The review files are saved in this project folder on your computer:")
+    st.code(str(ROOT), language="text")
+
+    st.markdown(
+        """
+| Plain name | File name | Meaning |
+|---|---|---|
+| Review report | `source_report_v27.json` | Summary of what worked and what failed. |
+| Pages checked | `sources_raw_v27.json` | Public pages that were checked. |
+| Links saved, not checked | `link_queue_v27.json` | Links found on pages. These were saved only, not opened. |
+"""
+    )
+
+
 def render_simple_intro() -> None:
     st.subheader("What this means")
     st.write("This page helps TWIS check public source websites without asking you to understand the technical scripts.")
@@ -357,6 +391,7 @@ def render_simple_mode() -> None:
     st.info("The page does not open websites when it loads. Websites are checked only when you press Refresh safe source check.")
 
     render_simple_status_board()
+    render_file_location()
     render_simple_intro()
     render_simple_review()
     render_simple_runner()
