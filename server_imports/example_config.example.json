@@ -10,5 +10,9 @@
     "commons_votes_index": "",
     "parlparse_batch_rows": "",
     "manual_merge_plan": ""
+  },
+  "seed_import": {
+    "seed_id": "parlparse_2003_01",
+    "rows_path": ""
   }
 }

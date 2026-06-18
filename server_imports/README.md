@@ -128,3 +128,33 @@ id_ed25519
 ## Next step after this issue
 
 After the importer skeleton is merged, the next safe step is to test it on the server as `storyevidence` and confirm that it can create the SQLite schema and write an import log without touching public web folders.
+
+## Controlled seed import
+
+The importer can check or import one small local seed rows file.
+
+Dry-run seed check:
+
+    python3 server_imports/build_server_evidence_cache.py \
+      --config server_imports/example_config.example.json \
+      --seed-id parlparse_2003_01 \
+      --seed-rows /path/to/local/rows.json
+
+Apply seed import:
+
+    python3 server_imports/build_server_evidence_cache.py \
+      --config server_imports/example_config.example.json \
+      --seed-id parlparse_2003_01 \
+      --seed-rows /path/to/local/rows.json \
+      --apply
+
+Seed import rules:
+
+- dry-run is still the default
+- --apply is required before database rows are written
+- the rows file must already exist locally
+- no web fetch is performed
+- no bulk import is performed
+- ParlParse rows keep meaning_quality: needs_review
+- skipped rows are counted and reported
+- database files, logs, raw evidence, and server output must not be committed
