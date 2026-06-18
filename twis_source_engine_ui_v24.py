@@ -56,14 +56,36 @@ SIMPLE_SOURCE_INPUT = "../thisweekinsmoke/src/pages/sources/index.astro"
 SIMPLE_CANDIDATE_INPUT = "website_source_candidates_v25.json"
 SIMPLE_SEED_INPUT = "seed_urls_from_website_candidates_v26.json"
 
+SIMPLE_PIPELINE_STEPS = [
+    {
+        "label": "Read the TWIS source list",
+        "script": "extract_twis_website_sources_v25.py",
+        "args": ["--input", SIMPLE_SOURCE_INPUT],
+        "inputs": [SIMPLE_SOURCE_INPUT],
+        "outputs": ["website_source_candidates_v25.json", "website_source_candidates_v25.md"],
+    },
+    {
+        "label": "Build the safe seed list",
+        "script": "build_seed_urls_from_candidates_v26.py",
+        "args": ["--input", SIMPLE_CANDIDATE_INPUT, "--roles", "url"],
+        "inputs": [SIMPLE_CANDIDATE_INPUT],
+        "outputs": ["seed_urls_from_website_candidates_v26.json", "seed_urls_from_website_candidates_v26.md"],
+    },
+    {
+        "label": "Fetch five public pages safely",
+        "script": "extract_source_records_from_seed_file_v27.py",
+        "args": ["--input", SIMPLE_SEED_INPUT, "--max-seeds", "5", "--delay-seconds", "1"],
+        "inputs": [SIMPLE_SEED_INPUT],
+        "outputs": ["sources_raw_v27.json", "link_queue_v27.json", "source_report_v27.json"],
+    },
+]
+
 SIMPLE_OUTPUTS = [
-    "website_source_candidates_v25.json",
-    "website_source_candidates_v25.md",
-    "seed_urls_from_website_candidates_v26.json",
-    "seed_urls_from_website_candidates_v26.md",
+    "source_report_v27.json",
     "sources_raw_v27.json",
     "link_queue_v27.json",
-    "source_report_v27.json",
+    "seed_urls_from_website_candidates_v26.md",
+    "website_source_candidates_v25.md",
 ]
 
 
@@ -163,6 +185,16 @@ def file_rows(paths: list[str]) -> list[dict[str, Any]]:
     return [{"file": path, "exists": path_exists(path)} for path in paths]
 
 
+def missing_pipeline_files() -> list[str]:
+    missing: list[str] = []
+    for step in SIMPLE_PIPELINE_STEPS:
+        if not path_exists(step["script"]):
+            missing.append(step["script"])
+    if not path_exists(SIMPLE_SOURCE_INPUT):
+        missing.append(SIMPLE_SOURCE_INPUT)
+    return missing
+
+
 def render_run_result(result: subprocess.CompletedProcess[str]) -> None:
     if result.returncode == 0:
         st.success("Done. This step finished successfully.")
@@ -175,144 +207,81 @@ def render_run_result(result: subprocess.CompletedProcess[str]) -> None:
         st.code(result.stderr, language="text")
 
 
-def run_and_show(script_name: str, args: list[str]) -> None:
+def run_and_show(script_name: str, args: list[str]) -> subprocess.CompletedProcess[str] | None:
     try:
         result = run_safe_script(script_name, args)
     except Exception as error:  # noqa: BLE001 - user-facing local runner
         st.error(str(error))
-        return
+        return None
 
     render_run_result(result)
-
-
-def render_simple_step(
-    *,
-    number: int,
-    title: str,
-    explanation: str,
-    looking_for: str,
-    creates: str,
-    button_label: str,
-    script_name: str,
-    args: list[str],
-    required_files: list[str],
-    output_files: list[str],
-    warning: str | None = None,
-) -> None:
-    st.markdown(f"### Step {number} — {title}")
-    st.write(explanation)
-
-    col_a, col_b, col_c = st.columns(3)
-    with col_a:
-        st.markdown("**Looking for**")
-        st.write(looking_for)
-    with col_b:
-        st.markdown("**Creates**")
-        st.write(creates)
-    with col_c:
-        st.markdown("**Press this**")
-        st.write(button_label)
-
-    script_missing = not path_exists(script_name)
-    missing_inputs = [path for path in required_files if not path_exists(path)]
-    disabled = script_missing or bool(missing_inputs)
-
-    if warning:
-        st.warning(warning)
-
-    if script_missing:
-        st.error("This step cannot run because its script is missing.")
-    elif missing_inputs:
-        st.warning("This step is waiting for an earlier file.")
-    else:
-        st.success("Ready.")
-
-    with st.expander("Technical files used by this step", expanded=False):
-        st.dataframe(
-            file_rows([script_name, *required_files, *output_files]),
-            width="stretch",
-            hide_index=True,
-        )
-
-    if st.button(button_label, key=f"simple-step-{number}", disabled=disabled, type="primary"):
-        run_and_show(script_name, args)
-
-    st.divider()
+    return result
 
 
 def render_simple_intro() -> None:
     st.subheader("What this app is looking for")
-    st.write("This app starts with the source list on the TWIS website, then turns it into small local review files.")
+    st.write("It looks for public source websites listed on TWIS, then makes small local review files.")
 
     st.markdown(
         """
 | It looks for | In plain language |
 |---|---|
-| TWIS source list | The website page where trusted source organisations are listed. |
-| Website addresses | The main web address for each source. |
+| TWIS source list | The website page where source organisations are listed. |
+| Website addresses | The normal web address for each source. |
 | Seed list | A short list of source websites to test first. |
 | Five public pages | A small safe sample to fetch and review. |
 """
     )
 
-    st.info("Normal use: run Step 1, then Step 2, then Step 3, then review Step 4. Stop there.")
+    st.info("Normal use: press one button, wait, then read the review report.")
 
 
-def render_simple_mode() -> None:
-    st.subheader("Simple mode")
-    st.write("Use these steps in order. Do not change paths. Stop after Step 3 and review the files.")
+def render_pipeline_details() -> None:
+    with st.expander("Show what the button does", expanded=False):
+        st.markdown(
+            """
+| Order | Action | Looking for | Creates |
+|---|---|---|---|
+| 1 | Read TWIS source list | The TWIS sources page | Candidate source files |
+| 2 | Build seed list | Main website addresses | Safe seed list |
+| 3 | Fetch 5 safe pages | First five seed URLs | Review report and local fetched records |
+"""
+        )
+        st.warning("Step 3 uses the web. It checks robots.txt first. It does not fetch queued links.")
 
-    st.info("This page only runs local safe scripts. Step 3 fetches five selected seed pages after robots.txt checks. Queued links are not fetched.")
+        all_files: list[str] = []
+        for step in SIMPLE_PIPELINE_STEPS:
+            all_files.extend([step["script"], *step["inputs"], *step["outputs"]])
+        st.dataframe(file_rows(all_files), width="stretch", hide_index=True)
 
-    render_simple_intro()
 
-    render_simple_step(
-        number=1,
-        title="Find the TWIS source list",
-        explanation="This checks the TWIS website source page and copies its source entries into a local candidate file.",
-        looking_for="The TWIS source page in the sibling TWIS repo.",
-        creates="A local candidate source list.",
-        button_label="Make candidate source list",
-        script_name="extract_twis_website_sources_v25.py",
-        args=["--input", SIMPLE_SOURCE_INPUT],
-        required_files=[SIMPLE_SOURCE_INPUT],
-        output_files=["website_source_candidates_v25.json", "website_source_candidates_v25.md"],
-    )
+def render_simple_runner() -> None:
+    st.subheader("Run safe source check")
+    st.write("This runs the safe source check from start to review files. You do not need to choose scripts or paths.")
 
-    render_simple_step(
-        number=2,
-        title="Find the main website addresses",
-        explanation="This takes the candidate list and keeps the normal website address for each source.",
-        looking_for="The candidate source list from Step 1.",
-        creates="A shorter seed list of source websites.",
-        button_label="Build safe seed list",
-        script_name="build_seed_urls_from_candidates_v26.py",
-        args=["--input", SIMPLE_CANDIDATE_INPUT, "--roles", "url"],
-        required_files=[SIMPLE_CANDIDATE_INPUT],
-        output_files=["seed_urls_from_website_candidates_v26.json", "seed_urls_from_website_candidates_v26.md"],
-    )
+    missing = missing_pipeline_files()
+    if missing:
+        st.error("This cannot run yet because a required file is missing.")
+        with st.expander("Show missing files", expanded=True):
+            for path in missing:
+                st.write(f"- `{path}`")
+        return
 
-    render_simple_step(
-        number=3,
-        title="Fetch five pages safely",
-        explanation="This tests the first five seed websites and saves what it found for review.",
-        looking_for="The seed list from Step 2.",
-        creates="Fetched source records, a link queue, and a report.",
-        button_label="Fetch 5 safe pages",
-        script_name="extract_source_records_from_seed_file_v27.py",
-        args=["--input", SIMPLE_SEED_INPUT, "--max-seeds", "5", "--delay-seconds", "1"],
-        required_files=[SIMPLE_SEED_INPUT],
-        output_files=["sources_raw_v27.json", "link_queue_v27.json", "source_report_v27.json"],
-        warning="This step uses the web. It checks robots.txt first. It does not fetch queued links.",
-    )
+    st.success("Ready. This will read the TWIS source list, build a seed list, then fetch five safe pages.")
 
-    st.markdown("### Step 4 — Review what happened")
-    st.write("Choose one review file. This is for checking only. Do not commit these fetched outputs automatically.")
+    if st.button("Run safe source check", type="primary", key="run-simple-pipeline"):
+        for index, step in enumerate(SIMPLE_PIPELINE_STEPS, start=1):
+            st.markdown(f"#### {index}. {step['label']}")
+            result = run_and_show(step["script"], step["args"])
+            if result is None or result.returncode != 0:
+                st.error("Stopped here. Later steps were not run.")
+                return
+        st.success("Finished. Now review the report below.")
 
-    st.markdown("**Looking for**")
-    st.write("A clear report of what Step 3 fetched, failed, or queued for later review.")
-    st.markdown("**Creates**")
-    st.write("Nothing new. This step only shows local files.")
+
+def render_simple_review() -> None:
+    st.subheader("Review results")
+    st.write("This only shows local files. Do not commit fetched outputs automatically.")
 
     output_choice = st.selectbox(
         "Choose a review file",
@@ -329,6 +298,18 @@ def render_simple_mode() -> None:
             show_markdown_preview(output_choice)
         else:
             st.code(read_text(output_choice)[:8000], language="text")
+
+
+def render_simple_mode() -> None:
+    st.subheader("Simple mode")
+    st.write("One safe button. No path choices. No script choices. Stop after reviewing the report.")
+
+    st.info("This is local-only. It does not run Nutch. It does not fetch queued links. It does not change evidence rules.")
+
+    render_simple_intro()
+    render_pipeline_details()
+    render_simple_runner()
+    render_simple_review()
 
 
 def render_advanced_mode() -> None:
