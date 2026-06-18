@@ -111,6 +111,8 @@ def build_commons_index_status(result):
 
 
 def row_dedupe_key(row, target_mp):
+    if not isinstance(row, dict):
+        row = {}
     return {
         "source_system": clean_text(row.get("source_system")),
         "division_id": clean_text(row.get("division_id")),
@@ -136,6 +138,7 @@ def build_gate_status(gate_result):
         return {
             "v21_gate_available": False,
             "v21_gate_ready": False,
+            "v21_gate_batch_id": "",
             "v21_gate_status": "not_available",
             "v21_gate_blockers": ["v21_merge_gate_report_missing"],
         }
@@ -143,16 +146,25 @@ def build_gate_status(gate_result):
         return {
             "v21_gate_available": True,
             "v21_gate_ready": False,
+            "v21_gate_batch_id": "",
             "v21_gate_status": gate_result.error,
             "v21_gate_blockers": ["v21_merge_gate_report_invalid_json"],
         }
+
     data = gate_result.data if isinstance(gate_result.data, dict) else {}
-    blockers = data.get("blockers", [])
+    blockers = list(data.get("blockers", []))
+    gate_batch_id = clean_text(data.get("batch_id"))
     status = clean_text(data.get("merge_gate_status"))
+
+    if gate_batch_id != BATCH_ID:
+        blockers.append("v21_merge_gate_batch_id_mismatch")
+
     ready = status == "ready_for_future_manual_merge" and not blockers
     return {
         "v21_gate_available": True,
         "v21_gate_ready": ready,
+        "v21_gate_batch_id": gate_batch_id,
+        "v21_gate_expected_batch_id": BATCH_ID,
         "v21_gate_status": status or "unknown",
         "v21_gate_blockers": blockers,
     }
@@ -180,23 +192,30 @@ def build_row_eligibility(rows_result, manifest_result, gate_status):
         blockers.append("batch_manifest_invalid_json")
         manifest = {}
 
+    non_dict_row_count = len([row for row in rows if not isinstance(row, dict)])
+    if non_dict_row_count:
+        blockers.append("batch_rows_include_non_object_rows")
+
     target_mp = manifest.get("target_mp", "") if isinstance(manifest, dict) else ""
-    side_counts = Counter(clean_text(row.get("recorded_side")) for row in rows if isinstance(row, dict))
-    duplicates = duplicate_dedupe_keys(rows, target_mp)
+    dict_rows = [row for row in rows if isinstance(row, dict)]
+    side_counts = Counter(clean_text(row.get("recorded_side")) for row in dict_rows)
+    duplicates = duplicate_dedupe_keys(dict_rows, target_mp)
     if duplicates:
         blockers.append("duplicate_dedupe_keys_found")
 
     if not gate_status.get("v21_gate_ready"):
         blockers.append("v21_merge_gate_not_ready")
 
-    eligible = not blockers and len(rows) > 0
-    eligible_keys = [row_dedupe_key(row, target_mp) for row in rows] if eligible else []
+    eligible = not blockers and len(dict_rows) > 0
+    eligible_keys = [row_dedupe_key(row, target_mp) for row in dict_rows] if eligible else []
 
     return {
         "batch_id": BATCH_ID,
         "target_mp": target_mp,
         "rows_loaded": len(rows),
-        "rows_eligible_for_future_merge": len(rows) if eligible else 0,
+        "object_rows_loaded": len(dict_rows),
+        "non_object_rows_loaded": non_dict_row_count,
+        "rows_eligible_for_future_merge": len(dict_rows) if eligible else 0,
         "all_loaded_rows_are_eligible": eligible,
         "recorded_side_counts": dict(sorted(side_counts.items())),
         "eligible_dedupe_keys": eligible_keys,
@@ -293,6 +312,8 @@ def build_markdown(report):
     lines.append("")
     lines.append(markdown_table(["Field", "Value"], [
         ["v2.1 gate available", gate.get("v21_gate_available", False)],
+        ["v2.1 gate batch ID", gate.get("v21_gate_batch_id", "")],
+        ["Expected batch ID", gate.get("v21_gate_expected_batch_id", BATCH_ID)],
         ["v2.1 gate status", gate.get("v21_gate_status", "")],
         ["v2.1 gate ready", gate.get("v21_gate_ready", False)],
         ["v2.1 gate blockers", ", ".join(gate.get("v21_gate_blockers", [])) or "none"],
@@ -304,6 +325,8 @@ def build_markdown(report):
         ["Batch ID", eligibility.get("batch_id", "")],
         ["Target MP", eligibility.get("target_mp", "")],
         ["Rows loaded", eligibility.get("rows_loaded", 0)],
+        ["Object rows loaded", eligibility.get("object_rows_loaded", 0)],
+        ["Non-object rows loaded", eligibility.get("non_object_rows_loaded", 0)],
         ["Rows eligible for future merge", eligibility.get("rows_eligible_for_future_merge", 0)],
         ["All loaded rows eligible", eligibility.get("all_loaded_rows_are_eligible", False)],
         ["Recorded side counts", json.dumps(eligibility.get("recorded_side_counts", {}), ensure_ascii=False)],
