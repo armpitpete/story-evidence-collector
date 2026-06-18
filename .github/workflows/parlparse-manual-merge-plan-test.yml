@@ -1,0 +1,100 @@
+name: ParlParse manual merge plan test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-parlparse-manual-merge-plan:
+    name: Run ParlParse manual merge plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Compile v2.2 script
+        run: python -m py_compile plan_manual_merge_for_parlparse_batch_v22.py
+
+      - name: Restore v2.0 batch fixture
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          batch_dir = Path('parlparse_batches')
+          batch_dir.mkdir(parents=True, exist_ok=True)
+
+          manifest = json.loads(Path('fixtures/parlparse_2003_01_manifest_fixture.json').read_text(encoding='utf-8'))
+          Path('parlparse_batches/parlparse_2003_01_manifest.json').write_text(
+              json.dumps(manifest, indent=2, ensure_ascii=False),
+              encoding='utf-8',
+          )
+
+          side_sequence = ['Aye'] * 7 + ['No'] * 11 + ['Not recorded'] * 15
+          evidence_for_side = {
+              'Aye': 'mp_found_in_aye_list',
+              'No': 'mp_found_in_no_list',
+              'Not recorded': 'mp_not_found_in_sample_division',
+          }
+          rows = []
+          for index, side in enumerate(side_sequence, start=1):
+              rows.append({
+                  'date': '2003-01-07',
+                  'division_id': f'fixture.parlparse/2003-01/{index:03d}',
+                  'division_number': str(index),
+                  'motion_title': f'Fixture ParlParse division {index} for manual merge planning',
+                  'recorded_side': side,
+                  'meaning_quality': 'needs_review',
+                  'topic': 'uncategorised',
+                  'source_url': f'https://www.theyworkforyou.com/pwdata/scrapedxml/debates/debates2003-01-07.xml#fixture-{index:03d}',
+                  'source_system': 'parlparse',
+                  'evidence_status': evidence_for_side[side],
+                  'source_xml_url': 'https://www.theyworkforyou.com/pwdata/scrapedxml/debates/debates2003-01-07.xml',
+                  'available_trace_fields': ['date', 'division_id', 'division_number', 'source_url', 'source_xml_url'],
+              })
+
+          Path('parlparse_batches/parlparse_2003_01_rows.json').write_text(
+              json.dumps(rows, indent=2, ensure_ascii=False),
+              encoding='utf-8',
+          )
+          Path('parlparse_batches/parlparse_2003_01_report.md').write_text(
+              '# ParlParse Batch Fixture Report\n\nFixture restored for v2.2 manual merge planning only. No merge happened.\n',
+              encoding='utf-8',
+          )
+          PY
+
+      - name: Run v2.1 merge gate
+        run: python validate_parlparse_batch_merge_gate_v21.py
+
+      - name: Run v2.2 manual merge plan
+        run: python plan_manual_merge_for_parlparse_batch_v22.py
+
+      - name: Confirm v2.2 did not write combined index outputs
+        run: |
+          test ! -e mp_combined_vote_index.json
+          test ! -e mp_combined_vote_index.md
+
+      - name: Upload ParlParse manual merge plan report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: parlparse-manual-merge-plan-report
+          path: |
+            plan_manual_merge_for_parlparse_batch_v22.py
+            parlparse_manual_merge_plan_v22.json
+            parlparse_manual_merge_plan_v22.md
+            parlparse_batch_merge_gate_v21.json
+            parlparse_batch_merge_gate_v21.md
+            parlparse_batches/parlparse_2003_01_manifest.json
+            parlparse_batches/parlparse_2003_01_rows.json
+            parlparse_batches/parlparse_2003_01_report.md
+          if-no-files-found: warn
