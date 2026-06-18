@@ -11,7 +11,7 @@ This report lists candidate URLs extracted from the local TWIS website sources p
 
 ## Files
 
-- Input: `I:/ORDER/MainVault/Projects/thisweekinsmoke/src/pages/sources/index.astro`
+- Input: `../thisweekinsmoke/src/pages/sources/index.astro`
 - JSON output: `website_source_candidates_v25.json`
 
 ## Summary
