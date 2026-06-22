@@ -1,6 +1,6 @@
 # Evidence Pack Validation v1
 
-This note explains how to validate TWIS evidence packs locally and what the GitHub Actions check now does.
+This note explains how to validate TWIS evidence packs locally and what the GitHub Actions check does.
 
 ## What validation checks
 
@@ -10,9 +10,20 @@ It checks:
 
 - `pack.json` exists.
 - `pack.json` is valid JSON.
+- `pack.json` can be read even if a Windows tool added a UTF-8 BOM.
 - required manifest fields exist.
+- unexpected manifest fields are rejected.
+- manifest field values have the expected basic shape.
+- `pack_id` follows the v1 readable ID pattern.
+- `status`, `editorial_risk`, and `publishability` use allowed values.
+- `created_at` and `updated_at` look like ISO date-time strings.
+- `records` is an object.
 - required `records` fields exist.
+- unexpected `records` fields are rejected.
+- `outputs` is an object.
 - required `outputs` fields exist.
+- unexpected `outputs` fields are rejected.
+- paths listed in `records` and `outputs` are relative.
 - files listed in `records` exist.
 - files listed in `outputs` exist.
 - `.jsonl` files parse line by line.
@@ -47,9 +58,37 @@ Expected result while there is one fixture pack:
     PASS: fixtures\evidence-packs\2026-06-22-example-topic
     All evidence packs passed validation. Count: 1
 
+## Test validator failure cases
+
+From the repository root, run:
+
+    python scripts\test_evidence_pack_validator_failures.py
+
+Expected result:
+
+    PASS: missing-title
+    PASS: unexpected-top-level-field
+    PASS: invalid-status
+    PASS: invalid-pack-id
+    PASS: absolute-record-path
+    PASS: bad-jsonl-line
+    All validator failure regression tests passed. Count: 6
+
+The failure tests build temporary invalid packs from the valid example fixture.
+
+They do not keep broken evidence packs under `fixtures/evidence-packs/`.
+
+The failure cases are listed in:
+
+    fixtures/invalid-evidence-packs/validator-failure-cases.json
+
+The failure-case behaviour is documented in:
+
+    docs/evidence-pack-validator-failure-cases-v1.md
+
 ## CI validation
 
-GitHub Actions now runs Evidence Pack Validation on relevant pushes and pull requests.
+GitHub Actions runs Evidence Pack Validation on relevant pushes and pull requests.
 
 The workflow is:
 
@@ -58,13 +97,16 @@ The workflow is:
 It runs when these paths change:
 
 - `fixtures/evidence-packs/**`
+- `fixtures/invalid-evidence-packs/**`
 - `scripts/validate_evidence_pack.py`
 - `scripts/validate_all_evidence_packs.py`
+- `scripts/test_evidence_pack_validator_failures.py`
 - `.github/workflows/evidence-pack-validation.yml`
 
-The CI command is:
+The CI commands are:
 
-    python scripts/validate_all_evidence_packs.py
+    python scripts\validate_all_evidence_packs.py
+    python scripts\test_evidence_pack_validator_failures.py
 
 ## What a passing check means
 
@@ -72,8 +114,10 @@ A passing check means:
 
 - the pack folder can be found.
 - the manifest can be read.
+- the manifest follows the manually enforced v1 schema shape.
 - required files exist.
 - JSON and JSONL records are parseable.
+- known invalid pack shapes are still rejected.
 
 A passing check does not mean:
 
@@ -93,13 +137,17 @@ The current evidence pack chain is:
     -> single-pack validator
     -> all-pack validator
     -> GitHub Actions CI
+    -> validation documentation
+    -> schema validation inside validator
+    -> failure regression tests
+    -> failure-case documentation
 
 ## Later improvements
 
 Later versions may add:
 
-- JSON Schema validation against `schemas/evidence-pack-manifest-v1.schema.json`.
-- stronger path safety checks.
+- full JSON Schema library support if stdlib-only manual validation becomes too limited.
+- stronger path traversal checks.
 - required record ID checks.
 - cross-reference checks between sources, evidence, claims, timeline entries, and review records.
 - pack completeness scoring.
