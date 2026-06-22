@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thisweekinsmoke.uk/schemas/evidence-pack-manifest-v1.schema.json",
+  "title": "Evidence Pack Manifest v1",
+  "description": "Schema for pack.json, the control file for one TWIS evidence pack.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pack_id",
+    "title",
+    "status",
+    "created_at",
+    "updated_at",
+    "research_question",
+    "scope",
+    "editorial_risk",
+    "publishability",
+    "human_review_required",
+    "records",
+    "outputs"
+  ],
+  "properties": {
+    "pack_schema_version": {
+      "type": "string",
+      "const": "1",
+      "description": "Optional schema version marker for this manifest format."
+    },
+    "pack_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "Stable readable pack ID, normally YYYY-MM-DD-topic-short-name."
+    },
+    "title": {
+      "$ref": "#/$defs/non_empty_string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "active",
+        "in_review",
+        "reviewed",
+        "archived"
+      ],
+      "description": "Workflow status of the evidence pack."
+    },
+    "created_at": {
+      "$ref": "#/$defs/date_time"
+    },
+    "updated_at": {
+      "$ref": "#/$defs/date_time"
+    },
+    "research_question": {
+      "$ref": "#/$defs/non_empty_string"
+    },
+    "scope": {
+      "$ref": "#/$defs/non_empty_string"
+    },
+    "editorial_risk": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "description": "Editorial risk level before publication."
+    },
+    "publishability": {
+      "type": "string",
+      "enum": [
+        "not_ready",
+        "needs_review",
+        "publishable"
+      ],
+      "description": "Whether the pack can safely support publication."
+    },
+    "human_review_required": {
+      "type": "boolean"
+    },
+    "records": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_records",
+        "source_authority_map",
+        "claim_records",
+        "evidence_items",
+        "search_diary",
+        "negative_evidence_log",
+        "public_record_timeline",
+        "denial_checks",
+        "human_review"
+      ],
+      "properties": {
+        "source_records": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "source_authority_map": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "claim_records": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "evidence_items": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "search_diary": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "negative_evidence_log": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "public_record_timeline": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "denial_checks": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "human_review": {
+          "$ref": "#/$defs/relative_path"
+        }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "final_brief",
+        "evidence_summary",
+        "contradiction_brief"
+      ],
+      "properties": {
+        "final_brief": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "evidence_summary": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "contradiction_brief": {
+          "$ref": "#/$defs/relative_path"
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional human-readable notes about the pack."
+    }
+  },
+  "$defs": {
+    "non_empty_string": {
+      "type": "string",
+      "minLength": 1
+    },
+    "date_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "pattern": "^[A-Za-z]:\\\\|^/"
+      },
+      "description": "Path relative to the evidence pack folder."
+    }
+  }
+}
