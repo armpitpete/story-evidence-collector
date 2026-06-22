@@ -347,10 +347,15 @@ def validate_path(pack_dir: Path, relative_path: str, label: str) -> list[str]:
     if not isinstance(relative_path, str) or not relative_path.strip():
         return [f"{label}: path must be a non-empty string"]
 
-    if Path(relative_path).is_absolute() or ABSOLUTE_PATH_PATTERN.match(relative_path):
+    relative = Path(relative_path)
+
+    if relative.is_absolute() or ABSOLUTE_PATH_PATTERN.match(relative_path):
         return [f"{label}: path must be relative, got absolute path: {relative_path}"]
 
-    target = pack_dir / relative_path
+    if ".." in relative.parts:
+        return [f"{label}: path must stay inside pack folder, got parent traversal: {relative_path}"]
+
+    target = pack_dir / relative
 
     if not target.exists():
         errors.append(f"{label}: missing file: {relative_path}")
