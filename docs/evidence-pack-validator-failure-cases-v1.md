@@ -114,6 +114,27 @@ Expected error fragment:
 
     invalid JSONL line
 
+
+### jsonl-record-missing-id
+
+This appends a valid JSON object without an `id` field to a referenced `.jsonl` file.
+
+It proves the validator rejects JSONL records that cannot be identified and cross-referenced.
+
+Expected error fragment:
+
+    JSONL record must have a non-empty string id
+
+### jsonl-record-not-object
+
+This appends a valid JSON array to a referenced `.jsonl` file.
+
+It proves the validator rejects JSONL lines that parse successfully but are not object records.
+
+Expected error fragment:
+
+    JSONL record must be an object
+
 ## What these tests do not cover
 
 These tests do not check:

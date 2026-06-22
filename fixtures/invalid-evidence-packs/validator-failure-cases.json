@@ -78,5 +78,25 @@
     "expected_errors": [
       "outputs.final_brief: path must stay inside pack folder, got parent traversal: outputs/../../outside/final-brief.md"
     ]
+  },
+  {
+    "name": "jsonl-record-missing-id",
+    "description": "A JSONL record is an object but does not include the required id field.",
+    "append_text": {
+      "sources/source-records.jsonl": "\n{\"source_type\":\"dummy_document\",\"title\":\"Missing ID\"}\n"
+    },
+    "expected_errors": [
+      "JSONL record must have a non-empty string id"
+    ]
+  },
+  {
+    "name": "jsonl-record-not-object",
+    "description": "A JSONL line parses as JSON but is not an object record.",
+    "append_text": {
+      "sources/source-records.jsonl": "\n[\"not\", \"an\", \"object\"]\n"
+    },
+    "expected_errors": [
+      "JSONL record must be an object"
+    ]
   }
 ]

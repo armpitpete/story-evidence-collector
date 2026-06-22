@@ -27,6 +27,8 @@ It checks:
 - files listed in `records` exist.
 - files listed in `outputs` exist.
 - `.jsonl` files parse line by line.
+- each non-empty `.jsonl` line is a JSON object.
+- each `.jsonl` record has a non-empty string `id`.
 
 It does not decide whether evidence is true.
 
@@ -117,6 +119,7 @@ A passing check means:
 - the manifest follows the manually enforced v1 schema shape.
 - required files exist.
 - JSON and JSONL records are parseable.
+- JSONL records are objects with non-empty string IDs.
 - known invalid pack shapes are still rejected.
 
 A passing check does not mean:
