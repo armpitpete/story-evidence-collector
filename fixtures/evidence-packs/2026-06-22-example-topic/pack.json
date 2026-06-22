@@ -1,0 +1,30 @@
+{
+  "pack_schema_version": "1",
+  "pack_id": "2026-06-22-example-topic",
+  "title": "Example Evidence Pack",
+  "status": "draft",
+  "created_at": "2026-06-22T00:00:00Z",
+  "updated_at": "2026-06-22T00:00:00Z",
+  "research_question": "Can a small example evidence pack show how the manifest structure fits together?",
+  "scope": "Dummy fixture only. This pack uses invented example records and must not be treated as real evidence.",
+  "editorial_risk": "low",
+  "publishability": "not_ready",
+  "human_review_required": true,
+  "records": {
+    "source_records": "sources/source-records.jsonl",
+    "source_authority_map": "sources/source-authority-map.jsonl",
+    "claim_records": "claims/claim-records.jsonl",
+    "evidence_items": "evidence/evidence-items.jsonl",
+    "search_diary": "search/search-diary.jsonl",
+    "negative_evidence_log": "search/negative-evidence-log.jsonl",
+    "public_record_timeline": "timeline/public-record-timeline.jsonl",
+    "denial_checks": "timeline/denial-checks.jsonl",
+    "human_review": "review/human-review.jsonl"
+  },
+  "outputs": {
+    "final_brief": "output/final-brief.md",
+    "evidence_summary": "output/evidence-summary.md",
+    "contradiction_brief": "output/contradiction-brief.md"
+  },
+  "notes": "This fixture exists to prove the Evidence Pack Manifest v1 shape is usable."
+}
