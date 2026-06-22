@@ -334,12 +334,22 @@ def validate_jsonl(path: Path) -> list[str]:
             continue
 
         try:
-            json.loads(line)
+            record = json.loads(line)
         except json.JSONDecodeError as exc:
             errors.append(f"{path}:{line_number}: invalid JSONL line: {exc}")
+            continue
+
+        if not isinstance(record, dict):
+            errors.append(f"{path}:{line_number}: JSONL record must be an object")
+            continue
+
+        record_id = record.get("id")
+        if not isinstance(record_id, str) or not record_id.strip():
+            errors.append(
+                f"{path}:{line_number}: JSONL record must have a non-empty string id"
+            )
 
     return errors
-
 
 def validate_path(pack_dir: Path, relative_path: str, label: str) -> list[str]:
     errors: list[str] = []
