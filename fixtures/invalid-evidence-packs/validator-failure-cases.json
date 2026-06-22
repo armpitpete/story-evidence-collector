@@ -1,8 +1,10 @@
-﻿[
+[
   {
     "name": "missing-title",
     "description": "A required top-level manifest field is missing.",
-    "remove": ["title"],
+    "remove": [
+      "title"
+    ],
     "expected_errors": [
       "pack.json: missing required field: title"
     ]
@@ -55,6 +57,26 @@
     },
     "expected_errors": [
       "invalid JSONL line"
+    ]
+  },
+  {
+    "name": "record-parent-traversal",
+    "description": "A record path tries to escape the evidence pack folder using parent traversal.",
+    "set": {
+      "records.source_records": "../outside/source-records.jsonl"
+    },
+    "expected_errors": [
+      "records.source_records: path must stay inside pack folder, got parent traversal: ../outside/source-records.jsonl"
+    ]
+  },
+  {
+    "name": "output-parent-traversal",
+    "description": "An output path tries to escape the evidence pack folder using parent traversal.",
+    "set": {
+      "outputs.final_brief": "outputs/../../outside/final-brief.md"
+    },
+    "expected_errors": [
+      "outputs.final_brief: path must stay inside pack folder, got parent traversal: outputs/../../outside/final-brief.md"
     ]
   }
 ]
