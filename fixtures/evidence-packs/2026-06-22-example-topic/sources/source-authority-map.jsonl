@@ -1,0 +1,1 @@
+{"id":"authority-0001","source_id":"source-0001","related_claim_id":"claim-0001","claim_type":"what_was_written","source_role":"dummy_source","authority_rating":"weak","safe_to_use_for":["testing fixture structure"],"not_safe_to_use_for":["real publication","real factual claims"],"limits":["invented source","not independently checkable"],"human_review_required":true}
