@@ -1,0 +1,49 @@
+{
+  "source": {
+    "title": "Example public record for writer testing",
+    "url": "https://example.com/public-record",
+    "publisher": "Example Publisher",
+    "source_type": "official_record",
+    "publication_date": "2026-06-22",
+    "archive_url": "",
+    "local_copy_path": "",
+    "author_or_speaker": "Example Speaker",
+    "body_or_organisation": "Example Organisation",
+    "reliability_grade": "A",
+    "notes": "Demonstration input only. This is not real TWIS evidence."
+  },
+  "claim": {
+    "speaker": "Example Speaker",
+    "body_or_organisation": "Example Organisation",
+    "claim_text": "We previously supported this policy.",
+    "plain_meaning": "The speaker says the organisation supported the policy at that time.",
+    "topic": "example policy",
+    "position": "supported policy",
+    "date_claimed": "2026-06-22",
+    "confidence": "medium",
+    "human_checked": false,
+    "notes": "Demonstration claim only."
+  },
+  "evidence": {
+    "excerpt": "We previously supported this policy.",
+    "page_number": "",
+    "timestamp_start": "",
+    "timestamp_end": "",
+    "transcript_path": "",
+    "archive_url": "",
+    "local_copy_path": "",
+    "evidence_grade": "A",
+    "human_checked": false,
+    "context_notes": "No context checked. Demonstration input only.",
+    "risk_notes": "Do not use this sample as public evidence."
+  },
+  "assessment": {
+    "topic": "example policy",
+    "summary": "This sample shows the Proof Trail writer format only.",
+    "what_is_proven": "Nothing real is proven. This is a format test.",
+    "what_is_interpretation": "The plain meaning is a demonstration interpretation.",
+    "what_needs_checking": "A real run must check the source, archive, quote, and context.",
+    "what_must_not_be_overstated": "This sample must not be treated as evidence.",
+    "possible_contradiction_or_tension": "None. This is not a contradiction test."
+  }
+}
