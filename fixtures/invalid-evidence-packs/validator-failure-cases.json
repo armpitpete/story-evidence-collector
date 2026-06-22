@@ -1,0 +1,60 @@
+﻿[
+  {
+    "name": "missing-title",
+    "description": "A required top-level manifest field is missing.",
+    "remove": ["title"],
+    "expected_errors": [
+      "pack.json: missing required field: title"
+    ]
+  },
+  {
+    "name": "unexpected-top-level-field",
+    "description": "The manifest contains a field not allowed by the schema.",
+    "add": {
+      "extra_field_that_should_fail": "no"
+    },
+    "expected_errors": [
+      "pack.json: unexpected field: extra_field_that_should_fail"
+    ]
+  },
+  {
+    "name": "invalid-status",
+    "description": "The manifest status is outside the allowed enum.",
+    "set": {
+      "status": "published"
+    },
+    "expected_errors": [
+      "pack.json.status: must be one of: active, archived, draft, in_review, reviewed"
+    ]
+  },
+  {
+    "name": "invalid-pack-id",
+    "description": "The manifest pack_id does not match the required readable ID shape.",
+    "set": {
+      "pack_id": "Bad Pack"
+    },
+    "expected_errors": [
+      "pack.json.pack_id: must match YYYY-MM-DD-topic-name using lowercase letters, numbers, and hyphens"
+    ]
+  },
+  {
+    "name": "absolute-record-path",
+    "description": "A record path is absolute instead of relative to the pack folder.",
+    "set": {
+      "records.source_records": "/tmp/source-records.jsonl"
+    },
+    "expected_errors": [
+      "records.source_records: path must be relative, got absolute path: /tmp/source-records.jsonl"
+    ]
+  },
+  {
+    "name": "bad-jsonl-line",
+    "description": "A referenced JSONL record file contains an invalid JSON line.",
+    "append_text": {
+      "sources/source-records.jsonl": "\n{bad json}\n"
+    },
+    "expected_errors": [
+      "invalid JSONL line"
+    ]
+  }
+]
