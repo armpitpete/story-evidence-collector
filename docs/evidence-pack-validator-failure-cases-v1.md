@@ -36,7 +36,9 @@ Expected result:
     PASS: invalid-pack-id
     PASS: absolute-record-path
     PASS: bad-jsonl-line
-    All validator failure regression tests passed. Count: 6
+    PASS: jsonl-record-missing-id
+    PASS: jsonl-record-not-object
+    All validator failure regression tests passed. Count: 8
 
 ## Failure cases
 
@@ -114,7 +116,6 @@ Expected error fragment:
 
     invalid JSONL line
 
-
 ### jsonl-record-missing-id
 
 This appends a valid JSON object without an `id` field to a referenced `.jsonl` file.
@@ -135,6 +136,24 @@ Expected error fragment:
 
     JSONL record must be an object
 
+## Planned next failure case
+
+### duplicate-jsonl-record-id
+
+This is not active yet.
+
+Issue #79 should add this failure case.
+
+The planned test should create a JSONL file where two records use the same `id` value.
+
+It should prove the validator rejects duplicate record IDs inside the same JSONL file, because duplicate IDs make cross-references unreliable.
+
+Expected future error should include:
+
+- the duplicated ID
+- the JSONL file path
+- enough location detail to find the duplicate record
+
 ## What these tests do not cover
 
 These tests do not check:
@@ -146,6 +165,7 @@ These tests do not check:
 - whether a pack is complete.
 - whether a pack is publishable.
 - whether a human has reviewed the evidence.
+- whether JSONL record IDs are unique inside a file. That is planned in issue #79.
 
 Those checks belong to later editorial, provenance, and review layers.
 
