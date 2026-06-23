@@ -30,6 +30,10 @@ It checks:
 - each non-empty `.jsonl` line is a JSON object.
 - each `.jsonl` record has a non-empty string `id`.
 
+It does not yet check whether JSONL record IDs are unique inside a file.
+
+That is tracked as issue #79: duplicate JSONL ID detection.
+
 It does not decide whether evidence is true.
 
 It does not decide whether a claim is fair.
@@ -74,7 +78,9 @@ Expected result:
     PASS: invalid-pack-id
     PASS: absolute-record-path
     PASS: bad-jsonl-line
-    All validator failure regression tests passed. Count: 6
+    PASS: jsonl-record-missing-id
+    PASS: jsonl-record-not-object
+    All validator failure regression tests passed. Count: 8
 
 The failure tests build temporary invalid packs from the valid example fixture.
 
@@ -129,6 +135,7 @@ A passing check does not mean:
 - the article is ready.
 - the pack is safe to publish.
 - the proof trail has had human review.
+- JSONL IDs are unique inside a file. That check is planned in issue #79.
 
 ## Current validation chain
 
@@ -144,14 +151,16 @@ The current evidence pack chain is:
     -> schema validation inside validator
     -> failure regression tests
     -> failure-case documentation
+    -> path traversal safety checks
+    -> JSONL record ID checks
 
 ## Later improvements
 
 Later versions may add:
 
+- duplicate JSONL ID detection inside each JSONL file.
+- cross-file/global record ID uniqueness if needed.
 - full JSON Schema library support if stdlib-only manual validation becomes too limited.
-- stronger path traversal checks.
-- required record ID checks.
 - cross-reference checks between sources, evidence, claims, timeline entries, and review records.
 - pack completeness scoring.
 - archive-link checks.
