@@ -35,6 +35,8 @@ It means:
 - each non-empty `.jsonl` line is a JSON object.
 - each `.jsonl` record has a non-empty string `id`.
 - JSONL record IDs are unique inside each `.jsonl` file.
+- evidence `source_id` values point to existing source records.
+- evidence `claim_id` values point to existing claim records.
 - known invalid pack shapes are covered by regression tests.
 
 ## What v1 validation does not guarantee
@@ -63,7 +65,7 @@ The v1 validator protects the foundation.
 
 It makes sure an evidence pack is structured enough to be checked, referenced, and extended safely.
 
-It prevents common structural problems from entering the project, including missing files, unsafe paths, broken JSONL records, missing record IDs, and duplicate record IDs.
+It prevents common structural problems from entering the project, including missing files, unsafe paths, broken JSONL records, missing record IDs, duplicate record IDs, and evidence records pointing to missing source or claim records.
 
 This gives later evidence tools a stable base to build on.
 
@@ -76,6 +78,7 @@ Evidence Pack v1 validation is good enough when:
 - unsafe paths are rejected.
 - JSONL records are identifiable.
 - duplicate JSONL IDs are rejected.
+- evidence records point to existing source and claim records.
 - the validator remains small, readable, and stdlib-only.
 
 v1 is not the final evidence system.

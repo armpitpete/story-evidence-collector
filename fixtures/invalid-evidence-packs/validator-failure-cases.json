@@ -108,5 +108,25 @@
     "expected_errors": [
       "duplicate JSONL record id 'duplicate-source-id'"
     ]
+  },
+  {
+    "name": "evidence-unknown-source-id",
+    "description": "An evidence item points to a source_id that does not exist in source records.",
+    "append_text": {
+      "evidence/evidence-items.jsonl": "\n{\"id\":\"evidence-missing-source\",\"source_id\":\"missing-source-id\",\"claim_id\":\"claim-0001\",\"summary\":\"Broken source reference.\"}\n"
+    },
+    "expected_errors": [
+      "unknown source_id 'missing-source-id'"
+    ]
+  },
+  {
+    "name": "evidence-unknown-claim-id",
+    "description": "An evidence item points to a claim_id that does not exist in claim records.",
+    "append_text": {
+      "evidence/evidence-items.jsonl": "\n{\"id\":\"evidence-missing-claim\",\"source_id\":\"source-0001\",\"claim_id\":\"missing-claim-id\",\"summary\":\"Broken claim reference.\"}\n"
+    },
+    "expected_errors": [
+      "unknown claim_id 'missing-claim-id'"
+    ]
   }
 ]

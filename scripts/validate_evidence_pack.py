@@ -11,6 +11,7 @@ It checks structure only:
 - files listed in outputs exist
 - JSONL files parse line by line
 - JSONL records have non-empty string IDs that are unique within each file
+- evidence records reference existing source and claim records
 
 It does not make editorial judgements.
 It does not decide whether evidence is true.
@@ -366,6 +367,143 @@ def validate_jsonl(path: Path) -> list[str]:
     return errors
 
 
+def load_jsonl_records_for_references(path: Path) -> list[tuple[int, dict[str, Any]]]:
+    """Read JSONL object records for cross-reference checks.
+
+    The structural JSONL validator reports malformed lines. This helper skips
+    malformed lines so cross-reference checks can run without duplicating those
+    structural errors.
+    """
+
+    try:
+        lines = path.read_text(encoding="utf-8-sig").splitlines()
+    except OSError:
+        return []
+
+    records: list[tuple[int, dict[str, Any]]] = []
+
+    for line_number, line in enumerate(lines, start=1):
+        if not line.strip():
+            continue
+
+        try:
+            record = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+
+        if isinstance(record, dict):
+            records.append((line_number, record))
+
+    return records
+
+
+def record_id_set(records: list[tuple[int, dict[str, Any]]]) -> set[str]:
+    record_ids: set[str] = set()
+
+    for _, record in records:
+        record_id = record.get("id")
+        if isinstance(record_id, str) and record_id.strip():
+            record_ids.add(record_id.strip())
+
+    return record_ids
+
+
+def resolve_pack_relative_path(pack_dir: Path, relative_path: Any) -> Path | None:
+    if not isinstance(relative_path, str) or not relative_path.strip():
+        return None
+
+    relative = Path(relative_path)
+
+    if relative.is_absolute() or ABSOLUTE_PATH_PATTERN.match(relative_path):
+        return None
+
+    if ".." in relative.parts:
+        return None
+
+    target = pack_dir / relative
+
+    if not target.exists():
+        return None
+
+    return target
+
+
+def validate_record_reference_field(
+    path: Path,
+    records: list[tuple[int, dict[str, Any]]],
+    field: str,
+    target_ids: set[str],
+    target_label: str,
+) -> list[str]:
+    errors: list[str] = []
+
+    for line_number, record in records:
+        value = record.get(field)
+
+        if not isinstance(value, str) or not value.strip():
+            errors.append(
+                f"{path}:{line_number}: {field} must be a non-empty string reference "
+                f"to an existing {target_label} id"
+            )
+            continue
+
+        normalized_value = value.strip()
+        if normalized_value not in target_ids:
+            errors.append(
+                f"{path}:{line_number}: unknown {field} {normalized_value!r}; "
+                f"no matching {target_label} id"
+            )
+
+    return errors
+
+
+def validate_evidence_cross_references(
+    pack_dir: Path, manifest: dict[str, Any]
+) -> list[str]:
+    errors: list[str] = []
+    records = manifest.get("records")
+
+    if not isinstance(records, dict):
+        return errors
+
+    source_records_path = resolve_pack_relative_path(
+        pack_dir, records.get("source_records")
+    )
+    claim_records_path = resolve_pack_relative_path(pack_dir, records.get("claim_records"))
+    evidence_items_path = resolve_pack_relative_path(pack_dir, records.get("evidence_items"))
+
+    if not source_records_path or not claim_records_path or not evidence_items_path:
+        return errors
+
+    source_records = load_jsonl_records_for_references(source_records_path)
+    claim_records = load_jsonl_records_for_references(claim_records_path)
+    evidence_records = load_jsonl_records_for_references(evidence_items_path)
+
+    source_ids = record_id_set(source_records)
+    claim_ids = record_id_set(claim_records)
+
+    errors.extend(
+        validate_record_reference_field(
+            evidence_items_path,
+            evidence_records,
+            "source_id",
+            source_ids,
+            "source record",
+        )
+    )
+    errors.extend(
+        validate_record_reference_field(
+            evidence_items_path,
+            evidence_records,
+            "claim_id",
+            claim_ids,
+            "claim record",
+        )
+    )
+
+    return errors
+
+
 def validate_path(pack_dir: Path, relative_path: str, label: str) -> list[str]:
     errors: list[str] = []
 
@@ -423,6 +561,8 @@ def validate_pack(pack_dir: Path) -> list[str]:
         for field in REQUIRED_OUTPUT_FIELDS:
             if field in outputs:
                 errors.extend(validate_path(pack_dir, outputs[field], f"outputs.{field}"))
+
+    errors.extend(validate_evidence_cross_references(pack_dir, manifest))
 
     return errors
 
