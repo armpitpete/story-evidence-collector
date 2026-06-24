@@ -65,3 +65,9 @@ Later evidence layers can build on this foundation.
 Those later layers may check provenance, source quality, archive links, claim support, contradiction evidence, quote context, and publishability.
 
 Those are not v1 validator jobs.
+
+---
+
+## Evidence Pack creation checklist
+
+- [Evidence Pack creation checklist](evidence-pack-assembly-v1.md#evidence-pack-creation-checklist) — a short human checklist for creating a valid evidence pack before validation or sharing.
