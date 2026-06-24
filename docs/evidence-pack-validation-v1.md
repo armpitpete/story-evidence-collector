@@ -157,12 +157,12 @@ The current evidence pack chain is:
     -> failure-case documentation
     -> path traversal safety checks
     -> JSONL record ID checks
+    -> duplicate JSONL ID detection
 
 ## Later improvements
 
 Later versions may add:
 
-- duplicate JSONL ID detection inside each JSONL file.
 - cross-file/global record ID uniqueness if needed.
 - full JSON Schema library support if stdlib-only manual validation becomes too limited.
 - cross-reference checks between sources, evidence, claims, timeline entries, and review records.
