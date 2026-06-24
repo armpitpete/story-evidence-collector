@@ -451,3 +451,13 @@ Minimum evidence item fields:
 Fixture rule:
 
 > The example fixture should prove that the proof chain can be followed, not that the claim is politically important.
+
+---
+
+## 13. Schema decision
+
+Proof Trail is currently documentation-first.
+
+Do not create `schemas/proof-trail-v1.schema.json` yet.
+
+A future task may add that schema after the source, claim, evidence, and brief record shapes are stable.
