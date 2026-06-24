@@ -40,6 +40,8 @@ It checks:
 - source authority `related_claim_id` values point to existing claim records.
 - claim `supported_by` values point to existing evidence records.
 - claim `weakened_by` values point to existing evidence records.
+- public timeline `source_id` values point to existing source records.
+- denial check `related_claim_id` values point to existing claim records.
 
 It does not decide whether evidence is true.
 
@@ -97,7 +99,9 @@ Expected result:
     PASS: authority-unknown-related-claim-id
     PASS: claim-unknown-supported-by
     PASS: claim-unknown-weakened-by
-    All validator failure regression tests passed. Count: 17
+    PASS: timeline-unknown-source-id
+    PASS: denial-unknown-related-claim-id
+    All validator failure regression tests passed. Count: 19
 
 The failure tests build temporary invalid packs from the valid example fixture.
 
@@ -147,6 +151,7 @@ A passing check means:
 - evidence records point to existing source and claim records.
 - source authority records point to existing source and claim records.
 - claim records point to existing evidence records.
+- timeline records point to existing source and claim records.
 - known invalid pack shapes are still rejected.
 
 A passing check does not mean:
@@ -177,6 +182,7 @@ The current evidence pack chain is:
     -> evidence source/claim cross-reference checks
     -> source authority source/claim cross-reference checks
     -> claim evidence cross-reference checks
+    -> timeline source/claim cross-reference checks
 
 ## Later improvements
 
@@ -184,7 +190,7 @@ Later versions may add:
 
 - cross-file/global record ID uniqueness if needed.
 - full JSON Schema library support if stdlib-only manual validation becomes too limited.
-- broader cross-reference checks between timeline entries and review records.
+- broader cross-reference checks involving review records.
 - pack completeness scoring.
 - archive-link checks.
 - human-review gate checks.
