@@ -188,5 +188,15 @@
     "expected_errors": [
       "unknown related_claim_id 'missing-claim-id'"
     ]
+  },
+  {
+    "name": "global-duplicate-record-id",
+    "description": "Two different JSONL record files use the same record id.",
+    "append_text": {
+      "claims/claim-records.jsonl": "\n{\"id\":\"source-0001\",\"claim_text\":\"Duplicate pack-wide ID.\"}\n"
+    },
+    "expected_errors": [
+      "duplicate pack-wide JSONL record id 'source-0001'"
+    ]
   }
 ]
