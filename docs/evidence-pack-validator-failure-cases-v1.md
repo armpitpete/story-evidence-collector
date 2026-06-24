@@ -43,7 +43,9 @@ Expected result:
     PASS: jsonl-record-duplicate-id
     PASS: evidence-unknown-source-id
     PASS: evidence-unknown-claim-id
-    All validator failure regression tests passed. Count: 13
+    PASS: authority-unknown-source-id
+    PASS: authority-unknown-related-claim-id
+    All validator failure regression tests passed. Count: 15
 
 ## Failure cases
 
@@ -190,6 +192,26 @@ It proves the validator rejects evidence records that cannot be traced back to a
 Expected error fragment:
 
     unknown claim_id 'missing-claim-id'
+
+### authority-unknown-source-id
+
+This appends a source authority map record with a `source_id` that does not exist in `sources/source-records.jsonl`.
+
+It proves the validator rejects source authority records that cannot be traced back to an existing source record.
+
+Expected error fragment:
+
+    unknown source_id 'missing-source-id'
+
+### authority-unknown-related-claim-id
+
+This appends a source authority map record with a `related_claim_id` that does not exist in `claims/claim-records.jsonl`.
+
+It proves the validator rejects source authority records that cannot be traced back to an existing claim record.
+
+Expected error fragment:
+
+    unknown related_claim_id 'missing-claim-id'
 
 ## What these tests do not cover
 
