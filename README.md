@@ -18,6 +18,8 @@ For practical validator commands and usage notes, see the [Evidence Pack v1 vali
 
 For the machine-readable Evidence Pack v1 manifest structure, see the [Evidence Pack manifest v1 JSON schema](schemas/evidence-pack-manifest-v1.schema.json).
 
+For the proof provenance structure, see the [Proof Trail schema notes](docs/proof-trail-schema-v1.md).
+
 For concrete examples of invalid packs and expected validator errors, see the [validator failure cases](docs/evidence-pack-validator-failure-cases-v1.md).
 
 The current version can:
