@@ -391,3 +391,63 @@ Before publication use, the brief must clearly separate:
 Rule:
 
 > A proof trail is useful only when another person can follow it without trusting the collector.
+
+---
+
+## 12. Example proof-trail fixture shape
+
+A minimal proof-trail fixture should show how one source, one claim, one evidence item, and one brief connect by ID.
+
+The example does not need to prove a real political claim. It only needs to demonstrate the file shape and proof chain.
+
+Minimum example files:
+
+- evidence/sources/source-0001.json
+- evidence/claims/claim-0001.json
+- evidence/evidence-items/evidence-item-0001.json
+- evidence/briefs/brief-0001.md
+- evidence/archives/source-0001.html
+
+Minimum ID links:
+
+- claim-0001.json must contain source_id: source-0001.
+- evidence-item-0001.json must contain claim_id: claim-0001.
+- evidence-item-0001.json must contain source_id: source-0001.
+- brief-0001.md must name the source record, claim record, and evidence item record.
+
+Minimum source fields:
+
+- id
+- title
+- url
+- publisher
+- source_type
+- publication_date
+- collected_at
+- archive_url or local_copy_path
+
+Minimum claim fields:
+
+- id
+- source_id
+- claim_text
+- plain_meaning
+- date_claimed
+- confidence
+- human_checked
+
+Minimum evidence item fields:
+
+- id
+- claim_id
+- source_id
+- excerpt
+- archive_url or local_copy_path
+- evidence_grade
+- context_notes
+- risk_notes
+- human_checked
+
+Fixture rule:
+
+> The example fixture should prove that the proof chain can be followed, not that the claim is politically important.
