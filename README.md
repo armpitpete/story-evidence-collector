@@ -307,3 +307,9 @@ The v2.6 seed builder creates a separate seed file only. It does not overwrite `
 The v2.7 selected seed fetcher fetches seed URLs only, checks `robots.txt`, applies a default max-seed limit, and does not fetch queued links.
 
 The v2.7 interface is a local control panel. It is not a deployed app and does not run live crawling.
+
+---
+
+## Evidence Pack checklist
+
+Use the [Evidence Pack creation checklist](docs/evidence-pack-assembly-v1.md#evidence-pack-creation-checklist) before validating or sharing an evidence pack.
