@@ -28,8 +28,11 @@ It does not decide whether evidence is true, fair, complete, or publishable.
 
    Use this as the machine-readable list of known invalid pack shapes.
 
-## v1 boundary
+5. `docs/proof-trail-schema-v1.md`
 
+   Read this to understand the proof provenance structure used to preserve source chains, timestamps, records, and evidence traceability.
+
+## v1 boundary
 Evidence Pack v1 validation is deliberately limited.
 
 It checks structure.
