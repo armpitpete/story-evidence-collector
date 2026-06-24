@@ -13,6 +13,7 @@ It checks structure only:
 - JSONL records have non-empty string IDs that are unique within each file
 - evidence records reference existing source and claim records
 - source authority records reference existing source and claim records
+- claim records reference existing evidence records
 
 It does not make editorial judgements.
 It does not decide whether evidence is true.
@@ -458,6 +459,44 @@ def validate_record_reference_field(
     return errors
 
 
+def validate_record_reference_list_field(
+    path: Path,
+    records: list[tuple[int, dict[str, Any]]],
+    field: str,
+    target_ids: set[str],
+    target_label: str,
+) -> list[str]:
+    errors: list[str] = []
+
+    for line_number, record in records:
+        if field not in record:
+            continue
+
+        values = record[field]
+        if not isinstance(values, list):
+            errors.append(
+                f"{path}:{line_number}: {field} must be a list of existing {target_label} ids"
+            )
+            continue
+
+        for index, value in enumerate(values, start=1):
+            if not isinstance(value, str) or not value.strip():
+                errors.append(
+                    f"{path}:{line_number}: {field}[{index}] must be a non-empty string reference "
+                    f"to an existing {target_label} id"
+                )
+                continue
+
+            normalized_value = value.strip()
+            if normalized_value not in target_ids:
+                errors.append(
+                    f"{path}:{line_number}: unknown {field} item {normalized_value!r}; "
+                    f"no matching {target_label} id"
+                )
+
+    return errors
+
+
 def load_core_reference_records(
     pack_dir: Path, records: dict[str, Any]
 ) -> tuple[Path | None, Path | None, list[tuple[int, dict[str, Any]]], list[tuple[int, dict[str, Any]]]]:
@@ -564,6 +603,47 @@ def validate_source_authority_cross_references(
     return errors
 
 
+def validate_claim_cross_references(
+    pack_dir: Path, manifest: dict[str, Any]
+) -> list[str]:
+    errors: list[str] = []
+    records = manifest.get("records")
+
+    if not isinstance(records, dict):
+        return errors
+
+    claim_records_path = resolve_pack_relative_path(pack_dir, records.get("claim_records"))
+    evidence_items_path = resolve_pack_relative_path(pack_dir, records.get("evidence_items"))
+
+    if not claim_records_path or not evidence_items_path:
+        return errors
+
+    claim_records = load_jsonl_records_for_references(claim_records_path)
+    evidence_records = load_jsonl_records_for_references(evidence_items_path)
+    evidence_ids = record_id_set(evidence_records)
+
+    errors.extend(
+        validate_record_reference_list_field(
+            claim_records_path,
+            claim_records,
+            "supported_by",
+            evidence_ids,
+            "evidence item",
+        )
+    )
+    errors.extend(
+        validate_record_reference_list_field(
+            claim_records_path,
+            claim_records,
+            "weakened_by",
+            evidence_ids,
+            "evidence item",
+        )
+    )
+
+    return errors
+
+
 def validate_path(pack_dir: Path, relative_path: str, label: str) -> list[str]:
     errors: list[str] = []
 
@@ -624,6 +704,7 @@ def validate_pack(pack_dir: Path) -> list[str]:
 
     errors.extend(validate_evidence_cross_references(pack_dir, manifest))
     errors.extend(validate_source_authority_cross_references(pack_dir, manifest))
+    errors.extend(validate_claim_cross_references(pack_dir, manifest))
 
     return errors
 
