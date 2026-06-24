@@ -34,23 +34,29 @@ It does not decide whether evidence is true, fair, complete, or publishable.
 
    This defines the first bounded real/sandbox pack topic, source boundary, stop point, validation commands, and safety wording.
 
-5. `docs/evidence-pack-v1-validation-rules-summary.md`
+5. `fixtures/evidence-packs/2026-06-24-story-evidence-collector-foundation/`
+
+   Use this as the first repository-owned workflow proof pack.
+
+   This shows a validating Evidence Pack built from repository documentation, repository fixtures, and validator behaviour.
+
+6. `docs/evidence-pack-v1-validation-rules-summary.md`
 
    Read this when you want the short summary of what v1 validation guarantees and what it does not guarantee.
 
-6. `docs/evidence-pack-validation-v1.md`
+7. `docs/evidence-pack-validation-v1.md`
 
    Read this when you want to run validation locally or understand the GitHub Actions check.
 
-7. `docs/evidence-pack-validator-failure-cases-v1.md`
+8. `docs/evidence-pack-validator-failure-cases-v1.md`
 
    Read this when you want to understand the invalid fixture cases and regression-test behaviour.
 
-8. `fixtures/invalid-evidence-packs/validator-failure-cases.json`
+9. `fixtures/invalid-evidence-packs/validator-failure-cases.json`
 
    Use this as the machine-readable list of known invalid pack shapes.
 
-9. `docs/proof-trail-schema-v1.md`
+10. `docs/proof-trail-schema-v1.md`
 
    Read this to understand the proof provenance structure used to preserve source chains, timestamps, records, and evidence traceability.
 
