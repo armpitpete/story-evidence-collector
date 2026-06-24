@@ -4,6 +4,8 @@ Use this as a copyable starter shape for a first Evidence Pack v1.
 
 This is a documentation template, not a real evidence pack.
 
+For a working example fixture, compare this template with `fixtures/evidence-packs/2026-06-22-example-topic/`.
+
 ## Folder shape
 
 Create this folder shape inside `fixtures/evidence-packs/` or inside your chosen evidence-pack storage folder:
