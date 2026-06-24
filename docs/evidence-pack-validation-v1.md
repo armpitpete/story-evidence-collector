@@ -38,6 +38,8 @@ It checks:
 - evidence `claim_id` values point to existing claim records.
 - source authority `source_id` values point to existing source records.
 - source authority `related_claim_id` values point to existing claim records.
+- claim `supported_by` values point to existing evidence records.
+- claim `weakened_by` values point to existing evidence records.
 
 It does not decide whether evidence is true.
 
@@ -93,7 +95,9 @@ Expected result:
     PASS: evidence-unknown-claim-id
     PASS: authority-unknown-source-id
     PASS: authority-unknown-related-claim-id
-    All validator failure regression tests passed. Count: 15
+    PASS: claim-unknown-supported-by
+    PASS: claim-unknown-weakened-by
+    All validator failure regression tests passed. Count: 17
 
 The failure tests build temporary invalid packs from the valid example fixture.
 
@@ -142,6 +146,7 @@ A passing check means:
 - JSONL record IDs are unique inside each `.jsonl` file.
 - evidence records point to existing source and claim records.
 - source authority records point to existing source and claim records.
+- claim records point to existing evidence records.
 - known invalid pack shapes are still rejected.
 
 A passing check does not mean:
@@ -171,6 +176,7 @@ The current evidence pack chain is:
     -> duplicate JSONL ID detection
     -> evidence source/claim cross-reference checks
     -> source authority source/claim cross-reference checks
+    -> claim evidence cross-reference checks
 
 ## Later improvements
 
@@ -178,7 +184,7 @@ Later versions may add:
 
 - cross-file/global record ID uniqueness if needed.
 - full JSON Schema library support if stdlib-only manual validation becomes too limited.
-- broader cross-reference checks between claims, timeline entries, and review records.
+- broader cross-reference checks between timeline entries and review records.
 - pack completeness scoring.
 - archive-link checks.
 - human-review gate checks.
