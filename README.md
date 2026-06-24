@@ -12,6 +12,8 @@ Start with the [Evidence Pack v1 docs index](docs/evidence-pack-v1-docs-index.md
 
 For a compact checklist of the required Evidence Pack v1 validation rules, see the [v1 validation rules summary](docs/evidence-pack-v1-validation-rules-summary.md).
 
+For practical validator commands and usage notes, see the [Evidence Pack v1 validation guide](docs/evidence-pack-validation-v1.md).
+
 For concrete examples of invalid packs and expected validator errors, see the [validator failure cases](docs/evidence-pack-validator-failure-cases-v1.md).
 
 The current version can:
