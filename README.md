@@ -313,3 +313,27 @@ The v2.7 interface is a local control panel. It is not a deployed app and does n
 ## Evidence Pack checklist
 
 Use the [Evidence Pack creation checklist](docs/evidence-pack-assembly-v1.md#evidence-pack-creation-checklist) before validating or sharing an evidence pack.
+
+---
+
+## Safe task helper
+
+Use `tools/task.ps1` for small branch-based repo tasks.
+
+The helper reduces repeated typing and stops early when the repo is not in the expected state.
+
+Available commands:
+
+- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 status`
+- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 start docs/example-branch-name`
+- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 review`
+- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 test`
+
+Use the helper for:
+
+- checking clean state
+- starting a small branch
+- reviewing diffs
+- running the evidence-pack validator tests
+
+The helper does not commit, push, or merge. Those steps remain manual.
