@@ -14,6 +14,8 @@ For a compact checklist of the required Evidence Pack v1 validation rules, see t
 
 For practical validator commands and usage notes, see the [Evidence Pack v1 validation guide](docs/evidence-pack-validation-v1.md).
 
+For the machine-readable Evidence Pack v1 manifest structure, see the [Evidence Pack manifest v1 JSON schema](schemas/evidence-pack-manifest-v1.schema.json).
+
 For concrete examples of invalid packs and expected validator errors, see the [validator failure cases](docs/evidence-pack-validator-failure-cases-v1.md).
 
 The current version can:
