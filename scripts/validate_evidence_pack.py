@@ -11,6 +11,7 @@ It checks structure only:
 - files listed in outputs exist
 - JSONL files parse line by line
 - JSONL records have non-empty string IDs that are unique within each file
+- JSONL record IDs are unique across the pack
 - evidence records reference existing source and claim records
 - source authority records reference existing source and claim records
 - claim records reference existing evidence records
@@ -520,6 +521,43 @@ def load_core_reference_records(
     return source_records_path, claim_records_path, source_records, claim_records
 
 
+def validate_pack_global_record_ids(
+    pack_dir: Path, manifest: dict[str, Any]
+) -> list[str]:
+    errors: list[str] = []
+    records = manifest.get("records")
+
+    if not isinstance(records, dict):
+        return errors
+
+    seen_record_ids: dict[str, tuple[Path, int]] = {}
+
+    for field in REQUIRED_RECORD_FIELDS:
+        record_path = resolve_pack_relative_path(pack_dir, records.get(field))
+        if not record_path or record_path.suffix != ".jsonl":
+            continue
+
+        for line_number, record in load_jsonl_records_for_references(record_path):
+            record_id = record.get("id")
+            if not isinstance(record_id, str) or not record_id.strip():
+                continue
+
+            normalized_record_id = record_id.strip()
+            first_seen = seen_record_ids.get(normalized_record_id)
+            if first_seen is not None:
+                first_path, first_line_number = first_seen
+                if first_path != record_path:
+                    errors.append(
+                        f"{record_path}:{line_number}: duplicate pack-wide JSONL record id "
+                        f"{normalized_record_id!r}; first seen in {first_path}:{first_line_number}"
+                    )
+                continue
+
+            seen_record_ids[normalized_record_id] = (record_path, line_number)
+
+    return errors
+
+
 def validate_evidence_cross_references(
     pack_dir: Path, manifest: dict[str, Any]
 ) -> list[str]:
@@ -750,6 +788,7 @@ def validate_pack(pack_dir: Path) -> list[str]:
             if field in outputs:
                 errors.extend(validate_path(pack_dir, outputs[field], f"outputs.{field}"))
 
+    errors.extend(validate_pack_global_record_ids(pack_dir, manifest))
     errors.extend(validate_evidence_cross_references(pack_dir, manifest))
     errors.extend(validate_source_authority_cross_references(pack_dir, manifest))
     errors.extend(validate_claim_cross_references(pack_dir, manifest))
