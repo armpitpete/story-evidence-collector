@@ -461,3 +461,53 @@ Proof Trail is currently documentation-first.
 Do not create `schemas/proof-trail-v1.schema.json` yet.
 
 A future task may add that schema after the source, claim, evidence, and brief record shapes are stable.
+
+---
+
+## 14. Relationship rules
+
+Proof Trail records should connect by stable IDs.
+
+A source record describes where information came from.
+
+A claim record describes what is being asserted.
+
+An evidence record supports, challenges, or explains a claim. It should point to the claim it relates to and the source it came from.
+
+A brief record uses selected claims and evidence items to explain what is proven, what is interpretation, and what still needs checking.
+
+These relationships should be human-checkable before they are schema-enforced.
+
+The expected relationship direction is:
+
+- source records can be referenced by claims and evidence records
+- claim records can reference source records
+- evidence records can reference claim records and source records
+- brief records can reference claim records and evidence records
+
+Do not rely on file position or reading order to imply a relationship. Use explicit IDs.
+
+---
+
+## 15. Future validation plan
+
+Proof Trail validation should be added later, after the record shapes are stable.
+
+Future validation may check that:
+
+- every referenced source ID exists
+- every referenced claim ID exists
+- evidence records point to valid claim IDs
+- evidence records point to valid source IDs
+- brief records point to valid claim and evidence IDs
+- duplicate Proof Trail IDs are rejected
+- required relationship fields are present
+- unsupported relationship fields are rejected
+- records remain object-shaped JSONL entries
+- validation errors explain which file, line, and ID failed
+
+Do not add this validation yet.
+
+The current phase should keep Proof Trail documentation-first. The existing validator should continue to focus on evidence-pack manifest rules, JSONL record safety, required record IDs, duplicate JSONL IDs, and path traversal protection.
+
+A later implementation task may add Proof Trail cross-reference validation when the source, claim, evidence, and brief shapes have settled.
