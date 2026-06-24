@@ -47,7 +47,9 @@ Expected result:
     PASS: authority-unknown-related-claim-id
     PASS: claim-unknown-supported-by
     PASS: claim-unknown-weakened-by
-    All validator failure regression tests passed. Count: 17
+    PASS: timeline-unknown-source-id
+    PASS: denial-unknown-related-claim-id
+    All validator failure regression tests passed. Count: 19
 
 ## Failure cases
 
@@ -234,6 +236,26 @@ It proves the validator rejects claim records that cannot be traced to existing 
 Expected error fragment:
 
     unknown weakened_by item 'missing-evidence-id'
+
+### timeline-unknown-source-id
+
+This appends a public timeline record with a `source_id` that does not exist in `sources/source-records.jsonl`.
+
+It proves the validator rejects timeline records that cannot be traced back to an existing source record.
+
+Expected error fragment:
+
+    unknown source_id 'missing-source-id'
+
+### denial-unknown-related-claim-id
+
+This appends a denial-check record with a `related_claim_id` that does not exist in `claims/claim-records.jsonl`.
+
+It proves the validator rejects denial-check records that cannot be traced back to an existing claim record.
+
+Expected error fragment:
+
+    unknown related_claim_id 'missing-claim-id'
 
 ## What these tests do not cover
 
