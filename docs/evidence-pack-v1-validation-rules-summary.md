@@ -35,6 +35,7 @@ It means:
 - each non-empty `.jsonl` line is a JSON object.
 - each `.jsonl` record has a non-empty string `id`.
 - JSONL record IDs are unique inside each `.jsonl` file.
+- JSONL record IDs are unique across the whole pack.
 - evidence `source_id` values point to existing source records.
 - evidence `claim_id` values point to existing claim records.
 - source authority `source_id` values point to existing source records.
@@ -71,7 +72,7 @@ The v1 validator protects the foundation.
 
 It makes sure an evidence pack is structured enough to be checked, referenced, and extended safely.
 
-It prevents common structural problems from entering the project, including missing files, unsafe paths, broken JSONL records, missing record IDs, duplicate record IDs, evidence records pointing to missing source or claim records, source authority records pointing to missing source or claim records, claim records pointing to missing evidence records, and timeline records pointing to missing source or claim records.
+It prevents common structural problems from entering the project, including missing files, unsafe paths, broken JSONL records, missing record IDs, duplicate record IDs, pack-wide duplicate record IDs, evidence records pointing to missing source or claim records, source authority records pointing to missing source or claim records, claim records pointing to missing evidence records, and timeline records pointing to missing source or claim records.
 
 This gives later evidence tools a stable base to build on.
 
@@ -83,7 +84,8 @@ Evidence Pack v1 validation is good enough when:
 - known invalid structures fail.
 - unsafe paths are rejected.
 - JSONL records are identifiable.
-- duplicate JSONL IDs are rejected.
+- duplicate JSONL IDs are rejected inside each file.
+- duplicate JSONL IDs are rejected across the pack.
 - evidence records point to existing source and claim records.
 - source authority records point to existing source and claim records.
 - claim records point to existing evidence records.
