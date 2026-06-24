@@ -16,23 +16,29 @@ It does not decide whether evidence is true, fair, complete, or publishable.
 
    This gives the smallest safe path for making a pack folder, adding the manifest, creating JSONL records, adding expected outputs, and running the validator.
 
-2. `docs/evidence-pack-v1-validation-rules-summary.md`
+2. `docs/evidence-pack-starter-template-v1.md`
+
+   Use this when you want a copyable starter shape for a first pack.
+
+   This gives a starter folder shape, `pack.json`, JSONL records, output placeholders, and the validator command.
+
+3. `docs/evidence-pack-v1-validation-rules-summary.md`
 
    Read this when you want the short summary of what v1 validation guarantees and what it does not guarantee.
 
-3. `docs/evidence-pack-validation-v1.md`
+4. `docs/evidence-pack-validation-v1.md`
 
    Read this when you want to run validation locally or understand the GitHub Actions check.
 
-4. `docs/evidence-pack-validator-failure-cases-v1.md`
+5. `docs/evidence-pack-validator-failure-cases-v1.md`
 
    Read this when you want to understand the invalid fixture cases and regression-test behaviour.
 
-5. `fixtures/invalid-evidence-packs/validator-failure-cases.json`
+6. `fixtures/invalid-evidence-packs/validator-failure-cases.json`
 
    Use this as the machine-readable list of known invalid pack shapes.
 
-6. `docs/proof-trail-schema-v1.md`
+7. `docs/proof-trail-schema-v1.md`
 
    Read this to understand the proof provenance structure used to preserve source chains, timestamps, records, and evidence traceability.
 
