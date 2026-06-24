@@ -148,5 +148,25 @@
     "expected_errors": [
       "unknown related_claim_id 'missing-claim-id'"
     ]
+  },
+  {
+    "name": "claim-unknown-supported-by",
+    "description": "A claim record lists a supported_by evidence id that does not exist in evidence items.",
+    "append_text": {
+      "claims/claim-records.jsonl": "\n{\"id\":\"claim-missing-supported-evidence\",\"claim_text\":\"Broken supported_by reference.\",\"supported_by\":[\"missing-evidence-id\"],\"weakened_by\":[]}\n"
+    },
+    "expected_errors": [
+      "unknown supported_by item 'missing-evidence-id'"
+    ]
+  },
+  {
+    "name": "claim-unknown-weakened-by",
+    "description": "A claim record lists a weakened_by evidence id that does not exist in evidence items.",
+    "append_text": {
+      "claims/claim-records.jsonl": "\n{\"id\":\"claim-missing-weakened-evidence\",\"claim_text\":\"Broken weakened_by reference.\",\"supported_by\":[],\"weakened_by\":[\"missing-evidence-id\"]}\n"
+    },
+    "expected_errors": [
+      "unknown weakened_by item 'missing-evidence-id'"
+    ]
   }
 ]
