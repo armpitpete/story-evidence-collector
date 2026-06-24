@@ -36,9 +36,12 @@ Expected result:
     PASS: invalid-pack-id
     PASS: absolute-record-path
     PASS: bad-jsonl-line
+    PASS: record-parent-traversal
+    PASS: output-parent-traversal
     PASS: jsonl-record-missing-id
     PASS: jsonl-record-not-object
-    All validator failure regression tests passed. Count: 8
+    PASS: jsonl-record-duplicate-id
+    All validator failure regression tests passed. Count: 11
 
 ## Failure cases
 
@@ -136,23 +139,35 @@ Expected error fragment:
 
     JSONL record must be an object
 
-## Planned next failure case
+### record-parent-traversal
 
-### duplicate-jsonl-record-id
+This changes `records.source_records` to a parent-traversal path.
 
-This is not active yet.
+It proves the validator rejects record paths that try to escape the evidence pack folder.
 
-Issue #79 should add this failure case.
+Expected error fragment:
 
-The planned test should create a JSONL file where two records use the same `id` value.
+    path must stay inside pack folder
 
-It should prove the validator rejects duplicate record IDs inside the same JSONL file, because duplicate IDs make cross-references unreliable.
+### output-parent-traversal
 
-Expected future error should include:
+This changes `outputs.final_brief` to a parent-traversal path.
 
-- the duplicated ID
-- the JSONL file path
-- enough location detail to find the duplicate record
+It proves the validator rejects output paths that try to escape the evidence pack folder.
+
+Expected error fragment:
+
+    path must stay inside pack folder
+
+### jsonl-record-duplicate-id
+
+This appends two valid JSON object records with the same `id` value to a referenced `.jsonl` file.
+
+It proves the validator rejects duplicate record IDs inside the same JSONL file, because duplicate IDs make cross-references unreliable.
+
+Expected error fragment:
+
+    duplicate JSONL record id 'duplicate-source-id'
 
 ## What these tests do not cover
 
@@ -165,7 +180,6 @@ These tests do not check:
 - whether a pack is complete.
 - whether a pack is publishable.
 - whether a human has reviewed the evidence.
-- whether JSONL record IDs are unique inside a file. That is planned in issue #79.
 
 Those checks belong to later editorial, provenance, and review layers.
 

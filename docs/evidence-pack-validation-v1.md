@@ -29,10 +29,7 @@ It checks:
 - `.jsonl` files parse line by line.
 - each non-empty `.jsonl` line is a JSON object.
 - each `.jsonl` record has a non-empty string `id`.
-
-It does not yet check whether JSONL record IDs are unique inside a file.
-
-That is tracked as issue #79: duplicate JSONL ID detection.
+- JSONL record IDs are unique inside each `.jsonl` file.
 
 It does not decide whether evidence is true.
 
@@ -78,9 +75,12 @@ Expected result:
     PASS: invalid-pack-id
     PASS: absolute-record-path
     PASS: bad-jsonl-line
+    PASS: record-parent-traversal
+    PASS: output-parent-traversal
     PASS: jsonl-record-missing-id
     PASS: jsonl-record-not-object
-    All validator failure regression tests passed. Count: 8
+    PASS: jsonl-record-duplicate-id
+    All validator failure regression tests passed. Count: 11
 
 The failure tests build temporary invalid packs from the valid example fixture.
 
@@ -126,6 +126,7 @@ A passing check means:
 - required files exist.
 - JSON and JSONL records are parseable.
 - JSONL records are objects with non-empty string IDs.
+- JSONL record IDs are unique inside each `.jsonl` file.
 - known invalid pack shapes are still rejected.
 
 A passing check does not mean:
@@ -135,7 +136,6 @@ A passing check does not mean:
 - the article is ready.
 - the pack is safe to publish.
 - the proof trail has had human review.
-- JSONL IDs are unique inside a file. That check is planned in issue #79.
 
 ## Current validation chain
 

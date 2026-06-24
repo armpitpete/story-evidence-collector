@@ -98,5 +98,15 @@
     "expected_errors": [
       "JSONL record must be an object"
     ]
+  },
+  {
+    "name": "jsonl-record-duplicate-id",
+    "description": "Two JSONL records use the same id in one referenced JSONL file.",
+    "append_text": {
+      "sources/source-records.jsonl": "\n{\"id\":\"duplicate-source-id\",\"source_type\":\"dummy_document\",\"title\":\"Duplicate ID One\"}\n{\"id\":\"duplicate-source-id\",\"source_type\":\"dummy_document\",\"title\":\"Duplicate ID Two\"}\n"
+    },
+    "expected_errors": [
+      "duplicate JSONL record id 'duplicate-source-id'"
+    ]
   }
 ]
