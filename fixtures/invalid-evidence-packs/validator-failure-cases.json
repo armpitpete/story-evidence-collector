@@ -128,5 +128,25 @@
     "expected_errors": [
       "unknown claim_id 'missing-claim-id'"
     ]
+  },
+  {
+    "name": "authority-unknown-source-id",
+    "description": "A source authority map record points to a source_id that does not exist in source records.",
+    "append_text": {
+      "sources/source-authority-map.jsonl": "\n{\"id\":\"authority-missing-source\",\"source_id\":\"missing-source-id\",\"related_claim_id\":\"claim-0001\",\"source_role\":\"broken_reference\"}\n"
+    },
+    "expected_errors": [
+      "unknown source_id 'missing-source-id'"
+    ]
+  },
+  {
+    "name": "authority-unknown-related-claim-id",
+    "description": "A source authority map record points to a related_claim_id that does not exist in claim records.",
+    "append_text": {
+      "sources/source-authority-map.jsonl": "\n{\"id\":\"authority-missing-claim\",\"source_id\":\"source-0001\",\"related_claim_id\":\"missing-claim-id\",\"source_role\":\"broken_reference\"}\n"
+    },
+    "expected_errors": [
+      "unknown related_claim_id 'missing-claim-id'"
+    ]
   }
 ]
