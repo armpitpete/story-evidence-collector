@@ -41,7 +41,9 @@ Expected result:
     PASS: jsonl-record-missing-id
     PASS: jsonl-record-not-object
     PASS: jsonl-record-duplicate-id
-    All validator failure regression tests passed. Count: 11
+    PASS: evidence-unknown-source-id
+    PASS: evidence-unknown-claim-id
+    All validator failure regression tests passed. Count: 13
 
 ## Failure cases
 
@@ -168,6 +170,26 @@ It proves the validator rejects duplicate record IDs inside the same JSONL file,
 Expected error fragment:
 
     duplicate JSONL record id 'duplicate-source-id'
+
+### evidence-unknown-source-id
+
+This appends an evidence item with a `source_id` that does not exist in `sources/source-records.jsonl`.
+
+It proves the validator rejects evidence records that cannot be traced back to an existing source record.
+
+Expected error fragment:
+
+    unknown source_id 'missing-source-id'
+
+### evidence-unknown-claim-id
+
+This appends an evidence item with a `claim_id` that does not exist in `claims/claim-records.jsonl`.
+
+It proves the validator rejects evidence records that cannot be traced back to an existing claim record.
+
+Expected error fragment:
+
+    unknown claim_id 'missing-claim-id'
 
 ## What these tests do not cover
 
