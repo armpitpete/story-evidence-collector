@@ -345,3 +345,49 @@ But the database must not become the only proof store.
 Rule:
 
 > The database is an index, not the archive.
+
+---
+
+## 11. Proof Trail validation checklist
+
+Use this checklist before a proof trail is treated as ready for serious TWIS use.
+
+A usable proof trail should preserve:
+
+- [ ] source title
+- [ ] source URL
+- [ ] publisher or source body
+- [ ] author, speaker, or organisation where known
+- [ ] publication date or date claimed
+- [ ] collection timestamp
+- [ ] archive URL where available
+- [ ] local copy path where appropriate
+- [ ] source record ID
+- [ ] claim record ID
+- [ ] evidence item record ID
+- [ ] exact excerpt or transcript reference
+- [ ] page number or audio/video timestamp where relevant
+- [ ] evidence grade
+- [ ] context notes
+- [ ] risk notes
+- [ ] human review status
+
+A proof trail is not ready if it only contains:
+
+- a screenshot without a source chain
+- a clipped video without a full context link
+- a quote without a source record
+- a claim without a date
+- an archive link without the original source
+- an evidence item that does not connect back to a claim
+
+Before publication use, the brief must clearly separate:
+
+- what is proven
+- what is interpretation
+- what still needs checking
+- what must not be overstated
+
+Rule:
+
+> A proof trail is useful only when another person can follow it without trusting the collector.
