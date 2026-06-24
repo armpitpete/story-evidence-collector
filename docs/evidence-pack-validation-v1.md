@@ -60,10 +60,11 @@ From the repository root, run:
 
     python scripts\validate_all_evidence_packs.py
 
-Expected result while there is one fixture pack:
+Expected result while there are two fixture packs:
 
     PASS: fixtures\evidence-packs\2026-06-22-example-topic
-    All evidence packs passed validation. Count: 1
+    PASS: fixtures\evidence-packs\2026-06-24-story-evidence-collector-foundation
+    All evidence packs passed validation. Count: 2
 
 ## Test validator failure cases
 
