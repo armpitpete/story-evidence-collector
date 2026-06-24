@@ -49,7 +49,8 @@ Expected result:
     PASS: claim-unknown-weakened-by
     PASS: timeline-unknown-source-id
     PASS: denial-unknown-related-claim-id
-    All validator failure regression tests passed. Count: 19
+    PASS: global-duplicate-record-id
+    All validator failure regression tests passed. Count: 20
 
 ## Failure cases
 
@@ -256,6 +257,16 @@ It proves the validator rejects denial-check records that cannot be traced back 
 Expected error fragment:
 
     unknown related_claim_id 'missing-claim-id'
+
+### global-duplicate-record-id
+
+This appends a claim record with an `id` already used by a source record.
+
+It proves the validator rejects duplicate record IDs across different JSONL files in the same evidence pack.
+
+Expected error fragment:
+
+    duplicate pack-wide JSONL record id 'source-0001'
 
 ## What these tests do not cover
 
