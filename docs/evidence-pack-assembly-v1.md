@@ -405,3 +405,29 @@ Later versions may add:
 - export to Markdown, PDF, and HTML
 - database indexing
 - pack comparison across topics
+
+---
+
+## Evidence Pack creation checklist
+
+Use this checklist before validating or sharing an evidence pack.
+
+- [ ] Create one folder for the evidence pack.
+- [ ] Add a manifest file for the pack.
+- [ ] Give the pack a stable `pack_id`.
+- [ ] Give the pack a clear `title`.
+- [ ] Set the pack `status` to an allowed value.
+- [ ] Add only expected top-level manifest fields.
+- [ ] Store records in JSONL files.
+- [ ] Make each JSONL line a valid JSON object.
+- [ ] Give every JSONL record a stable `id`.
+- [ ] Check that record IDs are not duplicated inside the same JSONL file.
+- [ ] Keep record paths inside the evidence-pack folder.
+- [ ] Do not use absolute paths.
+- [ ] Do not use `..` path traversal.
+- [ ] Run the evidence-pack validator.
+- [ ] Run the validator failure regression tests before changing validator behaviour.
+
+Good enough rule:
+
+> A new person should be able to open the pack, read the manifest, inspect the records, and follow the proof trail without guessing where files or IDs came from.
