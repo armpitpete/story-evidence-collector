@@ -4,6 +4,8 @@ This walkthrough shows the smallest safe path for creating a valid Evidence Pack
 
 Use it before adding larger Proof Trail material.
 
+For a copyable starter shape, use `docs/evidence-pack-starter-template-v1.md` after reading this walkthrough.
+
 ## 1. Create one pack folder
 
 Create one folder for the topic you are collecting evidence about.
@@ -148,6 +150,7 @@ A good first evidence pack proves the workflow, not the full investigation.
 
 ## Related docs
 
+- `docs/evidence-pack-starter-template-v1.md`
 - `docs/evidence-pack-assembly-v1.md`
 - `docs/evidence-pack-validation-v1.md`
 - `docs/evidence-pack-v1-validation-rules-summary.md`
