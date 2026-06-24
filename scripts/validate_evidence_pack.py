@@ -14,6 +14,7 @@ It checks structure only:
 - evidence records reference existing source and claim records
 - source authority records reference existing source and claim records
 - claim records reference existing evidence records
+- timeline records reference existing source and claim records
 
 It does not make editorial judgements.
 It does not decide whether evidence is true.
@@ -644,6 +645,53 @@ def validate_claim_cross_references(
     return errors
 
 
+def validate_timeline_cross_references(
+    pack_dir: Path, manifest: dict[str, Any]
+) -> list[str]:
+    errors: list[str] = []
+    records = manifest.get("records")
+
+    if not isinstance(records, dict):
+        return errors
+
+    _, _, source_records, claim_records = load_core_reference_records(pack_dir, records)
+    timeline_path = resolve_pack_relative_path(
+        pack_dir, records.get("public_record_timeline")
+    )
+    denial_checks_path = resolve_pack_relative_path(
+        pack_dir, records.get("denial_checks")
+    )
+
+    source_ids = record_id_set(source_records)
+    claim_ids = record_id_set(claim_records)
+
+    if timeline_path:
+        timeline_records = load_jsonl_records_for_references(timeline_path)
+        errors.extend(
+            validate_record_reference_field(
+                timeline_path,
+                timeline_records,
+                "source_id",
+                source_ids,
+                "source record",
+            )
+        )
+
+    if denial_checks_path:
+        denial_records = load_jsonl_records_for_references(denial_checks_path)
+        errors.extend(
+            validate_record_reference_field(
+                denial_checks_path,
+                denial_records,
+                "related_claim_id",
+                claim_ids,
+                "claim record",
+            )
+        )
+
+    return errors
+
+
 def validate_path(pack_dir: Path, relative_path: str, label: str) -> list[str]:
     errors: list[str] = []
 
@@ -705,6 +753,7 @@ def validate_pack(pack_dir: Path) -> list[str]:
     errors.extend(validate_evidence_cross_references(pack_dir, manifest))
     errors.extend(validate_source_authority_cross_references(pack_dir, manifest))
     errors.extend(validate_claim_cross_references(pack_dir, manifest))
+    errors.extend(validate_timeline_cross_references(pack_dir, manifest))
 
     return errors
 
