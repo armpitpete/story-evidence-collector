@@ -14,6 +14,8 @@ For the shortest first-use route, see [Create your first Evidence Pack v1](docs/
 
 For a copyable starter shape, see the [Evidence Pack starter template v1](docs/evidence-pack-starter-template-v1.md).
 
+For a working valid example, see `fixtures/evidence-packs/2026-06-22-example-topic/`.
+
 For the practical steps to build a pack, see the [Evidence Pack v1 assembly guide](docs/evidence-pack-assembly-v1.md).
 
 For a compact checklist of the required Evidence Pack v1 validation rules, see the [v1 validation rules summary](docs/evidence-pack-v1-validation-rules-summary.md).
