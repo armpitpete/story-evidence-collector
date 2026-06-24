@@ -10,6 +10,8 @@ It is being built step by step from a safe Scrapling parser demo.
 
 Start with the [Evidence Pack v1 docs index](docs/evidence-pack-v1-docs-index.md) for the current validation rules, failure-case documentation, validator usage, and related v1 documentation links.
 
+For concrete examples of invalid packs and expected validator errors, see the [validator failure cases](docs/evidence-pack-validator-failure-cases-v1.md).
+
 The current version can:
 
 - read seed URLs from `seed_urls.json`
