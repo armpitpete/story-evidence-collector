@@ -168,5 +168,25 @@
     "expected_errors": [
       "unknown weakened_by item 'missing-evidence-id'"
     ]
+  },
+  {
+    "name": "timeline-unknown-source-id",
+    "description": "A public timeline record points to a source_id that does not exist in source records.",
+    "append_text": {
+      "timeline/public-record-timeline.jsonl": "\n{\"id\":\"timeline-missing-source\",\"date\":\"2026-06-24\",\"event\":\"Broken source reference\",\"source_id\":\"missing-source-id\"}\n"
+    },
+    "expected_errors": [
+      "unknown source_id 'missing-source-id'"
+    ]
+  },
+  {
+    "name": "denial-unknown-related-claim-id",
+    "description": "A denial check record points to a related_claim_id that does not exist in claim records.",
+    "append_text": {
+      "timeline/denial-checks.jsonl": "\n{\"id\":\"denial-missing-claim\",\"related_claim_id\":\"missing-claim-id\",\"checked_statement\":\"Broken claim reference.\"}\n"
+    },
+    "expected_errors": [
+      "unknown related_claim_id 'missing-claim-id'"
+    ]
   }
 ]
