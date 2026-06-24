@@ -45,7 +45,9 @@ Expected result:
     PASS: evidence-unknown-claim-id
     PASS: authority-unknown-source-id
     PASS: authority-unknown-related-claim-id
-    All validator failure regression tests passed. Count: 15
+    PASS: claim-unknown-supported-by
+    PASS: claim-unknown-weakened-by
+    All validator failure regression tests passed. Count: 17
 
 ## Failure cases
 
@@ -212,6 +214,26 @@ It proves the validator rejects source authority records that cannot be traced b
 Expected error fragment:
 
     unknown related_claim_id 'missing-claim-id'
+
+### claim-unknown-supported-by
+
+This appends a claim record with a `supported_by` evidence ID that does not exist in `evidence/evidence-items.jsonl`.
+
+It proves the validator rejects claim records that cannot be traced to existing supporting evidence.
+
+Expected error fragment:
+
+    unknown supported_by item 'missing-evidence-id'
+
+### claim-unknown-weakened-by
+
+This appends a claim record with a `weakened_by` evidence ID that does not exist in `evidence/evidence-items.jsonl`.
+
+It proves the validator rejects claim records that cannot be traced to existing weakening evidence.
+
+Expected error fragment:
+
+    unknown weakened_by item 'missing-evidence-id'
 
 ## What these tests do not cover
 

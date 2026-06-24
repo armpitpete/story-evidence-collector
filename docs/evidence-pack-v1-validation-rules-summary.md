@@ -39,6 +39,8 @@ It means:
 - evidence `claim_id` values point to existing claim records.
 - source authority `source_id` values point to existing source records.
 - source authority `related_claim_id` values point to existing claim records.
+- claim `supported_by` values point to existing evidence records.
+- claim `weakened_by` values point to existing evidence records.
 - known invalid pack shapes are covered by regression tests.
 
 ## What v1 validation does not guarantee
@@ -67,7 +69,7 @@ The v1 validator protects the foundation.
 
 It makes sure an evidence pack is structured enough to be checked, referenced, and extended safely.
 
-It prevents common structural problems from entering the project, including missing files, unsafe paths, broken JSONL records, missing record IDs, duplicate record IDs, evidence records pointing to missing source or claim records, and source authority records pointing to missing source or claim records.
+It prevents common structural problems from entering the project, including missing files, unsafe paths, broken JSONL records, missing record IDs, duplicate record IDs, evidence records pointing to missing source or claim records, source authority records pointing to missing source or claim records, and claim records pointing to missing evidence records.
 
 This gives later evidence tools a stable base to build on.
 
@@ -82,6 +84,7 @@ Evidence Pack v1 validation is good enough when:
 - duplicate JSONL IDs are rejected.
 - evidence records point to existing source and claim records.
 - source authority records point to existing source and claim records.
+- claim records point to existing evidence records.
 - the validator remains small, readable, and stdlib-only.
 
 v1 is not the final evidence system.
