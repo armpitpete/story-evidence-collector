@@ -12,6 +12,8 @@ Start with the [Evidence Pack v1 docs index](docs/evidence-pack-v1-docs-index.md
 
 For the shortest first-use route, see [Create your first Evidence Pack v1](docs/create-your-first-evidence-pack-v1.md).
 
+For a copyable starter shape, see the [Evidence Pack starter template v1](docs/evidence-pack-starter-template-v1.md).
+
 For the practical steps to build a pack, see the [Evidence Pack v1 assembly guide](docs/evidence-pack-assembly-v1.md).
 
 For a compact checklist of the required Evidence Pack v1 validation rules, see the [v1 validation rules summary](docs/evidence-pack-v1-validation-rules-summary.md).
