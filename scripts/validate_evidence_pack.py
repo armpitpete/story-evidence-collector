@@ -10,6 +10,7 @@ It checks structure only:
 - files listed in records exist
 - files listed in outputs exist
 - JSONL files parse line by line
+- JSONL records have non-empty string IDs that are unique within each file
 
 It does not make editorial judgements.
 It does not decide whether evidence is true.
@@ -323,6 +324,7 @@ def validate_schema_shape(manifest: dict[str, Any]) -> list[str]:
 
 def validate_jsonl(path: Path) -> list[str]:
     errors: list[str] = []
+    seen_record_ids: dict[str, int] = {}
 
     try:
         lines = path.read_text(encoding="utf-8-sig").splitlines()
@@ -348,8 +350,21 @@ def validate_jsonl(path: Path) -> list[str]:
             errors.append(
                 f"{path}:{line_number}: JSONL record must have a non-empty string id"
             )
+            continue
+
+        normalized_record_id = record_id.strip()
+        first_line_number = seen_record_ids.get(normalized_record_id)
+        if first_line_number is not None:
+            errors.append(
+                f"{path}:{line_number}: duplicate JSONL record id "
+                f"{normalized_record_id!r}; first seen on line {first_line_number}"
+            )
+            continue
+
+        seen_record_ids[normalized_record_id] = line_number
 
     return errors
+
 
 def validate_path(pack_dir: Path, relative_path: str, label: str) -> list[str]:
     errors: list[str] = []
