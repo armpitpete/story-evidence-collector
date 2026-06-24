@@ -2,6 +2,10 @@
 
 This note explains how to validate TWIS evidence packs locally and what the GitHub Actions check does.
 
+For the short v1 rules summary, see:
+
+    docs/evidence-pack-v1-validation-rules-summary.md
+
 ## What validation checks
 
 The current validator checks structure only.
