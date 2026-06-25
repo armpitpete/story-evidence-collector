@@ -1,0 +1,1 @@
+{"id":"relationship-001","from":"person-001","to":"organisation-001","relationship_type":"to-check","source_id":"source-001","confidence":"low","public_chart":false,"note":"Starter relationship record. Low-confidence records must not appear on public charts."}

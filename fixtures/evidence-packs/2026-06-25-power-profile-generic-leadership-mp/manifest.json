@@ -1,0 +1,16 @@
+{
+    "pack_type":  "power_profile",
+    "pack_id":  "2026-06-25-power-profile-generic-leadership-mp",
+    "subject":  "UK political leadership candidate or MP",
+    "research_question":  "What does this political figure say they stand for, and what interests sit close to their power?",
+    "known_sources":  [
+                          "UK Parliament profile,Register of Members\u0027 Financial Interests,voting record,Electoral Commission donations,Companies House,official website,public appointment records,reputable reporting"
+                      ],
+    "wanted_output":  [
+                          "article,evidence table,source links,connection chart,what is proven,what is not proven,TWIS judgement"
+                      ],
+    "sensitivity":  "sensitive",
+    "status":  "draft",
+    "created_at":  "2026-06-25T18:18:15Z",
+    "safety_rule":  "Simple at the front. Structured underneath. Human-checkable proof trail throughout."
+}
