@@ -84,6 +84,11 @@ The current v1 validator covers:
 - JSONL object checks
 - required JSONL record IDs
 - duplicate JSONL record ID rejection inside each `.jsonl` file
+- duplicate JSONL record ID rejection across the whole pack
+- evidence source/claim cross-reference checks
+- source authority source/claim cross-reference checks
+- claim evidence cross-reference checks
+- timeline source/claim cross-reference checks
 - regression tests for known failure cases
 
 ## Next layer
