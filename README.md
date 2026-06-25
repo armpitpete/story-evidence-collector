@@ -18,6 +18,8 @@ For a working valid example, see `fixtures/evidence-packs/2026-06-22-example-top
 
 For the first repository-owned workflow proof pack, see `fixtures/evidence-packs/2026-06-24-story-evidence-collector-foundation/`.
 
+For the first controlled real/sandbox public-source method pack, see `fixtures/evidence-packs/2026-06-25-code-of-practice-statistics-method/`.
+
 For the practical steps to build a pack, see the [Evidence Pack v1 assembly guide](docs/evidence-pack-assembly-v1.md).
 
 For a compact checklist of the required Evidence Pack v1 validation rules, see the [v1 validation rules summary](docs/evidence-pack-v1-validation-rules-summary.md).
