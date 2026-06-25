@@ -730,6 +730,53 @@ def validate_timeline_cross_references(
     return errors
 
 
+def validate_power_profile_chart_references(pack_dir: Path) -> list[str]:
+    errors: list[str] = []
+
+    chart_nodes_path = pack_dir / "chart_nodes.jsonl"
+    chart_edges_path = pack_dir / "chart_edges.jsonl"
+
+    if not chart_nodes_path.exists() and not chart_edges_path.exists():
+        return errors
+
+    if chart_nodes_path.exists():
+        errors.extend(validate_jsonl(chart_nodes_path))
+
+    if chart_edges_path.exists():
+        errors.extend(validate_jsonl(chart_edges_path))
+    else:
+        return errors
+
+    chart_node_records = (
+        load_jsonl_records_for_references(chart_nodes_path)
+        if chart_nodes_path.exists()
+        else []
+    )
+    chart_edge_records = load_jsonl_records_for_references(chart_edges_path)
+    chart_node_ids = record_id_set(chart_node_records)
+
+    errors.extend(
+        validate_record_reference_field(
+            chart_edges_path,
+            chart_edge_records,
+            "from",
+            chart_node_ids,
+            "chart node",
+        )
+    )
+    errors.extend(
+        validate_record_reference_field(
+            chart_edges_path,
+            chart_edge_records,
+            "to",
+            chart_node_ids,
+            "chart node",
+        )
+    )
+
+    return errors
+
+
 def validate_path(pack_dir: Path, relative_path: str, label: str) -> list[str]:
     errors: list[str] = []
 
@@ -793,6 +840,7 @@ def validate_pack(pack_dir: Path) -> list[str]:
     errors.extend(validate_source_authority_cross_references(pack_dir, manifest))
     errors.extend(validate_claim_cross_references(pack_dir, manifest))
     errors.extend(validate_timeline_cross_references(pack_dir, manifest))
+    errors.extend(validate_power_profile_chart_references(pack_dir))
 
     return errors
 
