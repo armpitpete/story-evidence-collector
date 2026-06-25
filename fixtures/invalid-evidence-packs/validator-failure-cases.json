@@ -220,5 +220,27 @@
     "expected_errors": [
       "unknown to 'missing-chart-node'"
     ]
+  },
+  {
+    "name": "chart-edge-low-confidence-public",
+    "description": "A low-confidence chart edge is incorrectly marked for public chart use.",
+    "append_text": {
+      "chart_nodes.jsonl": "{\"id\":\"chart-node-001\",\"entity_id\":\"person-001\",\"label\":\"Person\",\"node_type\":\"person\"}\n{\"id\":\"chart-node-002\",\"entity_id\":\"organisation-001\",\"label\":\"Organisation\",\"node_type\":\"organisation\"}\n",
+      "chart_edges.jsonl": "{\"id\":\"chart-edge-low-public\",\"from\":\"chart-node-001\",\"to\":\"chart-node-002\",\"label\":\"broken\",\"confidence\":\"low\",\"public_chart\":true,\"source_id\":\"source-0001\"}\n"
+    },
+    "expected_errors": [
+      "low confidence chart edge must have public_chart false"
+    ]
+  },
+  {
+    "name": "chart-edge-public-missing-source-id",
+    "description": "A chart edge marked for public chart use has no source_id.",
+    "append_text": {
+      "chart_nodes.jsonl": "{\"id\":\"chart-node-001\",\"entity_id\":\"person-001\",\"label\":\"Person\",\"node_type\":\"person\"}\n{\"id\":\"chart-node-002\",\"entity_id\":\"organisation-001\",\"label\":\"Organisation\",\"node_type\":\"organisation\"}\n",
+      "chart_edges.jsonl": "{\"id\":\"chart-edge-public-missing-source\",\"from\":\"chart-node-001\",\"to\":\"chart-node-002\",\"label\":\"broken\",\"confidence\":\"medium\",\"public_chart\":true,\"source_id\":\"\"}\n"
+    },
+    "expected_errors": [
+      "public chart edge must have a non-empty source_id"
+    ]
   }
 ]

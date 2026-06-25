@@ -774,6 +774,22 @@ def validate_power_profile_chart_references(pack_dir: Path) -> list[str]:
         )
     )
 
+    for line_number, record in chart_edge_records:
+        confidence = record.get("confidence")
+        public_chart = record.get("public_chart")
+
+        if confidence == "low" and public_chart is not False:
+            errors.append(
+                f"{chart_edges_path}:{line_number}: low confidence chart edge must have public_chart false"
+            )
+
+        if public_chart is True:
+            source_id = record.get("source_id")
+            if not isinstance(source_id, str) or not source_id.strip():
+                errors.append(
+                    f"{chart_edges_path}:{line_number}: public chart edge must have a non-empty source_id"
+                )
+
     return errors
 
 
