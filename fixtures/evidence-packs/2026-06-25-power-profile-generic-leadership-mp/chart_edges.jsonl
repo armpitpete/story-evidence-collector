@@ -1,0 +1,1 @@
+{"id":"chart-edge-001","relationship_id":"relationship-001","from":"chart-node-001","to":"chart-node-002","label":"to-check","source_id":"source-001","confidence":"low","public_chart":false,"note":"Starter chart edge. Public chart edges need a source link and medium or high confidence."}
