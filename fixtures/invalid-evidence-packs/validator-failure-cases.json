@@ -198,5 +198,27 @@
     "expected_errors": [
       "duplicate pack-wide JSONL record id 'source-0001'"
     ]
+  },
+  {
+    "name": "chart-edge-unknown-from-node",
+    "description": "A Power Profile chart edge points from a chart node that does not exist.",
+    "append_text": {
+      "chart_nodes.jsonl": "{\"id\":\"chart-node-001\",\"entity_id\":\"person-001\",\"label\":\"Person\",\"node_type\":\"person\"}\n",
+      "chart_edges.jsonl": "{\"id\":\"chart-edge-missing-from\",\"from\":\"missing-chart-node\",\"to\":\"chart-node-001\",\"label\":\"broken\"}\n"
+    },
+    "expected_errors": [
+      "unknown from 'missing-chart-node'"
+    ]
+  },
+  {
+    "name": "chart-edge-unknown-to-node",
+    "description": "A Power Profile chart edge points to a chart node that does not exist.",
+    "append_text": {
+      "chart_nodes.jsonl": "{\"id\":\"chart-node-001\",\"entity_id\":\"person-001\",\"label\":\"Person\",\"node_type\":\"person\"}\n",
+      "chart_edges.jsonl": "{\"id\":\"chart-edge-missing-to\",\"from\":\"chart-node-001\",\"to\":\"missing-chart-node\",\"label\":\"broken\"}\n"
+    },
+    "expected_errors": [
+      "unknown to 'missing-chart-node'"
+    ]
   }
 ]
