@@ -95,6 +95,8 @@ The current v1 validator covers:
 - source authority source/claim cross-reference checks
 - claim evidence cross-reference checks
 - timeline source/claim cross-reference checks
+- Power Profile chart edge `from` / `to` node reference checks
+- chart publication flag safety checks
 - regression tests for known failure cases
 
 ## Next layer

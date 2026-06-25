@@ -50,7 +50,11 @@ Expected result:
     PASS: timeline-unknown-source-id
     PASS: denial-unknown-related-claim-id
     PASS: global-duplicate-record-id
-    All validator failure regression tests passed. Count: 20
+    PASS: chart-edge-unknown-from-node
+    PASS: chart-edge-unknown-to-node
+    PASS: chart-edge-low-confidence-public
+    PASS: chart-edge-public-missing-source-id
+    All validator failure regression tests passed. Count: 24
 
 ## Failure cases
 
@@ -267,6 +271,46 @@ It proves the validator rejects duplicate record IDs across different JSONL file
 Expected error fragment:
 
     duplicate pack-wide JSONL record id 'source-0001'
+
+### chart-edge-unknown-from-node
+
+This appends a chart edge with a `from` value that does not exist in `chart_nodes.jsonl`.
+
+It proves the validator rejects chart edges that start from a missing chart node.
+
+Expected error fragment:
+
+    unknown from 'missing-chart-node'
+
+### chart-edge-unknown-to-node
+
+This appends a chart edge with a `to` value that does not exist in `chart_nodes.jsonl`.
+
+It proves the validator rejects chart edges that point to a missing chart node.
+
+Expected error fragment:
+
+    unknown to 'missing-chart-node'
+
+### chart-edge-low-confidence-public
+
+This appends a low-confidence chart edge marked with `public_chart: true`.
+
+It proves the validator keeps low-confidence chart edges out of public chart output.
+
+Expected error fragment:
+
+    low confidence chart edge must have public_chart false
+
+### chart-edge-public-missing-source-id
+
+This appends a public chart edge without a non-empty `source_id`.
+
+It proves the validator rejects public chart edges that cannot be traced to a source reference.
+
+Expected error fragment:
+
+    public chart edge must have a non-empty source_id
 
 ## What these tests do not cover
 
