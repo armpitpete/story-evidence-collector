@@ -44,6 +44,10 @@ It means:
 - claim `weakened_by` values point to existing evidence records.
 - public timeline `source_id` values point to existing source records.
 - denial check `related_claim_id` values point to existing claim records.
+- Power Profile chart edge `from` values point to existing chart nodes when chart files are present.
+- Power Profile chart edge `to` values point to existing chart nodes when chart files are present.
+- low-confidence chart edges are not marked for public chart use.
+- public chart edges include a non-empty `source_id`.
 - known invalid pack shapes are covered by regression tests.
 
 ## What v1 validation does not guarantee
@@ -72,7 +76,7 @@ The v1 validator protects the foundation.
 
 It makes sure an evidence pack is structured enough to be checked, referenced, and extended safely.
 
-It prevents common structural problems from entering the project, including missing files, unsafe paths, broken JSONL records, missing record IDs, duplicate record IDs, pack-wide duplicate record IDs, evidence records pointing to missing source or claim records, source authority records pointing to missing source or claim records, claim records pointing to missing evidence records, and timeline records pointing to missing source or claim records.
+It prevents common structural problems from entering the project, including missing files, unsafe paths, broken JSONL records, missing record IDs, duplicate record IDs, pack-wide duplicate record IDs, evidence records pointing to missing source or claim records, source authority records pointing to missing source or claim records, claim records pointing to missing evidence records, timeline records pointing to missing source or claim records, chart edges pointing to missing chart nodes, and unsafe public chart flags.
 
 This gives later evidence tools a stable base to build on.
 
@@ -90,6 +94,9 @@ Evidence Pack v1 validation is good enough when:
 - source authority records point to existing source and claim records.
 - claim records point to existing evidence records.
 - timeline records point to existing source and claim records.
+- chart edges point to existing chart nodes when chart files are present.
+- low-confidence chart edges stay private.
+- public chart edges include a source reference.
 - the validator remains small, readable, and stdlib-only.
 
 v1 is not the final evidence system.

@@ -43,6 +43,10 @@ It checks:
 - claim `weakened_by` values point to existing evidence records.
 - public timeline `source_id` values point to existing source records.
 - denial check `related_claim_id` values point to existing claim records.
+- Power Profile chart edge `from` values point to existing chart nodes when chart files are present.
+- Power Profile chart edge `to` values point to existing chart nodes when chart files are present.
+- low-confidence chart edges are not marked for public chart use.
+- public chart edges include a non-empty `source_id`.
 
 It does not decide whether evidence is true.
 
@@ -69,11 +73,13 @@ From the repository root, run:
 
     python scripts\validate_all_evidence_packs.py
 
-Expected result while there are two fixture packs:
+Expected result while there are four fixture packs:
 
     PASS: fixtures\evidence-packs\2026-06-22-example-topic
     PASS: fixtures\evidence-packs\2026-06-24-story-evidence-collector-foundation
-    All evidence packs passed validation. Count: 2
+    PASS: fixtures\evidence-packs\2026-06-25-code-of-practice-statistics-method
+    PASS: fixtures\evidence-packs\2026-06-25-power-profile-generic-leadership-mp
+    All evidence packs passed validation. Count: 4
 
 ## Test validator failure cases
 
@@ -103,7 +109,11 @@ Expected result:
     PASS: timeline-unknown-source-id
     PASS: denial-unknown-related-claim-id
     PASS: global-duplicate-record-id
-    All validator failure regression tests passed. Count: 20
+    PASS: chart-edge-unknown-from-node
+    PASS: chart-edge-unknown-to-node
+    PASS: chart-edge-low-confidence-public
+    PASS: chart-edge-public-missing-source-id
+    All validator failure regression tests passed. Count: 24
 
 The failure tests build temporary invalid packs from the valid example fixture.
 
@@ -155,6 +165,9 @@ A passing check means:
 - source authority records point to existing source and claim records.
 - claim records point to existing evidence records.
 - timeline records point to existing source and claim records.
+- chart edges point to existing chart nodes when chart files are present.
+- low-confidence chart edges stay private.
+- public chart edges include a source reference.
 - known invalid pack shapes are still rejected.
 
 A passing check does not mean:
@@ -187,6 +200,8 @@ The current evidence pack chain is:
     -> source authority source/claim cross-reference checks
     -> claim evidence cross-reference checks
     -> timeline source/claim cross-reference checks
+    -> Power Profile chart node reference checks
+    -> chart publication flag safety checks
 
 ## Later improvements
 
