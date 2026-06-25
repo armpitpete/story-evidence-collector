@@ -40,23 +40,29 @@ It does not decide whether evidence is true, fair, complete, or publishable.
 
    This shows a validating Evidence Pack built from repository documentation, repository fixtures, and validator behaviour.
 
-6. `docs/evidence-pack-v1-validation-rules-summary.md`
+6. `fixtures/evidence-packs/2026-06-25-code-of-practice-statistics-method/`
+
+   Use this as the first controlled real/sandbox public-source method pack.
+
+   This shows a validating Evidence Pack built from one real public source while keeping the claim narrow and non-publishable.
+
+7. `docs/evidence-pack-v1-validation-rules-summary.md`
 
    Read this when you want the short summary of what v1 validation guarantees and what it does not guarantee.
 
-7. `docs/evidence-pack-validation-v1.md`
+8. `docs/evidence-pack-validation-v1.md`
 
    Read this when you want to run validation locally or understand the GitHub Actions check.
 
-8. `docs/evidence-pack-validator-failure-cases-v1.md`
+9. `docs/evidence-pack-validator-failure-cases-v1.md`
 
    Read this when you want to understand the invalid fixture cases and regression-test behaviour.
 
-9. `fixtures/invalid-evidence-packs/validator-failure-cases.json`
+10. `fixtures/invalid-evidence-packs/validator-failure-cases.json`
 
    Use this as the machine-readable list of known invalid pack shapes.
 
-10. `docs/proof-trail-schema-v1.md`
+11. `docs/proof-trail-schema-v1.md`
 
    Read this to understand the proof provenance structure used to preserve source chains, timestamps, records, and evidence traceability.
 
