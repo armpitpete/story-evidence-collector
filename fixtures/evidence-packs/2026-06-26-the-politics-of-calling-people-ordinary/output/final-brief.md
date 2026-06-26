@@ -10,15 +10,23 @@ The article argues that praise for ordinary people should not be accepted as mea
 
 It argues that the better test is what happens next: wages, rents, public services, housing, transport, energy, and workplace power.
 
+The first external source added to this pack is the ONS Household Costs Indices bulletin for January to March 2026.
+
+That source supports a narrower material-conditions point: household cost pressures can be examined through official statistics, including differences by household group and tenure type.
+
 ## What this proves
 
-This proves only what the article draft argues.
+This proves what the article draft argues.
 
-It proves that the Evidence Pack v1 structure can hold a small TWIS article proof trail with source, claim, evidence, authority, timeline, denial-check, review, and output records.
+It also proves that the Evidence Pack v1 structure can hold one external public source alongside the article-draft source.
+
+It supports the method that political language can be tested against material-condition evidence.
 
 ## What this does not prove
 
-This does not prove the external policy claims behind the article.
+This does not prove the full external policy claims behind the article.
+
+It does not prove wages, housing supply, transport quality, workplace power, or public service performance.
 
 It does not prove any politician's motive.
 
@@ -28,4 +36,4 @@ It does not prove that the article is fully sourced for publication.
 
 Not ready for publication.
 
-This is a controlled TWIS article/sandbox method pack.
+This is a controlled TWIS article/sandbox method pack with one external public source.
