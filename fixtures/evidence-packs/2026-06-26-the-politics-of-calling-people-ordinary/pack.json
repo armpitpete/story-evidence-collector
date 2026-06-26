@@ -1,0 +1,30 @@
+{
+  "pack_schema_version": "1",
+  "pack_id": "2026-06-26-the-politics-of-calling-people-ordinary",
+  "title": "The Politics of Calling People Ordinary Evidence Pack",
+  "status": "draft",
+  "created_at": "2026-06-26T08:00:00Z",
+  "updated_at": "2026-06-26T08:00:00Z",
+  "research_question": "Can the TWIS article claim that political praise for ordinary people should be judged against policy outcomes rather than tone alone?",
+  "scope": "Controlled TWIS article/sandbox pack using one article-draft source. This pack tests whether Evidence Pack v1 can hold a small article proof trail. It is not a full publication evidence pack.",
+  "editorial_risk": "low",
+  "publishability": "not_ready",
+  "human_review_required": true,
+  "records": {
+    "source_records": "sources/source-records.jsonl",
+    "source_authority_map": "sources/source-authority-map.jsonl",
+    "claim_records": "claims/claim-records.jsonl",
+    "evidence_items": "evidence/evidence-items.jsonl",
+    "search_diary": "search/search-diary.jsonl",
+    "negative_evidence_log": "search/negative-evidence-log.jsonl",
+    "public_record_timeline": "timeline/public-record-timeline.jsonl",
+    "denial_checks": "timeline/denial-checks.jsonl",
+    "human_review": "review/human-review.jsonl"
+  },
+  "outputs": {
+    "final_brief": "output/final-brief.md",
+    "evidence_summary": "output/evidence-summary.md",
+    "contradiction_brief": "output/contradiction-brief.md"
+  },
+  "notes": "First controlled TWIS article/sandbox Evidence Pack. It uses one article-draft source and makes only a narrow editorial-method claim."
+}
