@@ -77,6 +77,10 @@ It does not replace editorial judgement, source checking, archive checking, cont
 
 ## Current v1 status
 
+For the latest status and next use-case, see:
+
+- `docs/evidence-pack-current-status-v1.md`
+
 The current v1 validator covers:
 
 - manifest structure
