@@ -73,13 +73,14 @@ From the repository root, run:
 
     python scripts\validate_all_evidence_packs.py
 
-Expected result while there are four fixture packs:
+Expected result while there are five fixture packs:
 
     PASS: fixtures\evidence-packs\2026-06-22-example-topic
     PASS: fixtures\evidence-packs\2026-06-24-story-evidence-collector-foundation
     PASS: fixtures\evidence-packs\2026-06-25-code-of-practice-statistics-method
     PASS: fixtures\evidence-packs\2026-06-25-power-profile-generic-leadership-mp
-    All evidence packs passed validation. Count: 4
+    PASS: fixtures\evidence-packs\2026-06-26-the-politics-of-calling-people-ordinary
+    All evidence packs passed validation. Count: 5
 
 ## Test validator failure cases
 
