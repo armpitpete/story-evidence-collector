@@ -2,15 +2,18 @@
 
 This is the second controlled TWIS article/sandbox Evidence Pack.
 
-It uses one article-draft source:
+It uses:
 
 - TWIS draft article: `The West Built the Cheap China System. Now It Wants Poor People to Pay More.`
+- Reuters report: `EU to impose 3 euro duty on e-commerce parcels from July 2026.`
 
 The pack tests whether Evidence Pack v1 can preserve a small proof trail around a TWIS editorial claim about outsourced cheap production, direct cheap buying, and later political moves that can raise consumer costs.
 
 It is not a full publication evidence pack.
 
-It does not prove the whole trade, tariff, supply-chain, or cost-of-living argument. It records the narrow article-method claim that political criticism of cheap direct buying should be judged against the earlier system that encouraged cheap outsourced production and the later costs imposed on ordinary buyers.
+It now has one external source supporting the specific EU low-value parcel duty point.
+
+It does not prove the whole trade, tariff, supply-chain, or cost-of-living argument. It records the narrow article-method claim and one externally sourced factual component.
 
 ## Research question
 
@@ -21,8 +24,9 @@ Can the TWIS article claim that Western capitalism helped build the cheap China 
 In scope:
 
 - one TWIS article draft.
+- one Reuters external source.
 - one narrow editorial-method claim.
-- one evidence item.
+- one external factual claim.
 - basic source authority mapping.
 - basic timeline, denial-check, and human-review records.
 
@@ -39,7 +43,7 @@ Out of scope:
 This pack is good enough when it validates and clearly separates:
 
 - what the article argues.
-- what the pack proves structurally.
+- what the Reuters source supports.
 - what the pack does not prove.
 
 ## Validation
