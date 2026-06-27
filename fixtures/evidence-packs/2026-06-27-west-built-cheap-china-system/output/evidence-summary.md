@@ -34,8 +34,16 @@ Evidence: `evidence-20260627-004`
 
 The Guardian/IFS source supports general consumer-impact context: price rises on cheaper goods can hit lower-income households harder because those households depend more on low-cost options and have less room to absorb increases.
 
-The pack now has one article-draft source, one Reuters source for the specific duty point, one official EU source for policy context, and one consumer-impact context source.
+Source: `source-20260627-005`
 
-It still does not prove the full trade, supply-chain, corporate-responsibility, direct-platform-use, or measured EU-duty consumer-impact argument.
+Claim: `claim-20260627-005`
+
+Evidence: `evidence-20260627-005`
+
+The Reuters platform-use source supports general context that Shein and Temu increasingly appeal to shoppers earning less than 50000 dollars per year and that more low-income shoppers are buying online to find bargains.
+
+The pack now has one article-draft source, one Reuters source for the specific duty point, one official EU source for policy context, one consumer-impact context source, and one platform-use context source.
+
+It still does not prove the full trade, supply-chain, corporate-responsibility, UK low-income platform dependence, or measured EU-duty consumer-impact argument.
 
 Review status: needs human review before use outside repository testing.
