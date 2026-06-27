@@ -31,6 +31,12 @@ Current decision: not ready for publication.
 
 The pack now supports a cautious article-development route, but it still lacks direct evidence for EU parcel-duty pass-through, UK low-income platform dependence, measured harm to poorer consumers, and the full historic outsourcing argument.
 
+## Publication-gap checklist
+
+See `output/publication-gap-checklist.md` for the remaining gates before the article can be treated as publication-ready.
+
+The checklist tracks gaps in claim calibration, primary policy sourcing, direct platform-use evidence, customs-duty pass-through evidence, consumer-impact evidence, historic outsourcing evidence, contradiction checks, and human editorial review.
+
 ## Scope
 
 In scope:
@@ -42,6 +48,7 @@ In scope:
 - one Reuters platform-use context source.
 - one Reuters customs-duty pass-through context source.
 - one article-readiness summary.
+- one publication-gap checklist.
 - one narrow editorial-method claim.
 - one external factual claim.
 - one primary EU context claim.
@@ -72,6 +79,7 @@ This pack is good enough when it validates and clearly separates:
 - what the platform-use source supports.
 - what the pass-through source supports.
 - what the readiness summary recommends.
+- what the publication-gap checklist still requires.
 - what the pack does not prove.
 
 ## Validation
