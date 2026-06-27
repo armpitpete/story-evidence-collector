@@ -6,14 +6,15 @@ It uses:
 
 - TWIS draft article: `The West Built the Cheap China System. Now It Wants Poor People to Pay More.`
 - Reuters report: `EU to impose 3 euro duty on e-commerce parcels from July 2026.`
+- European Commission press release: `Commission announces actions for e-commerce imports.`
 
 The pack tests whether Evidence Pack v1 can preserve a small proof trail around a TWIS editorial claim about outsourced cheap production, direct cheap buying, and later political moves that can raise consumer costs.
 
 It is not a full publication evidence pack.
 
-It now has one external source supporting the specific EU low-value parcel duty point.
+It now has one Reuters source supporting the specific EU low-value parcel duty point and one official EU source supporting the wider low-value e-commerce import context.
 
-It does not prove the whole trade, tariff, supply-chain, or cost-of-living argument. It records the narrow article-method claim and one externally sourced factual component.
+It does not prove the whole trade, tariff, supply-chain, or cost-of-living argument. It records the narrow article-method claim, one Reuters-sourced factual component, and one official EU context component.
 
 ## Research question
 
@@ -25,8 +26,10 @@ In scope:
 
 - one TWIS article draft.
 - one Reuters external source.
+- one official European Commission source.
 - one narrow editorial-method claim.
 - one external factual claim.
+- one primary EU context claim.
 - basic source authority mapping.
 - basic timeline, denial-check, and human-review records.
 
@@ -44,6 +47,7 @@ This pack is good enough when it validates and clearly separates:
 
 - what the article argues.
 - what the Reuters source supports.
+- what the European Commission source supports.
 - what the pack does not prove.
 
 ## Validation
