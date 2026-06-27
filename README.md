@@ -132,6 +132,8 @@ pip install -r requirements.txt
 
 This opens a local Streamlit control panel.
 
+For plain-English steps, see the [Simple Mode user guide v1](docs/simple-mode-user-guide-v1.md).
+
 ```powershell
 py -m streamlit run .\twis_source_engine_ui_v24.py
 ```
