@@ -42,8 +42,16 @@ Evidence: `evidence-20260627-005`
 
 The Reuters platform-use source supports general context that Shein and Temu increasingly appeal to shoppers earning less than 50000 dollars per year and that more low-income shoppers are buying online to find bargains.
 
-The pack now has one article-draft source, one Reuters source for the specific duty point, one official EU source for policy context, one consumer-impact context source, and one platform-use context source.
+Source: `source-20260627-006`
 
-It still does not prove the full trade, supply-chain, corporate-responsibility, UK low-income platform dependence, or measured EU-duty consumer-impact argument.
+Claim: `claim-20260627-006`
+
+Evidence: `evidence-20260627-006`
+
+The Reuters pass-through source supports general customs-duty context: tariff costs can be borne by domestic firms and consumers, and import price increases can be passed through to consumers.
+
+The pack now has one article-draft source, one Reuters source for the specific duty point, one official EU source for policy context, one consumer-impact context source, one platform-use context source, and one customs-duty pass-through context source.
+
+It still does not prove the full trade, supply-chain, corporate-responsibility, UK low-income platform dependence, EU parcel-duty pass-through rate, or measured EU-duty consumer-impact argument.
 
 Review status: needs human review before use outside repository testing.
