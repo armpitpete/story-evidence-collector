@@ -18,6 +18,8 @@ The European Commission source supports the official EU context: around 4.6 bill
 
 The Guardian/IFS source supports general consumer-impact context: when cheaper goods rise faster than more expensive alternatives, lower-income households can be hit harder.
 
+The Reuters platform-use source supports general context that Shein and Temu appeal to lower-income bargain-seeking shoppers.
+
 ## What this proves
 
 This proves what the article draft argues.
@@ -28,7 +30,9 @@ It adds official EU context for the scale of low-value consignments and the cust
 
 It adds general consumer-impact context showing why price rises on cheaper goods can matter more for lower-income households.
 
-It proves that the Evidence Pack v1 structure can hold a second TWIS article proof trail with news, official EU, and consumer-impact sources.
+It adds general platform-use context showing that Shein and Temu are relevant to lower-income bargain-seeking shoppers.
+
+It proves that the Evidence Pack v1 structure can hold a second TWIS article proof trail with news, official EU, consumer-impact, and platform-use context sources.
 
 ## What this does not prove
 
@@ -38,7 +42,9 @@ It does not prove corporate motive.
 
 It does not prove exact consumer price effects from the EU parcel duty.
 
-It does not prove direct-from-China platform usage by poorer consumers.
+It does not prove UK low-income dependence on direct-from-China platforms.
+
+It does not prove measured pass-through from customs duty to consumer prices.
 
 It does not prove the article is fully sourced for publication.
 
