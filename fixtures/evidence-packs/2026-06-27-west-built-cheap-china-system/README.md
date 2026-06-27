@@ -23,6 +23,14 @@ It does not prove the whole trade, tariff, supply-chain, platform-use, pass-thro
 
 Can the TWIS article claim that Western capitalism helped build the cheap China production system and that later efforts to restrict or reprice cheap direct buying risk making poorer consumers pay more?
 
+## Article-readiness summary
+
+See `output/article-readiness-summary.md` for the current publication-readiness judgement.
+
+Current decision: not ready for publication.
+
+The pack now supports a cautious article-development route, but it still lacks direct evidence for EU parcel-duty pass-through, UK low-income platform dependence, measured harm to poorer consumers, and the full historic outsourcing argument.
+
 ## Scope
 
 In scope:
@@ -33,6 +41,7 @@ In scope:
 - one Guardian/IFS consumer-impact source.
 - one Reuters platform-use context source.
 - one Reuters customs-duty pass-through context source.
+- one article-readiness summary.
 - one narrow editorial-method claim.
 - one external factual claim.
 - one primary EU context claim.
@@ -62,6 +71,7 @@ This pack is good enough when it validates and clearly separates:
 - what the consumer-impact source supports.
 - what the platform-use source supports.
 - what the pass-through source supports.
+- what the readiness summary recommends.
 - what the pack does not prove.
 
 ## Validation
