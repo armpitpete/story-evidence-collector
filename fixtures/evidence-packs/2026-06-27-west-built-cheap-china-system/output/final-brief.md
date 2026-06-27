@@ -20,6 +20,8 @@ The Guardian/IFS source supports general consumer-impact context: when cheaper g
 
 The Reuters platform-use source supports general context that Shein and Temu appeal to lower-income bargain-seeking shoppers.
 
+The Reuters pass-through source supports general context that tariff and customs-duty costs can be borne by domestic firms and consumers, rather than absorbed entirely by foreign sellers.
+
 ## What this proves
 
 This proves what the article draft argues.
@@ -32,7 +34,9 @@ It adds general consumer-impact context showing why price rises on cheaper goods
 
 It adds general platform-use context showing that Shein and Temu are relevant to lower-income bargain-seeking shoppers.
 
-It proves that the Evidence Pack v1 structure can hold a second TWIS article proof trail with news, official EU, consumer-impact, and platform-use context sources.
+It adds general customs-duty pass-through context showing why import duties may become domestic business and consumer costs.
+
+It proves that the Evidence Pack v1 structure can hold a second TWIS article proof trail with news, official EU, consumer-impact, platform-use, and pass-through context sources.
 
 ## What this does not prove
 
@@ -44,7 +48,9 @@ It does not prove exact consumer price effects from the EU parcel duty.
 
 It does not prove UK low-income dependence on direct-from-China platforms.
 
-It does not prove measured pass-through from customs duty to consumer prices.
+It does not prove the EU low-value parcel duty pass-through rate.
+
+It does not prove measured pass-through from customs duty to consumer prices for this specific policy.
 
 It does not prove the article is fully sourced for publication.
 
