@@ -37,6 +37,12 @@ See `output/publication-gap-checklist.md` for the remaining gates before the art
 
 The checklist tracks gaps in claim calibration, primary policy sourcing, direct platform-use evidence, customs-duty pass-through evidence, consumer-impact evidence, historic outsourcing evidence, contradiction checks, and human editorial review.
 
+## Article rewrite plan
+
+See `output/article-rewrite-plan.md` for the recommended rewrite route.
+
+The plan keeps the central TWIS argument, but requires cautious wording unless stronger direct evidence is added.
+
 ## Scope
 
 In scope:
@@ -49,6 +55,7 @@ In scope:
 - one Reuters customs-duty pass-through context source.
 - one article-readiness summary.
 - one publication-gap checklist.
+- one article rewrite plan.
 - one narrow editorial-method claim.
 - one external factual claim.
 - one primary EU context claim.
@@ -80,6 +87,7 @@ This pack is good enough when it validates and clearly separates:
 - what the pass-through source supports.
 - what the readiness summary recommends.
 - what the publication-gap checklist still requires.
+- what the article rewrite plan recommends.
 - what the pack does not prove.
 
 ## Validation
