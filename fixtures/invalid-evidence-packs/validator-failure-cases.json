@@ -1,0 +1,246 @@
+[
+  {
+    "name": "missing-title",
+    "description": "A required top-level manifest field is missing.",
+    "remove": [
+      "title"
+    ],
+    "expected_errors": [
+      "pack.json: missing required field: title"
+    ]
+  },
+  {
+    "name": "unexpected-top-level-field",
+    "description": "The manifest contains a field not allowed by the schema.",
+    "add": {
+      "extra_field_that_should_fail": "no"
+    },
+    "expected_errors": [
+      "pack.json: unexpected field: extra_field_that_should_fail"
+    ]
+  },
+  {
+    "name": "invalid-status",
+    "description": "The manifest status is outside the allowed enum.",
+    "set": {
+      "status": "published"
+    },
+    "expected_errors": [
+      "pack.json.status: must be one of: active, archived, draft, in_review, reviewed"
+    ]
+  },
+  {
+    "name": "invalid-pack-id",
+    "description": "The manifest pack_id does not match the required readable ID shape.",
+    "set": {
+      "pack_id": "Bad Pack"
+    },
+    "expected_errors": [
+      "pack.json.pack_id: must match YYYY-MM-DD-topic-name using lowercase letters, numbers, and hyphens"
+    ]
+  },
+  {
+    "name": "absolute-record-path",
+    "description": "A record path is absolute instead of relative to the pack folder.",
+    "set": {
+      "records.source_records": "/tmp/source-records.jsonl"
+    },
+    "expected_errors": [
+      "records.source_records: path must be relative, got absolute path: /tmp/source-records.jsonl"
+    ]
+  },
+  {
+    "name": "bad-jsonl-line",
+    "description": "A referenced JSONL record file contains an invalid JSON line.",
+    "append_text": {
+      "sources/source-records.jsonl": "\n{bad json}\n"
+    },
+    "expected_errors": [
+      "invalid JSONL line"
+    ]
+  },
+  {
+    "name": "record-parent-traversal",
+    "description": "A record path tries to escape the evidence pack folder using parent traversal.",
+    "set": {
+      "records.source_records": "../outside/source-records.jsonl"
+    },
+    "expected_errors": [
+      "records.source_records: path must stay inside pack folder, got parent traversal: ../outside/source-records.jsonl"
+    ]
+  },
+  {
+    "name": "output-parent-traversal",
+    "description": "An output path tries to escape the evidence pack folder using parent traversal.",
+    "set": {
+      "outputs.final_brief": "outputs/../../outside/final-brief.md"
+    },
+    "expected_errors": [
+      "outputs.final_brief: path must stay inside pack folder, got parent traversal: outputs/../../outside/final-brief.md"
+    ]
+  },
+  {
+    "name": "jsonl-record-missing-id",
+    "description": "A JSONL record is an object but does not include the required id field.",
+    "append_text": {
+      "sources/source-records.jsonl": "\n{\"source_type\":\"dummy_document\",\"title\":\"Missing ID\"}\n"
+    },
+    "expected_errors": [
+      "JSONL record must have a non-empty string id"
+    ]
+  },
+  {
+    "name": "jsonl-record-not-object",
+    "description": "A JSONL line parses as JSON but is not an object record.",
+    "append_text": {
+      "sources/source-records.jsonl": "\n[\"not\", \"an\", \"object\"]\n"
+    },
+    "expected_errors": [
+      "JSONL record must be an object"
+    ]
+  },
+  {
+    "name": "jsonl-record-duplicate-id",
+    "description": "Two JSONL records use the same id in one referenced JSONL file.",
+    "append_text": {
+      "sources/source-records.jsonl": "\n{\"id\":\"duplicate-source-id\",\"source_type\":\"dummy_document\",\"title\":\"Duplicate ID One\"}\n{\"id\":\"duplicate-source-id\",\"source_type\":\"dummy_document\",\"title\":\"Duplicate ID Two\"}\n"
+    },
+    "expected_errors": [
+      "duplicate JSONL record id 'duplicate-source-id'"
+    ]
+  },
+  {
+    "name": "evidence-unknown-source-id",
+    "description": "An evidence item points to a source_id that does not exist in source records.",
+    "append_text": {
+      "evidence/evidence-items.jsonl": "\n{\"id\":\"evidence-missing-source\",\"source_id\":\"missing-source-id\",\"claim_id\":\"claim-0001\",\"summary\":\"Broken source reference.\"}\n"
+    },
+    "expected_errors": [
+      "unknown source_id 'missing-source-id'"
+    ]
+  },
+  {
+    "name": "evidence-unknown-claim-id",
+    "description": "An evidence item points to a claim_id that does not exist in claim records.",
+    "append_text": {
+      "evidence/evidence-items.jsonl": "\n{\"id\":\"evidence-missing-claim\",\"source_id\":\"source-0001\",\"claim_id\":\"missing-claim-id\",\"summary\":\"Broken claim reference.\"}\n"
+    },
+    "expected_errors": [
+      "unknown claim_id 'missing-claim-id'"
+    ]
+  },
+  {
+    "name": "authority-unknown-source-id",
+    "description": "A source authority map record points to a source_id that does not exist in source records.",
+    "append_text": {
+      "sources/source-authority-map.jsonl": "\n{\"id\":\"authority-missing-source\",\"source_id\":\"missing-source-id\",\"related_claim_id\":\"claim-0001\",\"source_role\":\"broken_reference\"}\n"
+    },
+    "expected_errors": [
+      "unknown source_id 'missing-source-id'"
+    ]
+  },
+  {
+    "name": "authority-unknown-related-claim-id",
+    "description": "A source authority map record points to a related_claim_id that does not exist in claim records.",
+    "append_text": {
+      "sources/source-authority-map.jsonl": "\n{\"id\":\"authority-missing-claim\",\"source_id\":\"source-0001\",\"related_claim_id\":\"missing-claim-id\",\"source_role\":\"broken_reference\"}\n"
+    },
+    "expected_errors": [
+      "unknown related_claim_id 'missing-claim-id'"
+    ]
+  },
+  {
+    "name": "claim-unknown-supported-by",
+    "description": "A claim record lists a supported_by evidence id that does not exist in evidence items.",
+    "append_text": {
+      "claims/claim-records.jsonl": "\n{\"id\":\"claim-missing-supported-evidence\",\"claim_text\":\"Broken supported_by reference.\",\"supported_by\":[\"missing-evidence-id\"],\"weakened_by\":[]}\n"
+    },
+    "expected_errors": [
+      "unknown supported_by item 'missing-evidence-id'"
+    ]
+  },
+  {
+    "name": "claim-unknown-weakened-by",
+    "description": "A claim record lists a weakened_by evidence id that does not exist in evidence items.",
+    "append_text": {
+      "claims/claim-records.jsonl": "\n{\"id\":\"claim-missing-weakened-evidence\",\"claim_text\":\"Broken weakened_by reference.\",\"supported_by\":[],\"weakened_by\":[\"missing-evidence-id\"]}\n"
+    },
+    "expected_errors": [
+      "unknown weakened_by item 'missing-evidence-id'"
+    ]
+  },
+  {
+    "name": "timeline-unknown-source-id",
+    "description": "A public timeline record points to a source_id that does not exist in source records.",
+    "append_text": {
+      "timeline/public-record-timeline.jsonl": "\n{\"id\":\"timeline-missing-source\",\"date\":\"2026-06-24\",\"event\":\"Broken source reference\",\"source_id\":\"missing-source-id\"}\n"
+    },
+    "expected_errors": [
+      "unknown source_id 'missing-source-id'"
+    ]
+  },
+  {
+    "name": "denial-unknown-related-claim-id",
+    "description": "A denial check record points to a related_claim_id that does not exist in claim records.",
+    "append_text": {
+      "timeline/denial-checks.jsonl": "\n{\"id\":\"denial-missing-claim\",\"related_claim_id\":\"missing-claim-id\",\"checked_statement\":\"Broken claim reference.\"}\n"
+    },
+    "expected_errors": [
+      "unknown related_claim_id 'missing-claim-id'"
+    ]
+  },
+  {
+    "name": "global-duplicate-record-id",
+    "description": "Two different JSONL record files use the same record id.",
+    "append_text": {
+      "claims/claim-records.jsonl": "\n{\"id\":\"source-0001\",\"claim_text\":\"Duplicate pack-wide ID.\"}\n"
+    },
+    "expected_errors": [
+      "duplicate pack-wide JSONL record id 'source-0001'"
+    ]
+  },
+  {
+    "name": "chart-edge-unknown-from-node",
+    "description": "A Power Profile chart edge points from a chart node that does not exist.",
+    "append_text": {
+      "chart_nodes.jsonl": "{\"id\":\"chart-node-001\",\"entity_id\":\"person-001\",\"label\":\"Person\",\"node_type\":\"person\"}\n",
+      "chart_edges.jsonl": "{\"id\":\"chart-edge-missing-from\",\"from\":\"missing-chart-node\",\"to\":\"chart-node-001\",\"label\":\"broken\"}\n"
+    },
+    "expected_errors": [
+      "unknown from 'missing-chart-node'"
+    ]
+  },
+  {
+    "name": "chart-edge-unknown-to-node",
+    "description": "A Power Profile chart edge points to a chart node that does not exist.",
+    "append_text": {
+      "chart_nodes.jsonl": "{\"id\":\"chart-node-001\",\"entity_id\":\"person-001\",\"label\":\"Person\",\"node_type\":\"person\"}\n",
+      "chart_edges.jsonl": "{\"id\":\"chart-edge-missing-to\",\"from\":\"chart-node-001\",\"to\":\"missing-chart-node\",\"label\":\"broken\"}\n"
+    },
+    "expected_errors": [
+      "unknown to 'missing-chart-node'"
+    ]
+  },
+  {
+    "name": "chart-edge-low-confidence-public",
+    "description": "A low-confidence chart edge is incorrectly marked for public chart use.",
+    "append_text": {
+      "chart_nodes.jsonl": "{\"id\":\"chart-node-001\",\"entity_id\":\"person-001\",\"label\":\"Person\",\"node_type\":\"person\"}\n{\"id\":\"chart-node-002\",\"entity_id\":\"organisation-001\",\"label\":\"Organisation\",\"node_type\":\"organisation\"}\n",
+      "chart_edges.jsonl": "{\"id\":\"chart-edge-low-public\",\"from\":\"chart-node-001\",\"to\":\"chart-node-002\",\"label\":\"broken\",\"confidence\":\"low\",\"public_chart\":true,\"source_id\":\"source-0001\"}\n"
+    },
+    "expected_errors": [
+      "low confidence chart edge must have public_chart false"
+    ]
+  },
+  {
+    "name": "chart-edge-public-missing-source-id",
+    "description": "A chart edge marked for public chart use has no source_id.",
+    "append_text": {
+      "chart_nodes.jsonl": "{\"id\":\"chart-node-001\",\"entity_id\":\"person-001\",\"label\":\"Person\",\"node_type\":\"person\"}\n{\"id\":\"chart-node-002\",\"entity_id\":\"organisation-001\",\"label\":\"Organisation\",\"node_type\":\"organisation\"}\n",
+      "chart_edges.jsonl": "{\"id\":\"chart-edge-public-missing-source\",\"from\":\"chart-node-001\",\"to\":\"chart-node-002\",\"label\":\"broken\",\"confidence\":\"medium\",\"public_chart\":true,\"source_id\":\"\"}\n"
+    },
+    "expected_errors": [
+      "public chart edge must have a non-empty source_id"
+    ]
+  }
+]

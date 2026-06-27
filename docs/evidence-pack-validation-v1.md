@@ -1,0 +1,217 @@
+# Evidence Pack Validation v1
+
+This note explains how to validate TWIS evidence packs locally and what the GitHub Actions check does.
+
+For the short v1 rules summary, see:
+
+    docs/evidence-pack-v1-validation-rules-summary.md
+
+## What validation checks
+
+The current validator checks structure only.
+
+It checks:
+
+- `pack.json` exists.
+- `pack.json` is valid JSON.
+- `pack.json` can be read even if a Windows tool added a UTF-8 BOM.
+- required manifest fields exist.
+- unexpected manifest fields are rejected.
+- manifest field values have the expected basic shape.
+- `pack_id` follows the v1 readable ID pattern.
+- `status`, `editorial_risk`, and `publishability` use allowed values.
+- `created_at` and `updated_at` look like ISO date-time strings.
+- `records` is an object.
+- required `records` fields exist.
+- unexpected `records` fields are rejected.
+- `outputs` is an object.
+- required `outputs` fields exist.
+- unexpected `outputs` fields are rejected.
+- paths listed in `records` and `outputs` are relative.
+- files listed in `records` exist.
+- files listed in `outputs` exist.
+- `.jsonl` files parse line by line.
+- each non-empty `.jsonl` line is a JSON object.
+- each `.jsonl` record has a non-empty string `id`.
+- JSONL record IDs are unique inside each `.jsonl` file.
+- JSONL record IDs are unique across the whole pack.
+- evidence `source_id` values point to existing source records.
+- evidence `claim_id` values point to existing claim records.
+- source authority `source_id` values point to existing source records.
+- source authority `related_claim_id` values point to existing claim records.
+- claim `supported_by` values point to existing evidence records.
+- claim `weakened_by` values point to existing evidence records.
+- public timeline `source_id` values point to existing source records.
+- denial check `related_claim_id` values point to existing claim records.
+- Power Profile chart edge `from` values point to existing chart nodes when chart files are present.
+- Power Profile chart edge `to` values point to existing chart nodes when chart files are present.
+- low-confidence chart edges are not marked for public chart use.
+- public chart edges include a non-empty `source_id`.
+
+It does not decide whether evidence is true.
+
+It does not decide whether a claim is fair.
+
+It does not decide whether an evidence pack is publishable.
+
+Editorial judgement still requires human review.
+
+## Validate one evidence pack
+
+From the repository root, run:
+
+    python scripts\validate_evidence_pack.py fixtures\evidence-packs\2026-06-22-example-topic
+
+Expected result:
+
+    Evidence pack validation passed.
+    Pack folder: fixtures\evidence-packs\2026-06-22-example-topic
+
+## Validate all fixture evidence packs
+
+From the repository root, run:
+
+    python scripts\validate_all_evidence_packs.py
+
+Expected result while there are six fixture packs:
+
+    PASS: fixtures\evidence-packs\2026-06-22-example-topic
+    PASS: fixtures\evidence-packs\2026-06-24-story-evidence-collector-foundation
+    PASS: fixtures\evidence-packs\2026-06-25-code-of-practice-statistics-method
+    PASS: fixtures\evidence-packs\2026-06-25-power-profile-generic-leadership-mp
+    PASS: fixtures\evidence-packs\2026-06-26-the-politics-of-calling-people-ordinary
+    PASS: fixtures\evidence-packs\2026-06-27-west-built-cheap-china-system
+    All evidence packs passed validation. Count: 6
+
+## Test validator failure cases
+
+From the repository root, run:
+
+    python scripts\test_evidence_pack_validator_failures.py
+
+Expected result:
+
+    PASS: missing-title
+    PASS: unexpected-top-level-field
+    PASS: invalid-status
+    PASS: invalid-pack-id
+    PASS: absolute-record-path
+    PASS: bad-jsonl-line
+    PASS: record-parent-traversal
+    PASS: output-parent-traversal
+    PASS: jsonl-record-missing-id
+    PASS: jsonl-record-not-object
+    PASS: jsonl-record-duplicate-id
+    PASS: evidence-unknown-source-id
+    PASS: evidence-unknown-claim-id
+    PASS: authority-unknown-source-id
+    PASS: authority-unknown-related-claim-id
+    PASS: claim-unknown-supported-by
+    PASS: claim-unknown-weakened-by
+    PASS: timeline-unknown-source-id
+    PASS: denial-unknown-related-claim-id
+    PASS: global-duplicate-record-id
+    PASS: chart-edge-unknown-from-node
+    PASS: chart-edge-unknown-to-node
+    PASS: chart-edge-low-confidence-public
+    PASS: chart-edge-public-missing-source-id
+    All validator failure regression tests passed. Count: 24
+
+The failure tests build temporary invalid packs from the valid example fixture.
+
+They do not keep broken evidence packs under `fixtures/evidence-packs/`.
+
+The failure cases are listed in:
+
+    fixtures/invalid-evidence-packs/validator-failure-cases.json
+
+The failure-case behaviour is documented in:
+
+    docs/evidence-pack-validator-failure-cases-v1.md
+
+## CI validation
+
+GitHub Actions runs Evidence Pack Validation on relevant pushes and pull requests.
+
+The workflow is:
+
+    .github/workflows/evidence-pack-validation.yml
+
+It runs when these paths change:
+
+- `fixtures/evidence-packs/**`
+- `fixtures/invalid-evidence-packs/**`
+- `scripts/validate_evidence_pack.py`
+- `scripts/validate_all_evidence_packs.py`
+- `scripts/test_evidence_pack_validator_failures.py`
+- `.github/workflows/evidence-pack-validation.yml`
+
+The CI commands are:
+
+    python scripts\validate_all_evidence_packs.py
+    python scripts\test_evidence_pack_validator_failures.py
+
+## What a passing check means
+
+A passing check means:
+
+- the pack folder can be found.
+- the manifest can be read.
+- the manifest follows the manually enforced v1 schema shape.
+- required files exist.
+- JSON and JSONL records are parseable.
+- JSONL records are objects with non-empty string IDs.
+- JSONL record IDs are unique inside each `.jsonl` file.
+- JSONL record IDs are unique across the whole pack.
+- evidence records point to existing source and claim records.
+- source authority records point to existing source and claim records.
+- claim records point to existing evidence records.
+- timeline records point to existing source and claim records.
+- chart edges point to existing chart nodes when chart files are present.
+- low-confidence chart edges stay private.
+- public chart edges include a source reference.
+- known invalid pack shapes are still rejected.
+
+A passing check does not mean:
+
+- the evidence is correct.
+- the interpretation is fair.
+- the article is ready.
+- the pack is safe to publish.
+- the proof trail has had human review.
+
+## Current validation chain
+
+The current evidence pack chain is:
+
+    docs
+    -> manifest schema
+    -> example fixture
+    -> single-pack validator
+    -> all-pack validator
+    -> GitHub Actions CI
+    -> validation documentation
+    -> schema validation inside validator
+    -> failure regression tests
+    -> failure-case documentation
+    -> path traversal safety checks
+    -> JSONL record ID checks
+    -> duplicate JSONL ID detection
+    -> pack-wide JSONL record ID detection
+    -> evidence source/claim cross-reference checks
+    -> source authority source/claim cross-reference checks
+    -> claim evidence cross-reference checks
+    -> timeline source/claim cross-reference checks
+    -> Power Profile chart node reference checks
+    -> chart publication flag safety checks
+
+## Later improvements
+
+Later versions may add:
+
+- full JSON Schema library support if stdlib-only manual validation becomes too limited.
+- broader cross-reference checks involving review records.
+- pack completeness scoring.
+- archive-link checks.
+- human-review gate checks.
+- publishability gate checks.

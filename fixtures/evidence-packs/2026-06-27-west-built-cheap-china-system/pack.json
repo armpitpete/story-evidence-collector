@@ -1,0 +1,30 @@
+{
+  "pack_schema_version": "1",
+  "pack_id": "2026-06-27-west-built-cheap-china-system",
+  "title": "The West Built the Cheap China System Evidence Pack",
+  "status": "draft",
+  "created_at": "2026-06-27T08:00:00Z",
+  "updated_at": "2026-06-27T16:30:00Z",
+  "research_question": "Can the TWIS article claim that Western capitalism helped build the cheap China production system and that later efforts to restrict or reprice cheap direct buying risk making poorer consumers pay more?",
+  "scope": "Controlled TWIS article/sandbox pack using one article-draft source, one Reuters duty source, one official European Commission source, one consumer-impact context source, one platform-use context source, one customs-duty pass-through context source, one auxiliary article-readiness summary, and one auxiliary publication-gap checklist. This pack tests whether Evidence Pack v1 can hold a second small article proof trail with news, official EU, consumer-impact, platform-use, pass-through, readiness, and publication-gap context. It is not a full publication evidence pack.",
+  "editorial_risk": "medium",
+  "publishability": "not_ready",
+  "human_review_required": true,
+  "records": {
+    "source_records": "sources/source-records.jsonl",
+    "source_authority_map": "sources/source-authority-map.jsonl",
+    "claim_records": "claims/claim-records.jsonl",
+    "evidence_items": "evidence/evidence-items.jsonl",
+    "search_diary": "search/search-diary.jsonl",
+    "negative_evidence_log": "search/negative-evidence-log.jsonl",
+    "public_record_timeline": "timeline/public-record-timeline.jsonl",
+    "denial_checks": "timeline/denial-checks.jsonl",
+    "human_review": "review/human-review.jsonl"
+  },
+  "outputs": {
+    "final_brief": "output/final-brief.md",
+    "evidence_summary": "output/evidence-summary.md",
+    "contradiction_brief": "output/contradiction-brief.md"
+  },
+  "notes": "Second controlled TWIS article/sandbox Evidence Pack. It uses one article-draft source, one Reuters duty source, one European Commission source, one Guardian/IFS consumer-impact context source, one Reuters platform-use context source, one Reuters tariff pass-through context source, one auxiliary article-readiness summary at output/article-readiness-summary.md, and one auxiliary publication-gap checklist at output/publication-gap-checklist.md. The pack remains not ready for publication. External evidence for historic outsourcing, corporate motive, UK low-income platform dependence, EU parcel-duty pass-through rate, and measured EU-duty consumer impact is still needed before publication use."
+}

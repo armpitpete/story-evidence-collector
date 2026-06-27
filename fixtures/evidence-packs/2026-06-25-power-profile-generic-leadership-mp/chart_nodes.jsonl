@@ -1,0 +1,2 @@
+{"id":"chart-node-001","entity_id":"person-001","label":"UK political leadership candidate or MP","node_type":"person","public_chart":true,"note":"Starter chart node."}
+{"id":"chart-node-002","entity_id":"organisation-001","label":"Organisation or interest to check","node_type":"organisation","public_chart":false,"note":"Starter placeholder node for a relationship target. Keep off public chart until sourced."}

@@ -1,0 +1,39 @@
+name: Evidence Pack Validation
+
+on:
+  push:
+    paths:
+      - "fixtures/evidence-packs/**"
+      - "fixtures/invalid-evidence-packs/**"
+      - "scripts/validate_evidence_pack.py"
+      - "scripts/validate_all_evidence_packs.py"
+      - "scripts/test_evidence_pack_validator_failures.py"
+      - ".github/workflows/evidence-pack-validation.yml"
+  pull_request:
+    paths:
+      - "fixtures/evidence-packs/**"
+      - "fixtures/invalid-evidence-packs/**"
+      - "scripts/validate_evidence_pack.py"
+      - "scripts/validate_all_evidence_packs.py"
+      - "scripts/test_evidence_pack_validator_failures.py"
+      - ".github/workflows/evidence-pack-validation.yml"
+
+jobs:
+  validate-evidence-packs:
+    name: Validate evidence packs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate all evidence packs
+        run: python scripts/validate_all_evidence_packs.py
+
+      - name: Test validator failure cases
+        run: python scripts/test_evidence_pack_validator_failures.py

@@ -6,6 +6,32 @@ It is being built step by step from a safe Scrapling parser demo.
 
 ## Current status
 
+### Evidence Pack v1 docs
+
+Start with the [Evidence Pack v1 docs index](docs/evidence-pack-v1-docs-index.md) for the current validation rules, failure-case documentation, validator usage, and related v1 documentation links.
+
+For the shortest first-use route, see [Create your first Evidence Pack v1](docs/create-your-first-evidence-pack-v1.md).
+
+For a copyable starter shape, see the [Evidence Pack starter template v1](docs/evidence-pack-starter-template-v1.md).
+
+For a working valid example, see `fixtures/evidence-packs/2026-06-22-example-topic/`.
+
+For the first repository-owned workflow proof pack, see `fixtures/evidence-packs/2026-06-24-story-evidence-collector-foundation/`.
+
+For the first controlled real/sandbox public-source method pack, see `fixtures/evidence-packs/2026-06-25-code-of-practice-statistics-method/`.
+
+For the practical steps to build a pack, see the [Evidence Pack v1 assembly guide](docs/evidence-pack-assembly-v1.md).
+
+For a compact checklist of the required Evidence Pack v1 validation rules, see the [v1 validation rules summary](docs/evidence-pack-v1-validation-rules-summary.md).
+
+For practical validator commands and usage notes, see the [Evidence Pack v1 validation guide](docs/evidence-pack-validation-v1.md).
+
+For the machine-readable Evidence Pack v1 manifest structure, see the [Evidence Pack manifest v1 JSON schema](schemas/evidence-pack-manifest-v1.schema.json).
+
+For the proof provenance structure, see the [Proof Trail schema notes](docs/proof-trail-schema-v1.md).
+
+For concrete examples of invalid packs and expected validator errors, see the [validator failure cases](docs/evidence-pack-validator-failure-cases-v1.md).
+
 The current version can:
 
 - read seed URLs from `seed_urls.json`
@@ -291,3 +317,33 @@ The v2.6 seed builder creates a separate seed file only. It does not overwrite `
 The v2.7 selected seed fetcher fetches seed URLs only, checks `robots.txt`, applies a default max-seed limit, and does not fetch queued links.
 
 The v2.7 interface is a local control panel. It is not a deployed app and does not run live crawling.
+
+---
+
+## Evidence Pack checklist
+
+Use the [Evidence Pack creation checklist](docs/evidence-pack-assembly-v1.md#evidence-pack-creation-checklist) before validating or sharing an evidence pack.
+
+---
+
+## Safe task helper
+
+Use `tools/task.ps1` for small branch-based repo tasks.
+
+The helper reduces repeated typing and stops early when the repo is not in the expected state.
+
+Available commands:
+
+- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 status`
+- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 start docs/example-branch-name`
+- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 review`
+- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 test`
+
+Use the helper for:
+
+- checking clean state
+- starting a small branch
+- reviewing diffs
+- running the evidence-pack validator tests
+
+The helper does not commit, push, or merge. Those steps remain manual.
