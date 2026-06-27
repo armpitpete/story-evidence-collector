@@ -16,6 +16,8 @@ The Reuters source supports one factual component: Reuters reported that EU fina
 
 The European Commission source supports the official EU context: around 4.6 billion low-value consignments with a value not exceeding 150 euros entered the EU market in 2024, and the Commission links this surge to customs reform, market fairness, compliance pressure, and environmental concerns.
 
+The Guardian/IFS source supports general consumer-impact context: when cheaper goods rise faster than more expensive alternatives, lower-income households can be hit harder.
+
 ## What this proves
 
 This proves what the article draft argues.
@@ -24,7 +26,9 @@ It also proves one Reuters-reported factual point about the EU low-value parcel 
 
 It adds official EU context for the scale of low-value consignments and the customs-reform framing.
 
-It proves that the Evidence Pack v1 structure can hold a second TWIS article proof trail with both a news source and an official EU source.
+It adds general consumer-impact context showing why price rises on cheaper goods can matter more for lower-income households.
+
+It proves that the Evidence Pack v1 structure can hold a second TWIS article proof trail with news, official EU, and consumer-impact sources.
 
 ## What this does not prove
 
@@ -32,9 +36,9 @@ This does not prove the article's wider historic outsourcing argument.
 
 It does not prove corporate motive.
 
-It does not prove exact consumer price effects.
+It does not prove exact consumer price effects from the EU parcel duty.
 
-It does not prove low-income household impact.
+It does not prove direct-from-China platform usage by poorer consumers.
 
 It does not prove the article is fully sourced for publication.
 
