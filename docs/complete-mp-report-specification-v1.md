@@ -149,6 +149,21 @@ A review decision records a human judgement about evidence quality, wording, ris
 
 The generator may display review decisions. It must not create them.
 
+## Contract enforcement
+
+The generator must validate every runtime input against `schemas/complete-mp-report-v1.schema.json` before applying cross-record checks.
+
+It must then enforce:
+
+- every `identity_source_ids` reference resolves to the source register;
+- every fact, claim, interpretation, relationship and gap is listed by exactly one section;
+- the listing section matches the record's own `section_id`;
+- orphan and multiply listed records are rejected;
+- a publishable report contains no claim with `public_wording_allowed: false`;
+- a publishable report has `approved_by` and `approved_at` values backed by a matching approved publication review decision.
+
+These are structural and publication-state checks. They do not prove that evidence is true.
+
 ## Publication states
 
 A report uses one publication state:
@@ -162,10 +177,12 @@ A report cannot be treated as `publishable` when:
 
 - any blocking coverage gap remains open;
 - any public claim is unsupported;
+- any claim is not authorised for public wording;
 - a high-risk interpretation lacks approval;
 - required human review is incomplete;
 - source references do not resolve;
-- required sections are absent.
+- required sections are absent;
+- no matching approved publication review decision exists.
 
 ## Output set
 
@@ -188,10 +205,11 @@ The Markdown files are views of the same records. They are not new evidence.
 The generator may:
 
 - validate required structure and cross-references;
+- apply the repository JSON Schema;
 - sort records deterministically;
 - render coverage and evidence summaries;
 - write the canonical output set;
-- stop on invalid references or duplicate IDs.
+- stop on invalid references, duplicate IDs or unsafe publication state.
 
 It must not:
 
@@ -222,12 +240,15 @@ The included fixture is deliberately not publication-ready. It proves the schema
 The v1 implementation is accepted when:
 
 1. the schema parses as valid JSON;
-2. the fixture parses as valid JSON;
+2. runtime input and the fixture are validated against the schema;
 3. all 13 canonical sections are present;
 4. duplicate record IDs are rejected;
 5. unresolved source, fact, claim and gap references are rejected;
-6. the generator writes all five outputs;
-7. repeated runs with the same input produce identical output;
-8. the fixture remains `not_ready`;
-9. no network or live-server access is used;
-10. generated prose does not claim source completeness beyond recorded coverage.
+6. identity source references are rejected when missing or unresolved;
+7. orphan, multiply listed and cross-section records are rejected;
+8. unsafe publishable states and untraceable approvals are rejected;
+9. the generator writes all five outputs;
+10. repeated runs with the same input produce identical output;
+11. the fixture remains `not_ready`;
+12. no network or live-server access is used;
+13. generated prose does not claim source completeness beyond recorded coverage.
