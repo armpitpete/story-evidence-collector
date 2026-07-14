@@ -20,6 +20,10 @@ from typing import Any
 SCHEMA_VERSION = "1"
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SCHEMA_PATH = ROOT / "schemas" / "complete-mp-report-v1.schema.json"
+DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+DATE_TIME_PATTERN = re.compile(
+    r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$"
+)
 
 CANONICAL_SECTIONS = (
     ("identity_and_parliamentary_career", "Identity and parliamentary career"),
@@ -123,9 +127,13 @@ def _resolve_local_ref(root_schema: dict[str, Any], reference: str) -> dict[str,
 def _valid_format(value: str, format_name: str) -> bool:
     try:
         if format_name == "date":
+            if DATE_PATTERN.fullmatch(value) is None:
+                return False
             date.fromisoformat(value)
             return True
         if format_name == "date-time":
+            if DATE_TIME_PATTERN.fullmatch(value) is None:
+                return False
             parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
             return parsed.tzinfo is not None
     except ValueError:
@@ -319,6 +327,25 @@ def require_refs(
             )
 
 
+def validate_evidence_grounding(
+    claims: list[dict[str, Any]],
+    interpretations: list[dict[str, Any]],
+) -> None:
+    for claim in claims:
+        if not claim["source_ids"] and not claim["fact_ids"]:
+            raise ReportValidationError(
+                f"Claim {claim['claim_id']} must reference at least one source or fact."
+            )
+
+    for interpretation in interpretations:
+        if not interpretation["fact_ids"] and not interpretation["claim_ids"]:
+            raise ReportValidationError(
+                "Interpretation "
+                f"{interpretation['interpretation_id']} must reference at least "
+                "one fact or claim."
+            )
+
+
 def validate_section_ownership(
     section_map: dict[str, dict[str, Any]],
     records: list[dict[str, Any]],
@@ -507,6 +534,7 @@ def validate_report(
     require_refs(claims, "fact_ids", fact_ids, "claim")
     require_refs(interpretations, "fact_ids", fact_ids, "interpretation")
     require_refs(interpretations, "claim_ids", claim_ids, "interpretation")
+    validate_evidence_grounding(claims, interpretations)
 
     for review in reviews:
         require_refs([review], "related_fact_ids", fact_ids, "review")
