@@ -1,0 +1,32 @@
+name: Complete MP report fixture test
+
+on:
+  pull_request:
+    paths:
+      - "docs/complete-mp-report-specification-v1.md"
+      - "schemas/complete-mp-report-v1.schema.json"
+      - "scripts/generate_complete_mp_report.py"
+      - "scripts/test_complete_mp_report_generator.py"
+      - "fixtures/complete-mp-reports/**"
+      - ".github/workflows/complete-mp-report-fixture-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fixture-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Run fixture test
+        run: python scripts/test_complete_mp_report_generator.py
