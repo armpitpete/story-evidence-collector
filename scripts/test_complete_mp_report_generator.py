@@ -65,6 +65,25 @@ def expect_rejected(
         )
 
 
+def add_grounded_interpretation(report: dict) -> None:
+    report["interpretations"].append(
+        {
+            "interpretation_id": "interpretation-test-grounded",
+            "section_id": "identity_and_parliamentary_career",
+            "statement": "Synthetic grounded interpretation for contract testing.",
+            "fact_ids": ["fact-fixture-member-id"],
+            "claim_ids": [],
+            "human_review_required": True,
+            "approved_for_publication": False,
+            "approved_by": None,
+            "notes": "Test-only record.",
+        }
+    )
+    section(report, "identity_and_parliamentary_career")[
+        "interpretation_ids"
+    ].append("interpretation-test-grounded")
+
+
 def make_publishable(report: dict) -> None:
     approval_time = "2026-07-14T13:00:00Z"
     report["publication"].update(
@@ -96,7 +115,7 @@ def make_publishable(report: dict) -> None:
             "related_fact_ids": [],
             "related_claim_ids": [],
             "related_gap_ids": [],
-            "notes": "Synthetic negative-test approval record.",
+            "notes": "Synthetic contract-test approval record.",
         }
     )
 
@@ -132,12 +151,40 @@ def test_happy_path(report: dict) -> None:
         )
 
 
+def test_safe_publishable_path(report: dict) -> None:
+    candidate = copy.deepcopy(report)
+    add_grounded_interpretation(candidate)
+    make_publishable(candidate)
+    validate_report(candidate)
+    assert candidate["publication"]["status"] == "publishable"
+
+
 def test_negative_cases(report: dict) -> None:
     expect_rejected(
         report,
         lambda candidate: candidate.__setitem__("unexpected", True),
         "Schema validation failed",
     )
+
+    def compact_date(candidate: dict) -> None:
+        candidate["scope"]["as_of_date"] = "20260714"
+
+    expect_rejected(report, compact_date, "not a valid date")
+
+    def week_date(candidate: dict) -> None:
+        candidate["scope"]["as_of_date"] = "2026-W29-2"
+
+    expect_rejected(report, week_date, "not a valid date")
+
+    def missing_timezone(candidate: dict) -> None:
+        candidate["generated_at"] = "2026-07-14T12:00:00"
+
+    expect_rejected(report, missing_timezone, "not a valid date-time")
+
+    def space_separated_datetime(candidate: dict) -> None:
+        candidate["generated_at"] = "2026-07-14 12:00:00Z"
+
+    expect_rejected(report, space_separated_datetime, "not a valid date-time")
 
     def duplicate_fact(candidate: dict) -> None:
         candidate["facts"].append(copy.deepcopy(candidate["facts"][0]))
@@ -171,6 +218,40 @@ def test_negative_cases(report: dict) -> None:
         candidate["sections"].pop()
 
     expect_rejected(report, missing_canonical_section, "Schema validation failed")
+
+    def ungrounded_claim(candidate: dict) -> None:
+        candidate["claims"][0]["source_ids"] = []
+        candidate["claims"][0]["fact_ids"] = []
+
+    expect_rejected(
+        report,
+        ungrounded_claim,
+        "must reference at least one source or fact",
+    )
+
+    def ungrounded_interpretation(candidate: dict) -> None:
+        candidate["interpretations"].append(
+            {
+                "interpretation_id": "interpretation-test-ungrounded",
+                "section_id": "public_positions_over_time",
+                "statement": "Synthetic ungrounded interpretation.",
+                "fact_ids": [],
+                "claim_ids": [],
+                "human_review_required": True,
+                "approved_for_publication": False,
+                "approved_by": None,
+                "notes": "",
+            }
+        )
+        section(candidate, "public_positions_over_time")[
+            "interpretation_ids"
+        ].append("interpretation-test-ungrounded")
+
+    expect_rejected(
+        report,
+        ungrounded_interpretation,
+        "must reference at least one fact or claim",
+    )
 
     def orphan_fact(candidate: dict) -> None:
         section(candidate, "identity_and_parliamentary_career")["fact_ids"].remove(
@@ -256,23 +337,10 @@ def test_negative_cases(report: dict) -> None:
     )
 
     def unapproved_interpretation(candidate: dict) -> None:
+        add_grounded_interpretation(candidate)
         make_publishable(candidate)
-        candidate["interpretations"].append(
-            {
-                "interpretation_id": "interpretation-test-unapproved",
-                "section_id": "public_positions_over_time",
-                "statement": "Synthetic interpretation for rejection testing.",
-                "fact_ids": [],
-                "claim_ids": [],
-                "human_review_required": True,
-                "approved_for_publication": False,
-                "approved_by": None,
-                "notes": "",
-            }
-        )
-        section(candidate, "public_positions_over_time")[
-            "interpretation_ids"
-        ].append("interpretation-test-unapproved")
+        candidate["interpretations"][0]["approved_for_publication"] = False
+        candidate["interpretations"][0]["approved_by"] = None
 
     expect_rejected(
         report,
@@ -311,6 +379,7 @@ def test_negative_cases(report: dict) -> None:
 def main() -> int:
     report = load_json(FIXTURE)
     test_happy_path(report)
+    test_safe_publishable_path(report)
     test_negative_cases(report)
     print("PASS: Complete MP Report v1 contract enforcement")
     return 0
