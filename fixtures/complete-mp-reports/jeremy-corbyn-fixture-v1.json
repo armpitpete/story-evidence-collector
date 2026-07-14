@@ -1,0 +1,561 @@
+{
+  "schema_version": "1",
+  "report_id": "complete-mp-corbyn-fixture-v1",
+  "title": "Complete MP Report fixture — Corbyn, Jeremy",
+  "generated_at": "2026-07-14T12:00:00Z",
+  "subject": {
+    "display_name": "Corbyn, Jeremy",
+    "sort_name": "Corbyn, Jeremy",
+    "parliament_member_id": "185",
+    "current_constituency": "",
+    "current_party": "",
+    "identity_status": "fixture_unverified",
+    "identity_source_ids": [
+      "source-mp-query-fixture"
+    ],
+    "notes": "Existing repository fixture only. Current identity, constituency and party must be refreshed from official sources before publication."
+  },
+  "scope": {
+    "scope_statement": "Fixture-only proof of the canonical Complete MP Report v1 structure and generator. It records existing repository coverage boundaries and leaves unresearched lanes visible.",
+    "as_of_date": "2026-07-14",
+    "geographic_scope": "UK Parliament public record",
+    "houses": [
+      "House of Commons"
+    ],
+    "career_start_date": "1983-06-09",
+    "career_end_date": null,
+    "notes": "Career start date is project-supplied fixture data and requires official verification."
+  },
+  "publication": {
+    "status": "not_ready",
+    "human_review_required": true,
+    "public_output_authorised": false,
+    "approved_by": null,
+    "approved_at": null,
+    "notes": "Fixture output must not be treated as a public profile."
+  },
+  "sections": [
+    {
+      "section_id": "identity_and_parliamentary_career",
+      "title": "Identity and parliamentary career",
+      "status": "partial",
+      "summary": "A repository fixture identifies the proof target, but current official identity and service data are not yet loaded.",
+      "fact_ids": [
+        "fact-fixture-member-id"
+      ],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-identity-refresh"
+      ]
+    },
+    {
+      "section_id": "roles_and_committees",
+      "title": "Roles and committees",
+      "status": "not_researched",
+      "summary": "No structured role or committee records are present.",
+      "fact_ids": [],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-roles"
+      ]
+    },
+    {
+      "section_id": "voting_record_and_coverage",
+      "title": "Voting record and coverage",
+      "status": "partial",
+      "summary": "Repository machinery exists for available Commons votes and controlled historic batches, but complete coverage is not established.",
+      "fact_ids": [
+        "fact-vote-workflow-exists",
+        "fact-historic-plan-range"
+      ],
+      "claim_ids": [
+        "claim-vote-coverage-partial"
+      ],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-historic-votes"
+      ]
+    },
+    {
+      "section_id": "financial_interests",
+      "title": "Financial interests",
+      "status": "not_researched",
+      "summary": "No official register records are present.",
+      "fact_ids": [],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-financial-interests"
+      ]
+    },
+    {
+      "section_id": "donations_and_political_finance",
+      "title": "Donations and political finance",
+      "status": "not_researched",
+      "summary": "No political-finance records are present.",
+      "fact_ids": [],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-donations"
+      ]
+    },
+    {
+      "section_id": "outside_work_and_company_links",
+      "title": "Outside work and company links",
+      "status": "not_researched",
+      "summary": "No outside-work or company-link records are present.",
+      "fact_ids": [],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-outside-work"
+      ]
+    },
+    {
+      "section_id": "speeches_and_questions",
+      "title": "Speeches and parliamentary questions",
+      "status": "not_researched",
+      "summary": "No Hansard or parliamentary-question records are present.",
+      "fact_ids": [],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-speeches-questions"
+      ]
+    },
+    {
+      "section_id": "public_positions_over_time",
+      "title": "Public positions over time",
+      "status": "not_researched",
+      "summary": "No reviewed position timeline is present.",
+      "fact_ids": [],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-positions"
+      ]
+    },
+    {
+      "section_id": "changes_and_contradictions",
+      "title": "Changes and contradictions",
+      "status": "human_review_required",
+      "summary": "No contradiction claim should be made until dated positions and explanations are reviewed.",
+      "fact_ids": [],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-contradictions"
+      ]
+    },
+    {
+      "section_id": "organisations_and_relationships",
+      "title": "Organisations and evidenced relationships",
+      "status": "not_researched",
+      "summary": "No real relationship records are present in the fixture.",
+      "fact_ids": [],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-relationships"
+      ]
+    },
+    {
+      "section_id": "evidence_gaps",
+      "title": "Evidence gaps",
+      "status": "partial",
+      "summary": "The fixture explicitly records major evidence and access gaps.",
+      "fact_ids": [
+        "fact-server-live-state-unverified"
+      ],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-server-inventory"
+      ]
+    },
+    {
+      "section_id": "source_register",
+      "title": "Source register",
+      "status": "partial",
+      "summary": "Repository artifacts are registered, but current authoritative public sources are not complete.",
+      "fact_ids": [],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-source-authority"
+      ]
+    },
+    {
+      "section_id": "human_review",
+      "title": "Human review",
+      "status": "human_review_required",
+      "summary": "Only the fixture boundary has been reviewed; substantive review remains outstanding.",
+      "fact_ids": [],
+      "claim_ids": [],
+      "interpretation_ids": [],
+      "relationship_ids": [],
+      "gap_ids": [
+        "gap-human-review"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "source-mp-query-fixture",
+      "title": "MP full vote query fixture",
+      "publisher": "Story Evidence Collector repository",
+      "source_type": "repository_fixture",
+      "authority_level": "fixture_only",
+      "url": "",
+      "repository_path": "mp_full_vote_query.json",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-14",
+      "coverage_from": null,
+      "coverage_to": null,
+      "checksum": "",
+      "limitations": "Contains project-supplied identity fields that explicitly require official verification."
+    },
+    {
+      "source_id": "source-vote-builder",
+      "title": "Available-source MP vote index builder",
+      "publisher": "Story Evidence Collector repository",
+      "source_type": "repository_fixture",
+      "authority_level": "fixture_only",
+      "url": "",
+      "repository_path": "build_mp_full_vote_index_v13.py",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-14",
+      "coverage_from": "2016-01-01",
+      "coverage_to": null,
+      "checksum": "",
+      "limitations": "Provides available Commons Votes API workflow, not verified complete career coverage."
+    },
+    {
+      "source_id": "source-parlparse-plan",
+      "title": "ParlParse import batch plan v1.9",
+      "publisher": "Story Evidence Collector repository",
+      "source_type": "repository_fixture",
+      "authority_level": "fixture_only",
+      "url": "",
+      "repository_path": "parlparse_import_batch_plan_v19.json",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-14",
+      "coverage_from": "2001-06-07",
+      "coverage_to": "2016-04-25",
+      "checksum": "",
+      "limitations": "A plan and controlled-batch model; it does not prove that the whole period was imported."
+    },
+    {
+      "source_id": "source-server-archive-plan",
+      "title": "Webmin server evidence archive plan",
+      "publisher": "Story Evidence Collector repository",
+      "source_type": "repository_fixture",
+      "authority_level": "fixture_only",
+      "url": "",
+      "repository_path": "docs/server-evidence-archive.md",
+      "server_path": "/srv/story-evidence-collector/",
+      "publication_date": null,
+      "capture_date": "2026-07-14",
+      "coverage_from": null,
+      "coverage_to": null,
+      "checksum": "",
+      "limitations": "Documents intended storage and recorded project boundaries; live server state remains unverified."
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "fact-fixture-member-id",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "The repository fixture uses Parliament member ID 185 for the proof target.",
+      "fact_type": "identity",
+      "date": null,
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-mp-query-fixture"
+      ],
+      "confidence": "medium",
+      "evidence_status": "fixture_unverified",
+      "notes": "Must be checked against the current official member record before publication."
+    },
+    {
+      "fact_id": "fact-vote-workflow-exists",
+      "section_id": "voting_record_and_coverage",
+      "statement": "The repository contains an available-source Commons Votes API index workflow for one MP.",
+      "fact_type": "coverage",
+      "date": null,
+      "date_from": "2016-01-01",
+      "date_to": null,
+      "source_ids": [
+        "source-vote-builder"
+      ],
+      "confidence": "high",
+      "evidence_status": "source_recorded",
+      "notes": "This records repository capability, not a complete current live dataset."
+    },
+    {
+      "fact_id": "fact-historic-plan-range",
+      "section_id": "voting_record_and_coverage",
+      "statement": "The controlled ParlParse batch plan covers the target period from 2001-06-07 to 2016-04-25.",
+      "fact_type": "coverage",
+      "date": null,
+      "date_from": "2001-06-07",
+      "date_to": "2016-04-25",
+      "source_ids": [
+        "source-parlparse-plan"
+      ],
+      "confidence": "high",
+      "evidence_status": "source_recorded",
+      "notes": "The plan does not prove that all batches were run."
+    },
+    {
+      "fact_id": "fact-server-live-state-unverified",
+      "section_id": "evidence_gaps",
+      "statement": "The current live contents and row counts of the private server evidence archive have not been verified in this session.",
+      "fact_type": "coverage",
+      "date": "2026-07-14",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-server-archive-plan"
+      ],
+      "confidence": "high",
+      "evidence_status": "source_recorded",
+      "notes": "A read-only local server inventory is prepared separately."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim-vote-coverage-partial",
+      "section_id": "voting_record_and_coverage",
+      "statement": "The existing voting lane is partial and must not yet be described as a complete career voting record.",
+      "claim_kind": "coverage_claim",
+      "status": "supported",
+      "source_ids": [
+        "source-vote-builder",
+        "source-parlparse-plan"
+      ],
+      "fact_ids": [
+        "fact-vote-workflow-exists",
+        "fact-historic-plan-range"
+      ],
+      "public_wording_allowed": true,
+      "risk_level": "low",
+      "notes": "This is a conservative coverage statement."
+    }
+  ],
+  "interpretations": [],
+  "relationships": [],
+  "coverage_gaps": [
+    {
+      "gap_id": "gap-identity-refresh",
+      "section_id": "identity_and_parliamentary_career",
+      "summary": "Current identity, constituency, party and service-period data have not been refreshed from an official source.",
+      "severity": "blocking",
+      "reason": "human_review_pending",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Import and review the official Parliament member identity and service record.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-roles",
+      "section_id": "roles_and_committees",
+      "summary": "Roles and committee memberships have not been researched.",
+      "severity": "high",
+      "reason": "not_researched",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Collect official role and committee histories with dates.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-historic-votes",
+      "section_id": "voting_record_and_coverage",
+      "summary": "Historic vote coverage is incomplete, including an unresolved 1983–2001 source gap and unrun or unverified 2001–2016 batches.",
+      "severity": "blocking",
+      "reason": "historic_gap",
+      "date_from": "1983-06-09",
+      "date_to": "2016-04-25",
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Verify the live server seed, complete controlled historic batches and document any irreducible gaps.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-financial-interests",
+      "section_id": "financial_interests",
+      "summary": "Register of Members’ Financial Interests records have not been collected.",
+      "severity": "high",
+      "reason": "not_researched",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Build a versioned official-register evidence lane.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-donations",
+      "section_id": "donations_and_political_finance",
+      "summary": "Political-finance and donation records have not been collected.",
+      "severity": "high",
+      "reason": "not_researched",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Import authoritative Electoral Commission records and resolve the subject identity.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-outside-work",
+      "section_id": "outside_work_and_company_links",
+      "summary": "Outside employment, directorship and company-link records have not been researched.",
+      "severity": "high",
+      "reason": "not_researched",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Collect declared outside work and verify any Companies House matches.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-speeches-questions",
+      "section_id": "speeches_and_questions",
+      "summary": "Hansard contributions and parliamentary questions have not been indexed.",
+      "severity": "high",
+      "reason": "not_researched",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Build bounded Hansard and parliamentary-question indexers.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-positions",
+      "section_id": "public_positions_over_time",
+      "summary": "Dated public positions have not been assembled into a reviewed timeline.",
+      "severity": "high",
+      "reason": "not_researched",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Define subjects, collect dated primary statements and link each position to evidence.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-contradictions",
+      "section_id": "changes_and_contradictions",
+      "summary": "No contradiction or change-over-time claims have been reviewed.",
+      "severity": "high",
+      "reason": "human_review_pending",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Compare dated records only after the position timeline is complete.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-relationships",
+      "section_id": "organisations_and_relationships",
+      "summary": "No real organisations or public relationships have been entered into this fixture.",
+      "severity": "medium",
+      "reason": "not_researched",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Add only defined, sourced public relationships and review chart eligibility.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-server-inventory",
+      "section_id": "evidence_gaps",
+      "summary": "The live server database, logs, backups and source counts remain unverified because access is restricted to localhost.",
+      "severity": "blocking",
+      "reason": "access_failure",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Run the prepared read-only inventory locally on the server and review its output.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-source-authority",
+      "section_id": "source_register",
+      "summary": "The fixture uses repository artifacts rather than a complete set of current primary public sources.",
+      "severity": "blocking",
+      "reason": "not_researched",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Replace fixture-only source records with authoritative public sources during the real proof build.",
+      "notes": ""
+    },
+    {
+      "gap_id": "gap-human-review",
+      "section_id": "human_review",
+      "summary": "No full factual, legal/reputational, interpretation or publication review has been completed.",
+      "severity": "blocking",
+      "reason": "human_review_pending",
+      "date_from": null,
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Complete all required review gates after evidence collection.",
+      "notes": ""
+    }
+  ],
+  "review_decisions": [
+    {
+      "review_id": "review-fixture-boundary",
+      "review_type": "publication",
+      "status": "changes_required",
+      "decision": "Keep the fixture not ready and private; it proves structure only.",
+      "reviewer": "Repository fixture authority",
+      "reviewed_at": "2026-07-14T12:00:00Z",
+      "related_fact_ids": [
+        "fact-fixture-member-id",
+        "fact-server-live-state-unverified"
+      ],
+      "related_claim_ids": [
+        "claim-vote-coverage-partial"
+      ],
+      "related_gap_ids": [
+        "gap-identity-refresh",
+        "gap-server-inventory",
+        "gap-human-review"
+      ],
+      "notes": "A real publication decision must be made by Merrin after the evidence and review lanes are complete."
+    }
+  ]
+}
