@@ -120,6 +120,19 @@ def make_publishable(report: dict) -> None:
     )
 
 
+def make_authoritative_test_records(report: dict) -> None:
+    report["subject"]["identity_status"] = "verified"
+    report["subject"]["current_constituency"] = "Synthetic test constituency"
+    report["subject"]["current_party"] = "Synthetic test party"
+    for source in report["sources"]:
+        source["source_type"] = "official_primary"
+        source["authority_level"] = "primary"
+        source["limitations"] = "Synthetic authoritative contract-test source."
+    for fact in report["facts"]:
+        fact["evidence_status"] = "verified"
+        fact["confidence"] = "high"
+
+
 def test_happy_path(report: dict) -> None:
     validate_report(report)
     assert report["publication"]["status"] == "not_ready"
@@ -153,10 +166,12 @@ def test_happy_path(report: dict) -> None:
 
 def test_safe_publishable_path(report: dict) -> None:
     candidate = copy.deepcopy(report)
+    make_authoritative_test_records(candidate)
     add_grounded_interpretation(candidate)
     make_publishable(candidate)
     validate_report(candidate)
     assert candidate["publication"]["status"] == "publishable"
+    assert candidate["subject"]["identity_status"] == "verified"
 
 
 def test_negative_cases(report: dict) -> None:
@@ -175,6 +190,11 @@ def test_negative_cases(report: dict) -> None:
         candidate["scope"]["as_of_date"] = "2026-W29-2"
 
     expect_rejected(report, week_date, "not a valid date")
+
+    def invalid_calendar_date(candidate: dict) -> None:
+        candidate["scope"]["as_of_date"] = "2026-02-30"
+
+    expect_rejected(report, invalid_calendar_date, "not a valid date")
 
     def missing_timezone(candidate: dict) -> None:
         candidate["generated_at"] = "2026-07-14T12:00:00"
