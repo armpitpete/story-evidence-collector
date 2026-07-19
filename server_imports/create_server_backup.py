@@ -112,10 +112,11 @@ def iter_source_entries(
         for name in sorted(directory_names):
             source = root / name
             relative = relative_root / name
-            if len(relative.parts) == 1 and name in excluded_top_level_names:
-                continue
             if source.is_symlink():
                 raise BackupError(f"archive contains a directory symlink: {relative}")
+            if len(relative.parts) == 1 and name in excluded_top_level_names:
+                yield "directory", source, relative
+                continue
             kept_directories.append(name)
             yield "directory", source, relative
         directory_names[:] = kept_directories
