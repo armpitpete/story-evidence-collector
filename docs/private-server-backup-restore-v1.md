@@ -25,7 +25,8 @@ It does not promote a restored snapshot into production.
 The backup creator:
 
 - reads the source archive without editing or deleting it;
-- excludes the backup store itself, preventing recursive backups;
+- excludes the contents of the backup store, preventing recursive backups;
+- preserves an empty `backups/` directory so a restored archive retains its expected structure;
 - rejects source symlinks and special files;
 - detects non-database files that change while being copied;
 - uses SQLite's online backup API for `db/mp_evidence_cache.sqlite`;
@@ -86,7 +87,7 @@ The regression suite proves:
 - a backup is created and verifies;
 - SQLite data survives a disposable restore;
 - file and directory modes survive;
-- the backup store and SQLite sidecars are excluded;
+- backup-store contents and SQLite sidecars are excluded while the empty `backups/` directory is preserved;
 - checksum corruption is detected;
 - manifest path traversal is rejected;
 - a damaged SQLite file is rejected even if its manifest hash is maliciously updated;
