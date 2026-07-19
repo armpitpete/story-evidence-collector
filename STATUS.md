@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: AUTHORISED
+status: AUTHORITATIVE
 authority_ref: main
 ---
 
@@ -11,39 +11,51 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Current baseline: `01d31bb9118d1fa40280ebd7aa5f55377b9e5a34`.
+- Release v1 implementation baseline: `b0a8c077339e75f2a19b222aa0efa946348bc179`.
+- Release contract: `docs/repository-release-contract-v1.md`.
 - Reviewed private-server inventory generated `2026-07-19T19:11:01+00:00` remains the authority for live archive state.
-- Repository release scope is a bounded public-source collection, draft Evidence Pack and deterministic report-generation toolkit. Evidence truth, political interpretation, publication approval and full historical source coverage remain human or data-availability responsibilities.
+- Repository Release v1 is complete as a bounded public-source collection, draft Evidence Pack, Proof Trail, deterministic report-generation and read-only archive-inspection toolkit.
 
 ## Current lane
 
-Reconcile repository release authority and validation. Replace stale README/version claims, correct Evidence Pack fixture/status documentation, define the v1 repository completion contract, and add one offline release-validation workflow that compiles Python and runs all deterministic core regression suites.
+Release v1 closure. No implementation lane is active. Further work requires a separately authorised post-release lane with its own bounded goal, allowed files, validation and stop point.
 
 ## Done
 
-- Project-control authority and CI are merged.
-- The read-only private-server inventory is merged, executed and reviewed.
-- Evidence Pack v1 manifest, validators, six controlled fixtures and validation workflow exist.
-- Proof Trail schema, writer and validator exist.
-- Complete MP Report v1 deterministic schema/generator fixture contract is merged.
-- The collector-to-Evidence-Pack bridge is merged as `01d31bb9118d1fa40280ebd7aa5f55377b9e5a34` and proves deterministic draft-pack generation from five repository-authoritative TWIS source records.
-- Generated bridge packs remain `draft`, `not_ready`, human-review required, and contain no generated claims, evidence conclusions or authority ratings.
-- Stale PRs #144 and #145 are closed as superseded.
+- Root project entry rules, singular completion authority and project-control CI are merged.
+- Bounded public-source collection, trace reporting, subject reporting and local Streamlit controls exist.
+- Evidence Pack v1 manifest, validators, failure regressions and six controlled packs are merged and passing.
+- The collector-to-Evidence-Pack bridge is merged and proves deterministic draft-pack creation from five controlled TWIS source records without generating claims, evidence conclusions or authority ratings.
+- Proof Trail v1 writer and validator are merged and pass the release smoke test.
+- Complete MP Report v1 schema, specification, deterministic generator, regression test and deliberately incomplete fixture are merged and passing.
+- Read-only private-server inventory tooling is merged, executed and reviewed.
+- README and Evidence Pack status documentation match current repository reality.
+- `docs/repository-release-contract-v1.md` defines repository completion separately from evidence completeness and publication approval.
+- Repository release validation passed on PR #155 exact head `4d88f7db667bee171e9332c5fdbbb0a50f5e5501` and merged as `b0a8c077339e75f2a19b222aa0efa946348bc179`.
+- Release validation covers Python compilation, all Evidence Packs, validator failure cases, Proof Trail, Complete MP Report, collector-to-pack integration and read-only inventory smoke testing.
+- Stale PRs #144 and #145 were closed as superseded; replacement and release PRs were merged.
 
 ## To do
 
-- Rewrite `README.md` around the current bounded product rather than the historical version ladder.
-- Document the current entry points: local Streamlit UI, public trace pipeline, selected-seed fetcher, collector-to-pack bridge, Evidence Pack validation, Proof Trail tools and Complete MP Report generator.
-- Correct Evidence Pack current-status documentation from five to six committed controlled packs and record the collector bridge.
-- Add a repository release contract defining what v1 is complete for and what it deliberately does not claim.
-- Add a release-validation workflow that runs Python compilation, all-pack validation, validator failure regressions, Complete MP Report fixture tests and collector-to-pack integration tests without network access.
-- Keep the private-server operational exceptions visible: empty raw stores, no backups, no validation logs, only 33 January 2003 ParlParse votes for one MP, all meanings needing review, and an unresolved server-only seed-row shape report.
-- Merge only after release validation and project-control CI pass.
+No repository work is required to complete Release v1.
+
+Reviewed post-release operational exceptions remain visible and must not be presented as completed evidence coverage or production durability:
+
+- private raw evidence areas are empty;
+- private-server validation logs are absent;
+- private-server backups are absent;
+- the SQLite cache contains one MP, 33 ParlParse divisions and 33 member votes covering 7–31 January 2003;
+- all 33 vote meanings remain `needs_review`;
+- the server-only January 2003 seed-row canonical-field report requires separate reconciliation;
+- no MP fixture is publication-ready;
+- every evidence truth, interpretation and publication decision remains subject to human review.
+
+These are post-release data, operations and editorial lanes. They do not reopen or invalidate the completed bounded repository release.
 
 ## Next bounded gate
 
-Create one release-reconciliation PR changing exactly `README.md`, `.github/workflows/repository-release-validation.yml`, `docs/evidence-pack-current-status-v1.md` and `docs/repository-release-contract-v1.md`; merge only after the full offline release workflow and project-control CI pass.
+None. Release v1 is closed. Begin another lane only through an explicit post-release authority update naming one bounded objective, such as backup and restore hardening, seed-row shape reconciliation, source coverage expansion, dependency maintenance or a specific defect exposed by real use.
 
 ## Stop point
 
-Do not change collector behaviour, evidence schemas, report schemas, fixtures, private-server data, seed rows, backup state, publication decisions or dependency versions; do not begin server hardening or another feature lane before release reconciliation is merged and this authority is synchronised.
+Do not infer complete evidence coverage, production backup readiness, completed MP research or publication approval from repository Release v1. Do not modify the completed release merely to continue activity; open a separate authorised post-release lane only when a concrete objective is selected.
