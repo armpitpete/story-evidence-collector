@@ -131,30 +131,47 @@ After the importer skeleton is merged, the next safe step is to test it on the s
 
 ## Controlled seed import
 
-The importer can check or import one small local seed rows file.
+The importer can check or import one small local seed rows file. Source-shaped batch rows may be paired with their reviewed batch manifest.
 
 Dry-run seed check:
 
-    python3 server_imports/build_server_evidence_cache.py \
-      --config server_imports/example_config.example.json \
-      --seed-id parlparse_2003_01 \
-      --seed-rows /path/to/local/rows.json
+```bash
+python3 server_imports/build_server_evidence_cache.py \
+  --config server_imports/example_config.example.json \
+  --seed-id parlparse_2003_01 \
+  --seed-rows /path/to/local/parlparse_2003_01_rows.json \
+  --seed-manifest /path/to/local/parlparse_2003_01_manifest.json
+```
 
 Apply seed import:
 
-    python3 server_imports/build_server_evidence_cache.py \
-      --config server_imports/example_config.example.json \
-      --seed-id parlparse_2003_01 \
-      --seed-rows /path/to/local/rows.json \
-      --apply
+```bash
+python3 server_imports/build_server_evidence_cache.py \
+  --config server_imports/example_config.example.json \
+  --seed-id parlparse_2003_01 \
+  --seed-rows /path/to/local/parlparse_2003_01_rows.json \
+  --seed-manifest /path/to/local/parlparse_2003_01_manifest.json \
+  --apply
+```
+
+### January 2003 shape boundary
+
+The generated ParlParse row artifact is a source-shaped batch:
+
+- `date` is normalised to SQLite `division_date`;
+- `recorded_side` is normalised to SQLite `recorded_vote` and `vote_side`;
+- `target_mp` and `target_member_id` may be supplied once by the reviewed batch manifest rather than repeated in every source row;
+- the original row is retained unchanged in `source_trace`;
+- ParlParse `meaning_quality` remains `needs_review`.
+
+The rows file is generated locally and is not a committed evidence artifact. The repository commits the parser, batch plan, manifest fixture, importer machinery and tests.
 
 Seed import rules:
 
-- dry-run is still the default
-- --apply is required before database rows are written
-- the rows file must already exist locally
-- no web fetch is performed
-- no bulk import is performed
-- ParlParse rows keep meaning_quality: needs_review
-- skipped rows are counted and reported
-- database files, logs, raw evidence, and server output must not be committed
+- dry-run is still the default;
+- `--apply` is required before database rows are written;
+- the rows and manifest files must already exist locally;
+- the manifest batch identity must match the selected seed ID;
+- no web fetch or bulk import is performed;
+- skipped rows are counted and reported;
+- database files, logs, generated rows, raw evidence and server output must not be committed.

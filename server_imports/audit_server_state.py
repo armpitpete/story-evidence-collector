@@ -27,6 +27,17 @@ DEFAULT_ARCHIVE_ROOT = Path("/srv/story-evidence-collector")
 DEFAULT_REPO_ROOT = Path("/home/storyevidence/story-evidence-collector")
 DEFAULT_DATABASE = Path("db/mp_evidence_cache.sqlite")
 DEFAULT_SEED_ROWS = Path("parlparse_batches/parlparse_2003_01_rows.json")
+DEFAULT_SEED_MANIFEST = Path("parlparse_batches/parlparse_2003_01_manifest.json")
+TARGET_MP_ALIASES = ("target_mp", "targetMp", "member_name", "memberName", "mp_name", "name")
+RECORDED_VOTE_ALIASES = (
+    "recorded_vote",
+    "recordedVote",
+    "vote",
+    "member_vote",
+    "memberVote",
+    "side",
+    "recorded_side",
+)
 EXPECTED_ARCHIVE_DIRS = (
     "raw",
     "raw/commons-votes",
@@ -283,12 +294,35 @@ def extract_rows_container(data: Any) -> list[dict[str, Any]]:
     return []
 
 
-def inspect_seed_rows(seed_path: Path) -> dict[str, Any]:
+def first_value(row: dict[str, Any], *keys: str) -> Any:
+    for key in keys:
+        value = row.get(key)
+        if value not in (None, ""):
+            return value
+    return ""
+
+
+def inspect_seed_rows(seed_path: Path, manifest_path: Path | None = None) -> dict[str, Any]:
+    manifest_file = (
+        path_summary(manifest_path, include_hash=manifest_path.is_file())
+        if manifest_path is not None
+        else {"path": "", "exists": False, "is_file": False, "is_dir": False}
+    )
     result: dict[str, Any] = {
         "file": path_summary(seed_path, include_hash=seed_path.is_file()),
+        "manifest": manifest_file,
         "row_count": 0,
+        "source_shape_missing_canonical_field_counts": {},
+        "normalised_missing_required_field_counts": {},
         "missing_required_field_counts": {},
         "meaning_quality_counts": {},
+        "normalisation": {
+            "classification": "not_available",
+            "target_mp_resolution": "unresolved",
+            "recorded_vote_resolution": "unresolved",
+            "source_trace_policy": "preserve_original_row",
+            "evidence_meaning_changed": False,
+        },
         "errors": [],
     }
     if not seed_path.is_file():
@@ -298,28 +332,74 @@ def inspect_seed_rows(seed_path: Path) -> dict[str, Any]:
         data = json.loads(seed_path.read_text(encoding="utf-8"))
         rows = extract_rows_container(data)
         result["row_count"] = len(rows)
-        required_groups = {
-            "division_id": ("division_id", "divisionId", "division_number", "source_division_id", "id"),
-            "division_date": ("division_date", "divisionDate", "date"),
-            "target_mp": ("target_mp", "targetMp", "member_name", "memberName", "mp_name", "name"),
-            "recorded_vote": ("recorded_vote", "recordedVote", "vote", "member_vote", "memberVote", "side"),
+
+        manifest: dict[str, Any] = {}
+        if manifest_path is not None and manifest_path.is_file():
+            manifest_data = json.loads(manifest_path.read_text(encoding="utf-8"))
+            if not isinstance(manifest_data, dict):
+                raise ValueError("Seed manifest JSON must be an object.")
+            manifest = manifest_data
+
+        canonical_fields = ("division_id", "division_date", "target_mp", "recorded_vote")
+        source_missing = {
+            field: sum(1 for row in rows if row.get(field) in (None, ""))
+            for field in canonical_fields
         }
-        for canonical, aliases in required_groups.items():
-            missing = 0
-            for row in rows:
-                if not any(row.get(alias) not in (None, "") for alias in aliases):
-                    missing += 1
-            result["missing_required_field_counts"][canonical] = missing
+        result["source_shape_missing_canonical_field_counts"] = source_missing
+
+        context_target_mp = first_value(manifest, *TARGET_MP_ALIASES)
+        required_resolvers = {
+            "division_id": lambda row: first_value(
+                row, "division_id", "divisionId", "division_number", "source_division_id", "id"
+            ),
+            "division_date": lambda row: first_value(row, "division_date", "divisionDate", "date"),
+            "target_mp": lambda row: first_value(row, *TARGET_MP_ALIASES) or context_target_mp,
+            "recorded_vote": lambda row: first_value(row, *RECORDED_VOTE_ALIASES),
+        }
+        normalised_missing = {
+            field: sum(1 for row in rows if resolver(row) in (None, ""))
+            for field, resolver in required_resolvers.items()
+        }
+        result["normalised_missing_required_field_counts"] = normalised_missing
+        result["missing_required_field_counts"] = dict(normalised_missing)
+
+        raw_target_rows = sum(1 for row in rows if first_value(row, *TARGET_MP_ALIASES))
+        recorded_side_rows = sum(1 for row in rows if row.get("recorded_side") not in (None, ""))
+        raw_recorded_vote_rows = sum(1 for row in rows if row.get("recorded_vote") not in (None, ""))
+        if rows and not any(normalised_missing.values()):
+            classification = "expected_source_import_distinction_with_explicit_normalisation_boundary"
+        else:
+            classification = "unresolved_missing_import_fields"
+        result["normalisation"] = {
+            "classification": classification,
+            "target_mp_resolution": (
+                "row"
+                if raw_target_rows == len(rows) and rows
+                else "manifest"
+                if context_target_mp and raw_target_rows < len(rows)
+                else "unresolved"
+            ),
+            "recorded_vote_resolution": (
+                "recorded_vote"
+                if raw_recorded_vote_rows == len(rows) and rows
+                else "recorded_side_alias"
+                if recorded_side_rows == len(rows) and rows
+                else "mixed_or_unresolved"
+            ),
+            "source_trace_policy": "preserve_original_row",
+            "evidence_meaning_changed": False,
+        }
 
         quality_counts: dict[str, int] = {}
         for row in rows:
             quality = str(row.get("meaning_quality") or row.get("meaningQuality") or "")
             quality_counts[quality] = quality_counts.get(quality, 0) + 1
         result["meaning_quality_counts"] = quality_counts
-    except (OSError, json.JSONDecodeError) as exc:
+    except (OSError, json.JSONDecodeError, ValueError) as exc:
         result["errors"].append(str(exc))
 
     return result
+
 
 
 def newest_files(path: Path, limit: int = 10) -> list[dict[str, Any]]:
@@ -345,6 +425,7 @@ def newest_files(path: Path, limit: int = 10) -> list[dict[str, Any]]:
 def collect_inventory(archive_root: Path, repo_root: Path) -> dict[str, Any]:
     database_path = archive_root / DEFAULT_DATABASE
     seed_path = repo_root / DEFAULT_SEED_ROWS
+    seed_manifest_path = repo_root / DEFAULT_SEED_MANIFEST
     disk: dict[str, Any] = {}
     if archive_root.exists():
         try:
@@ -389,7 +470,7 @@ def collect_inventory(archive_root: Path, repo_root: Path) -> dict[str, Any]:
         "expected_directories": directories,
         "raw_area_summaries": raw_summaries,
         "database": inspect_database(database_path),
-        "seed_rows": inspect_seed_rows(seed_path),
+        "seed_rows": inspect_seed_rows(seed_path, seed_manifest_path),
         "recent_import_logs": newest_files(archive_root / "logs/imports"),
         "recent_validation_logs": newest_files(archive_root / "logs/validation"),
         "recent_backups": newest_files(archive_root / "backups"),
@@ -527,23 +608,30 @@ def build_markdown(report: dict[str, Any]) -> str:
 
     seed = report["seed_rows"]
     seed_file = seed["file"]
+    manifest_file = seed.get("manifest", {})
+    normalisation = seed.get("normalisation", {})
     lines.append("## January 2003 seed rows")
     lines.append("")
     lines.append(markdown_table(
         ["Item", "Value"],
         [
-            ["Path", seed_file.get("path")],
-            ["Exists", seed_file.get("exists")],
-            ["Size", human_bytes(int(seed_file.get("size_bytes", 0))) if seed_file.get("size_bytes") is not None else ""],
-            ["Modified", seed_file.get("modified_at")],
-            ["SHA-256", seed_file.get("sha256", "")],
+            ["Rows path", seed_file.get("path")],
+            ["Rows file exists", seed_file.get("exists")],
+            ["Rows size", human_bytes(int(seed_file.get("size_bytes", 0))) if seed_file.get("size_bytes") is not None else ""],
+            ["Rows modified", seed_file.get("modified_at")],
+            ["Rows SHA-256", seed_file.get("sha256", "")],
+            ["Manifest path", manifest_file.get("path", "")],
+            ["Manifest exists", manifest_file.get("exists", False)],
             ["Rows", seed.get("row_count")],
-            ["Missing required fields", json.dumps(seed.get("missing_required_field_counts", {}), sort_keys=True)],
+            ["Raw exact canonical omissions", json.dumps(seed.get("source_shape_missing_canonical_field_counts", {}), sort_keys=True)],
+            ["Missing after normalisation", json.dumps(seed.get("normalised_missing_required_field_counts", {}), sort_keys=True)],
+            ["Boundary classification", normalisation.get("classification", "")],
+            ["Target MP resolution", normalisation.get("target_mp_resolution", "")],
+            ["Recorded vote resolution", normalisation.get("recorded_vote_resolution", "")],
             ["Meaning quality", json.dumps(seed.get("meaning_quality_counts", {}), sort_keys=True)],
         ],
     ))
     lines.append("")
-
     for heading, key in (
         ("Recent import logs", "recent_import_logs"),
         ("Recent validation logs", "recent_validation_logs"),
