@@ -155,9 +155,15 @@ def test_happy_path(work: Path) -> None:
     after = archive_fingerprint(archive)
     assert before == after, "backup creation changed source archive file content"
     assert backup.parent == archive / "backups"
+    manifest_entries = json.loads(
+        (backup / MANIFEST_NAME).read_text(encoding="utf-8")
+    )["entries"]
+    assert any(
+        entry.get("path") == "backups" and entry.get("type") == "directory"
+        for entry in manifest_entries
+    )
     assert not any(
-        entry.get("path", "").startswith("backups")
-        for entry in json.loads((backup / MANIFEST_NAME).read_text())["entries"]
+        entry.get("path", "").startswith("backups/") for entry in manifest_entries
     )
 
     report = verify_backup(backup)
@@ -167,6 +173,8 @@ def test_happy_path(work: Path) -> None:
     restored = work / "restored-archive"
     restore_report = restore_backup(backup, restored)
     assert restored.exists()
+    assert (restored / "backups").is_dir()
+    assert not any((restored / "backups").iterdir())
     assert restore_report["restored_verification"]["database_quick_check"] == ["ok"]
     assert archive_fingerprint(restored, include_database=False) == archive_fingerprint(
         archive, include_database=False
