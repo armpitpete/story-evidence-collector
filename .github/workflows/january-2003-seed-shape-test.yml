@@ -1,55 +1,42 @@
-name: Bootstrap January 2003 seed shape implementation
+name: January 2003 seed shape test
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    paths:
+      - "server_imports/build_server_evidence_cache.py"
+      - "server_imports/audit_server_state.py"
+      - "server_imports/README.md"
+      - "server_imports/example_config.example.json"
+      - "docs/january-2003-seed-row-shape-reconciliation.md"
+      - "scripts/test_january_2003_seed_shape.py"
+      - ".github/workflows/january-2003-seed-shape-test.yml"
+  push:
+    branches: [main]
+    paths:
+      - "server_imports/build_server_evidence_cache.py"
+      - "server_imports/audit_server_state.py"
+      - "server_imports/README.md"
+      - "server_imports/example_config.example.json"
+      - "docs/january-2003-seed-row-shape-reconciliation.md"
+      - "scripts/test_january_2003_seed_shape.py"
+      - ".github/workflows/january-2003-seed-shape-test.yml"
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  bootstrap:
-    if: github.head_ref == 'agent/reconcile-january-2003-seed-shape' && github.actor != 'github-actions[bot]'
+  reconcile-seed-shape:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
-      - name: Check out implementation branch
+      - name: Check out repository
         uses: actions/checkout@v4
-        with:
-          ref: agent/reconcile-january-2003-seed-shape
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-      - name: Keep workflow update outside the GitHub App push
-        shell: bash
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          path = Path('scripts/test_january_2003_seed_shape.py')
-          text = path.read_text(encoding='utf-8')
-          text = text.replace(
-              '    (ROOT / ".github/workflows/january-2003-seed-shape-test.yml").write_text(FINAL_WORKFLOW, encoding="utf-8")\n',
-              '',
-          )
-          text = text.replace(
-              '        ".github/workflows/january-2003-seed-shape-test.yml",\n',
-              '',
-          )
-          path.write_text(text, encoding='utf-8')
-          PY
-      - name: Apply, validate and commit bounded implementation
-        shell: bash
-        run: |
-          set +e
-          python scripts/test_january_2003_seed_shape.py --bootstrap > bootstrap.log 2>&1
-          status=$?
-          cat bootstrap.log
-          exit "$status"
-      - name: Upload bootstrap diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: january-2003-seed-shape-bootstrap-log
-          path: bootstrap.log
-          if-no-files-found: warn
+          python-version: "3.12"
+      - name: Compile reconciliation code
+        run: python -m py_compile server_imports/build_server_evidence_cache.py server_imports/audit_server_state.py scripts/test_january_2003_seed_shape.py
+      - name: Prove source-to-canonical mapping
+        run: python scripts/test_january_2003_seed_shape.py
