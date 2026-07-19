@@ -1,0 +1,89 @@
+name: Repository release validation
+
+on:
+  pull_request:
+    paths:
+      - "**/*.py"
+      - "fixtures/**"
+      - "schemas/**"
+      - "examples/**"
+      - "README.md"
+      - "docs/evidence-pack-current-status-v1.md"
+      - "docs/repository-release-contract-v1.md"
+      - ".github/workflows/repository-release-validation.yml"
+  push:
+    branches: [main]
+    paths:
+      - "**/*.py"
+      - "fixtures/**"
+      - "schemas/**"
+      - "examples/**"
+      - "README.md"
+      - "docs/evidence-pack-current-status-v1.md"
+      - "docs/repository-release-contract-v1.md"
+      - ".github/workflows/repository-release-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-release-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile Python sources
+        run: python -m compileall -q .
+
+      - name: Validate all Evidence Packs
+        run: python scripts/validate_all_evidence_packs.py
+
+      - name: Test Evidence Pack validator failures
+        run: python scripts/test_evidence_pack_validator_failures.py
+
+      - name: Test Proof Trail writer and validator
+        shell: bash
+        run: |
+          tmp="$(mktemp -d)"
+          python proof_trail_writer_v1.py \
+            --input examples/proof_trail_input_v1.json \
+            --output-dir "$tmp/evidence"
+          python proof_trail_validator_v1.py \
+            --evidence-dir "$tmp/evidence"
+
+      - name: Test Complete MP Report generator
+        run: python scripts/test_complete_mp_report_generator.py
+
+      - name: Test collector to Evidence Pack bridge
+        run: python scripts/test_collector_to_evidence_pack.py
+
+      - name: Smoke-test read-only server inventory
+        shell: bash
+        run: |
+          tmp="$(mktemp -d)"
+          python server_imports/audit_server_state.py \
+            --archive-root "$tmp/missing-archive" \
+            --repo-root "$tmp/missing-repository" \
+            --format json > "$tmp/inventory.json"
+          python - "$tmp/inventory.json" <<'PY'
+          import json
+          import sys
+
+          report = json.load(open(sys.argv[1], encoding="utf-8"))
+          assert report["audit"]["mode"] == "read_only"
+          assert report["audit"]["network_access_used"] is False
+          assert report["audit"]["archive_modified"] is False
+          assert report["audit"]["database_modified"] is False
+          assert report["archive_root"]["exists"] is False
+          assert report["repo_root"]["exists"] is False
+          print("PASS: read-only inventory missing-path smoke test")
+          PY
