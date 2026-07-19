@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: AUTHORITATIVE
+status: AUTHORISED
 authority_ref: main
 ---
 
@@ -11,51 +11,48 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Release v1 implementation baseline: `b0a8c077339e75f2a19b222aa0efa946348bc179`.
+- Completed Release v1 closure: `8e26eeb9c2a9153eb52c35e8286c0e9edf5f4e50`.
 - Release contract: `docs/repository-release-contract-v1.md`.
-- Reviewed private-server inventory generated `2026-07-19T19:11:01+00:00` remains the authority for live archive state.
-- Repository Release v1 is complete as a bounded public-source collection, draft Evidence Pack, Proof Trail, deterministic report-generation and read-only archive-inspection toolkit.
+- Reviewed private-server inventory generated `2026-07-19T19:11:01+00:00` is the authority for the archive state before this lane.
+- Release v1 remains complete; this is a separate post-release operational-hardening lane.
 
 ## Current lane
 
-Release v1 closure. No implementation lane is active. Further work requires a separately authorised post-release lane with its own bounded goal, allowed files, validation and stop point.
+Create and prove a verified, restorable backup of the private Story Evidence Collector archive without changing evidence meaning, importing sources, expanding coverage or restoring over the live archive.
 
 ## Done
 
-- Root project entry rules, singular completion authority and project-control CI are merged.
-- Bounded public-source collection, trace reporting, subject reporting and local Streamlit controls exist.
-- Evidence Pack v1 manifest, validators, failure regressions and six controlled packs are merged and passing.
-- The collector-to-Evidence-Pack bridge is merged and proves deterministic draft-pack creation from five controlled TWIS source records without generating claims, evidence conclusions or authority ratings.
-- Proof Trail v1 writer and validator are merged and pass the release smoke test.
-- Complete MP Report v1 schema, specification, deterministic generator, regression test and deliberately incomplete fixture are merged and passing.
-- Read-only private-server inventory tooling is merged, executed and reviewed.
-- README and Evidence Pack status documentation match current repository reality.
-- `docs/repository-release-contract-v1.md` defines repository completion separately from evidence completeness and publication approval.
-- Repository release validation passed on PR #155 exact head `4d88f7db667bee171e9332c5fdbbb0a50f5e5501` and merged as `b0a8c077339e75f2a19b222aa0efa946348bc179`.
-- Release validation covers Python compilation, all Evidence Packs, validator failure cases, Proof Trail, Complete MP Report, collector-to-pack integration and read-only inventory smoke testing.
-- Stale PRs #144 and #145 were closed as superseded; replacement and release PRs were merged.
+- Repository Release v1 is complete and authoritative.
+- The private archive exists at `/srv/story-evidence-collector` with restricted permissions.
+- The SQLite cache opens read-only and passed `PRAGMA quick_check` with `ok`.
+- Current evidence remains limited to one MP, 33 January 2003 ParlParse divisions and 33 member votes, all `needs_review`.
+- The reviewed inventory found no existing backups and no validation logs.
 
 ## To do
 
-No repository work is required to complete Release v1.
-
-Reviewed post-release operational exceptions remain visible and must not be presented as completed evidence coverage or production durability:
-
-- private raw evidence areas are empty;
-- private-server validation logs are absent;
-- private-server backups are absent;
-- the SQLite cache contains one MP, 33 ParlParse divisions and 33 member votes covering 7–31 January 2003;
-- all 33 vote meanings remain `needs_review`;
-- the server-only January 2003 seed-row canonical-field report requires separate reconciliation;
-- no MP fixture is publication-ready;
-- every evidence truth, interpretation and publication decision remains subject to human review.
-
-These are post-release data, operations and editorial lanes. They do not reopen or invalidate the completed bounded repository release.
+- Add a backup creator that snapshots the private archive into an atomic timestamped backup directory.
+- Use SQLite's backup API for a consistent database copy rather than copying a potentially live database file directly.
+- Exclude the backup store itself to prevent recursive backups.
+- Generate a manifest containing relative paths, sizes and SHA-256 checksums.
+- Add a verifier/restorer that validates the manifest and restores only into a new disposable target directory.
+- Refuse destination overwrite, path traversal, checksum mismatch and damaged SQLite backups.
+- Add deterministic temporary-directory regression tests covering backup, verification, disposable restore, source preservation, corruption detection and overwrite refusal.
+- Add operator documentation and a dedicated offline GitHub Actions workflow.
+- Merge the repository implementation only after project-control and backup/restore tests pass.
+- Run the merged tooling once on the private server and review the resulting backup and disposable restore before closing this lane.
 
 ## Next bounded gate
 
-None. Release v1 is closed. Begin another lane only through an explicit post-release authority update naming one bounded objective, such as backup and restore hardening, seed-row shape reconciliation, source coverage expansion, dependency maintenance or a specific defect exposed by real use.
+Open one implementation PR from current `main` changing exactly:
+
+- `server_imports/create_server_backup.py`;
+- `server_imports/verify_restore_server_backup.py`;
+- `scripts/test_server_backup_restore.py`;
+- `docs/private-server-backup-restore-v1.md`;
+- `.github/workflows/server-backup-restore-test.yml`.
+
+Merge only after the exact five-file diff and both workflows pass.
 
 ## Stop point
 
-Do not infer complete evidence coverage, production backup readiness, completed MP research or publication approval from repository Release v1. Do not modify the completed release merely to continue activity; open a separate authorised post-release lane only when a concrete objective is selected.
+Do not delete old files, implement retention deletion, overwrite the live archive, alter evidence records, repair the January 2003 seed shape, review vote meanings, expand MP coverage, import sources or begin another post-release lane. After repository merge, stop only for the private-server backup and disposable-restore execution result.
