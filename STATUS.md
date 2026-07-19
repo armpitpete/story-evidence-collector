@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: BLOCKED
+status: AUTHORISED
 authority_ref: main
 ---
 
@@ -11,37 +11,41 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Current implementation merge: `12e149e6829d00433be45476e2af2a3eeb246007`.
-- Merged server-inventory blobs: documentation `90b448f430e86af981d027f4cdcec4053bd2f332`; script `68651b885831ebc1ed7e0dfac56534eb6cb1b716`.
-- Waiting supporting authority: PR #145 at exact head `ced084e95c76eb6ba0049b44e88bfeceeb02e0c1`.
+- Current baseline: `c0b6a8ee99101bfe3faf368d1d2d587b0edf3aed`.
+- Reviewed private-server inventory generated `2026-07-19T19:11:01+00:00` from a clean `main` checkout at that exact commit.
+- Active supporting authority: PR #145 at exact head `ced084e95c76eb6ba0049b44e88bfeceeb02e0c1`, limited to the six-file Complete MP Report v1 schema, generator, fixture, test, specification and workflow.
 
 ## Current lane
 
-Execute the merged read-only server inventory on the private Story Evidence Collector server, review the output for sensitivity and correctness, and record a non-sensitive inventory result. PR #145 remains waiting and must not be modified or promoted before this execution result is reviewed.
+Rebuild PR #145 on the current `main` without changing its fixture-only boundary. The Complete MP Report v1 lane may define and validate deterministic report structure, but it must not claim complete evidence coverage, refresh identity data, import sources, publish a profile or alter the private archive.
 
 ## Done
 
-- PR #146 merged as `a30a72b4bed14bc76b4f4ae2c0cdbc83527a49bf`, establishing project entry rules, singular completion authority and project-control CI.
-- PR #147 merged as `0e2fb217d5af88a105209005d1b44952090c5c61`, selecting the server inventory as the active lane.
-- PR #148 rebuilt the exact two-file PR #144 scope on current `main` and merged as `12e149e6829d00433be45476e2af2a3eeb246007`.
-- Python 3.12 compilation and a missing-path read-only smoke test passed for the unchanged audit-script blob.
-- Final-head project-control CI passed and the final PR #148 diff contained only the two authorised files.
+- Project-control authority and CI are merged.
+- The read-only server inventory implementation is merged and was executed successfully on the private server.
+- The archive root and all expected private folders exist with restricted permissions.
+- The SQLite evidence cache opens read-only and passes `PRAGMA quick_check` with `ok`.
+- Current database coverage is one MP, 33 divisions and 33 member votes from ParlParse, covering `2003-01-07` through `2003-01-31`.
+- All 33 current vote meanings remain `needs_review`.
+- Raw evidence folders are empty; no validation logs or backups were found.
+- The January 2003 seed contains 33 rows, but the inventory's canonical-field check reports `recorded_vote` and `target_mp` absent in all 33 source rows; this remains an explicit data-shape exception and must not be hidden.
+- No audit errors were recorded, and the server repository checkout was clean on `main`.
 - Stale PR #144 was closed as superseded.
 
 ## To do
 
-- On the private server, inspect the repository checkout as user `storyevidence` and stop if the working tree is not clean.
-- Fast-forward the server checkout to `main` commit `12e149e6829d00433be45476e2af2a3eeb246007` without discarding local changes.
-- Run `python3 server_imports/audit_server_state.py > /home/storyevidence/SERVER_EVIDENCE_INVENTORY.md`.
-- Run `python3 server_imports/audit_server_state.py --format json > /home/storyevidence/SERVER_EVIDENCE_INVENTORY.json`.
-- Review both outputs before sharing; do not expose raw evidence, private paths beyond those already documented, secrets, credentials or private keys.
-- Record a bounded non-sensitive result covering database integrity, table and row counts, source systems, date range, distinct MP count, seed-row state, disk space, logs, backups and repository state.
-- Synchronise this status after the reviewed server result, then decide whether PR #145 can become the next active lane.
+- Recreate exactly the six files from PR #145 on a new branch from current `main`.
+- Preserve the fixture states `fixture_unverified`, `not_ready`, `public_output_authorised: false` and mandatory human review.
+- Run the Complete MP Report fixture workflow and project-control CI.
+- Review the exact six-file diff and merge the rebuilt PR if validation passes.
+- Close PR #145 as superseded after the replacement merges.
+- Synchronise this authority after merge and select the next bounded integration lane.
+- Keep the missing backups, missing validation logs, empty raw stores, January 2003 seed-shape exception and limited vote coverage visible as unresolved operational work.
 
 ## Next bounded gate
 
-A human with private-server access must run the merged inventory at exact main commit `12e149e6829d00433be45476e2af2a3eeb246007` and return the reviewed Markdown or JSON report for repository reconciliation.
+Create a current-main replacement for PR #145 containing exactly `.github/workflows/complete-mp-report-fixture-test.yml`, `docs/complete-mp-report-specification-v1.md`, `schemas/complete-mp-report-v1.schema.json`, `scripts/generate_complete_mp_report.py`, `scripts/test_complete_mp_report_generator.py` and `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`; merge only after both workflows pass and the final diff remains exact.
 
 ## Stop point
 
-Do not modify, refresh or merge PR #145, expand MP evidence coverage, add collector features, publish inventory output, or begin another lane until the private-server report has been reviewed and this authority has been synchronised.
+Do not represent the fixture as a completed MP report, mark it publishable, research or refresh Jeremy Corbyn data, import evidence, modify the private server, repair the seed-data exception, add backups, expand collector functionality or begin another lane before the rebuilt Complete MP Report v1 contract is merged and this authority is synchronised.
