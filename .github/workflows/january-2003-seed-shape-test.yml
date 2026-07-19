@@ -1,0 +1,26 @@
+name: Bootstrap January 2003 seed shape implementation
+
+on:
+  push:
+    branches:
+      - agent/reconcile-january-2003-seed-shape
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out implementation branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/reconcile-january-2003-seed-shape
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply, validate and commit bounded implementation
+        run: python scripts/test_january_2003_seed_shape.py --bootstrap
