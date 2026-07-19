@@ -13,6 +13,7 @@
   },
   "seed_import": {
     "seed_id": "parlparse_2003_01",
-    "rows_path": ""
+    "rows_path": "",
+    "manifest_path": ""
   }
 }

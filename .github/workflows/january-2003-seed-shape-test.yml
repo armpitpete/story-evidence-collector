@@ -1,0 +1,42 @@
+name: January 2003 seed shape test
+
+on:
+  pull_request:
+    paths:
+      - "server_imports/build_server_evidence_cache.py"
+      - "server_imports/audit_server_state.py"
+      - "server_imports/README.md"
+      - "server_imports/example_config.example.json"
+      - "docs/january-2003-seed-row-shape-reconciliation.md"
+      - "scripts/test_january_2003_seed_shape.py"
+      - ".github/workflows/january-2003-seed-shape-test.yml"
+  push:
+    branches: [main]
+    paths:
+      - "server_imports/build_server_evidence_cache.py"
+      - "server_imports/audit_server_state.py"
+      - "server_imports/README.md"
+      - "server_imports/example_config.example.json"
+      - "docs/january-2003-seed-row-shape-reconciliation.md"
+      - "scripts/test_january_2003_seed_shape.py"
+      - ".github/workflows/january-2003-seed-shape-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reconcile-seed-shape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile reconciliation code
+        run: python -m py_compile server_imports/build_server_evidence_cache.py server_imports/audit_server_state.py scripts/test_january_2003_seed_shape.py
+      - name: Prove source-to-canonical mapping
+        run: python scripts/test_january_2003_seed_shape.py

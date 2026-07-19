@@ -9,6 +9,7 @@ evidence pipeline. It is deliberately cautious:
 - writes are restricted to the configured archive root
 - database creation requires --apply --init-db
 - seed imports require an explicit local rows file
+- source-shaped batches may use an explicit reviewed manifest for batch context
 - an import/check log is written when the log directory is writable
 """
 
@@ -27,9 +28,22 @@ from pathlib import Path
 from typing import Any
 
 IMPORTER_NAME = "build_server_evidence_cache"
-IMPORTER_VERSION = "0.2"
+IMPORTER_VERSION = "0.3"
 DEFAULT_ARCHIVE_ROOT = "/srv/story-evidence-collector"
 DEFAULT_MINIMUM_FREE_GB = 40
+
+TARGET_MP_ALIASES = ("target_mp", "targetMp", "member_name", "memberName", "mp_name", "name")
+TARGET_MEMBER_ID_ALIASES = ("target_member_id", "member_id", "memberId", "source_member_id")
+RECORDED_VOTE_ALIASES = (
+    "recorded_vote",
+    "recordedVote",
+    "vote",
+    "member_vote",
+    "memberVote",
+    "side",
+    "recorded_side",
+)
+VOTE_SIDE_ALIASES = ("vote_side", "voteSide", "side", "recorded_side")
 
 
 @dataclass
@@ -46,6 +60,7 @@ class CheckResult:
     free_gb: float = 0.0
     seed_id: str = ""
     seed_rows_path: str = ""
+    seed_manifest_path: str = ""
     rows_read: int = 0
     rows_written: int = 0
     rows_skipped: int = 0
@@ -72,6 +87,7 @@ class CheckResult:
             "free_gb": round(self.free_gb, 3),
             "seed_id": self.seed_id,
             "seed_rows_path": self.seed_rows_path,
+            "seed_manifest_path": self.seed_manifest_path,
             "rows_read": self.rows_read,
             "rows_written": self.rows_written,
             "rows_skipped": self.rows_skipped,
@@ -169,11 +185,36 @@ def load_seed_rows(path: Path) -> list[dict[str, Any]]:
     return [row for row in rows if isinstance(row, dict)]
 
 
-def normalise_seed_row(row: dict[str, Any], seed_id: str, seed_path: Path) -> tuple[dict[str, Any] | None, str | None]:
+def load_seed_manifest(path: Path | None) -> dict[str, Any]:
+    if path is None:
+        return {}
+    if not path.exists():
+        raise FileNotFoundError(f"Seed manifest file not found: {path}")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError("Seed manifest JSON must be an object.")
+    return data
+
+
+def validate_seed_context(seed_id: str, seed_context: dict[str, Any]) -> None:
+    context_id = str(first_value(seed_context, "batch_id", "seed_id"))
+    if context_id and context_id != seed_id:
+        raise ValueError(
+            f"Seed manifest identity mismatch: expected {seed_id!r}, found {context_id!r}."
+        )
+
+
+def normalise_seed_row(
+    row: dict[str, Any],
+    seed_id: str,
+    seed_path: Path,
+    seed_context: dict[str, Any] | None = None,
+) -> tuple[dict[str, Any] | None, str | None]:
+    context = seed_context if isinstance(seed_context, dict) else {}
     source_system = str(first_value(row, "source_system", "sourceSystem") or "parlparse")
     division_id = str(first_value(row, "division_id", "divisionId", "division_number", "source_division_id", "id"))
     division_date = str(first_value(row, "division_date", "divisionDate", "date"))
-    target_mp = str(first_value(row, "target_mp", "targetMp", "member_name", "memberName", "mp_name", "name"))
+    target_mp = str(first_value(row, *TARGET_MP_ALIASES) or first_value(context, *TARGET_MP_ALIASES))
 
     missing = [
         name
@@ -187,13 +228,16 @@ def normalise_seed_row(row: dict[str, Any], seed_id: str, seed_path: Path) -> tu
     if missing:
         return None, f"Skipped row missing required fields: {', '.join(missing)}"
 
-    source_member_id = str(first_value(row, "target_member_id", "member_id", "memberId", "source_member_id"))
+    source_member_id = str(
+        first_value(row, *TARGET_MEMBER_ID_ALIASES)
+        or first_value(context, *TARGET_MEMBER_ID_ALIASES)
+    )
     member_key = f"{source_system}|member|{source_member_id or target_mp}"
     division_key = f"{source_system}|division|{division_id}"
     vote_key = f"{source_system}|{division_id}|{target_mp}"
 
-    recorded_vote = str(first_value(row, "recorded_vote", "recordedVote", "vote", "member_vote", "memberVote", "side"))
-    vote_side = str(first_value(row, "vote_side", "voteSide", "side") or recorded_vote)
+    recorded_vote = str(first_value(row, *RECORDED_VOTE_ALIASES))
+    vote_side = str(first_value(row, *VOTE_SIDE_ALIASES) or recorded_vote)
     source_url = str(first_value(row, "source_url", "sourceUrl"))
     source_path = str(first_value(row, "source_path", "sourcePath") or seed_path)
     division_title = str(first_value(row, "division_title", "divisionTitle", "title", "motion_title", "subject"))
@@ -227,12 +271,14 @@ def normalise_seed_row(row: dict[str, Any], seed_id: str, seed_path: Path) -> tu
     }, None
 
 
+
 def apply_seed_rows(
     db_path: Path,
     seed_id: str,
     seed_path: Path,
     rows: list[dict[str, Any]],
     import_run_id: str,
+    seed_context: dict[str, Any] | None = None,
 ) -> tuple[int, int, list[str]]:
     written = 0
     skipped = 0
@@ -261,7 +307,7 @@ def apply_seed_rows(
         )
 
         for row in rows:
-            normalised, error = normalise_seed_row(row, seed_id, seed_path)
+            normalised, error = normalise_seed_row(row, seed_id, seed_path, seed_context)
             if error:
                 skipped += 1
                 messages.append(error)
@@ -358,6 +404,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--init-db", action="store_true", help="Initialise or validate the SQLite schema. Requires --apply for database writes.")
     parser.add_argument("--seed-id", help="Identifier for a small controlled seed import, for example parlparse_2003_01.")
     parser.add_argument("--seed-rows", type=Path, help="Local JSON rows file for the seed import. No web fetch is performed.")
+    parser.add_argument("--seed-manifest", type=Path, help="Reviewed local batch manifest supplying target identity context when rows use source shape.")
     parser.add_argument("--no-log", action="store_true", help="Do not write an import/check log.")
     return parser
 
@@ -375,6 +422,8 @@ def main(argv: list[str] | None = None) -> int:
     seed_id = args.seed_id or seed_config.get("seed_id") or ""
     seed_rows_value = args.seed_rows or seed_config.get("rows_path") or ""
     seed_rows_path = Path(seed_rows_value) if seed_rows_value else None
+    seed_manifest_value = args.seed_manifest or seed_config.get("manifest_path") or ""
+    seed_manifest_path = Path(seed_manifest_value) if seed_manifest_value else None
 
     result = CheckResult(
         archive_root=str(archive_root),
@@ -385,6 +434,7 @@ def main(argv: list[str] | None = None) -> int:
         init_db=args.init_db,
         seed_id=str(seed_id),
         seed_rows_path=str(seed_rows_path or ""),
+        seed_manifest_path=str(seed_manifest_path or ""),
     )
 
     import_run_id = uuid.uuid4().hex
@@ -448,6 +498,8 @@ def main(argv: list[str] | None = None) -> int:
             else:
                 try:
                     seed_rows = load_seed_rows(seed_rows_path)
+                    seed_context = load_seed_manifest(seed_manifest_path)
+                    validate_seed_context(str(seed_id), seed_context)
                     result.rows_read = len(seed_rows)
 
                     if args.apply:
@@ -460,6 +512,7 @@ def main(argv: list[str] | None = None) -> int:
                                 seed_rows_path,
                                 seed_rows,
                                 import_run_id,
+                                seed_context=seed_context,
                             )
                             result.rows_written = written
                             result.rows_skipped = skipped
@@ -467,7 +520,12 @@ def main(argv: list[str] | None = None) -> int:
                     else:
                         skipped = 0
                         for row in seed_rows:
-                            _, error = normalise_seed_row(row, str(seed_id), seed_rows_path)
+                            _, error = normalise_seed_row(
+                                row,
+                                str(seed_id),
+                                seed_rows_path,
+                                seed_context,
+                            )
                             if error:
                                 skipped += 1
                                 result.warnings.append(error)
