@@ -1,0 +1,42 @@
+name: Collector to Evidence Pack test
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/collector-to-evidence-pack-test.yml"
+      - "docs/collector-to-evidence-pack-v1.md"
+      - "fixtures/collector-runs/2026-06-27-west-built-cheap-china-system/sources_raw_v13.json"
+      - "scripts/create_draft_evidence_pack_from_collector.py"
+      - "scripts/test_collector_to_evidence_pack.py"
+      - "scripts/validate_evidence_pack.py"
+      - "schemas/evidence-pack-manifest-v1.schema.json"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/collector-to-evidence-pack-test.yml"
+      - "docs/collector-to-evidence-pack-v1.md"
+      - "fixtures/collector-runs/2026-06-27-west-built-cheap-china-system/sources_raw_v13.json"
+      - "scripts/create_draft_evidence_pack_from_collector.py"
+      - "scripts/test_collector_to_evidence_pack.py"
+      - "scripts/validate_evidence_pack.py"
+      - "schemas/evidence-pack-manifest-v1.schema.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integration-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run deterministic bridge regression
+        run: python scripts/test_collector_to_evidence_pack.py
