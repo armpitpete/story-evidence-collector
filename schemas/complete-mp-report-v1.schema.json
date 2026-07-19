@@ -1,0 +1,660 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thisweekinsmoke.uk/schemas/complete-mp-report-v1.schema.json",
+  "title": "Complete MP Report v1",
+  "description": "Canonical structured format for one evidence-led UK MP report.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "report_id",
+    "title",
+    "generated_at",
+    "subject",
+    "scope",
+    "publication",
+    "sections",
+    "sources",
+    "facts",
+    "claims",
+    "interpretations",
+    "relationships",
+    "coverage_gaps",
+    "review_decisions"
+  ],
+  "properties": {
+    "schema_version": { "const": "1" },
+    "report_id": { "$ref": "#/$defs/id" },
+    "title": { "$ref": "#/$defs/non_empty" },
+    "generated_at": { "$ref": "#/$defs/date_time" },
+    "subject": { "$ref": "#/$defs/subject" },
+    "scope": { "$ref": "#/$defs/scope" },
+    "publication": { "$ref": "#/$defs/publication" },
+    "sections": {
+      "type": "array",
+      "minItems": 13,
+      "maxItems": 13,
+      "items": { "$ref": "#/$defs/section" }
+    },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "facts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/fact" }
+    },
+    "claims": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/claim" }
+    },
+    "interpretations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/interpretation" }
+    },
+    "relationships": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relationship" }
+    },
+    "coverage_gaps": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/gap" }
+    },
+    "review_decisions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/review" }
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9]+(?:[-_:][a-z0-9]+)*$"
+    },
+    "non_empty": {
+      "type": "string",
+      "minLength": 1
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "date_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "section_id": {
+      "type": "string",
+      "enum": [
+        "identity_and_parliamentary_career",
+        "roles_and_committees",
+        "voting_record_and_coverage",
+        "financial_interests",
+        "donations_and_political_finance",
+        "outside_work_and_company_links",
+        "speeches_and_questions",
+        "public_positions_over_time",
+        "changes_and_contradictions",
+        "organisations_and_relationships",
+        "evidence_gaps",
+        "source_register",
+        "human_review"
+      ]
+    },
+    "section_status": {
+      "type": "string",
+      "enum": [
+        "complete",
+        "partial",
+        "not_available",
+        "not_researched",
+        "human_review_required"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "display_name",
+        "parliament_member_id",
+        "identity_status"
+      ],
+      "properties": {
+        "display_name": { "$ref": "#/$defs/non_empty" },
+        "sort_name": { "type": "string" },
+        "parliament_member_id": { "type": "string", "minLength": 1 },
+        "current_constituency": { "type": "string" },
+        "current_party": { "type": "string" },
+        "identity_status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "fixture_unverified",
+            "historic",
+            "needs_review"
+          ]
+        },
+        "identity_source_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope_statement",
+        "as_of_date",
+        "geographic_scope",
+        "houses"
+      ],
+      "properties": {
+        "scope_statement": { "$ref": "#/$defs/non_empty" },
+        "as_of_date": { "$ref": "#/$defs/date" },
+        "geographic_scope": { "$ref": "#/$defs/non_empty" },
+        "houses": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "House of Commons",
+              "House of Lords",
+              "Devolved legislature",
+              "Other"
+            ]
+          }
+        },
+        "career_start_date": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "career_end_date": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "human_review_required",
+        "public_output_authorised"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_ready",
+            "needs_review",
+            "publishable",
+            "archived"
+          ]
+        },
+        "human_review_required": { "type": "boolean" },
+        "public_output_authorised": { "type": "boolean" },
+        "approved_by": { "type": ["string", "null"] },
+        "approved_at": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "section_id",
+        "title",
+        "status",
+        "summary",
+        "fact_ids",
+        "claim_ids",
+        "interpretation_ids",
+        "relationship_ids",
+        "gap_ids"
+      ],
+      "properties": {
+        "section_id": { "$ref": "#/$defs/section_id" },
+        "title": { "$ref": "#/$defs/non_empty" },
+        "status": { "$ref": "#/$defs/section_status" },
+        "summary": { "type": "string" },
+        "fact_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        },
+        "claim_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        },
+        "interpretation_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        },
+        "relationship_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        },
+        "gap_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "title",
+        "publisher",
+        "source_type",
+        "authority_level",
+        "capture_date",
+        "limitations"
+      ],
+      "properties": {
+        "source_id": { "$ref": "#/$defs/id" },
+        "title": { "$ref": "#/$defs/non_empty" },
+        "publisher": { "$ref": "#/$defs/non_empty" },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "official_primary",
+            "official_secondary",
+            "regulator",
+            "court_or_tribunal",
+            "company_registry",
+            "electoral_record",
+            "parliamentary_record",
+            "reputable_reporting",
+            "academic_or_research",
+            "repository_fixture",
+            "other"
+          ]
+        },
+        "authority_level": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "strong_secondary",
+            "context_only",
+            "fixture_only"
+          ]
+        },
+        "url": { "type": "string" },
+        "repository_path": { "type": "string" },
+        "server_path": { "type": "string" },
+        "publication_date": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "capture_date": { "$ref": "#/$defs/date" },
+        "coverage_from": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "coverage_to": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "checksum": { "type": "string" },
+        "limitations": { "type": "string" }
+      }
+    },
+    "fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fact_id",
+        "section_id",
+        "statement",
+        "fact_type",
+        "source_ids",
+        "confidence",
+        "evidence_status"
+      ],
+      "properties": {
+        "fact_id": { "$ref": "#/$defs/id" },
+        "section_id": { "$ref": "#/$defs/section_id" },
+        "statement": { "$ref": "#/$defs/non_empty" },
+        "fact_type": {
+          "type": "string",
+          "enum": [
+            "identity",
+            "service",
+            "role",
+            "committee",
+            "vote",
+            "interest",
+            "donation",
+            "employment",
+            "company",
+            "speech",
+            "question",
+            "position",
+            "relationship_context",
+            "coverage",
+            "review_status",
+            "other"
+          ]
+        },
+        "date": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "date_from": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "date_to": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "source_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "evidence_status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "source_recorded",
+            "fixture_unverified",
+            "ambiguous",
+            "needs_review"
+          ]
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim_id",
+        "section_id",
+        "statement",
+        "claim_kind",
+        "status",
+        "source_ids",
+        "fact_ids",
+        "public_wording_allowed",
+        "risk_level"
+      ],
+      "properties": {
+        "claim_id": { "$ref": "#/$defs/id" },
+        "section_id": { "$ref": "#/$defs/section_id" },
+        "statement": { "$ref": "#/$defs/non_empty" },
+        "claim_kind": {
+          "type": "string",
+          "enum": [
+            "factual_claim",
+            "comparison",
+            "change_over_time",
+            "contradiction",
+            "coverage_claim",
+            "public_interest_question"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "supported",
+            "partially_supported",
+            "contested",
+            "unsupported",
+            "needs_review"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "fact_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "public_wording_allowed": { "type": "boolean" },
+        "risk_level": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "interpretation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "interpretation_id",
+        "section_id",
+        "statement",
+        "fact_ids",
+        "claim_ids",
+        "human_review_required",
+        "approved_for_publication"
+      ],
+      "properties": {
+        "interpretation_id": { "$ref": "#/$defs/id" },
+        "section_id": { "$ref": "#/$defs/section_id" },
+        "statement": { "$ref": "#/$defs/non_empty" },
+        "fact_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "claim_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "human_review_required": { "const": true },
+        "approved_for_publication": { "type": "boolean" },
+        "approved_by": { "type": ["string", "null"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relationship_id",
+        "section_id",
+        "subject",
+        "object",
+        "relationship_type",
+        "source_ids",
+        "confidence",
+        "public_chart",
+        "neutral_label"
+      ],
+      "properties": {
+        "relationship_id": { "$ref": "#/$defs/id" },
+        "section_id": {
+          "const": "organisations_and_relationships"
+        },
+        "subject": { "$ref": "#/$defs/non_empty" },
+        "object": { "$ref": "#/$defs/non_empty" },
+        "relationship_type": {
+          "type": "string",
+          "enum": [
+            "employed_by",
+            "director_of",
+            "member_of",
+            "appointed_by",
+            "donor_to",
+            "donation_received_from",
+            "adviser_to",
+            "committee_member",
+            "declared_client",
+            "public_campaign_support",
+            "other_defined"
+          ]
+        },
+        "date_from": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "date_to": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "source_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "public_chart": { "type": "boolean" },
+        "neutral_label": { "$ref": "#/$defs/non_empty" },
+        "notes": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "public_chart": { "const": true }
+            }
+          },
+          "then": {
+            "properties": {
+              "confidence": {
+                "enum": ["medium", "high"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "gap": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gap_id",
+        "section_id",
+        "summary",
+        "severity",
+        "reason",
+        "status",
+        "blocks_publication",
+        "next_action"
+      ],
+      "properties": {
+        "gap_id": { "$ref": "#/$defs/id" },
+        "section_id": { "$ref": "#/$defs/section_id" },
+        "summary": { "$ref": "#/$defs/non_empty" },
+        "severity": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "blocking"]
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "not_researched",
+            "source_unavailable",
+            "historic_gap",
+            "access_failure",
+            "identity_ambiguity",
+            "parser_failure",
+            "human_review_pending",
+            "other"
+          ]
+        },
+        "date_from": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "date_to": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["open", "accepted_limit", "resolved"]
+        },
+        "blocks_publication": { "type": "boolean" },
+        "next_action": { "$ref": "#/$defs/non_empty" },
+        "notes": { "type": "string" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "review_id",
+        "review_type",
+        "status",
+        "decision",
+        "reviewer",
+        "reviewed_at"
+      ],
+      "properties": {
+        "review_id": { "$ref": "#/$defs/id" },
+        "review_type": {
+          "type": "string",
+          "enum": [
+            "identity",
+            "source_authority",
+            "factual",
+            "interpretation",
+            "legal_reputational",
+            "coverage",
+            "publication"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected",
+            "changes_required"
+          ]
+        },
+        "decision": { "$ref": "#/$defs/non_empty" },
+        "reviewer": { "$ref": "#/$defs/non_empty" },
+        "reviewed_at": { "$ref": "#/$defs/date_time" },
+        "related_fact_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "related_claim_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "related_gap_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}
