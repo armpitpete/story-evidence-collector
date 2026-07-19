@@ -1,0 +1,62 @@
+[
+  {
+    "source_url": "https://www.reuters.com/world/china/eu-impose-3-euro-duty-small-e-commerce-parcels-july-2026-2025-12-12/",
+    "final_url": "https://www.reuters.com/world/china/eu-impose-3-euro-duty-small-e-commerce-parcels-july-2026-2025-12-12/",
+    "page_title": "EU to impose 3 euro duty on e-commerce parcels from July 2026",
+    "text_excerpt": "",
+    "links_found": [],
+    "robots_txt_checked": null,
+    "robots_allowed": null,
+    "scrape_status": "fixture_from_reviewed_pack",
+    "error": null,
+    "scraped_at": "2026-06-27T14:30:00Z"
+  },
+  {
+    "source_url": "https://ec.europa.eu/commission/presscorner/api/files/document/print/en/ip_25_410/IP_25_410_EN.pdf",
+    "final_url": "https://ec.europa.eu/commission/presscorner/api/files/document/print/en/ip_25_410/IP_25_410_EN.pdf",
+    "page_title": "Commission announces actions for safe and sustainable e-commerce imports",
+    "text_excerpt": "",
+    "links_found": [],
+    "robots_txt_checked": null,
+    "robots_allowed": null,
+    "scrape_status": "fixture_from_reviewed_pack",
+    "error": null,
+    "scraped_at": "2026-06-27T15:00:00Z"
+  },
+  {
+    "source_url": "https://www.theguardian.com/business/article/2024/aug/14/revealed-how-uks-poor-paid-price-of-cheapflation-in-cost-of-living-crisis",
+    "final_url": "https://www.theguardian.com/business/article/2024/aug/14/revealed-how-uks-poor-paid-price-of-cheapflation-in-cost-of-living-crisis",
+    "page_title": "Revealed: how UK's poor paid price of cheapflation in cost of living crisis",
+    "text_excerpt": "",
+    "links_found": [],
+    "robots_txt_checked": null,
+    "robots_allowed": null,
+    "scrape_status": "fixture_from_reviewed_pack",
+    "error": null,
+    "scraped_at": "2026-06-27T15:30:00Z"
+  },
+  {
+    "source_url": "https://www.reuters.com/business/retail-consumer/hot-wheels-gi-joes-aplenty-shein-temu-amid-worry-over-fake-products-2024-11-29/",
+    "final_url": "https://www.reuters.com/business/retail-consumer/hot-wheels-gi-joes-aplenty-shein-temu-amid-worry-over-fake-products-2024-11-29/",
+    "page_title": "Hot Wheels, G.I. Joes aplenty on Shein, Temu amid worry over fake products",
+    "text_excerpt": "",
+    "links_found": [],
+    "robots_txt_checked": null,
+    "robots_allowed": null,
+    "scrape_status": "fixture_from_reviewed_pack",
+    "error": null,
+    "scraped_at": "2026-06-27T15:45:00Z"
+  },
+  {
+    "source_url": "https://www.reuters.com/world/us/ny-fed-report-says-americans-pay-almost-all-trumps-tariffs-2026-02-12/",
+    "final_url": "https://www.reuters.com/world/us/ny-fed-report-says-americans-pay-almost-all-trumps-tariffs-2026-02-12/",
+    "page_title": "NY Fed report says Americans pay for almost all tariffs",
+    "text_excerpt": "",
+    "links_found": [],
+    "robots_txt_checked": null,
+    "robots_allowed": null,
+    "scrape_status": "fixture_from_reviewed_pack",
+    "error": null,
+    "scraped_at": "2026-06-27T16:00:00Z"
+  }
+]
