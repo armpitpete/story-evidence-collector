@@ -11,41 +11,39 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Current baseline: `75335c1351eeca6ee57175a9588c8445fe5da350`.
+- Current baseline: `01d31bb9118d1fa40280ebd7aa5f55377b9e5a34`.
 - Reviewed private-server inventory generated `2026-07-19T19:11:01+00:00` remains the authority for live archive state.
-- Complete MP Report v1 is merged as a fixture-only deterministic report contract; it is not evidence-complete or publishable.
+- Repository release scope is a bounded public-source collection, draft Evidence Pack and deterministic report-generation toolkit. Evidence truth, political interpretation, publication approval and full historical source coverage remain human or data-availability responsibilities.
 
 ## Current lane
 
-Implement the first deterministic collector-to-Evidence-Pack bridge using a committed collector-run fixture derived from the existing controlled TWIS case `2026-06-27-west-built-cheap-china-system`. The bridge may transform collected source metadata into a draft Evidence Pack skeleton. It must not generate factual claims, evidence interpretations, contradiction findings, publication approval or inferred source authority.
+Reconcile repository release authority and validation. Replace stale README/version claims, correct Evidence Pack fixture/status documentation, define the v1 repository completion contract, and add one offline release-validation workflow that compiles Python and runs all deterministic core regression suites.
 
 ## Done
 
 - Project-control authority and CI are merged.
-- The read-only server inventory implementation is merged, executed and reviewed.
-- The private SQLite cache passes integrity checking but currently contains only one MP and 33 January 2003 ParlParse vote records, all requiring meaning review.
-- Raw evidence stores are empty; backups and validation logs are absent; the January 2003 source-row shape exception remains unresolved.
-- Complete MP Report v1 schema, generator, fixture, test, specification and workflow merged through PR #151 as `75335c1351eeca6ee57175a9588c8445fe5da350`.
+- The read-only private-server inventory is merged, executed and reviewed.
+- Evidence Pack v1 manifest, validators, six controlled fixtures and validation workflow exist.
+- Proof Trail schema, writer and validator exist.
+- Complete MP Report v1 deterministic schema/generator fixture contract is merged.
+- The collector-to-Evidence-Pack bridge is merged as `01d31bb9118d1fa40280ebd7aa5f55377b9e5a34` and proves deterministic draft-pack generation from five repository-authoritative TWIS source records.
+- Generated bridge packs remain `draft`, `not_ready`, human-review required, and contain no generated claims, evidence conclusions or authority ratings.
 - Stale PRs #144 and #145 are closed as superseded.
-- Evidence Pack v1 manifest, validators, fixtures and project-wide validation workflow already exist.
-- The existing controlled TWIS pack `2026-06-27-west-built-cheap-china-system` supplies repository-authoritative source metadata for the first bridge fixture.
 
 ## To do
 
-- Add a bounded collector-run fixture containing the five external public sources already recorded in the controlled TWIS pack.
-- Add `scripts/create_draft_evidence_pack_from_collector.py` to convert collector source records into a complete draft-pack directory structure.
-- Generate source records and a search diary only; leave authority maps, claims, evidence, timeline, denial and negative-evidence records empty.
-- Generate an explicit pending human-review record and draft-only Markdown outputs.
-- Force `status: draft`, `publishability: not_ready` and `human_review_required: true`.
-- Reject malformed source input, missing URLs, duplicate normalised URLs, unsafe output paths and overwrite attempts unless explicitly allowed.
-- Add a regression test proving deterministic output, five preserved source URLs, zero generated claims/evidence, successful Evidence Pack validation and unchanged draft safety state.
-- Add a dedicated GitHub Actions workflow and a concise operator contract.
-- Merge only after the new integration workflow, Evidence Pack validation and project-control CI pass.
+- Rewrite `README.md` around the current bounded product rather than the historical version ladder.
+- Document the current entry points: local Streamlit UI, public trace pipeline, selected-seed fetcher, collector-to-pack bridge, Evidence Pack validation, Proof Trail tools and Complete MP Report generator.
+- Correct Evidence Pack current-status documentation from five to six committed controlled packs and record the collector bridge.
+- Add a repository release contract defining what v1 is complete for and what it deliberately does not claim.
+- Add a release-validation workflow that runs Python compilation, all-pack validation, validator failure regressions, Complete MP Report fixture tests and collector-to-pack integration tests without network access.
+- Keep the private-server operational exceptions visible: empty raw stores, no backups, no validation logs, only 33 January 2003 ParlParse votes for one MP, all meanings needing review, and an unresolved server-only seed-row shape report.
+- Merge only after release validation and project-control CI pass.
 
 ## Next bounded gate
 
-Create one implementation PR changing exactly `.github/workflows/collector-to-evidence-pack-test.yml`, `docs/collector-to-evidence-pack-v1.md`, `fixtures/collector-runs/2026-06-27-west-built-cheap-china-system/sources_raw_v13.json`, `scripts/create_draft_evidence_pack_from_collector.py` and `scripts/test_collector_to_evidence_pack.py`; validate deterministic draft-pack generation and merge if all checks pass.
+Create one release-reconciliation PR changing exactly `README.md`, `.github/workflows/repository-release-validation.yml`, `docs/evidence-pack-current-status-v1.md` and `docs/repository-release-contract-v1.md`; merge only after the full offline release workflow and project-control CI pass.
 
 ## Stop point
 
-Do not browse or fetch live sources, alter the existing reviewed Evidence Pack fixture, generate claims or evidence conclusions, infer source authority, mark any generated pack reviewed or publishable, modify the private server, repair the seed-data exception, add backups, package a general CLI or begin another lane before this bridge is merged and this authority is synchronised.
+Do not change collector behaviour, evidence schemas, report schemas, fixtures, private-server data, seed rows, backup state, publication decisions or dependency versions; do not begin server hardening or another feature lane before release reconciliation is merged and this authority is synchronised.
