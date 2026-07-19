@@ -1,112 +1,116 @@
 # Evidence Pack v1 Current Status
 
-Evidence Pack v1 is now complete enough for controlled use.
+Evidence Pack v1 is complete for controlled structural use.
 
-The current priority is to use the pack system on real TWIS-style evidence work, not to keep expanding validator infrastructure.
+It provides a stable folder contract, manifest, validators, regression cases, controlled fixtures and a deterministic collector-to-draft-pack bridge. Human review remains mandatory for factual sufficiency, interpretation and publication.
 
 ## Current state
 
-Evidence Pack v1 now has:
+Evidence Pack v1 includes:
 
-- a documented pack folder structure.
-- a manifest schema for `pack.json`.
-- a single-pack validator.
-- an all-pack validator.
-- GitHub Actions validation.
-- validator failure regression tests.
-- path traversal protection.
-- JSONL record ID checks.
-- duplicate record ID checks.
-- cross-reference checks between sources, claims, evidence, authority records, timeline records, and denial checks.
-- optional Power Profile chart validation.
+- a documented pack folder structure;
+- a machine-readable `pack.json` manifest schema;
+- single-pack and all-pack validators;
+- GitHub Actions validation;
+- validator failure regression tests;
+- path traversal protection;
+- JSONL parsing and record ID checks;
+- duplicate ID checks within files and across a pack;
+- cross-reference checks between sources, claims, evidence, authority records, timeline records and denial checks;
+- optional Power Profile chart validation;
+- six controlled committed packs;
+- a deterministic collector-to-draft-pack integration bridge.
 
-This is enough to support controlled evidence-pack use.
+Structural validation proves that records are well formed and references resolve. It does not prove that evidence is true, complete, fair or publication-ready.
 
-## Completed controlled packs
+## Controlled packs
 
-The fixture evidence packs now include:
+The committed Evidence Pack fixtures are:
 
-- `2026-06-22-example-topic`
-- `2026-06-24-story-evidence-collector-foundation`
-- `2026-06-25-code-of-practice-statistics-method`
-- `2026-06-25-power-profile-generic-leadership-mp`
-- `2026-06-26-the-politics-of-calling-people-ordinary`
+1. `2026-06-22-example-topic`
+2. `2026-06-24-story-evidence-collector-foundation`
+3. `2026-06-25-code-of-practice-statistics-method`
+4. `2026-06-25-power-profile-generic-leadership-mp`
+5. `2026-06-26-the-politics-of-calling-people-ordinary`
+6. `2026-06-27-west-built-cheap-china-system`
 
-The TWIS pack for `the-politics-of-calling-people-ordinary` is the first controlled TWIS article/sandbox pack.
+The two TWIS article/sandbox packs demonstrate repeated use of the same structure with article drafts, external public sources, source-authority records, claims, evidence, search diaries, negative evidence, timelines, denial checks, human review and output briefs.
 
-It now includes:
+They remain controlled research fixtures. Their presence does not make an article publishable.
 
-- one TWIS article-draft source.
-- one external ONS public statistics source.
-- source records.
-- source authority mapping.
-- claim records.
-- evidence items.
-- search diary records.
-- negative evidence records.
-- timeline records.
-- denial-check records.
-- human-review records.
-- output briefs.
+## Collector integration
 
-## What the latest TWIS pack proves
+The collector-to-Evidence-Pack bridge is documented in `docs/collector-to-evidence-pack-v1.md`.
 
-The latest TWIS pack proves that Evidence Pack v1 can hold:
+It accepts bounded collector source-record JSON and creates a complete pack skeleton containing:
 
-- an article-draft source.
-- one external public source.
-- a narrow editorial-method claim.
-- a narrow external material-conditions claim.
-- traceable links between source, claim, evidence, authority, timeline, denial-check, review, and output records.
+- source records;
+- one search diary record;
+- one pending human-review record;
+- empty authority, claim, evidence, negative-evidence, timeline and denial-check files;
+- explicit draft-only output briefs.
 
-It does not prove that the article is ready for publication.
+The bridge forces:
 
-It does not prove every external policy claim.
+```text
+status: draft
+publishability: not_ready
+human_review_required: true
+```
 
-It does not prove motive.
+It does not generate claims, evidence conclusions, authority ratings, contradictions or publication approval.
 
-It remains a controlled sandbox pack.
+The controlled regression fixture uses five external source URLs already recorded in `2026-06-27-west-built-cheap-china-system`.
 
 ## Validation state
 
-The expected local validation commands are:
+Run:
 
-    python scripts\validate_evidence_pack.py fixtures\evidence-packs\2026-06-26-the-politics-of-calling-people-ordinary
-    python scripts\validate_all_evidence_packs.py
+```bash
+python scripts/validate_all_evidence_packs.py
+python scripts/test_evidence_pack_validator_failures.py
+python scripts/test_collector_to_evidence_pack.py
+```
 
 Expected all-pack result:
 
-    All evidence packs passed validation. Count: 5
+```text
+All evidence packs passed validation. Count: 6
+```
 
-## Current stop point
+The collector bridge regression additionally proves:
 
-Evidence Pack v1 foundation should be treated as done enough.
+- deterministic byte-identical generation;
+- five source URLs preserved;
+- no generated claims or evidence conclusions;
+- fixed draft and `not_ready` state;
+- duplicate and missing URL rejection;
+- overwrite protection;
+- successful validation by the existing Evidence Pack validator.
 
-Do not add more validator features unless a real pack exposes a specific structural failure.
+## Completion boundary
 
-The system should now move from foundation-building to evidence-pack use.
+Evidence Pack v1 foundation is complete for controlled repository use.
 
-## Next use-case
+Further validator expansion requires a specific failure exposed by real use. New research should use the existing structure rather than create competing pack formats.
 
-The next useful use-case is:
+Work that remains outside Evidence Pack structural completion includes:
 
-    Create a second controlled real TWIS Evidence Pack, or expand the existing TWIS pack with one more carefully chosen external source.
-
-Preferred next route:
-
-    Use the existing TWIS pack as the model, then create a second small pack for another low-risk TWIS article.
-
-Reason:
-
-- proves the process can be repeated.
-- avoids overfitting the system to one article.
-- keeps the validator stable.
-- tests whether the docs are clear enough for repeated use.
+- human source-authority assessment;
+- claim and evidence writing;
+- contradiction analysis;
+- legal and reputational review;
+- publication decisions;
+- archive-link and source-availability checking;
+- evidence completeness judgements.
 
 ## Working rule
 
-For the next phase:
-
-    One pack. One source addition or one new controlled pack. Validate. Stop.
-
-Avoid turning one pack into a full research project too early.
+```text
+Collect sources.
+Create or update one pack.
+Validate structure.
+Review evidence manually.
+Record uncertainty.
+Publish only after explicit human approval.
+```
