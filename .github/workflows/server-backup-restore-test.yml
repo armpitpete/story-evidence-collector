@@ -1,0 +1,44 @@
+name: Server backup and restore test
+
+on:
+  push:
+    paths:
+      - "server_imports/create_server_backup.py"
+      - "server_imports/verify_restore_server_backup.py"
+      - "scripts/test_server_backup_restore.py"
+      - "docs/private-server-backup-restore-v1.md"
+      - ".github/workflows/server-backup-restore-test.yml"
+  pull_request:
+    paths:
+      - "server_imports/create_server_backup.py"
+      - "server_imports/verify_restore_server_backup.py"
+      - "scripts/test_server_backup_restore.py"
+      - "docs/private-server-backup-restore-v1.md"
+      - ".github/workflows/server-backup-restore-test.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile backup tooling
+        run: |
+          python -m py_compile \
+            server_imports/create_server_backup.py \
+            server_imports/verify_restore_server_backup.py \
+            scripts/test_server_backup_restore.py
+
+      - name: Run backup and disposable restore regressions
+        run: python scripts/test_server_backup_restore.py
