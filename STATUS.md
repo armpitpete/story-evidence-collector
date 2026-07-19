@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: AUTHORITATIVE
+status: AUTHORISED
 authority_ref: main
 ---
 
@@ -11,54 +11,57 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Completed Release v1 closure: `8e26eeb9c2a9153eb52c35e8286c0e9edf5f4e50`.
-- Backup-and-restore implementation: initial merge `2a569a626fc27d0e569c8b08d2761ddee30b7214`, required structural repair `7943669c669cab9877e51a5d0ad0803bff1776a6`.
-- First accepted private-server proof executed from clean `main` at `21bb060f101fa1d3fdc9f57f3b611982a7f79008` on `2026-07-19T21:16:31+00:00`.
-- Release v1 remains complete and the bounded backup-and-restore hardening lane is complete.
+- Exact starting head for this lane: `5b928de43392a9c2d230621381d13c71126ea7d8`.
+- Repository Release v1 remains complete and authoritative.
+- Backup-and-restore hardening remains complete, with the accepted backup and disposable restore retained on the private server.
 
 ## Current lane
 
-Backup-and-restore hardening closure. No implementation or server-execution lane is active. Further work requires a separately authorised post-release lane with its own bounded goal, allowed files, validation and stop point.
+January 2003 seed-row shape reconciliation.
+
+Goal: determine and document why the generated January 2003 ParlParse batch rows use source-shape fields while the imported SQLite member-vote records contain canonical `recorded_vote` and `target_mp` fields, then make that boundary deterministic and regression-tested without changing evidence meaning.
+
+Authorised implementation scope:
+
+- `server_imports/build_server_evidence_cache.py`
+- `server_imports/audit_server_state.py`
+- `server_imports/README.md`
+- `server_imports/example_config.example.json`
+- `docs/january-2003-seed-row-shape-reconciliation.md`
+- `scripts/test_january_2003_seed_shape.py`
+- `.github/workflows/january-2003-seed-shape-test.yml`
 
 ## Done
 
 - Repository Release v1 is complete and authoritative.
-- PR #157 opened the bounded backup-and-restore hardening lane.
-- PR #158 added the backup creator, verifier/restorer, regression suite, operator documentation and dedicated workflow.
-- PR #160 repaired the restore shape so the top-level empty `backups/` directory and its mode are preserved while prior backup contents remain excluded.
-- GitHub backup-and-restore tests, repository release validation and project-control CI passed on the repaired implementation.
-- The private checkout was clean on `main` and contained the repaired implementation.
-- Backup `backup-20260719T211631Z-manual-v1` was created atomically under the private archive backup store.
-- The manifest recorded 22 entries: 6 files, 16 directories and 171,780 checked file bytes.
-- Backup verification passed with SQLite `PRAGMA quick_check` equal to `ok`.
-- Disposable restore verification passed with 6 checked files, 171,780 checked bytes and SQLite `PRAGMA quick_check` equal to `ok`.
-- The restored archive retained every expected directory, including an empty top-level `backups/` directory.
-- The restored database matched the reviewed live baseline: 33 divisions, 33 member votes, 1 member, 1 source, 1 import, date range `2003-01-07` through `2003-01-31`, 1 distinct target MP and 33 `needs_review` meanings.
-- The restored audit recorded no errors.
-- The live database SHA-256 remained exactly `c90c075c11caed36bff275057f1eaf355f477e78b8f0355fc1393c4242e1f10a` before and after the run.
-- The terminal wrapper emitted a trailing here-document/paste warning only after all controlled commands and final PASS results had completed; it did not affect the backup, verification, restore, audit or immutability proof.
+- Backup-and-restore hardening is complete.
+- The first real backup and disposable restore passed.
+- The accepted restored database baseline remains 33 January 2003 ParlParse divisions, 33 member votes, one member, one source and one import.
+- All 33 vote meanings remain `needs_review`.
+- Exact current `main` and the absence of open pull requests were verified before opening this lane.
+- Initial repository tracing established that the ParlParse parser emits `recorded_side` per row while the target MP is held at batch-plan and manifest level; the SQLite schema stores row-level canonical `recorded_vote` and `target_mp` fields.
 
 ## To do
 
-No work is required to complete the bounded backup-and-restore hardening lane.
-
-The following remain separate post-release objectives and are not implied complete:
-
-- backup scheduling, retention and deletion policy;
-- encrypted or off-server backup copies;
-- recovery from total server loss;
-- promotion of a restored snapshot into production;
-- January 2003 seed-row shape reconciliation;
-- review of the existing 33 vote meanings;
-- expansion of MP evidence coverage;
-- evidence interpretation and publication review.
-
-The accepted backup and disposable restore remain present. Their deletion or rotation is not part of this closure change.
+- Make the importer explicitly accept the actual generated batch shape by mapping `recorded_side` to canonical vote fields and resolving target identity from reviewed batch-manifest context when it is absent from each source row.
+- Preserve the original source row unchanged in `source_trace`.
+- Make the read-only audit distinguish raw source shape from canonical import readiness.
+- Add deterministic regression coverage for source rows, manifest context, canonical SQLite output and failure without target identity.
+- Document the classification and operator boundary.
+- Run the dedicated regression workflow and existing repository release validation.
+- Open and review the bounded implementation pull request, then synchronise this authority after merge.
 
 ## Next bounded gate
 
-None. Begin another lane only through an explicit authority update naming one bounded objective, such as seed-row shape reconciliation, backup scheduling and retention, off-server disaster recovery, vote-meaning review, or one explicitly scoped MP evidence report.
+Merge this authority-only activation change after project-control validation, then open one controlled implementation pull request changing only the seven authorised files.
+
+The implementation must classify the discrepancy as one of:
+
+- a real data or importer defect;
+- an alias or normalisation boundary;
+- an expected source/import distinction;
+- or a combination that clearly separates expected shape differences from any missing repository machinery.
 
 ## Stop point
 
-Do not infer complete evidence coverage, automated production durability, off-server disaster recovery, completed MP research or publication approval from this local backup-and-disposable-restore proof. Do not continue modifying the completed hardening lane merely to create activity.
+Do not change any vote value, vote meaning, `meaning_quality`, source coverage, MP coverage, publication state or private-server evidence. Do not run a new source collection, import into the live database, rotate backups or delete the retained disposable restore. Stop only if the existing repository and retained metadata cannot determine the transformation without an evidence-content decision.
