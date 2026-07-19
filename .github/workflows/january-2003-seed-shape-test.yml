@@ -2,7 +2,7 @@ name: Bootstrap January 2003 seed shape implementation
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, synchronize]
 
 permissions:
   contents: write
@@ -22,4 +22,17 @@ jobs:
         with:
           python-version: '3.12'
       - name: Apply, validate and commit bounded implementation
-        run: python scripts/test_january_2003_seed_shape.py --bootstrap
+        shell: bash
+        run: |
+          set +e
+          python scripts/test_january_2003_seed_shape.py --bootstrap > bootstrap.log 2>&1
+          status=$?
+          cat bootstrap.log
+          exit "$status"
+      - name: Upload bootstrap diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: january-2003-seed-shape-bootstrap-log
+          path: bootstrap.log
+          if-no-files-found: warn
