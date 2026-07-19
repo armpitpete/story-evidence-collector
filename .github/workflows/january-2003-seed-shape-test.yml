@@ -1,16 +1,15 @@
 name: Bootstrap January 2003 seed shape implementation
 
 on:
-  push:
-    branches:
-      - agent/reconcile-january-2003-seed-shape
+  pull_request:
+    types: [opened, reopened]
 
 permissions:
   contents: write
 
 jobs:
   bootstrap:
-    if: github.actor != 'github-actions[bot]'
+    if: github.head_ref == 'agent/reconcile-january-2003-seed-shape' && github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
