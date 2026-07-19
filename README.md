@@ -1,351 +1,238 @@
 # Story Evidence Collector
 
-Story Evidence Collector is a public-source research tool for collecting evidence about a story from allowed web pages.
+Story Evidence Collector is a bounded public-source research toolkit for turning allowed web-source collection into traceable, reviewable evidence records.
 
-It is being built step by step from a safe Scrapling parser demo.
-
-## Current status
-
-### Evidence Pack v1 docs
-
-Start with the [Evidence Pack v1 docs index](docs/evidence-pack-v1-docs-index.md) for the current validation rules, failure-case documentation, validator usage, and related v1 documentation links.
-
-For the shortest first-use route, see [Create your first Evidence Pack v1](docs/create-your-first-evidence-pack-v1.md).
-
-For a copyable starter shape, see the [Evidence Pack starter template v1](docs/evidence-pack-starter-template-v1.md).
-
-For a working valid example, see `fixtures/evidence-packs/2026-06-22-example-topic/`.
-
-For the first repository-owned workflow proof pack, see `fixtures/evidence-packs/2026-06-24-story-evidence-collector-foundation/`.
-
-For the first controlled real/sandbox public-source method pack, see `fixtures/evidence-packs/2026-06-25-code-of-practice-statistics-method/`.
-
-For the practical steps to build a pack, see the [Evidence Pack v1 assembly guide](docs/evidence-pack-assembly-v1.md).
-
-For a compact checklist of the required Evidence Pack v1 validation rules, see the [v1 validation rules summary](docs/evidence-pack-v1-validation-rules-summary.md).
-
-For practical validator commands and usage notes, see the [Evidence Pack v1 validation guide](docs/evidence-pack-validation-v1.md).
-
-For the machine-readable Evidence Pack v1 manifest structure, see the [Evidence Pack manifest v1 JSON schema](schemas/evidence-pack-manifest-v1.schema.json).
-
-For the proof provenance structure, see the [Proof Trail schema notes](docs/proof-trail-schema-v1.md).
-
-For concrete examples of invalid packs and expected validator errors, see the [validator failure cases](docs/evidence-pack-validator-failure-cases-v1.md).
-
-The current version can:
-
-- read seed URLs from `seed_urls.json`
-- fetch public seed pages
-- extract a general source record from each seed page
-- save page title, visible text excerpt, links found, robots status, and scrape status
-- create a safe pending link queue from discovered links
-- filter queued links into candidates and skipped links before fetching
-- save structured JSON
-- create a run report
-- validate the output
-- check `robots.txt` before scraping
-- convert Nutch-style discovery output into candidate source records
-- extract candidate source/search URLs from the local TWIS website sources page
-- build a separate seed URL file from website source candidates
-- fetch a small selected set of public seed URLs after robots.txt checks
-- run a local Streamlit control panel for safe local pipeline steps
-
-## Safety rules
-
-This project is for public-source research.
-
-It is not designed to access private, restricted, paid, login-only, or blocked content. It should only fetch pages that are public and allowed, with polite delays and clear reports.
-
-Nutch is treated as an optional discovery layer only. Nutch may find candidate public pages. The Python evidence pipeline decides what is usable evidence.
-
-The local interface is for local use only. It does not run a live Nutch crawl in v2.7.
-
-## Planned purpose
-
-A user will enter a story or provide seed URLs.
-
-The tool will:
-
-- check `robots.txt`
-- fetch allowed pages politely
-- extract page title, text, dates, authors, links, and source URLs
-- follow discovered links within safe limits
-- save traceable evidence records
-- produce a readable research summary
-
-## Current seed URL file
-
-```json
-{
-  "seed_urls": [
-    "https://quotes.toscrape.com/"
-  ]
-}
-```
-
-## Planned config
-
-Future versions will support:
-
-```json
-{
-  "max_pages": 50,
-  "max_depth": 2,
-  "same_domain_only": true,
-  "respect_robots_txt": true,
-  "delay_seconds": 1
-}
-```
-
-## Planned outputs
+It provides four connected layers:
 
 ```text
-sources_raw.json
-links_found.json
-source_report.json
-research_summary.md
+public source collection
+        ↓
+trace and subject reports
+        ↓
+draft Evidence Pack v1
+        ↓
+validated, human-reviewed outputs
 ```
 
-## Current demo outputs
+The system preserves provenance and missing evidence. It does not decide that a claim is true, infer motive, bypass access controls, or authorise publication.
+
+## Current repository status
+
+`STATUS.md` is the sole repository-level completion authority. Read it before changing the project.
+
+The repository currently includes:
+
+- bounded public-page collection with robots checks and polite limits;
+- source, queue, trace and subject-report outputs;
+- a local Streamlit control panel;
+- Evidence Pack v1 manifests, validators and six controlled fixture packs;
+- a deterministic collector-to-Evidence-Pack bridge;
+- Proof Trail v1 writer and validator tools;
+- Complete MP Report v1 schema, generator and deliberately incomplete fixture;
+- read-only private-server inventory tooling;
+- project-control and subsystem CI workflows.
+
+## Product boundary
+
+### The toolkit can
+
+- read reviewed seed URLs;
+- check `robots.txt` before supported fetch operations;
+- fetch a bounded number of public pages;
+- preserve page title, visible-text excerpt, discovered links and collection status;
+- prioritise and follow candidate links within configured limits;
+- produce trace and subject-match reports;
+- convert collector source metadata into a complete **draft** Evidence Pack folder;
+- validate pack structure, IDs, paths and cross-references;
+- write and validate Proof Trail records;
+- generate deterministic Complete MP Report views from already structured records;
+- report private archive and SQLite state without modifying it.
+
+### The toolkit does not
+
+- access paid, private, login-only, blocked or restricted material;
+- evade `robots.txt` or site controls;
+- decide whether evidence is true or sufficient;
+- generate publication-safe factual claims from collected text;
+- infer political motive, guilt, relationships or contradictions;
+- mark a pack reviewed or publishable without human decisions;
+- claim complete historical MP coverage;
+- publish, commit or upload research automatically.
+
+## Architecture
 
 ```text
-link_queue_filtered_v14.json
-source_report_v14.json
-candidate_sources_discovered_v23.json
-candidate_sources_discovered_v23.md
-website_source_candidates_v25.json
-website_source_candidates_v25.md
-seed_urls_from_website_candidates_v26.json
-seed_urls_from_website_candidates_v26.md
-sources_raw_v27.json
-link_queue_v27.json
-source_report_v27.json
+seed URLs / reviewed source map
+        │
+        ├── selected-seed fetcher
+        └── public trace pipeline
+                    │
+                    ▼
+          collector JSON records
+                    │
+                    ▼
+  create_draft_evidence_pack_from_collector.py
+                    │
+                    ▼
+             Evidence Pack v1
+                    │
+                    ├── structural validator
+                    ├── human review
+                    └── optional report views
 ```
+
+Private evidence storage is separate:
+
+```text
+GitHub repository: machinery, schemas, tests and controlled fixtures
+Private server:     raw evidence, SQLite cache, reports, logs and backups
+```
+
+See `docs/repository-release-contract-v1.md` for the release completion boundary.
 
 ## Install
 
-```powershell
-pip install -r requirements.txt
+Python 3.12 is used by CI.
+
+```bash
+python -m pip install -r requirements.txt
 ```
 
-## Run v2.7 local interface
+`requirements.txt` currently installs Scrapling and Streamlit for the collection and local-interface paths. Most validators, generators and regression tests are standard-library only.
 
-This opens a local Streamlit control panel.
+## Primary entry points
 
-For plain-English steps, see the [Simple Mode user guide v1](docs/simple-mode-user-guide-v1.md).
+### Local control panel
 
-```powershell
-py -m streamlit run .\twis_source_engine_ui_v24.py
+```bash
+python -m streamlit run twis_source_engine_ui_v24.py
 ```
 
-The interface can:
+See [Simple Mode user guide v1](docs/simple-mode-user-guide-v1.md).
 
-- load known local input files
-- read the local TWIS website sources page
-- show `targeted`, `discovery`, and `hybrid` mode labels
-- run safe local scripts that exist in the repo
-- fetch a small selected set of public seed URLs after robots.txt checks
-- preview JSON and Markdown outputs
+The interface runs local, bounded repository actions. It is not a deployed crawler and does not publish outputs.
 
-It does not expose live Nutch crawling or queued-link fetching.
+### Public trace and subject pipeline
 
-## Run v2.7 selected seed source fetcher
-
-This fetches seed URLs only. It checks `robots.txt` before each fetch and does not fetch queued links.
-
-Default input:
-
-```text
-seed_urls_from_website_candidates_v26.json
+```bash
+python run_public_trace_pipeline_v20.py
 ```
 
-Run:
+The runner coordinates the existing source extraction, queue filtering, candidate prioritisation, bounded candidate/follow processing, trace reporting and subject reporting steps.
 
-```powershell
-python .\extract_source_records_from_seed_file_v27.py
+### Selected-seed source fetcher
+
+```bash
+python extract_source_records_from_seed_file_v27.py \
+  --input seed_urls_from_website_candidates_v26.json \
+  --max-seeds 5 \
+  --delay-seconds 1
 ```
 
-Default behaviour:
+This fetches reviewed seed URLs only. It does not automatically fetch the queued links it discovers.
 
-```text
-max seeds: 5
-delay seconds: 1
+### Collector to draft Evidence Pack
+
+```bash
+python scripts/create_draft_evidence_pack_from_collector.py \
+  --source-records fixtures/collector-runs/2026-06-27-west-built-cheap-china-system/sources_raw_v13.json \
+  --output-root generated/evidence-packs \
+  --pack-id 2026-06-27-west-built-cheap-china-system-collector-draft \
+  --title "Draft Evidence Pack — West Built the Cheap China System" \
+  --research-question "What public evidence supports or limits the article's claims about low-value parcel duties, platform use and consumer price effects?" \
+  --scope "Source metadata only; no claims or publication decision." \
+  --created-at 2026-06-27T16:30:00Z \
+  --editorial-risk high
 ```
 
-Optional explicit settings:
+The bridge always creates a `draft`, `not_ready`, human-review-required pack. It creates no factual claims, evidence conclusions or authority ratings.
 
-```powershell
-python .\extract_source_records_from_seed_file_v27.py --input .\seed_urls_from_website_candidates_v26.json --max-seeds 5 --delay-seconds 1
+See [Collector to Evidence Pack bridge v1](docs/collector-to-evidence-pack-v1.md).
+
+### Validate Evidence Packs
+
+Validate one pack:
+
+```bash
+python scripts/validate_evidence_pack.py fixtures/evidence-packs/2026-06-27-west-built-cheap-china-system
 ```
 
-Outputs:
+Validate every committed controlled pack:
 
-```text
-sources_raw_v27.json
-link_queue_v27.json
-source_report_v27.json
+```bash
+python scripts/validate_all_evidence_packs.py
 ```
 
-## Run v2.6 seed URL builder
+Evidence Pack documentation starts at [Evidence Pack v1 docs index](docs/evidence-pack-v1-docs-index.md).
 
-This does not fetch pages and does not overwrite `seed_urls.json`. It turns website source candidates into a separate seed URL file for review.
+### Proof Trail v1
 
-Default input:
+```bash
+python proof_trail_writer_v1.py \
+  --input examples/proof_trail_input_v1.json \
+  --output-dir generated/proof-trail
 
-```text
-website_source_candidates_v25.json
+python proof_trail_validator_v1.py \
+  --evidence-dir generated/proof-trail
 ```
 
-Run:
+See [Proof Trail schema v1](docs/proof-trail-schema-v1.md).
 
-```powershell
-python .\build_seed_urls_from_candidates_v26.py
+### Complete MP Report v1 fixture
+
+```bash
+python scripts/test_complete_mp_report_generator.py
 ```
 
-Default behaviour includes only normal source URLs:
+The included Jeremy Corbyn fixture proves schema enforcement and deterministic output only. It is `fixture_unverified`, `not_ready`, not authorised for public output and incomplete across most research lanes.
 
-```text
-url
+See [Complete MP Report specification v1](docs/complete-mp-report-specification-v1.md).
+
+### Read-only private-server inventory
+
+From the private server checkout:
+
+```bash
+python3 server_imports/audit_server_state.py
 ```
 
-To include RSS and secondary URLs too:
+The inventory reports archive folders, disk state, SQLite integrity and counts, source coverage, logs, backups and repository state. It performs no imports or writes.
 
-```powershell
-python .\build_seed_urls_from_candidates_v26.py --roles url,rssUrl,secondaryUrl
+See [Read-only server inventory](docs/read-only-server-inventory.md).
+
+## Controlled Evidence Pack fixtures
+
+Six controlled packs are committed:
+
+1. `2026-06-22-example-topic`
+2. `2026-06-24-story-evidence-collector-foundation`
+3. `2026-06-25-code-of-practice-statistics-method`
+4. `2026-06-25-power-profile-generic-leadership-mp`
+5. `2026-06-26-the-politics-of-calling-people-ordinary`
+6. `2026-06-27-west-built-cheap-china-system`
+
+Fixtures prove repository structure and workflow behaviour. They do not automatically establish truth or publishability.
+
+## Validation
+
+Run the repository release gate locally:
+
+```bash
+python -m compileall -q .
+python scripts/validate_all_evidence_packs.py
+python scripts/test_evidence_pack_validator_failures.py
+python scripts/test_complete_mp_report_generator.py
+python scripts/test_collector_to_evidence_pack.py
 ```
 
-Outputs:
+GitHub Actions runs the same deterministic core checks without network access.
 
-```text
-seed_urls_from_website_candidates_v26.json
-seed_urls_from_website_candidates_v26.md
-```
+## Historical scripts
 
-## Run v2.5 TWIS website source extractor
+Versioned filenames remain in the repository as implementation lineage and bounded stage tools. They are not a requirement to understand the current product. Use the primary entry points above unless a document or repair contract names a specific historical stage.
 
-This does not run a live crawl. It reads the local TWIS website source map and turns each source URL, RSS URL, and secondary URL into candidate source records.
+## Safety and review rule
 
-Default input:
+Collection is not publication.
 
-```text
-../thisweekinsmoke/src/pages/sources/index.astro
-```
-
-Run:
-
-```powershell
-python .\extract_twis_website_sources_v25.py
-```
-
-Optional explicit paths:
-
-```powershell
-python .\extract_twis_website_sources_v25.py --input ..\thisweekinsmoke\src\pages\sources\index.astro --json-output .\website_source_candidates_v25.json --md-output .\website_source_candidates_v25.md
-```
-
-## Run v2.3 Nutch discovery converter
-
-This does not run a live crawl. It converts an existing Nutch-style sample file into standard candidate source records.
-
-```powershell
-python .\convert_nutch_output_v23.py
-```
-
-Optional explicit paths:
-
-```powershell
-python .\convert_nutch_output_v23.py --input .\testdata\nutch_discovery_sample_v23.json --json-output .\candidate_sources_discovered_v23.json --md-output .\candidate_sources_discovered_v23.md
-```
-
-## Run current queue filter
-
-```powershell
-python .\filter_link_queue_v14.py
-```
-
-## Run previous source extractor and queue builder
-
-```powershell
-python .\extract_source_records_v13.py
-```
-
-## Run previous source extractor
-
-```powershell
-python .\extract_source_records_v12.py
-```
-
-## Run previous quote scraper
-
-```powershell
-python .\scrape_all_quote_pages_v11.py
-```
-
-## Current version table
-
-| Version | Status | Purpose |
-|---|---:|---|
-| v0.1 | Done | Parser test |
-| v0.2 | Done | Scrape one page |
-| v0.3 | Done | Save JSON |
-| v0.4 | Done | Scrape page 1 and page 2 |
-| v0.5 | Done | Follow pagination |
-| v0.6 | Done | Safer cleaner scraper |
-| v0.7 | Done | Run report |
-| v0.8 | Done | Data validation |
-| v0.9 | Done | robots.txt check |
-| v1.0 | Done | Public-safe project freeze |
-| v1.1 | Done | Add `seed_urls.json` input |
-| v1.2 | Done | Extract general source records |
-| v1.3 | Done | Add safe pending link queue |
-| v1.4 | Done | Filter queue before fetching |
-| v2.2 | Done | Add optional Nutch discovery setup |
-| v2.3 | Done | Convert Nutch-style output into candidate source records |
-| v2.4 | Done | Add local interface to load inputs and run safe pipeline steps |
-| v2.5 | Done | Extract candidate URLs from the TWIS website sources page |
-| v2.6 | Done | Build separate seed URL file from website source candidates |
-| v2.7 | Done | Fetch source records from selected seed URL file |
-
-## Notes
-
-The current queue filter does not fetch queued links. It only separates pending links into candidates and skipped links, with clear reasons.
-
-The v2.3 Nutch converter does not fetch pages, run Nutch, or decide whether a page is evidence. It only converts supplied discovery records into candidate source records for later processing.
-
-The v2.5 website source extractor reads the local TWIS website source map only. It does not fetch or crawl the listed sources.
-
-The v2.6 seed builder creates a separate seed file only. It does not overwrite `seed_urls.json`.
-
-The v2.7 selected seed fetcher fetches seed URLs only, checks `robots.txt`, applies a default max-seed limit, and does not fetch queued links.
-
-The v2.7 interface is a local control panel. It is not a deployed app and does not run live crawling.
-
----
-
-## Evidence Pack checklist
-
-Use the [Evidence Pack creation checklist](docs/evidence-pack-assembly-v1.md#evidence-pack-creation-checklist) before validating or sharing an evidence pack.
-
----
-
-## Safe task helper
-
-Use `tools/task.ps1` for small branch-based repo tasks.
-
-The helper reduces repeated typing and stops early when the repo is not in the expected state.
-
-Available commands:
-
-- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 status`
-- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 start docs/example-branch-name`
-- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 review`
-- `powershell -NoProfile -ExecutionPolicy Bypass -File tools\task.ps1 test`
-
-Use the helper for:
-
-- checking clean state
-- starting a small branch
-- reviewing diffs
-- running the evidence-pack validator tests
-
-The helper does not commit, push, or merge. Those steps remain manual.
+A source record shows what was collected. An Evidence Pack shows how records are organised and reviewed. A generated report formats approved structured records. Human reviewers remain responsible for factual sufficiency, fair wording, legal and reputational risk, uncertainty and publication approval.
