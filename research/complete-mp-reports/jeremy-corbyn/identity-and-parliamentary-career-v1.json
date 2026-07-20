@@ -1,0 +1,261 @@
+{
+  "schema_version": "1",
+  "packet_id": "jeremy-corbyn-identity-and-parliamentary-career-v1",
+  "subject": {
+    "official_name": "Jeremy Corbyn",
+    "repository_display_name": "Corbyn, Jeremy",
+    "parliament_member_id": "185"
+  },
+  "section_id": "identity_and_parliamentary_career",
+  "captured_at": "2026-07-20T11:30:00Z",
+  "source_boundary": {
+    "included": [
+      "Official UK Parliament member career record",
+      "Official UK Parliament latest election result"
+    ],
+    "excluded": [
+      "News reporting",
+      "Party, campaign and personal websites",
+      "Social media",
+      "Wikipedia and unsourced aggregators",
+      "Other Complete MP Report sections"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "source-uk-parliament-member-career",
+      "title": "Parliamentary career for Jeremy Corbyn",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://members.parliament.uk/member/185/career",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": "1983-06-09",
+      "coverage_to": null,
+      "checksum": "",
+      "limitations": "Records the current and previous parliamentary representations, parliamentary party affiliations and selected posts shown on the official member career page. It does not independently establish every election, boundary or administrative event across the full career."
+    },
+    {
+      "source_id": "source-uk-parliament-2024-election-result",
+      "title": "Last election result for Jeremy Corbyn",
+      "publisher": "UK Parliament",
+      "source_type": "electoral_record",
+      "authority_level": "primary",
+      "url": "https://members.parliament.uk/member/185/electionresult",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": "2024-07-04",
+      "capture_date": "2026-07-20",
+      "coverage_from": "2024-07-04",
+      "coverage_to": "2024-07-04",
+      "checksum": "",
+      "limitations": "Records the 4 July 2024 general-election result and the candidate's affiliation at that election. It does not describe later parliamentary affiliation changes."
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "fact-fixture-member-id",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "The official UK Parliament member record for Jeremy Corbyn uses member ID 185.",
+      "fact_type": "identity",
+      "date": null,
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "The repository keeps the surname-first display form 'Corbyn, Jeremy' while the official source names the member Jeremy Corbyn."
+    },
+    {
+      "fact_id": "fact-current-constituency",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "UK Parliament records Jeremy Corbyn as the MP for Islington North as of 20 July 2026.",
+      "fact_type": "service",
+      "date": "2026-07-20",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Current representation on the official member career page."
+    },
+    {
+      "fact_id": "fact-continuous-commons-service",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "UK Parliament records Jeremy Corbyn as having served continuously as an MP since 9 June 1983.",
+      "fact_type": "service",
+      "date": null,
+      "date_from": "1983-06-09",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "The source's continuous-service summary is recorded without inferring unlisted administrative events."
+    },
+    {
+      "fact_id": "fact-representation-1983-1997",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "UK Parliament records Jeremy Corbyn as representing Islington North [1983–1997] from 9 June 1983 to 1 May 1997.",
+      "fact_type": "service",
+      "date": null,
+      "date_from": "1983-06-09",
+      "date_to": "1997-05-01",
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Representation label and dates follow the official career page."
+    },
+    {
+      "fact_id": "fact-representation-1997-2010",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "UK Parliament records Jeremy Corbyn as representing Islington North [1997–2010] from 1 May 1997 to 6 May 2010.",
+      "fact_type": "service",
+      "date": null,
+      "date_from": "1997-05-01",
+      "date_to": "2010-05-06",
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Representation label and dates follow the official career page."
+    },
+    {
+      "fact_id": "fact-representation-2010-2024",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "UK Parliament records Jeremy Corbyn as representing Islington North [2010–2024] from 6 May 2010 to 30 May 2024.",
+      "fact_type": "service",
+      "date": null,
+      "date_from": "2010-05-06",
+      "date_to": "2024-05-30",
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Representation label and dates follow the official career page."
+    },
+    {
+      "fact_id": "fact-representation-2024-present",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "UK Parliament records Jeremy Corbyn as representing the current Islington North constituency from 4 July 2024.",
+      "fact_type": "service",
+      "date": null,
+      "date_from": "2024-07-04",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "The official page identifies this as the current representation after the 2023 boundary review."
+    },
+    {
+      "fact_id": "fact-party-labour-1983-2020",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "UK Parliament records Jeremy Corbyn's parliamentary party affiliation as Labour from 9 June 1983 to 29 October 2020.",
+      "fact_type": "service",
+      "date": null,
+      "date_from": "1983-06-09",
+      "date_to": "2020-10-29",
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "This is a parliamentary-affiliation record, not an inference about wider party membership."
+    },
+    {
+      "fact_id": "fact-party-independent-2020-2026",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "UK Parliament records Jeremy Corbyn's parliamentary party affiliation as Independent from 29 October 2020 to 10 June 2026.",
+      "fact_type": "service",
+      "date": null,
+      "date_from": "2020-10-29",
+      "date_to": "2026-06-10",
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "This is a parliamentary-affiliation record."
+    },
+    {
+      "fact_id": "fact-party-your-party-2026-present",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "UK Parliament records Jeremy Corbyn's current parliamentary party affiliation as Your Party from 10 June 2026.",
+      "fact_type": "service",
+      "date": null,
+      "date_from": "2026-06-10",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "This current affiliation supersedes the Independent affiliation shown for the 2024 election."
+    },
+    {
+      "fact_id": "fact-2024-election-independent",
+      "section_id": "identity_and_parliamentary_career",
+      "statement": "At the 4 July 2024 general election, Jeremy Corbyn was elected for Islington North as an Independent with 24,120 votes, representing 49.2% of votes cast.",
+      "fact_type": "service",
+      "date": "2024-07-04",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-2024-election-result"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "The election affiliation is recorded separately from the later current parliamentary affiliation."
+    }
+  ],
+  "coverage_gaps": [
+    {
+      "gap_id": "gap-identity-refresh",
+      "section_id": "identity_and_parliamentary_career",
+      "summary": "Current identity, constituency, parliamentary affiliation and service-start data have been refreshed from official UK Parliament records.",
+      "severity": "low",
+      "reason": "other",
+      "date_from": null,
+      "date_to": null,
+      "status": "resolved",
+      "blocks_publication": false,
+      "next_action": "Recheck the official member record when the portfolio is refreshed.",
+      "notes": "Resolved for the bounded identity baseline on 20 July 2026."
+    },
+    {
+      "gap_id": "gap-career-history-scope",
+      "section_id": "identity_and_parliamentary_career",
+      "summary": "The baseline records official representation and parliamentary-affiliation periods but does not independently assess every historic election, constituency-boundary event or administrative transition across the full career.",
+      "severity": "high",
+      "reason": "historic_gap",
+      "date_from": "1983-06-09",
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Complete a separately authorised official election and boundary chronology if the declared identity-and-career scope is expanded.",
+      "notes": "The section remains partial rather than implying exhaustive career coverage."
+    }
+  ],
+  "decisions": {
+    "identity_status": "verified",
+    "section_status": "partial",
+    "publication_status": "not_ready",
+    "human_review_required": true,
+    "public_output_authorised": false,
+    "notes": "Official records resolve the bounded current identity baseline. The section remains partial because this lane does not establish an exhaustive election and boundary chronology."
+  }
+}
