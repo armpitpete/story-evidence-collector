@@ -1,0 +1,42 @@
+name: January 2003 vote review queue test
+
+on:
+  pull_request:
+    paths:
+      - "server_imports/build_january_2003_vote_review_queue.py"
+      - "server_imports/january_2003_vote_review_queue_schema.json"
+      - "server_imports/README.md"
+      - "server_imports/example_config.example.json"
+      - "docs/january-2003-vote-review-protocol.md"
+      - "scripts/test_january_2003_vote_review_queue.py"
+      - ".github/workflows/january-2003-vote-review-queue-test.yml"
+  push:
+    branches: [main]
+    paths:
+      - "server_imports/build_january_2003_vote_review_queue.py"
+      - "server_imports/january_2003_vote_review_queue_schema.json"
+      - "server_imports/README.md"
+      - "server_imports/example_config.example.json"
+      - "docs/january-2003-vote-review-protocol.md"
+      - "scripts/test_january_2003_vote_review_queue.py"
+      - ".github/workflows/january-2003-vote-review-queue-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prove-review-queue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile queue machinery
+        run: python -m py_compile server_imports/build_january_2003_vote_review_queue.py scripts/test_january_2003_vote_review_queue.py
+      - name: Prove deterministic read-only queue
+        run: python scripts/test_january_2003_vote_review_queue.py
