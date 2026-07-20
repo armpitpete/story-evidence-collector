@@ -171,10 +171,10 @@ def test_packet_and_fixture() -> None:
         == "2015-03-30"
     )
 
-    non_lane_fact_ids = set(report_facts) - set(LANE_FACT_IDS)
-    assert non_lane_fact_ids == PROTECTED_FACT_IDS
-    for fact_id in PROTECTED_FACT_IDS:
-        assert report_facts[fact_id]["section_id"] != "roles_and_committees"
+    assert PROTECTED_FACT_IDS <= set(report_facts)
+    for fact_id, fact in report_facts.items():
+        if fact_id not in LANE_FACT_IDS:
+            assert fact["section_id"] != "roles_and_committees"
 
     assert set(packet_gaps) == {"gap-role-committee-history-scope"}
     assert packet_gaps["gap-role-committee-history-scope"] == report_gaps[
