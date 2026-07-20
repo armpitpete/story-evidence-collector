@@ -1,12 +1,6 @@
 name: Assemble Corbyn current financial interests baseline
 
 on:
-  push:
-    branches:
-      - agent/corbyn-current-financial-interests-baseline
-    paths:
-      - ".bootstrap/**"
-      - ".github/workflows/jeremy-corbyn-current-financial-interests-test.yml"
   pull_request:
     branches:
       - main
@@ -29,7 +23,18 @@ jobs:
           ref: agent/corbyn-current-financial-interests-baseline
           fetch-depth: 0
 
+      - name: Detect staged packet
+        id: staged
+        shell: bash
+        run: |
+          if [[ -f .bootstrap/packet.001 ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Assemble authorised packet and fixture
+        if: steps.staged.outputs.ready == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -104,6 +109,7 @@ jobs:
           PY
 
       - name: Validate complete bounded implementation
+        if: steps.staged.outputs.ready == 'true'
         run: |
           set -euo pipefail
           python -m py_compile scripts/test_jeremy_corbyn_current_financial_interests_v1.py
@@ -113,62 +119,14 @@ jobs:
           python scripts/test_complete_mp_report_generator.py
           python scripts/test_complete_mp_portfolio_view.py
 
-      - name: Replace bootstrap with final five-file implementation
+      - name: Commit assembled data and remove staging
+        if: steps.staged.outputs.ready == 'true'
         shell: bash
         run: |
           set -euo pipefail
           rm -rf .bootstrap
-          cat > .github/workflows/jeremy-corbyn-current-financial-interests-test.yml <<'YAML'
-          name: Jeremy Corbyn current financial interests test
-
-          on:
-            pull_request:
-              paths:
-                - "research/complete-mp-reports/jeremy-corbyn/current-financial-interests-v1.json"
-                - "docs/jeremy-corbyn-current-financial-interests-source-note-v1.md"
-                - "fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json"
-                - "scripts/test_jeremy_corbyn_current_financial_interests_v1.py"
-                - ".github/workflows/jeremy-corbyn-current-financial-interests-test.yml"
-                - "schemas/complete-mp-report-v1.schema.json"
-                - "scripts/generate_complete_mp_report.py"
-            workflow_dispatch:
-
-          permissions:
-            contents: read
-
-          jobs:
-            test:
-              runs-on: ubuntu-latest
-              steps:
-                - name: Check out repository
-                  uses: actions/checkout@v4
-
-                - name: Set up Python 3.12
-                  uses: actions/setup-python@v5
-                  with:
-                    python-version: "3.12"
-
-                - name: Compile financial-interests regression
-                  run: python -m py_compile scripts/test_jeremy_corbyn_current_financial_interests_v1.py
-
-                - name: Validate current financial interests baseline
-                  run: python scripts/test_jeremy_corbyn_current_financial_interests_v1.py
-
-                - name: Preserve official identity and career baseline
-                  run: python scripts/test_jeremy_corbyn_identity_career_v1.py
-
-                - name: Preserve official roles and committees baseline
-                  run: python scripts/test_jeremy_corbyn_roles_committees_v1.py
-
-                - name: Preserve canonical Complete MP Report regression
-                  run: python scripts/test_complete_mp_report_generator.py
-
-                - name: Preserve read-only Complete MP Portfolio view
-                  run: python scripts/test_complete_mp_portfolio_view.py
-          YAML
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "Complete Corbyn current financial interests baseline"
+          git commit -m "Complete Corbyn current financial interests data"
           git push origin HEAD:agent/corbyn-current-financial-interests-baseline
