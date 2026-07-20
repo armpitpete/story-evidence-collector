@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: AUTHORISED
+status: AUTHORITATIVE
 authority_ref: main
 ---
 
@@ -11,110 +11,51 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Exact current lane head before this clarification: `d570f0587218637bda33a61b34df6a8aa0d9e8e6`.
-- Jeremy Corbyn current financial-interests baseline is complete at merge `e92262ccafa2e9628bc5e8f5bba6be4c14541750` from exact reviewed head `4dce322af5220c62b7b20537094ab7d683b966d9`.
-- Jeremy Corbyn official roles-and-committees baseline remains complete at merge `968d33dac9e80cdf0f6c9107c195c5f7d7f70a1b`.
-- Jeremy Corbyn official identity-and-career baseline remains complete at merge `93c8da204d9709a1490dfa24a7b722a5f6a85199`.
+- Jeremy Corbyn current outside-work-and-company-links baseline merged as `d9bac48a0561b2a807c24f72b32a757607dea9d6` from exact reviewed implementation head `3dc595700fb01f5f1d8a63b1adef2388bdc86f69` using a merge commit.
+- The prerequisite financial-interests regression-boundary repair is complete at merge `d2988c2edc59948d7cba439835f013c613e5234e`.
+- Jeremy Corbyn current financial-interests baseline remains complete at merge `e92262ccafa2e9628bc5e8f5bba6be4c14541750`.
+- Jeremy Corbyn roles-and-committees baseline remains complete at merge `968d33dac9e80cdf0f6c9107c195c5f7d7f70a1b`.
+- Jeremy Corbyn identity-and-parliamentary-career baseline remains complete at merge `93c8da204d9709a1490dfa24a7b722a5f6a85199`.
 - Complete MP Portfolio vertical slice and local acceptance remain complete.
 - January 2003 vote-review queue, Repository Release v1 and backup-and-restore hardening remain complete and authoritative.
 
 ## Current lane
 
-Jeremy Corbyn current outside work and company links baseline.
-
-Goal: replace the unresearched `outside_work_and_company_links` section with a bounded official-source baseline for the four organisations explicitly named in the accepted current UK Parliament Registered Interests snapshot, without expanding to unrelated companies, connected people, political-finance conclusions or relationship inference.
-
-Canonical section:
-
-- `outside_work_and_company_links`
-
-Declared-link boundary from the accepted Parliament snapshot:
-
-- Your Party UK Ltd;
-- Jeremy Corbyn Campaign Ltd;
-- Community Unity Limited;
-- the Peace and Justice Project company named by the register.
-
-Official source boundary:
-
-- the accepted UK Parliament current financial-interests packet and corresponding official Registered Interests entries, used only for the member's declared role wording and dates;
-- official Companies House company overview pages for exact registry identity, company number, status, incorporation date and registered nature of business;
-- official Companies House officer pages or appointment records only for Jeremy Corbyn's own appointment or termination dates;
-- official Companies House filing history only when needed to resolve a company-name, status or appointment ambiguity;
-- an explicit unresolved record when an exact official company match cannot be established without guessing.
-
-Forbidden source classes and expansion:
-
-- Wikipedia, newspapers, broadcasters, party, campaign or personal websites, social media, OpenCorporates, commercial company aggregators and search-result snippets;
-- unrelated companies discovered through addresses, other officers, filing agents, shareholders, persons with significant control or connected organisations;
-- inference about beneficial ownership, control, remuneration, influence, motive, political significance, legality or propriety;
-- treating a bank-signatory declaration as directorship, employment, ownership or control;
-- changing `financial_interests`, `donations_and_political_finance`, `organisations_and_relationships` or any other canonical section.
-
-Authorised implementation scope:
-
-- `research/complete-mp-reports/jeremy-corbyn/current-outside-work-company-links-v1.json`
-- `docs/jeremy-corbyn-current-outside-work-company-links-source-note-v1.md`
-- `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
-- `scripts/test_jeremy_corbyn_current_outside_work_company_links_v1.py`
-- `.github/workflows/jeremy-corbyn-current-outside-work-company-links-test.yml`
-
-Authorised prerequisite regression repair, in one separate one-file PR before the five-file implementation PR:
-
-- `scripts/test_jeremy_corbyn_current_financial_interests_v1.py`
-
-The prerequisite repair may only replace the financial-interests regression's closed-world assertion over every non-financial fact with section-scoped non-interference proof. It must continue to require:
-
-- the exact 29 accepted `financial_interests` facts and their order;
-- the accepted official sources, 13/12/4 category reconciliation, source spellings and packet-to-fixture equality;
-- the accepted financial-interests gap, publication state and deterministic outputs;
-- rejection of any later fact incorrectly assigned to `financial_interests`.
-
-It must permit separately authorised facts in other canonical sections. It must not alter the fixture, packet, source note, workflow, accepted financial-interest record, report status or publication authority.
-
-Required behaviour:
-
-- preserve the four Parliament declarations exactly as already captured and link each new company record back to its source entry;
-- establish the exact registered company name and number from Companies House before adding a `company` fact;
-- record only company status, incorporation date, nature of business and Jeremy Corbyn's own official appointment or termination dates when displayed;
-- distinguish Parliament-declared unpaid director roles from the separately declared unpaid bank-signatory role;
-- do not encode the bank-signatory declaration as a Companies House officer appointment unless Companies House independently records one;
-- preserve any difference between Parliament wording and Companies House wording rather than silently reconciling it;
-- create no donation, relationship, position, claim or interpretation record;
-- leave the section `partial` with an explicit open historic outside-work and company-coverage gap;
-- keep the report `not_ready`, human review required and public output unauthorised;
-- preserve every accepted identity, roles, voting and financial-interests record unchanged;
-- validate the complete fixture through the canonical Complete MP Report validator and deterministic generator;
-- prove each added fact resolves only to the accepted Parliament source and/or official Companies House source records;
-- prove no unrelated company, officer or organisation was added;
-- run the new lane regression, identity-and-career regression, roles-and-committees regression, repaired current financial-interests regression, Complete MP Report fixture test, Complete MP Portfolio view test, Repository release validation and Project control;
-- change exactly one file in the prerequisite repair PR and exactly five files in the implementation PR.
+No implementation or research lane is active.
 
 ## Done
 
-- Repository Release v1 and backup/restore proof are complete.
-- January 2003 seed-row shape and vote-review queue preparation are complete.
-- The accepted Streamlit interface exposes `Simple`, `MP Portfolio` and `Advanced` views.
-- Jeremy Corbyn identity-and-career, roles-and-committees and current financial-interests baselines are complete within their declared official-source scopes.
-- The four bounded organisation/company identities have been resolved against official Companies House records.
-- The clean-worktree implementation generated the authorised four-link packet and passed its new regression, identity regression and roles regression.
-- The implementation stopped before commit or push because the inherited financial-interests regression incorrectly rejected later-section facts.
-- The remote implementation branch remains at the authority merge with no implementation commit.
+- The four organisation/company declarations in the accepted 13 July 2026 UK Parliament Registered Interests snapshot were resolved against official Companies House overview and officer records.
+- `YOUR PARTY UK LTD` was resolved as company `16619803`, incorporated 31 July 2025 and dissolved 21 April 2026; Jeremy Bernard Corbyn is recorded as a director appointed 31 July 2025.
+- `JEREMY CORBYN CAMPAIGN LIMITED` was resolved as company `15977146`, active and incorporated 25 September 2024; Jeremy Bernard Corbyn is recorded as a director appointed on that date.
+- `COMMUNITY UNITY LTD` was resolved as company `15392819`, incorporated 6 January 2024 and dissolved 20 May 2025. The Parliament declaration remains an unpaid bank-signatory role; Jeremy Corbyn is not listed on the Companies House officer page, and no directorship, employment, ownership or control inference was made.
+- `PEACE AND JUSTICE PROJECT LTD` was resolved as company `12945855`, active and incorporated 13 October 2020; Jeremy Bernard Corbyn is recorded as a director appointed on that date.
+- The `outside_work_and_company_links` section is now `partial` with exactly four `company` facts and an explicit open historic-coverage gap.
+- No unrelated company, connected person, filing agent, shareholder, person with significant control, donation, relationship, position, claim or interpretation record was added.
+- The report remains `not_ready`, human review remains required and public output remains unauthorised.
+- Exactly five authorised implementation files changed in PR #188.
+- Outside-work/company-links, identity-and-career, roles-and-committees, current financial-interests, Complete MP Report fixture, Complete MP Portfolio view, Repository Release validation and Project Control workflows all passed on exact head `3dc595700fb01f5f1d8a63b1adef2388bdc86f69`.
 
 ## To do
 
-- Merge this `STATUS.md`-only clarification after Project Control passes.
-- Repair the financial-interests regression boundary in one controlled one-file PR.
-- Rebase or fast-forward the empty implementation branch to the repaired current `main`.
-- Regenerate the five authorised outside-work files in a clean worktree.
-- Run all inherited and new regressions with immediate stop on failure.
-- Open and review one five-file implementation PR.
-- After implementation merge, close this lane through a separate `STATUS.md`-only authority PR.
+Future work requires separately authorised bounded lanes. Remaining canonical areas include:
+
+- donations and political finance;
+- speeches and parliamentary questions;
+- public positions over time;
+- changes and contradictions;
+- organisations and evidenced relationships;
+- broader historic voting coverage and human vote-meaning review;
+- final evidence-gap, source-register, human-review and publication closure.
+
+The accepted identity, roles, financial-interests and outside-work/company sections remain deliberately `partial`; they do not claim exhaustive historical coverage.
 
 ## Next bounded gate
 
-Merge this authority clarification after Project Control passes. Then merge one one-file financial-interests regression repair after its exact checks pass. Only then resume the five-file outside-work implementation.
+None. Open a separate `STATUS.md`-only authority PR naming one canonical section, exact official-source boundary, authorised files, validation and stop point before further research or implementation.
+
+The recommended next lane is `donations_and_political_finance`, limited to official Electoral Commission and UK Parliament records and preserving a strict distinction between donations to Jeremy Corbyn, donations to regulated entities, campaign spending and company records.
 
 ## Stop point
 
-Do not research another MP or canonical section; expand to unrelated companies or connected people; alter accepted identity, roles, voting, financial-interests, donations, speeches, positions, relationships or human-review records; infer ownership, control, remuneration, influence, motive, legality or propriety; review January 2003 vote meanings; access or mutate the private server or SQLite; create claims or interpretations; mark the section complete; mark the report publishable; or authorise public output. Stop after the prerequisite one-file repair and the separate five-file implementation PR are complete, tested and reviewed.
+Do not begin another MP or canonical section; alter accepted identity, roles, voting, financial-interests, outside-work, speeches, positions, relationships or human-review records; infer ownership, control, influence, motive, legality or propriety; review January 2003 vote meanings; access or mutate the private server or SQLite; create unsupported claims or interpretations; mark a partial section complete; mark the report publishable; or authorise public output without a separately merged authority update.
