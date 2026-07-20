@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: AUTHORISED
+status: AUTHORITATIVE
 authority_ref: main
 ---
 
@@ -11,58 +11,17 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Exact starting head for this lane: `f0b43bb082b877d7c0476e53ce7f1e68ed208d6a`.
+- Jeremy Corbyn identity-and-career authority activation merged as `10135f595c1b30b07dd0c861e317c4d7ed9edb71`.
+- Jeremy Corbyn official identity-and-career implementation PR #174 merged as `93c8da204d9709a1490dfa24a7b722a5f6a85199` from exact reviewed head `e22c9d6d262867e19f2b059677acc3ba9e6fcd4c` using a merge commit.
 - Complete MP Portfolio vertical-slice and local acceptance remain complete.
-- Complete MP Portfolio implementation PR #170 remains merged as `da2fa879acd1783ab992c7dd68adb4be4e556123` from exact reviewed head `a183f5374bca4c617660e5a4010ddad0d7af45e0`.
 - January 2003 vote-review queue implementation remains complete at merge `7d646f0a68ef6153c58111440ed9bca05ce3ce44`.
 - Repository Release v1 and backup-and-restore hardening remain complete and authoritative.
 
 ## Current lane
 
-Jeremy Corbyn official identity and parliamentary-career baseline.
+No implementation or research lane is active.
 
-Goal: replace the fixture-only identity baseline for the Complete MP Report proof target with a narrowly sourced official parliamentary identity and service baseline, while leaving all other report sections, publication state and unresolved evidence gaps unchanged.
-
-Canonical section:
-
-- `identity_and_parliamentary_career`
-
-Official source boundary:
-
-- current UK Parliament member profile and biography/career records;
-- official UK Parliament election or service records where needed to establish service dates and constituency continuity;
-- another UK public-body primary record only when the Parliament record cannot supply a required field.
-
-Forbidden source classes:
-
-- Wikipedia;
-- newspapers or broadcasters;
-- party, campaign or personal websites;
-- social media;
-- unsourced aggregators;
-- inference from search-result snippets.
-
-Authorised implementation scope:
-
-- `research/complete-mp-reports/jeremy-corbyn/identity-and-parliamentary-career-v1.json`
-- `docs/jeremy-corbyn-identity-career-source-note-v1.md`
-- `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
-- `scripts/test_jeremy_corbyn_identity_career_v1.py`
-- `.github/workflows/jeremy-corbyn-identity-career-test.yml`
-
-Required behaviour:
-
-- record each official source with stable title, publisher, URL, capture date, authority level, coverage and limitations;
-- record only narrowly worded facts directly supported by the named source;
-- verify the subject display name, Parliament member ID, current constituency, current parliamentary affiliation and parliamentary service start date;
-- preserve any unresolved historical party, boundary or service-period detail as an explicit coverage gap rather than inferring it;
-- update the fixture subject identity status to `verified` only when every subject identity field resolves to official sources;
-- keep the `identity_and_parliamentary_career` section `partial` unless the declared career scope has been fully assessed;
-- keep the report `not_ready`, human review required and public output unauthorised;
-- add no interpretation, contradiction, motive or wrongdoing claim;
-- validate the complete fixture through the canonical Complete MP Report validator and generator;
-- prove that all facts added to the fixture occur unchanged in the research packet and resolve to official source IDs;
-- change exactly the five authorised files.
+The Jeremy Corbyn official identity and parliamentary-career baseline is complete within its declared source boundary. Further MP research requires a separately authorised canonical-section lane.
 
 ## Done
 
@@ -70,24 +29,25 @@ Required behaviour:
 - Backup and disposable restore proof are complete.
 - January 2003 seed-row shape and vote-review queue preparation are complete.
 - The Streamlit application exposes accepted `Simple`, `MP Portfolio` and `Advanced` views.
-- The current Complete MP Report proof target is `Corbyn, Jeremy`, but its committed identity baseline remains `fixture_unverified` and explicitly requires official refresh.
+- Official UK Parliament records now verify Jeremy Corbyn's Parliament member ID `185`, current Islington North representation, current parliamentary affiliation and continuous Commons service start.
+- The fixture records the separate dated fact that the 4 July 2024 election result listed Jeremy Corbyn as Independent, while the current career record lists Your Party from 10 June 2026.
+- The subject identity status is now `verified`.
+- The `identity_and_parliamentary_career` section remains `partial` because a complete independent historic election and boundary chronology was not authorised or claimed.
+- The former identity-refresh gap is resolved and non-blocking; a separate career-history scope gap remains open and blocking.
+- The report remains `not_ready`, human review required and public output unauthorised.
+- The implementation changed exactly the five authorised files.
+- Jeremy Corbyn identity and career test, Complete MP report fixture test, Complete MP Portfolio view test, Repository release validation and Project control all passed on exact implementation head `e22c9d6d262867e19f2b059677acc3ba9e6fcd4c`.
+- No interpretation, contradiction, another report section, January 2003 vote meaning, private-server state, SQLite content or publication authority changed.
 
 ## To do
 
-- Research the official identity and parliamentary-career baseline within the authorised source boundary.
-- Create the machine-readable source-and-fact packet and readable source note.
-- Update only the identity-and-career records and directly related source and gap references in the existing fixture.
-- Add deterministic validation and CI.
-- Run the new lane regression, canonical Complete MP Report test, Repository release validation and Project control.
-- Open and review one five-file implementation PR.
-- After implementation merge, close this lane through a separate `STATUS.md`-only authority PR.
+- No work remains in the Jeremy Corbyn official identity-and-parliamentary-career baseline lane.
+- The next MP portfolio section must be activated through a separate `STATUS.md`-only authority update naming its source boundary, exact files, validation and stop point.
 
 ## Next bounded gate
 
-Merge this authority-only activation PR after Project control passes. Then conduct the bounded official-source research and open one controlled five-file implementation PR.
-
-ChatGPT Work owns source collection and fact extraction. Codex owns deterministic encoding, tests and fixture integration after the source packet is fixed. Neither may expand beyond this section or source boundary.
+None. The recommended next canonical section is `roles_and_committees`, using official UK Parliament role and committee records only.
 
 ## Stop point
 
-Do not research another MP or another canonical section; use non-official sources; infer missing service or party history; alter voting, finance, interests, speeches, positions, relationships or human-review records; review the January 2003 vote meanings; access or mutate the private server or SQLite; create interpretations; mark the identity-and-career section complete without full declared-scope evidence; mark the report publishable; or authorise public output. Stop after the five-file implementation PR is complete, tested and reviewed.
+Do not research another canonical section; expand the identity-and-career scope; use non-official sources; alter voting, finance, interests, speeches, positions, relationships or human-review records; review January 2003 vote meanings; access or mutate the private server or SQLite; create interpretations; mark the report publishable; or authorise public output without a separately merged authority lane.
