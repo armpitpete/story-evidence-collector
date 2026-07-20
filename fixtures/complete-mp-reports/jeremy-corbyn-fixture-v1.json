@@ -380,7 +380,7 @@
     },
     {
       "fact_id": "fact-current-constituency",
-      "section_id": "identity_and_parliamentary_carer",
+      "section_id": "identity_and_parliamentary_career",
       "statement": "UK Parliament records Jeremy Corbyn as the MP for Islington North as of 20 July 2026.",
       "fact_type": "service",
       "date": "2026-07-20",
@@ -395,7 +395,7 @@
     },
     {
       "fact_id": "fact-continuous-commons-service",
-      "section_id": "identity_and_parliamentary_carer",
+      "section_id": "identity_and_parliamentary_career",
       "statement": "UK Parliament records Jeremy Corbyn as having served continuously as an MP since 9 June 1983.",
       "fact_type": "service",
       "date": null,
@@ -455,7 +455,7 @@
     },
     {
       "fact_id": "fact-representation-2024-present",
-      "section_id": "identity_and_parliamentary_carer",
+      "section_id": "identity_and_parliamentary_career",
       "statement": "UK Parliament records Jeremy Corbyn as representing the current Islington North constituency from 4 July 2024.",
       "fact_type": "service",
       "date": null,
@@ -500,7 +500,7 @@
     },
     {
       "fact_id": "fact-party-your-party-2026-present",
-      "section_id": "identity_and_parliamentary_carer",
+      "section_id": "identity_and_parliamentary_career",
       "statement": "UK Parliament records Jeremy Corbyn's current parliamentary party affiliation as Your Party from 10 June 2026.",
       "fact_type": "service",
       "date": null,
@@ -676,7 +676,7 @@
   "coverage_gaps": [
     {
       "gap_id": "gap-identity-refresh",
-      "section_id": "identity_and_parliamentary_carer",
+      "section_id": "identity_and_parliamentary_career",
       "summary": "Current identity, constituency, parliamentary affiliation and service-start data have been refreshed from official UK Parliament records.",
       "severity": "low",
       "reason": "other",
@@ -737,7 +737,7 @@
       "status": "open",
       "blocks_publication": true,
       "next_action": "Build a versioned official-register evidence lane.",
-      "notes": " 
+      "notes": ""
     },
     {
       "gap_id": "gap-donations",
@@ -750,7 +750,7 @@
       "status": "open",
       "blocks_publication": true,
       "next_action": "Import authoritative Electoral Commission records and resolve the subject identity.",
-      "notes": " 
+      "notes": ""
     },
     {
       "gap_id": "gap-outside-work",
@@ -802,7 +802,7 @@
       "status": "open",
       "blocks_publication": true,
       "next_action": "Compare dated records only after the position timeline is complete.",
-      "notes": " 
+      "notes": ""
     },
     {
       "gap_id": "gap-relationships",
@@ -815,7 +815,7 @@
       "status": "open",
       "blocks_publication": true,
       "next_action": "Add only defined, sourced public relationships and review chart eligibility.",
-      "notes": " 
+      "notes": ""
     },
     {
       "gap_id": "gap-server-inventory",
@@ -854,7 +854,7 @@
       "status": "open",
       "blocks_publication": true,
       "next_action": "Complete all required review gates after evidence collection.",
-      "notes": " 
+      "notes": ""
     }
   ],
   "review_decisions": [
