@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://story-evidence-collector.invalid/schemas/january-2003-vote-review-queue-v1.json",
+  "title": "January 2003 Vote Review Queue v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "scope",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "january-2003-vote-review-queue-v1"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "date_from",
+        "date_to",
+        "target_mp",
+        "row_count"
+      ],
+      "properties": {
+        "date_from": {
+          "type": "string",
+          "format": "date"
+        },
+        "date_to": {
+          "type": "string",
+          "format": "date"
+        },
+        "target_mp": {
+          "type": "string",
+          "minLength": 1
+        },
+        "row_count": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "queue_position",
+          "queue_state",
+          "division",
+          "vote",
+          "source_trace",
+          "review"
+        ],
+        "properties": {
+          "queue_position": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "queue_state": {
+            "enum": [
+              "recorded_aye",
+              "recorded_no",
+              "not_recorded",
+              "source_ambiguity"
+            ]
+          },
+          "division": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "division_key",
+              "division_id",
+              "division_date",
+              "division_title",
+              "house",
+              "source_url",
+              "source_xml_url"
+            ],
+            "properties": {
+              "division_key": {
+                "type": "string",
+                "minLength": 1
+              },
+              "division_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "division_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "division_title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "house": {
+                "type": "string"
+              },
+              "source_url": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source_xml_url": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "vote": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "vote_key",
+              "member_key",
+              "target_mp",
+              "recorded_vote",
+              "vote_side",
+              "evidence_status",
+              "meaning_quality"
+            ],
+            "properties": {
+              "vote_key": {
+                "type": "string",
+                "minLength": 1
+              },
+              "member_key": {
+                "type": "string",
+                "minLength": 1
+              },
+              "target_mp": {
+                "type": "string",
+                "minLength": 1
+              },
+              "recorded_vote": {
+                "type": "string",
+                "minLength": 1
+              },
+              "vote_side": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_status": {
+                "type": "string",
+                "minLength": 1
+              },
+              "meaning_quality": {
+                "const": "needs_review"
+              }
+            }
+          },
+          "source_trace": {
+            "type": "object"
+          },
+          "review": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "decision",
+              "reviewed_meaning",
+              "evidence_url",
+              "notes",
+              "reviewer",
+              "reviewed_at"
+            ],
+            "properties": {
+              "decision": {
+                "const": ""
+              },
+              "reviewed_meaning": {
+                "const": ""
+              },
+              "evidence_url": {
+                "const": ""
+              },
+              "notes": {
+                "const": ""
+              },
+              "reviewer": {
+                "const": ""
+              },
+              "reviewed_at": {
+                "const": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
