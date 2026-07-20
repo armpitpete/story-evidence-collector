@@ -1,0 +1,37 @@
+name: Jeremy Corbyn identity and career test
+
+on:
+  pull_request:
+    paths:
+      - "research/complete-mp-reports/jeremy-corbyn/identity-and-parliamentary-career-v1.json"
+      - "docs/jeremy-corbyn-identity-career-source-note-v1.md"
+      - "fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json"
+      - "scripts/test_jeremy_corbyn_identity_career_v1.py"
+      - ".github/workflows/jeremy-corbyn-identity-career-test.yml"
+      - "schemas/complete-mp-report-v1.schema.json"
+      - "scripts/generate_complete_mp_report.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile lane regression
+        run: python -m py_compile scripts/test_jeremy_corbyn_identity_career_v1.py
+
+      - name: Validate official identity and career baseline
+        run: python scripts/test_jeremy_corbyn_identity_career_v1.py
+
+      - name: Preserve canonical Complete MP Report regression
+        run: python scripts/test_complete_mp_report_generator.py
