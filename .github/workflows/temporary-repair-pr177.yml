@@ -1,0 +1,87 @@
+name: Temporary PR 177 repair
+
+on:
+  push:
+    branches:
+      - agent/corbyn-roles-committees-baseline
+    paths:
+      - .github/workflows/temporary-repair-pr177.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/corbyn-roles-committees-baseline
+          fetch-depth: 0
+
+      - name: Repair protected fixture fields
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          path = Path("fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+
+          identity_fact_ids = {
+              "fact-current-constituency",
+              "fact-continuous-commons-service",
+              "fact-representation-2024-present",
+              "fact-party-your-party-2026-present",
+          }
+          repaired_facts = 0
+          for fact in data["facts"]:
+              if fact["fact_id"] in identity_fact_ids:
+                  assert fact["section_id"] == "identity_and_parliamentary_carer"
+                  fact["section_id"] = "identity_and_parliamentary_career"
+                  repaired_facts += 1
+          assert repaired_facts == 4
+
+          repaired_identity_gap = 0
+          empty_note_gap_ids = {
+              "gap-financial-interests",
+              "gap-donations",
+              "gap-contradictions",
+              "gap-relationships",
+              "gap-human-review",
+          }
+          repaired_notes = 0
+          for gap in data["coverage_gaps"]:
+              if gap["gap_id"] == "gap-identity-refresh":
+                  assert gap["section_id"] == "identity_and_parliamentary_carer"
+                  gap["section_id"] = "identity_and_parliamentary_career"
+                  repaired_identity_gap += 1
+              if gap["gap_id"] in empty_note_gap_ids:
+                  assert gap["notes"] == " "
+                  gap["notes"] = ""
+                  repaired_notes += 1
+          assert repaired_identity_gap == 1
+          assert repaired_notes == 5
+
+          path.write_text(
+              json.dumps(data, indent=2, ensure_ascii=False) + "\n",
+              encoding="utf-8",
+              newline="\n",
+          )
+          PY
+
+      - name: Validate exact repair
+        run: |
+          python scripts/test_jeremy_corbyn_roles_committees_v1.py
+          python scripts/test_jeremy_corbyn_identity_career_v1.py
+          python scripts/test_complete_mp_report_generator.py
+
+      - name: Commit repair and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/temporary-repair-pr177.yml
+          git add fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
+          git commit -m "Repair protected identity data in roles baseline"
+          git push origin HEAD:agent/corbyn-roles-committees-baseline
