@@ -1,0 +1,176 @@
+{
+  "schema_version": "1",
+  "packet_id": "jeremy-corbyn-roles-and-committees-v1",
+  "subject": {
+    "official_name": "Jeremy Corbyn",
+    "repository_display_name": "Corbyn, Jeremy",
+    "parliament_member_id": "185"
+  },
+  "section_id": "roles_and_committees",
+  "captured_at": "2026-07-20T12:10:00Z",
+  "source_boundary": {
+    "included": [
+      "Official UK Parliament member career record",
+      "Official UK Parliament committee summary pages linked from the member career record"
+    ],
+    "excluded": [
+      "News reporting",
+      "Party, campaign and personal websites",
+      "Social media",
+      "Wikipedia and unsourced aggregators",
+      "Duties, performance, influence or motive inference",
+      "Other Complete MP Report sections"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "source-uk-parliament-member-career",
+      "title": "Parliamentary career for Jeremy Corbyn",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://members.parliament.uk/member/185/career",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": "1983-06-09",
+      "coverage_to": null,
+      "checksum": "",
+      "limitations": "Records the current and previous parliamentary representations, parliamentary party affiliations and selected posts shown on the official member career page. It does not independently establish every election, boundary or administrative event across the full career."
+    },
+    {
+      "source_id": "source-uk-parliament-social-security-committee",
+      "title": "Social Security",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://committees.parliament.uk/committee/138/social-security",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": null,
+      "checksum": "",
+      "limitations": "Identifies Social Security as a Commons Select Committee. Jeremy Corbyn's membership dates are taken from the official member career record."
+    },
+    {
+      "source_id": "source-uk-parliament-justice-committee",
+      "title": "Justice Committee",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://committees.parliament.uk/committee/102/justice-committee",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": null,
+      "checksum": "",
+      "limitations": "Identifies the Justice Committee as a Commons Select Committee. Jeremy Corbyn's membership dates are taken from the official member career record."
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "fact-role-parliamentary-leader-your-party",
+      "section_id": "roles_and_committees",
+      "statement": "UK Parliament records Jeremy Corbyn as Parliamentary Leader, Your Party, from 10 June 2026.",
+      "fact_type": "role",
+      "date": null,
+      "date_from": "2026-06-10",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Recorded under Current — Other posts on the official member career page."
+    },
+    {
+      "fact_id": "fact-role-labour-party-leader-2015-2020",
+      "section_id": "roles_and_committees",
+      "statement": "UK Parliament records Jeremy Corbyn as Leader of the Labour Party from 12 September 2015 to 4 April 2020.",
+      "fact_type": "role",
+      "date": null,
+      "date_from": "2015-09-12",
+      "date_to": "2020-04-04",
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Recorded under Previous — Other posts on the official member career page."
+    },
+    {
+      "fact_id": "fact-role-official-opposition-leader-2015-2020",
+      "section_id": "roles_and_committees",
+      "statement": "UK Parliament records Jeremy Corbyn as Leader of HM Official Opposition from 12 September 2015 to 4 April 2020.",
+      "fact_type": "role",
+      "date": null,
+      "date_from": "2015-09-12",
+      "date_to": "2020-04-04",
+      "source_ids": [
+        "source-uk-parliament-member-career"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Recorded under Previous — Opposition posts on the official member career page."
+    },
+    {
+      "fact_id": "fact-committee-social-security-1992-1997",
+      "section_id": "roles_and_committees",
+      "statement": "UK Parliament records Jeremy Corbyn as a member of the Social Security Commons Select Committee from 27 April 1992 to 21 March 1997.",
+      "fact_type": "committee",
+      "date": null,
+      "date_from": "1992-04-27",
+      "date_to": "1997-03-21",
+      "source_ids": [
+        "source-uk-parliament-member-career",
+        "source-uk-parliament-social-security-committee"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Membership dates come from the official member career record; the linked committee page identifies the committee as a Commons Select Committee."
+    },
+    {
+      "fact_id": "fact-committee-justice-2011-2015",
+      "section_id": "roles_and_committees",
+      "statement": "UK Parliament records Jeremy Corbyn as a member of the Justice Committee, a Commons Select Committee, from 16 May 2011 to 30 March 2015.",
+      "fact_type": "committee",
+      "date": null,
+      "date_from": "2011-05-16",
+      "date_to": "2015-03-30",
+      "source_ids": [
+        "source-uk-parliament-member-career",
+        "source-uk-parliament-justice-committee"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Membership dates come from the official member career record; the linked committee page identifies the committee as a Commons Select Committee."
+    }
+  ],
+  "coverage_gaps": [
+    {
+      "gap_id": "gap-role-committee-history-scope",
+      "section_id": "roles_and_committees",
+      "summary": "The current official member career view has been captured, but this lane did not independently verify whether every historic parliamentary post or committee assignment is represented in that view.",
+      "severity": "high",
+      "reason": "historic_gap",
+      "date_from": "1983-06-09",
+      "date_to": null,
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Compare the member career record with official historic appointment and committee membership archives in a separately authorised lane.",
+      "notes": "The section remains partial and no unlisted role or membership is inferred."
+    }
+  ],
+  "decisions": {
+    "section_status": "partial",
+    "publication_status": "not_ready",
+    "human_review_required": true,
+    "public_output_authorised": false,
+    "notes": "The official career view supplies a bounded role and committee baseline. Exhaustive historic coverage is not claimed."
+  }
+}
