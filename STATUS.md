@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: AUTHORITATIVE
+status: AUTHORISED
 authority_ref: main
 ---
 
@@ -11,46 +11,83 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Complete MP Portfolio authority activation merged as `56c93095614518d66fa37ce3c0def1ffffb5f233`.
-- Complete MP Portfolio implementation PR #170 merged as `da2fa879acd1783ab992c7dd68adb4be4e556123` from exact reviewed head `a183f5374bca4c617660e5a4010ddad0d7af45e0` using a merge commit.
-- Complete MP Portfolio acceptance authority PR #171 merged as `23abc16f064c29318cbef5186a40b753c6fa939e`.
-- January 2003 vote-review queue implementation remains complete at merge `7d646f0a68ef6153c58111440ed9bca05ce3ce44` from exact reviewed implementation head `c546d6417713870e37e8c54ad855b7e12d41d030`.
-- January 2003 seed-row shape implementation remains complete at merge `4cc7cef44ad92af1ed0f0d15f0fb9e9c063bde2b`.
-- Repository Release v1 remains complete and authoritative.
-- Backup-and-restore hardening remains complete, with the accepted backup and disposable restore retained on the private server.
+- Exact starting head for this lane: `f0b43bb082b877d7c0476e53ce7f1e68ed208d6a`.
+- Complete MP Portfolio vertical-slice and local acceptance remain complete.
+- Complete MP Portfolio implementation PR #170 remains merged as `da2fa879acd1783ab992c7dd68adb4be4e556123` from exact reviewed head `a183f5374bca4c617660e5a4010ddad0d7af45e0`.
+- January 2003 vote-review queue implementation remains complete at merge `7d646f0a68ef6153c58111440ed9bca05ce3ce44`.
+- Repository Release v1 and backup-and-restore hardening remain complete and authoritative.
 
 ## Current lane
 
-No implementation or research lane is active.
+Jeremy Corbyn official identity and parliamentary-career baseline.
 
-The Complete MP Portfolio vertical slice and local acceptance are complete. Further real MP research, evidence integration, review controls, private-server work or publication work requires a separately authorised bounded lane.
+Goal: replace the fixture-only identity baseline for the Complete MP Report proof target with a narrowly sourced official parliamentary identity and service baseline, while leaving all other report sections, publication state and unresolved evidence gaps unchanged.
+
+Canonical section:
+
+- `identity_and_parliamentary_career`
+
+Official source boundary:
+
+- current UK Parliament member profile and biography/career records;
+- official UK Parliament election or service records where needed to establish service dates and constituency continuity;
+- another UK public-body primary record only when the Parliament record cannot supply a required field.
+
+Forbidden source classes:
+
+- Wikipedia;
+- newspapers or broadcasters;
+- party, campaign or personal websites;
+- social media;
+- unsourced aggregators;
+- inference from search-result snippets.
+
+Authorised implementation scope:
+
+- `research/complete-mp-reports/jeremy-corbyn/identity-and-parliamentary-career-v1.json`
+- `docs/jeremy-corbyn-identity-career-source-note-v1.md`
+- `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
+- `scripts/test_jeremy_corbyn_identity_career_v1.py`
+- `.github/workflows/jeremy-corbyn-identity-career-test.yml`
+
+Required behaviour:
+
+- record each official source with stable title, publisher, URL, capture date, authority level, coverage and limitations;
+- record only narrowly worded facts directly supported by the named source;
+- verify the subject display name, Parliament member ID, current constituency, current parliamentary affiliation and parliamentary service start date;
+- preserve any unresolved historical party, boundary or service-period detail as an explicit coverage gap rather than inferring it;
+- update the fixture subject identity status to `verified` only when every subject identity field resolves to official sources;
+- keep the `identity_and_parliamentary_career` section `partial` unless the declared career scope has been fully assessed;
+- keep the report `not_ready`, human review required and public output unauthorised;
+- add no interpretation, contradiction, motive or wrongdoing claim;
+- validate the complete fixture through the canonical Complete MP Report validator and generator;
+- prove that all facts added to the fixture occur unchanged in the research packet and resolve to official source IDs;
+- change exactly the five authorised files.
 
 ## Done
 
 - Repository Release v1 is complete and authoritative.
-- Backup-and-restore hardening is complete.
-- The first real backup and disposable restore passed.
-- January 2003 seed-row shape reconciliation is complete.
-- January 2003 vote-review queue preparation is complete.
-- The accepted restored database baseline remains 33 January 2003 ParlParse divisions, 33 member votes, one member, one source and one import.
-- All 33 vote meanings remain `needs_review`.
-- The repository contains bounded source collection, Evidence Pack v1, Proof Trail v1 and Complete MP Report v1 machinery.
-- The Streamlit application exposes `Simple`, `MP Portfolio` and `Advanced` as three sidebar views.
-- Local acceptance on 2026-07-20 confirmed that `Simple` retained the existing source-check status and review controls and `Advanced` retained the existing technical controls.
-- Local acceptance confirmed that `MP Portfolio` displayed `Corbyn, Jeremy`, report status `not_ready`, human review `Required`, public output `Not authorised`, all 13 canonical sections, section facts and claims, visible coverage gaps and the source register.
-- The disposable generator proof generated all five canonical outputs, reported filename, byte size and SHA-256 metadata, returned `Temporary directory removed: True`, and left no generated `corbyn-jeremy-*` files inside the repository.
-- The dedicated Complete MP Portfolio view test, Complete MP Report generator regression, Repository release validation and Project control passed on exact implementation head `a183f5374bca4c617660e5a4010ddad0d7af45e0`.
-- No real MP research, source expansion, SQLite access, private-server access, vote-meaning decision, publication decision or persistent generated portfolio output occurred.
+- Backup and disposable restore proof are complete.
+- January 2003 seed-row shape and vote-review queue preparation are complete.
+- The Streamlit application exposes accepted `Simple`, `MP Portfolio` and `Advanced` views.
+- The current Complete MP Report proof target is `Corbyn, Jeremy`, but its committed identity baseline remains `fixture_unverified` and explicitly requires official refresh.
 
 ## To do
 
-- No work remains in the Complete MP Portfolio vertical-slice or local-acceptance lane.
-- The first real MP research lane must be separately authorised with an exact subject, canonical section, source boundary, output files, validation and stop point.
+- Research the official identity and parliamentary-career baseline within the authorised source boundary.
+- Create the machine-readable source-and-fact packet and readable source note.
+- Update only the identity-and-career records and directly related source and gap references in the existing fixture.
+- Add deterministic validation and CI.
+- Run the new lane regression, canonical Complete MP Report test, Repository release validation and Project control.
+- Open and review one five-file implementation PR.
+- After implementation merge, close this lane through a separate `STATUS.md`-only authority PR.
 
 ## Next bounded gate
 
-None. Begin the first real MP research lane only through a separate `STATUS.md`-only authority update.
+Merge this authority-only activation PR after Project control passes. Then conduct the bounded official-source research and open one controlled five-file implementation PR.
+
+ChatGPT Work owns source collection and fact extraction. Codex owns deterministic encoding, tests and fixture integration after the source packet is fixed. Neither may expand beyond this section or source boundary.
 
 ## Stop point
 
-Do not begin real MP research; edit the current Complete MP Report fixture; generate or review the real January 2003 packet; accept, reject, correct or rewrite any vote meaning; access the private server or SQLite; write persistent generated portfolio outputs; create human review decisions; mark any report publishable; or authorise public output without a separately merged authority lane.
+Do not research another MP or another canonical section; use non-official sources; infer missing service or party history; alter voting, finance, interests, speeches, positions, relationships or human-review records; review the January 2003 vote meanings; access or mutate the private server or SQLite; create interpretations; mark the identity-and-career section complete without full declared-scope evidence; mark the report publishable; or authorise public output. Stop after the five-file implementation PR is complete, tested and reviewed.
