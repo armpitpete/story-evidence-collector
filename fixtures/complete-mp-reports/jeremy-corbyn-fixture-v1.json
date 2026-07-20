@@ -2,7 +2,7 @@
   "schema_version": "1",
   "report_id": "complete-mp-corbyn-fixture-v1",
   "title": "Complete MP Report fixture — Corbyn, Jeremy",
-  "generated_at": "2026-07-20T12:10:00Z",
+  "generated_at": "2026-07-20T13:45:00Z",
   "subject": {
     "display_name": "Corbyn, Jeremy",
     "sort_name": "Corbyn, Jeremy",
@@ -102,14 +102,44 @@
     {
       "section_id": "financial_interests",
       "title": "Financial interests",
-      "status": "not_researched",
-      "summary": "No official register records are present.",
-      "fact_ids": [],
+      "status": "partial",
+      "summary": "The complete current UK Parliament Register of Members' Financial Interests snapshot as at 13 July 2026 contains 29 entries across categories 3, 4 and 8; previous register versions and complete historic coverage remain outside this lane.",
+      "fact_ids": [
+        "fact-interest-gift-2026-02-20-southport-train",
+        "fact-interest-gift-2026-02-21-liverpool-london-train",
+        "fact-interest-gift-2026-02-20-southport-hotel",
+        "fact-interest-gift-2026-02-02-leicester-train",
+        "fact-interest-gift-2026-02-04-luton-train",
+        "fact-interest-gift-2026-02-12-cambridge-train",
+        "fact-interest-gift-2026-02-14-bristol-train",
+        "fact-interest-gift-2026-02-01-birmingham-london-train",
+        "fact-interest-gift-2026-02-09-banbury-train",
+        "fact-interest-gift-2026-02-01-stoke-train",
+        "fact-interest-gift-2026-02-11-middlesborough-train",
+        "fact-interest-gift-2026-02-13-walsall-train",
+        "fact-interest-gift-2025-06-30-tvflimited-reimbursement",
+        "fact-interest-visit-2026-06-13-brussels-progressive-international",
+        "fact-interest-visit-2026-06-06-dublin-robert-tressell",
+        "fact-interest-visit-2026-05-14-sweden-zetkin-rosa",
+        "fact-interest-visit-2026-04-22-brussels-sumud",
+        "fact-interest-visit-2026-04-18-brussels-party-left",
+        "fact-interest-visit-2026-03-19-cuba-progressive-international",
+        "fact-interest-visit-2026-03-06-the-hague-thg",
+        "fact-interest-visit-2025-09-26-south-africa-namibia",
+        "fact-interest-visit-2025-10-12-kuala-lumper-world-network",
+        "fact-interest-visit-2025-10-11-rome-manifesto",
+        "fact-interest-visit-2025-08-01-japan-genseikyo-rosa",
+        "fact-interest-visit-2025-06-11-brussels-european-left",
+        "fact-interest-misc-your-party-uk-director",
+        "fact-interest-misc-jeremy-corbyn-campaign-director",
+        "fact-interest-misc-community-unity-bank-signatory",
+        "fact-interest-misc-peace-justice-project-director"
+      ],
       "claim_ids": [],
       "interpretation_ids": [],
       "relationship_ids": [],
       "gap_ids": [
-        "gap-financial-interests"
+        "gap-financial-interests-history-scope"
       ]
     },
     {
@@ -360,6 +390,54 @@
       "coverage_to": null,
       "checksum": "",
       "limitations": "Identifies the Justice Committee as a Commons Select Committee. Jeremy Corbyn's membership dates are taken from the official member career record."
+    },
+    {
+      "source_id": "source-uk-parliament-registered-interests-page-1",
+      "title": "Register of Interests for Jeremy Corbyn — page 1",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://members.parliament.uk/member/185/registeredinterests",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": "2026-07-13",
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": "2026-07-13",
+      "checksum": "",
+      "limitations": "Live first page of the current member register snapshot. The page states that interests may remain for twelve months after ending and does not provide complete historic career coverage."
+    },
+    {
+      "source_id": "source-uk-parliament-registered-interests-page-2",
+      "title": "Register of Interests for Jeremy Corbyn — page 2",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://members.parliament.uk/member/185/registeredinterests?page=2",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": "2026-07-13",
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": "2026-07-13",
+      "checksum": "",
+      "limitations": "Live second page of the current member register snapshot. The page is part of a two-page result set and does not provide complete historic career coverage."
+    },
+    {
+      "source_id": "source-uk-parliament-register-publication-2026-07-13",
+      "title": "Register of Members' Financial Interests as at 13 Jul 2026",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://members.parliament.uk/members/commons/interests/publications",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": "2026-07-13",
+      "capture_date": "2026-07-20",
+      "coverage_from": "2026-07-13",
+      "coverage_to": "2026-07-13",
+      "checksum": "",
+      "limitations": "Identifies the latest register version available at capture. It is not itself a member-specific historical chronology."
     }
   ],
   "facts": [
@@ -649,6 +727,441 @@
       "confidence": "high",
       "evidence_status": "verified",
       "notes": "Membership dates come from the official member career record; the linked committee page identifies the committee as a Commons Select Committee."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-20-southport-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Return train ticket London to Southport, to attend a Your Party event from Peace and Justice Project, valued at Estimated value £63.79, received on 2026-02-20, accepted on 2026-02-20 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-20-southport-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-21-liverpool-london-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Train ticket from Liverpool to London, after attending a Your Party event from Peace and Justice Project, valued at Estimated value £39.79, received on 2026-02-21, accepted on 2026-02-21 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-21-liverpool-london-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-20-southport-hotel",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Hotel for one night in Southport, for my attendance at a Your Party event from Peace and Justice Project, valued at Estimated value £78.75, received on 2026-02-20, accepted on 2026-02-20 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-20-southport-hotel` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-02-leicester-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Return train ticket London to Leicester, to attend a Your Party event from Peace and Justice Project, valued at Estimated value £137.66, received on 2026-02-02, accepted on 2026-02-02 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-02-leicester-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-04-luton-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Return train ticket London to Luton, to attend a Your Party rally from The Peace and Justice Project, valued at Estimated value £25.54, received on 2026-02-04, accepted on 2026-02-04 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-04-luton-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-12-cambridge-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Return train ticket London to Cambridge, to attend a Your Party event from Peace and Justice Project, valued at Estimated value £23.04, received on 2026-02-12, accepted on 2026-02-12 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-12-cambridge-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-14-bristol-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Return train ticket London to Bristol, to attend a Your Party event from The Peace and Justice Project, valued at Estimated value £51.90, received on 2026-02-14, accepted on 2026-02-14 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-14-bristol-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-01-birmingham-london-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Train ticket from Birmingham to London, after attending a Your Party event from The Peace and Justice Project, valued at Estimated value £32.46, received on 2026-02-01, accepted on 2026-02-01 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-01-birmingham-london-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-09-banbury-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Return train ticket London to Banbury, to attend a Your Party event from The Peace and Justice Project, valued at Estimated value £47.94, received on 2026-02-09, accepted on 2026-02-09 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-09-banbury-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-01-stoke-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Train ticket from London to Stoke only, to attend a Your Party event from The Peace and Justice Project, valued at Estimated value £59.39, received on 2026-02-01, accepted on 2026-02-01 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-01-stoke-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-11-middlesborough-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Return train ticket London to Middlesborough, to attend a Your Party event from The Peace and Justice Project, valued at Estimated value £71.27, received on 2026-02-11, accepted on 2026-02-11 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-11-middlesborough-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2026-02-13-walsall-train",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records Return train ticket London to Walsall, to attend a Your Party event from Pece and Justice Project, valued at Estimated value £48.05, received on 2026-02-13, accepted on 2026-02-13 and registered on 2026-02-25.",
+      "fact_type": "interest",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2026-02-13-walsall-train` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-gift-2025-06-30-tvflimited-reimbursement",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records This was travel/petrol money that was reimbursed for an event attended earlier in the month and registered. from How The Light Gets In (TVF Limited), valued at £155.00, received on 2025-06-30, accepted on 2025-06-30 and registered on 2025-07-01.",
+      "fact_type": "interest",
+      "date": "2025-07-01",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-gift-2025-06-30-tvflimited-reimbursement` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2026-06-13-brussels-progressive-international",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Belgium (Brussels) from 2026-06-13 to 2026-06-14 for To speak at a Progressive International Conference, supported by Progressive International (£315.15; Return train journey (£166.99), hotel (£148.16)), and registered on 2026-06-16.",
+      "fact_type": "interest",
+      "date": "2026-06-16",
+      "date_from": "2026-06-13",
+      "date_to": "2026-06-14",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2026-06-13-brussels-progressive-international` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2026-06-06-dublin-robert-tressell",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Ireland (Dublin) from 2026-06-06 to 2026-06-07 for To speak at the Robert Tressell Festival, supported by Robert Tressell Festival (£680.00; Flight (£365), Hotel (£245) and Taxi (£70)), and registered on 2026-06-17.",
+      "fact_type": "interest",
+      "date": "2026-06-17",
+      "date_from": "2026-06-06",
+      "date_to": "2026-06-07",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2026-06-06-dublin-robert-tressell` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2026-05-14-sweden-zetkin-rosa",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Sweden from 2026-05-14 to 2026-05-16 for To attend and speak at a conference of European left-wing groups., supported by Zetkin Foundation (£293.36; Flights only); and Rosa Luxemburg Stiftung (£150.34; Hotel accommodation only), and registered on 2026-06-08.",
+      "fact_type": "interest",
+      "date": "2026-06-08",
+      "date_from": "2026-05-14",
+      "date_to": "2026-05-16",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2026-05-14-sweden-zetkin-rosa` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2026-04-22-brussels-sumud",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Belgium (Brussels) from 2026-04-22 to 2026-04-22 for Guest speaker at the Global Sumud Parliamentary Congress, supported by Peace and Justice Project (£255.00; Return train ticket to Brussels only), and registered on 2026-04-27.",
+      "fact_type": "interest",
+      "date": "2026-04-27",
+      "date_from": "2026-04-22",
+      "date_to": "2026-04-22",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2026-04-22-brussels-sumud` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2026-04-18-brussels-party-left",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Belgium (Brussels) from 2026-04-18 to 2026-04-18 for Guest speaker at the Party of the European Left Congress, supported by The Peace and Justice Project (£265.00; Travel only: return Eurostar ticket), and registered on 2026-04-27.",
+      "fact_type": "interest",
+      "date": "2026-04-27",
+      "date_from": "2026-04-18",
+      "date_to": "2026-04-18",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2026-04-18-brussels-party-left` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2026-03-19-cuba-progressive-international",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Cuba from 2026-03-19 to 2026-03-23 for Guest speaker at a high-level strategic roundtable Nuestra América, supported by Progressive International (£1,383.13; Flight (£821.77), flight change (£216.25), luggage (£198.95) and hotel (£146.16)), and registered on 2026-03-28.",
+      "fact_type": "interest",
+      "date": "2026-03-28",
+      "date_from": "2026-03-19",
+      "date_to": "2026-03-23",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2026-03-19-cuba-progressive-international` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2026-03-06-the-hague-thg",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Netherlands (The Hague) from 2026-03-06 to 2026-03-08 for Guest speaker at the People's Congress for the Hague Group, supported by THG Exchange Ltd (£839.81; Hotel (£450.82) and train (£388.99)), and registered on 2026-03-26.",
+      "fact_type": "interest",
+      "date": "2026-03-26",
+      "date_from": "2026-03-06",
+      "date_to": "2026-03-08",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-1"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2026-03-06-the-hague-thg` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2025-09-26-south-africa-namibia",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to South Africa and Namibia from 2025-09-26 to 2025-10-04 for Raise awareness & fundraising for the crisis in Gaza, supported by Liyaquat Alli Ahmed (£2,757.26; Hotels (£286.14) and return flight (£2471.12)); Ismail Ebrahim (£46.06; Hotel (£46.06)); and Progressive International (£310.69; Flight (£213.05) and hotel (£97.64)), and registered on 2025-10-31.",
+      "fact_type": "interest",
+      "date": "2025-10-31",
+      "date_from": "2025-09-26",
+      "date_to": "2025-10-04",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-2"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2025-09-26-south-africa-namibia` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2025-10-12-kuala-lumper-world-network",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Malaysia (Kuala Lumper) from 2025-10-12 to 2025-10-14 for Keynote Address at the Kuala Lumpur Conference on a New Just and Humane International Order, supported by World Network (£4,346.59; Flights (£4280.22) and accommodation (£66.37)), and registered on 2025-10-31.",
+      "fact_type": "interest",
+      "date": "2025-10-31",
+      "date_from": "2025-10-12",
+      "date_to": "2025-10-14",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-2"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2025-10-12-kuala-lumper-world-network` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2025-10-11-rome-manifesto",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Italy (Rome) from 2025-10-11 to 2025-10-12 for To speak at the La Manifestival event, supported by Il nuovo manifesto società cooperativa editrice (£303.96; Flights (£173.68) and hotel accommodation (£130.28)), and registered on 2025-10-24.",
+      "fact_type": "interest",
+      "date": "2025-10-24",
+      "date_from": "2025-10-11",
+      "date_to": "2025-10-12",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-2"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2025-10-11-rome-manifesto` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2025-08-01-japan-genseikyo-rosa",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Japan (Hiroshima, Nagasaki) from 2025-08-01 to 2025-08-18 for Attend 80th anniversary commemoration Hiroshima and Nagasaki Atomic Bombing, supported by Genseikyo (£1,223.01; Accommodation for me and Laura Alvarez Tonis in Hiroshima and Nagasaki); and Rosa Luxemburg Foundation (£1,791.42; Return flights for me), and registered on 2025-09-10.",
+      "fact_type": "interest",
+      "date": "2025-09-10",
+      "date_from": "2025-08-01",
+      "date_to": "2025-08-18",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-2"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2025-08-01-japan-genseikyo-rosa` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-visit-2025-06-11-brussels-european-left",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records a visit to Belgium (Brussels) from 2025-06-11 to 2025-06-12 for Speaker at The Left in the European Parliament Peace Initiative conference, supported by The Left in the European Parliament (£796.40; Travel (£444), taxis (£30.67) and hotel (£321.73)), and registered on 2025-07-01.",
+      "fact_type": "interest",
+      "date": "2025-07-01",
+      "date_from": "2025-06-11",
+      "date_to": "2025-06-12",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-2"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-visit-2025-06-11-brussels-european-left` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-misc-your-party-uk-director",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records: Unpaid Director of Your Party UK Ltd, a private company limited by guarantee without share capital which was incorporated on 31 July 2025 The interest arose on 2025-07-31, ended on 2026-04-21 and was registered on 2025-09-10. It was last updated on 2026-04-27.",
+      "fact_type": "interest",
+      "date": "2025-09-10",
+      "date_from": "2025-07-31",
+      "date_to": "2026-04-21",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-2"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-misc-your-party-uk-director` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-misc-jeremy-corbyn-campaign-director",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records: Unpaid Director of Jeremy Corbyn Campaign Ltd, supporting the activities of political organisations The interest arose on 2024-09-25 and was registered on 2024-11-05.",
+      "fact_type": "interest",
+      "date": "2024-11-05",
+      "date_from": "2024-09-25",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-2"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-misc-jeremy-corbyn-campaign-director` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-misc-community-unity-bank-signatory",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records: I am a bank signatory for Community Unity Limited. This is an unpaid role. The interest arose on 2024-02-27 and was registered on 2024-05-28.",
+      "fact_type": "interest",
+      "date": "2024-05-28",
+      "date_from": "2024-02-27",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-2"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-misc-community-unity-bank-signatory` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
+    },
+    {
+      "fact_id": "fact-interest-misc-peace-justice-project-director",
+      "section_id": "financial_interests",
+      "statement": "UK Parliament's Register of Members’ Financial Interests as at 13 July 2026 records: Unpaid director of the Peace and Justice Project, a company limited by guarantee. The company promotes peace and justice issues, both domestic and international. The interest arose on 2020-10-13 and was registered on 2021-02-26. It was last updated on 2022-02-25.",
+      "fact_type": "interest",
+      "date": "2021-02-26",
+      "date_from": "2020-10-13",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-page-2"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Source entry `interest-misc-peace-justice-project-director` in the current register snapshot. Presence in the current register does not by itself prove the interest is still active, because Parliament states that ended interests may remain for twelve months."
     }
   ],
   "claims": [
@@ -727,17 +1240,17 @@
       "notes": ""
     },
     {
-      "gap_id": "gap-financial-interests",
+      "gap_id": "gap-financial-interests-history-scope",
       "section_id": "financial_interests",
-      "summary": "Register of Members’ Financial Interests records have not been collected.",
+      "summary": "The current published Register of Members’ Financial Interests snapshot has been captured, but previous register versions and a complete career chronology have not been researched; current-register presence may include interests retained for twelve months after ending.",
       "severity": "high",
-      "reason": "not_researched",
-      "date_from": null,
-      "date_to": null,
+      "reason": "historic_gap",
+      "date_from": "1983-06-09",
+      "date_to": "2026-07-12",
       "status": "open",
       "blocks_publication": true,
-      "next_action": "Build a versioned official-register evidence lane.",
-      "notes": ""
+      "next_action": "Build a separately authorised chronological register lane using official current and previous register versions, preserving each version's publication date and entry wording.",
+      "notes": "The section remains partial. No current-status inference, donor normalisation, aggregation or cross-section reclassification is made."
     },
     {
       "gap_id": "gap-donations",
