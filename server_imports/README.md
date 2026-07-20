@@ -28,6 +28,7 @@ Expected server layout:
   raw/
   db/
   reports/
+    review-queues/
   logs/
     imports/
     validation/
@@ -40,6 +41,8 @@ Expected server layout:
 server_imports/README.md
 server_imports/mp_evidence_cache_schema.sql
 server_imports/build_server_evidence_cache.py
+server_imports/build_january_2003_vote_review_queue.py
+server_imports/january_2003_vote_review_queue_schema.json
 server_imports/example_config.example.json
 ```
 
@@ -119,6 +122,7 @@ Do not commit these to GitHub:
 *.sqlite-shm
 /srv/story-evidence-collector/raw/
 /srv/story-evidence-collector/backups/
+/srv/story-evidence-collector/reports/review-queues/
 .env
 *.pem
 *.key
@@ -175,3 +179,38 @@ Seed import rules:
 - no web fetch or bulk import is performed;
 - skipped rows are counted and reported;
 - database files, logs, generated rows, raw evidence and server output must not be committed.
+
+## January 2003 vote-review queue
+
+The queue builder reads the accepted SQLite cache without modifying it and creates deterministic private JSON and Markdown packets:
+
+```bash
+python3 server_imports/build_january_2003_vote_review_queue.py \
+  --config server_imports/example_config.example.json
+```
+
+The example configuration selects January 2003, expects 33 rows and writes beneath:
+
+```text
+/srv/story-evidence-collector/reports/review-queues/january-2003/
+```
+
+Queue rules:
+
+- SQLite is opened with `mode=ro` and `PRAGMA query_only`;
+- all matched rows must belong to one target MP unless one is selected explicitly;
+- all records must retain `meaning_quality: needs_review`;
+- source trace, source URL, source XML URL and evidence status are copied without reinterpretation;
+- reviewer-decision fields are blank;
+- technical states are limited to recorded Aye, recorded No and not recorded;
+- incomplete, contradictory or source-ambiguous rows stop generation;
+- existing output is not replaced unless `--overwrite` is supplied;
+- the real 33-row packet remains on the private server and must not be committed.
+
+See `docs/january-2003-vote-review-protocol.md` for the evidence standard, later human-review decisions and stop rule.
+
+Run the disposable regression proof:
+
+```bash
+python3 scripts/test_january_2003_vote_review_queue.py
+```
