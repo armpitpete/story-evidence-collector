@@ -2,7 +2,7 @@
   "schema_version": "1",
   "report_id": "complete-mp-corbyn-fixture-v1",
   "title": "Complete MP Report fixture — Corbyn, Jeremy",
-  "generated_at": "2026-07-20T18:28:55Z",
+  "generated_at": "2026-07-20T20:00:41Z",
   "subject": {
     "display_name": "Corbyn, Jeremy",
     "sort_name": "Corbyn, Jeremy",
@@ -217,14 +217,105 @@
     {
       "section_id": "speeches_and_questions",
       "title": "Speeches and parliamentary questions",
-      "status": "not_researched",
-      "summary": "No Hansard or parliamentary-question records are present.",
-      "fact_ids": [],
+      "status": "partial",
+      "summary": "The official UK Parliament APIs yielded 90 unique Commons written questions tabled by Jeremy Corbyn from 4 July 2024 through the 20 July 2026 capture boundary. Eighty-nine had an answer date and one remained unanswered at capture time. Earlier written questions, later updates, oral questions, written statements, Early Day Motions and spoken contributions remain outside this lane.",
+      "fact_ids": [
+        "fact-written-question-1922919",
+        "fact-written-question-1922941",
+        "fact-written-question-1919115",
+        "fact-written-question-1918525",
+        "fact-written-question-1919120",
+        "fact-written-question-1919117",
+        "fact-written-question-1919116",
+        "fact-written-question-1919113",
+        "fact-written-question-1911866",
+        "fact-written-question-1911867",
+        "fact-written-question-1911868",
+        "fact-written-question-1911869",
+        "fact-written-question-1907266",
+        "fact-written-question-1901822",
+        "fact-written-question-1901799",
+        "fact-written-question-1901794",
+        "fact-written-question-1901793",
+        "fact-written-question-1901792",
+        "fact-written-question-1901791",
+        "fact-written-question-1901789",
+        "fact-written-question-1898665",
+        "fact-written-question-1898667",
+        "fact-written-question-1898668",
+        "fact-written-question-1898666",
+        "fact-written-question-1885421",
+        "fact-written-question-1886617",
+        "fact-written-question-1885418",
+        "fact-written-question-1885416",
+        "fact-written-question-1884315",
+        "fact-written-question-1880011",
+        "fact-written-question-1881365",
+        "fact-written-question-1881362",
+        "fact-written-question-1881361",
+        "fact-written-question-1881364",
+        "fact-written-question-1881363",
+        "fact-written-question-1881462",
+        "fact-written-question-1878080",
+        "fact-written-question-1880013",
+        "fact-written-question-1878542",
+        "fact-written-question-1878540",
+        "fact-written-question-1878544",
+        "fact-written-question-1878545",
+        "fact-written-question-1878543",
+        "fact-written-question-1874196",
+        "fact-written-question-1874194",
+        "fact-written-question-1874198",
+        "fact-written-question-1874197",
+        "fact-written-question-1874195",
+        "fact-written-question-1873044",
+        "fact-written-question-1873039",
+        "fact-written-question-1873045",
+        "fact-written-question-1873046",
+        "fact-written-question-1873050",
+        "fact-written-question-1873132",
+        "fact-written-question-1869616",
+        "fact-written-question-1869394",
+        "fact-written-question-1868697",
+        "fact-written-question-1868699",
+        "fact-written-question-1868695",
+        "fact-written-question-1868701",
+        "fact-written-question-1861124",
+        "fact-written-question-1833532",
+        "fact-written-question-1825990",
+        "fact-written-question-1823943",
+        "fact-written-question-1814075",
+        "fact-written-question-1823942",
+        "fact-written-question-1812119",
+        "fact-written-question-1812115",
+        "fact-written-question-1812123",
+        "fact-written-question-1790123",
+        "fact-written-question-1787576",
+        "fact-written-question-1781202",
+        "fact-written-question-1762288",
+        "fact-written-question-1762287",
+        "fact-written-question-1762289",
+        "fact-written-question-1747302",
+        "fact-written-question-1747303",
+        "fact-written-question-1745793",
+        "fact-written-question-1743133",
+        "fact-written-question-1733914",
+        "fact-written-question-1730040",
+        "fact-written-question-1728919",
+        "fact-written-question-1728918",
+        "fact-written-question-1723219",
+        "fact-written-question-1723179",
+        "fact-written-question-1722038",
+        "fact-written-question-1722051",
+        "fact-written-question-1722052",
+        "fact-written-question-1722050",
+        "fact-written-question-1919112"
+      ],
       "claim_ids": [],
       "interpretation_ids": [],
       "relationship_ids": [],
       "gap_ids": [
-        "gap-speeches-questions"
+        "gap-speeches-questions-current-parliament-scope"
       ]
     },
     {
@@ -628,6 +719,38 @@
       "coverage_to": "2026-07-20",
       "checksum": "",
       "limitations": "Defines regulated donees and monthly reporting. It does not establish the content of any Jeremy Corbyn row; row data comes only from the official export."
+    },
+    {
+      "source_id": "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+      "title": "UK Parliament Members API — Jeremy Corbyn written questions index",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://members-api.parliament.uk/api/Members/185/WrittenQuestions?page=1",
+      "repository_path": "research/complete-mp-reports/jeremy-corbyn/current-parliament-written-questions-v1.json",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": "2014-06-04",
+      "coverage_to": "2026-07-01",
+      "checksum": "sha256:9335ac1dc94654cbfb4644d50a0d9c69da2de1c2c2835b8176ff2308ed4b2156",
+      "limitations": "The Members API reported 251 all-career records across 13 page requests. The packet retains compact reconciliation metadata for all 251 records and exact index wrappers for the 90 records inside the current-Parliament date boundary. The source checksum is a manifest checksum over the 13 raw-response SHA-256 values recorded by the capture, not a checksum of one HTTP response."
+    },
+    {
+      "source_id": "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20",
+      "title": "UK Parliament Written Questions Service API — current-Parliament Jeremy Corbyn question details",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://questions-statements-api.parliament.uk/api/writtenquestions/questions/{date}/{uin}",
+      "repository_path": "research/complete-mp-reports/jeremy-corbyn/current-parliament-written-questions-v1.json",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": "2024-07-18",
+      "coverage_to": "2026-07-01",
+      "checksum": "sha256:c686ee0c1bf434f8d462881d728d08a5c07304a104eb259a05df76eced9ee037",
+      "limitations": "The diagnostic capture preserved all 90 parsed official detail payloads but, because its validator rejected the direct askingMemberId field before record promotion, it did not retain individual raw-response byte hashes. The complete diagnostic file is fixed by SHA-256 af77384595f9bc8898e3a4812984bd3b3d95d84e1cf175bef386ed2f62ccec4b; each preserved detail payload also has a packet-internal canonical JSON checksum. One question had no answer date or answer text at capture time."
     }
   ],
   "facts": [
@@ -2020,6 +2143,1446 @@
       "confidence": "high",
       "evidence_status": "verified",
       "notes": "Electoral Commission ECRef U0248096. Regulated donee type: Leadership Candidate. Donor status: Unidentifiable Donor. Reported date: 12/09/2016. Reporting period: August 2016. The exact 29-column raw field map is preserved in the source packet. No inference about personal benefit, influence, motive, legality or propriety is made."
+    },
+    {
+      "fact_id": "fact-written-question-1922919",
+      "section_id": "speeches_and_questions",
+      "statement": "On 1 July 2026, Jeremy Corbyn tabled Commons written question UIN 14770 to Home Office. The recorded question text is: To ask the Secretary of State for the Home Department, whether there is an operation within her Department named ‘Operation Mosswood’. Parliament records an answer dated 9 July 2026.",
+      "fact_type": "question",
+      "date": "2026-07-01",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1922919. Official heading: Home Office: Departmental Responsibilities. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1922941",
+      "section_id": "speeches_and_questions",
+      "statement": "On 1 July 2026, Jeremy Corbyn tabled Commons written question UIN 14771 to Department for Culture, Media and Sport. The recorded question text is: To ask the Secretary of State for Culture, Media and Sport, if she will consider bringing Section 87 of the English Devolution and Community Empowerment Act into force before summer recess. Parliament records an answer dated 7 July 2026.",
+      "fact_type": "question",
+      "date": "2026-07-01",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1922941. Official heading: Gambling: Licensing. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1919115",
+      "section_id": "speeches_and_questions",
+      "statement": "On 23 June 2026, Jeremy Corbyn tabled Commons written question UIN 12039 to Cabinet Office. The recorded question text is: To ask the Minister for the Cabinet Office, whether the Vetting Review into the National Security Vetting system and the Peter Mandelson case will consider how financial interests, business appointments, advisory roles, close personal relationships and third-party financial links are collected and assessed for Direct Ministerial Appointments and Privy Counsellors with access to sensitive material. Parliament records an answer dated 3 July 2026.",
+      "fact_type": "question",
+      "date": "2026-06-23",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1919115. Official heading: Vetting Review. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1918525",
+      "section_id": "speeches_and_questions",
+      "statement": "On 22 June 2026, Jeremy Corbyn tabled Commons written question UIN 11587 to Department for Environment, Food and Rural Affairs. The recorded question text is: To ask the Secretary of State for Environment, Food and Rural Affairs, what is the statutory basis for the Department's engagement with the National Farmers Union on farming issues. Parliament records an answer dated 1 July 2026.",
+      "fact_type": "question",
+      "date": "2026-06-22",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1918525. Official heading: National Farmers Union. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1919120",
+      "section_id": "speeches_and_questions",
+      "statement": "On 23 June 2026, Jeremy Corbyn tabled Commons written question UIN 12042 to Department of Health and Social Care. The recorded question text is: To ask the Secretary of State for Health and Social Care, whether any member of the Healthtech Advisory Board declared interests in (a) companies and (b) funds active in (i) NHS data, (ii) artificial intelligence, (iii) algorithm verification, (iv) procurement, (v) digital health standards and (vi) health technology investment. Parliament records an answer dated 1 July 2026.",
+      "fact_type": "question",
+      "date": "2026-06-23",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1919120. Official heading: Healthtech Advisory Board: Public Appointments. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: yes. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1919117",
+      "section_id": "speeches_and_questions",
+      "statement": "On 23 June 2026, Jeremy Corbyn tabled Commons written question UIN 12041 to Department for Business and Trade. The recorded question text is: To ask the Secretary of State for Business and Trade, what information his Department holds on whether (a) expense claims, (b) hospitality records, (c) gifts records and (d) travel records for Andrew Mountbatten-Windsor’s role as Special Representative for International Trade and Investment contain references to (i) Jeffrey Epstein, (ii) David Stern, (iii) Green Park Group, (iv) Serpentine, (v) Asia Gateway, (vi) Witan or (vii) JPMorgan. Parliament records an answer dated 30 June 2026.",
+      "fact_type": "question",
+      "date": "2026-06-23",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1919117. Official heading: Andrew Mountbatten-Windsor. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1919116",
+      "section_id": "speeches_and_questions",
+      "statement": "On 23 June 2026, Jeremy Corbyn tabled Commons written question UIN 12040 to Department for Business and Trade. The recorded question text is: To ask the Secretary of State for Business and Trade, with reference to the Written Statement of 21 May 2026 on the Return to the Humble Address on Andrew Mountbatten-Windsor, if his Department will publish an index of all files searched, records withheld and redacted, and the reasons for each withholding or redaction, excluding material whose release would prejudice any live investigation. Parliament records an answer dated 30 June 2026.",
+      "fact_type": "question",
+      "date": "2026-06-23",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1919116. Official heading: Andrew Mountbatten-Windsor. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1919113",
+      "section_id": "speeches_and_questions",
+      "statement": "On 23 June 2026, Jeremy Corbyn tabled Commons written question UIN 12038 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether his Department holds retained or closed public records from 1980 to 1992 relating to the Al Yamamah programme or the Saudi British Defence Cooperation Programme; and if he will publish a schedule of such records, including file reference, covering dates, access status and the reason for retention or closure. Parliament records an answer dated 30 June 2026.",
+      "fact_type": "question",
+      "date": "2026-06-23",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1919113. Official heading: Project Al Yamamah. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1911866",
+      "section_id": "speeches_and_questions",
+      "statement": "On 3 June 2026, Jeremy Corbyn tabled Commons written question UIN 6315 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether Israeli military officials are barred from attending British military colleges. Parliament records an answer dated 10 June 2026.",
+      "fact_type": "question",
+      "date": "2026-06-03",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1911866. Official heading: Israel: Armed Forces. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1911867",
+      "section_id": "speeches_and_questions",
+      "statement": "On 3 June 2026, Jeremy Corbyn tabled Commons written question UIN 6316 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, which foreign officials have received special mission certificates to visit Britain in 2025 and 2026. Parliament records an answer dated 10 June 2026.",
+      "fact_type": "question",
+      "date": "2026-06-03",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1911867. Official heading: Official Visits. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1911868",
+      "section_id": "speeches_and_questions",
+      "statement": "On 3 June 2026, Jeremy Corbyn tabled Commons written question UIN 6317 to Home Office. The recorded question text is: To ask the Secretary of State for the Home Department, how many criminal cases have been prosecuted with a \"terrorism connection\" under the Counter-Terrorism and Sentencing Act in 2024, 2025, and 2026. Parliament records an answer dated 10 June 2026.",
+      "fact_type": "question",
+      "date": "2026-06-03",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1911868. Official heading: Terrorism: Prosecutions. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1911869",
+      "section_id": "speeches_and_questions",
+      "statement": "On 3 June 2026, Jeremy Corbyn tabled Commons written question UIN 6318 to Home Office. The recorded question text is: To ask the Secretary of State for the Home Department, if she will provide a list of the criminal charges which have been prosecuted with a \"terrorism connection\" under the Counter-Terrorism and Sentencing Act in 2024, 2025, and 2026. Parliament records an answer dated 10 June 2026.",
+      "fact_type": "question",
+      "date": "2026-06-03",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1911869. Official heading: Terrorism: Prosecutions. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1907266",
+      "section_id": "speeches_and_questions",
+      "statement": "On 19 May 2026, Jeremy Corbyn tabled Commons written question UIN 2677 to Department for Transport. The recorded question text is: To ask the Secretary of State for Transport, whether her Department has assessed the number of commercial flights that would not be cancelled by banning private jet flights to save fuel. Parliament records an answer dated 1 June 2026.",
+      "fact_type": "question",
+      "date": "2026-05-19",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1907266. Official heading: Aviation: Fuels. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1901822",
+      "section_id": "speeches_and_questions",
+      "statement": "On 21 April 2026, Jeremy Corbyn tabled Commons written question UIN 128658 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, what assessment she has made of the potential implications for his policies of reports that Israel is modernising its nuclear weapons programme. Parliament records an answer dated 27 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-21",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1901822. Official heading: Israel: Nuclear Weapons. Named-day question: no. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1901799",
+      "section_id": "speeches_and_questions",
+      "statement": "On 21 April 2026, Jeremy Corbyn tabled Commons written question UIN 128642 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, whether her Department supports a Middle East Nuclear Weapons Free Zone. Parliament records an answer dated 27 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-21",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1901799. Official heading: Middle East: Nuclear Weapons. Named-day question: no. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1901794",
+      "section_id": "speeches_and_questions",
+      "statement": "On 21 April 2026, Jeremy Corbyn tabled Commons written question UIN 128641 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, whether she has made a recent estimate of the number of nuclear weapons possessed by Israel. Parliament records an answer dated 27 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-21",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1901794. Official heading: Israel: Nuclear Weapons. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1901793",
+      "section_id": "speeches_and_questions",
+      "statement": "On 21 April 2026, Jeremy Corbyn tabled Commons written question UIN 128640 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, if he will review the 2020 military cooperation agreement with Israel in the context of that country’s role in the war on Iran since 28 February 2026. Parliament records an answer dated 27 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-21",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1901793. Official heading: Israel: Military Alliances. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1901792",
+      "section_id": "speeches_and_questions",
+      "statement": "On 21 April 2026, Jeremy Corbyn tabled Commons written question UIN 128639 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether he has made an estimate of the number of civilian casualties caused by United States airstrikes on Iran since 28 February 2026. Parliament records an answer dated 27 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-21",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1901792. Official heading: Iran: Armed Conflict. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1901791",
+      "section_id": "speeches_and_questions",
+      "statement": "On 21 April 2026, Jeremy Corbyn tabled Commons written question UIN 128638 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, how many times United States aircraft taking off from Diego Garcia have conducted strikes on Iran since 28 February 2026. Parliament records an answer dated 27 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-21",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1901791. Official heading: Diego Garcia: Military Bases. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1901789",
+      "section_id": "speeches_and_questions",
+      "statement": "On 21 April 2026, Jeremy Corbyn tabled Commons written question UIN 128637 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, how many times United States aircraft taking off from bases in the United Kingdom have conducted strikes on Iran since 28 February 2026. Parliament records an answer dated 27 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-21",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1901789. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1898665",
+      "section_id": "speeches_and_questions",
+      "statement": "On 13 April 2026, Jeremy Corbyn tabled Commons written question UIN 126528 to Department for Transport. The recorded question text is: To ask the Secretary of State for Transport, what recent discussions she has had with relevant Trade Unions on the proposed transfer of staff from her Department to the Department of Transport Operator Ltd. Parliament records an answer dated 20 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-13",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1898665. Official heading: DfT Operator: Trade Unions. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1898667",
+      "section_id": "speeches_and_questions",
+      "statement": "On 13 April 2026, Jeremy Corbyn tabled Commons written question UIN 126530 to Department for Transport. The recorded question text is: To ask the Secretary of State for Transport, what protections are in place for staff transferring to the Department of Transport Operator Ltd in respect of a) civil servant status, b) terms and conditions and c) occupational pension. Parliament records an answer dated 16 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-13",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1898667. Official heading: DfT Operator: Conditions of Employment. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1898668",
+      "section_id": "speeches_and_questions",
+      "statement": "On 13 April 2026, Jeremy Corbyn tabled Commons written question UIN 126531 to Department for Transport. The recorded question text is: To ask the Secretary of State for Transport, what her Department's targeted staff headcount reduction was prior to 31 March 2026. Parliament records an answer dated 16 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-13",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1898668. Official heading: Department for Transport: Staff. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1898666",
+      "section_id": "speeches_and_questions",
+      "statement": "On 13 April 2026, Jeremy Corbyn tabled Commons written question UIN 126529 to Department for Transport. The recorded question text is: To ask the Secretary of State for Transport, for what reason she plans to transfer staff to Department of Transport Operator Ltd prior to the completion of the Railways Bill. Parliament records an answer dated 16 April 2026.",
+      "fact_type": "question",
+      "date": "2026-04-13",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1898666. Official heading: DfT Operator: Conditions of Employment. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1885421",
+      "section_id": "speeches_and_questions",
+      "statement": "On 26 February 2026, Jeremy Corbyn tabled Commons written question UIN 116123 to Department of Health and Social Care. The recorded question text is: To ask the Secretary of State for Health and Social Care, what data his Department holds on health outcomes for Latinos, and if he will make a statement. Parliament records an answer dated 16 March 2026.",
+      "fact_type": "question",
+      "date": "2026-02-26",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1885421. Official heading: Health: Ethnic Groups. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1886617",
+      "section_id": "speeches_and_questions",
+      "statement": "On 25 February 2026, Jeremy Corbyn tabled Commons written question UIN 908076 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, what steps she is taking with Cabinet colleagues to conduct due diligence when licensing arms transfers to the United Arab Emirates to prevent weapons being used by the Rapid Support Forces in Sudan. Parliament records an answer dated 3 March 2026.",
+      "fact_type": "question",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1886617. Official heading: United Arab Emirates: Arms Trade. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1885418",
+      "section_id": "speeches_and_questions",
+      "statement": "On 26 February 2026, Jeremy Corbyn tabled Commons written question UIN 116122 to Cabinet Office. The recorded question text is: To ask the Minister for the Cabinet Office, what assessment he has made of the potential merits of including the ethnic group classification of Latino in the next national census. Parliament records an answer dated 3 March 2026.",
+      "fact_type": "question",
+      "date": "2026-02-26",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1885418. Official heading: Census: Ethnic Groups. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1885416",
+      "section_id": "speeches_and_questions",
+      "statement": "On 26 February 2026, Jeremy Corbyn tabled Commons written question UIN 116121 to Cabinet Office. The recorded question text is: To ask the Minister for the Cabinet Office, what recent estimate he has made of the percentage of people living in each UK constituency who identify as Latino. Parliament records an answer dated 3 March 2026.",
+      "fact_type": "question",
+      "date": "2026-02-26",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1885416. Official heading: Ethnic Groups: Latin America. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1884315",
+      "section_id": "speeches_and_questions",
+      "statement": "On 24 February 2026, Jeremy Corbyn tabled Commons written question UIN 115334 to Ministry of Housing, Communities and Local Government. The recorded question text is: To ask the Secretary of State for Housing, Communities and Local Government, whether data recorded by his Department classifies Latinos as an ethnic group. Parliament records an answer dated 2 March 2026.",
+      "fact_type": "question",
+      "date": "2026-02-24",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1884315. Official heading: Ethnic Groups: Latin America. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1880011",
+      "section_id": "speeches_and_questions",
+      "statement": "On 9 February 2026, Jeremy Corbyn tabled Commons written question UIN 111637 to Department for Work and Pensions. The recorded question text is: To ask the Secretary of State for Work and Pensions, what plans he has to review the Local Housing Allowance tin the context of private rented costs. Parliament records an answer dated 26 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-09",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1880011. Official heading: Local Housing Allowance. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1881365",
+      "section_id": "speeches_and_questions",
+      "statement": "On 12 February 2026, Jeremy Corbyn tabled Commons written question UIN 113029 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, what estimate his Department has made of the local economic benefits to the United Kingdom of the United States military bases in Britain. Parliament records an answer dated 26 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1881365. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1881362",
+      "section_id": "speeches_and_questions",
+      "statement": "On 12 February 2026, Jeremy Corbyn tabled Commons written question UIN 113026 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether financial benefits accrue to the United Kingdom from the US War Department’s ownership of sites such as land and buildings in Britain. Parliament records an answer dated 26 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1881362. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1881361",
+      "section_id": "speeches_and_questions",
+      "statement": "On 12 February 2026, Jeremy Corbyn tabled Commons written question UIN 113025 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, if he will list the sites the US War Department owns in the United Kingdom. Parliament records an answer dated 26 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1881361. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1881364",
+      "section_id": "speeches_and_questions",
+      "statement": "On 12 February 2026, Jeremy Corbyn tabled Commons written question UIN 113028 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether it is his Department's policy not to provide information on the number of United States military personnel present at each of its bases in the United Kingdom. Parliament records an answer dated 26 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1881364. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1881363",
+      "section_id": "speeches_and_questions",
+      "statement": "On 12 February 2026, Jeremy Corbyn tabled Commons written question UIN 113027 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, which agreements between the United States and the United Kingdom govern the presence of US National Security Agency personnel in Britain. Parliament records an answer dated 25 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1881363. Official heading: US National Security Agency. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1881462",
+      "section_id": "speeches_and_questions",
+      "statement": "On 12 February 2026, Jeremy Corbyn tabled Commons written question UIN 113030 to Department for Education. The recorded question text is: To ask the Secretary of State for Education, what is her proposed timeline for the publication and implementation of the revised school food standards. Parliament records an answer dated 24 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1881462. Official heading: School Meals: Standards. Named-day question: no. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1878080",
+      "section_id": "speeches_and_questions",
+      "statement": "On 3 February 2026, Jeremy Corbyn tabled Commons written question UIN 110315 to Ministry of Housing, Communities and Local Government. The recorded question text is: To ask the Secretary of State for Housing, Communities and Local Government, if he will list the properties in the UK owned by the US War Department. Parliament records an answer dated 24 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-03",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1878080. Official heading: Property: US Department of War. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1880013",
+      "section_id": "speeches_and_questions",
+      "statement": "On 9 February 2026, Jeremy Corbyn tabled Commons written question UIN 111638 to Department for Work and Pensions. The recorded question text is: To ask the Secretary of State for Work and Pensions, what estimate he has made of the amount of money paid directly from housing benefit to private landlords in each region of England. Parliament records an answer dated 24 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-09",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1880013. Official heading: Housing Benefit: Private Rented Housing. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1878542",
+      "section_id": "speeches_and_questions",
+      "statement": "On 4 February 2026, Jeremy Corbyn tabled Commons written question UIN 110711 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, what assessment he has made of the effectiveness of the work carried out at MOD Bicester; how many of his Department’s personnel are stationed there; and who owns the site. Parliament records an answer dated 13 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-04",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1878542. Official heading: MOD Bicester. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1878540",
+      "section_id": "speeches_and_questions",
+      "statement": "On 4 February 2026, Jeremy Corbyn tabled Commons written question UIN 110710 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, what the role is of RAF Oakhanger; how many of his Department’s personnel are stationed there; and who owns the site. Parliament records an answer dated 10 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-04",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1878540. Official heading: Ministry of Defence: Hampshire. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1878544",
+      "section_id": "speeches_and_questions",
+      "statement": "On 4 February 2026, Jeremy Corbyn tabled Commons written question UIN 110713 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether there are confidential arrangements in place governing the US military's use of bases in the UK in addition to the NATO Status of Forces Agreement 1951, the Visiting Forces Act 1952 and UK/US Cost Sharing Agreement 1973. Parliament records an answer dated 10 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-04",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1878544. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1878545",
+      "section_id": "speeches_and_questions",
+      "statement": "On 4 February 2026, Jeremy Corbyn tabled Commons written question UIN 110714 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, what the legislative basis is for the United States' use of force from bases in the United Kingdom being subject to joint decision-making. Parliament records an answer dated 10 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-04",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1878545. Official heading: USA: Armed Forces. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1878543",
+      "section_id": "speeches_and_questions",
+      "statement": "On 4 February 2026, Jeremy Corbyn tabled Commons written question UIN 110712 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, where United States (a) naval, (b) army and (c) marine detachments are stationed in the UK. Parliament records an answer dated 10 February 2026.",
+      "fact_type": "question",
+      "date": "2026-02-04",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1878543. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1874196",
+      "section_id": "speeches_and_questions",
+      "statement": "On 22 January 2026, Jeremy Corbyn tabled Commons written question UIN 107670 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether agreements between the United States and United Kingdom on the presence of US military forces in Britain place restrictions on the ability of the US to deploy nuclear weapons in Britain. Parliament records an answer dated 27 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-22",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1874196. Official heading: USA: Armed Forces. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1874194",
+      "section_id": "speeches_and_questions",
+      "statement": "On 22 January 2026, Jeremy Corbyn tabled Commons written question UIN 107668 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether his Department places any restrictions on the number of United States military forces that can be deployed to bases in Britain. Parliament records an answer dated 27 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-22",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1874194. Official heading: USA: Armed Forces. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1874198",
+      "section_id": "speeches_and_questions",
+      "statement": "On 22 January 2026, Jeremy Corbyn tabled Commons written question UIN 107672 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, how much his Department has spent on running costs for RAF (a) Menwith Hill, (b) Lakenheath and (c) Croughton in each of the last three years; and how much of the cost for each year has been reimbursed by the United States. Parliament records an answer dated 27 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-22",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1874198. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1874197",
+      "section_id": "speeches_and_questions",
+      "statement": "On 22 January 2026, Jeremy Corbyn tabled Commons written question UIN 107671 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, pursuant to the Answer of 17 April 2025 to Question 45840 on RAF Lakenheath: Nuclear Weapons, when it first became policy for his Department to neither confirm nor deny the presence of nuclear weapons at United States military bases in the United Kingdom. Parliament records an answer dated 27 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-22",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1874197. Official heading: Military Bases: Nuclear Weapons. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1874195",
+      "section_id": "speeches_and_questions",
+      "statement": "On 22 January 2026, Jeremy Corbyn tabled Commons written question UIN 107669 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, how many US armed forces personnel undertook training courses in Britain in each year since 2020; and in which institution they trained. Parliament records an answer dated 27 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-22",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1874195. Official heading: USA: Armed Forces. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1873044",
+      "section_id": "speeches_and_questions",
+      "statement": "On 19 January 2026, Jeremy Corbyn tabled Commons written question UIN 106457 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, which types of United States' military operations undertaken from US bases in the UK his Department is required to approve. Parliament records an answer dated 26 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-19",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1873044. Official heading: USA: Military Operations. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1873039",
+      "section_id": "speeches_and_questions",
+      "statement": "On 19 January 2026, Jeremy Corbyn tabled Commons written question UIN 106456 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, when the Government last refused permission for the US military to use its bases in the UK for operational purposes. Parliament records an answer dated 26 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-19",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1873039. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1873045",
+      "section_id": "speeches_and_questions",
+      "statement": "On 19 January 2026, Jeremy Corbyn tabled Commons written question UIN 106458 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, if he will set out the factors that his Department take into account when deciding on a case-by-case basis whether to approve the United States' use of its military bases in the UK for operational purposes. Parliament records an answer dated 22 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-19",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1873045. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1873046",
+      "section_id": "speeches_and_questions",
+      "statement": "On 19 January 2026, Jeremy Corbyn tabled Commons written question UIN 106459 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether the United States' use of its military bases in the UK to send military equipment onward to a third country requires his approval. Parliament records an answer dated 22 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-19",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1873046. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1873050",
+      "section_id": "speeches_and_questions",
+      "statement": "On 19 January 2026, Jeremy Corbyn tabled Commons written question UIN 106460 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether his Department records the UK civilian airports that the US military uses for operational, training or transitory purposes. Parliament records an answer dated 22 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-19",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1873050. Official heading: USA: Armed Forces. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1873132",
+      "section_id": "speeches_and_questions",
+      "statement": "On 14 January 2026, Jeremy Corbyn tabled Commons written question UIN 907375 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, what assessment she has made of the potential implications for her policies of the steps Israel is taking to establish the E1 settlement in the occupied West Bank. Parliament records an answer dated 20 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-14",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1873132. Official heading: West Bank: Israeli Settlements. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1869616",
+      "section_id": "speeches_and_questions",
+      "statement": "On 8 January 2026, Jeremy Corbyn tabled Commons written question UIN 104134 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, how many US military personnel are stationed at (a) RAF Alconbury, (b) RAF Molesworth, (c) RAF Croughton, (d) RAF Fairford, (e) RAF Lakenheath, (f) RAF Menwith Hill, (g) RAF Mildenhall, (h) RAF Barford St John, (i) RAF Welford, (j) RAF Yeovilton, (k) RAF Feltwell, (l) RAF Blenheim Crescent and (m) RAF Northwood. Parliament records an answer dated 15 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-08",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1869616. Official heading: USA: Military Bases. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1869394",
+      "section_id": "speeches_and_questions",
+      "statement": "On 8 January 2026, Jeremy Corbyn tabled Commons written question UIN 104128 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, what discussions or meetings her Department has held with Venezuelan opposition leader Maria Corina Machado since January 2024. Parliament records an answer dated 15 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-08",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1869394. Official heading: Maria Corina Machado. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1868697",
+      "section_id": "speeches_and_questions",
+      "statement": "On 6 January 2026, Jeremy Corbyn tabled Commons written question UIN 103189 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, on what date her Department last raised the issue of the disputed territory of Essequibo with Venezuelan officials. Parliament records an answer dated 12 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-06",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1868697. Official heading: Guyana: Venezuela. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1868699",
+      "section_id": "speeches_and_questions",
+      "statement": "On 6 January 2026, Jeremy Corbyn tabled Commons written question UIN 103190 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, what discussions or meetings her Department has held with representatives of BP or Shell regarding oil in Venezuela since August 2025. Parliament records an answer dated 12 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-06",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1868699. Official heading: Venezuela: Oil. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1868695",
+      "section_id": "speeches_and_questions",
+      "statement": "On 6 January 2026, Jeremy Corbyn tabled Commons written question UIN 103188 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, on what date her department last had discussions with US officials on the Bank of England holding Venezuelan gold. Parliament records an answer dated 12 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-06",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1868695. Official heading: Venezuela: Gold and Foreign Exchange Reserves. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1868701",
+      "section_id": "speeches_and_questions",
+      "statement": "On 6 January 2026, Jeremy Corbyn tabled Commons written question UIN 103191 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, if her Department will publish a summary of the legal advice it has received regarding US airstrikes on Venezuela and the capture of President Nicolas Maduro. Parliament records an answer dated 12 January 2026.",
+      "fact_type": "question",
+      "date": "2026-01-06",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1868701. Official heading: Venezuela: Military Intervention. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1861124",
+      "section_id": "speeches_and_questions",
+      "statement": "On 5 December 2025, Jeremy Corbyn tabled Commons written question UIN 97486 to Ministry of Justice. The recorded question text is: To ask the Secretary of State for Justice, whether he has made an assessment of the potential impact of reforms to jury trials on minority ethnic groups. Parliament records an answer dated 10 December 2025.",
+      "fact_type": "question",
+      "date": "2025-12-05",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1861124. Official heading: Juries. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1833532",
+      "section_id": "speeches_and_questions",
+      "statement": "On 9 September 2025, Jeremy Corbyn tabled Commons written question UIN 75927 to Department for Business and Trade. The recorded question text is: To ask the Secretary of State for Business and Trade, what assessment he has made of the potential implications for his arms licensing policy in relation to Indonesia of the human rights situation in West Papua. Parliament records an answer dated 15 September 2025.",
+      "fact_type": "question",
+      "date": "2025-09-09",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1833532. Official heading: Arms Trade: Indonesia. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1825990",
+      "section_id": "speeches_and_questions",
+      "statement": "On 22 July 2025, Jeremy Corbyn tabled Commons written question UIN 69740 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, whether B61-12 nuclear bombs have been delivered to the UK. Parliament records an answer dated 11 September 2025.",
+      "fact_type": "question",
+      "date": "2025-07-22",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1825990. Official heading: Nuclear Weapons: Procurement. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1823943",
+      "section_id": "speeches_and_questions",
+      "statement": "On 16 July 2025, Jeremy Corbyn tabled Commons written question UIN 68338 to Department for Environment, Food and Rural Affairs. The recorded question text is: To ask the Secretary of State for Environment, Food and Rural Affairs, what steps he is taking to support households with increases to water bills. Parliament records an answer dated 14 August 2025.",
+      "fact_type": "question",
+      "date": "2025-07-16",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1823943. Official heading: Water Charges: Government Assistance. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1814075",
+      "section_id": "speeches_and_questions",
+      "statement": "On 18 June 2025, Jeremy Corbyn tabled Commons written question UIN 60809 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, what information his Department holds on whether Israel is in possession of nuclear weapons. Parliament records an answer dated 4 August 2025.",
+      "fact_type": "question",
+      "date": "2025-06-18",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1814075. Official heading: Israel: Nuclear Weapons. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1823942",
+      "section_id": "speeches_and_questions",
+      "statement": "On 16 July 2025, Jeremy Corbyn tabled Commons written question UIN 68337 to Department for Environment, Food and Rural Affairs. The recorded question text is: To ask the Secretary of State for Environment, Food and Rural Affairs, what steps he is taking to ensure water companies are accountable to their users. Parliament records an answer dated 21 July 2025.",
+      "fact_type": "question",
+      "date": "2025-07-16",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1823942. Official heading: Water Companies: Accountability. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1812119",
+      "section_id": "speeches_and_questions",
+      "statement": "On 12 June 2025, Jeremy Corbyn tabled Commons written question UIN 59282 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, if he will support the establishment of an independent public inquiry into the UK's involvement in Israeli operations in Gaza since October 2023. Parliament records an answer dated 23 June 2025.",
+      "fact_type": "question",
+      "date": "2025-06-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1812119. Official heading: Gaza: Israel. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1812115",
+      "section_id": "speeches_and_questions",
+      "statement": "On 12 June 2025, Jeremy Corbyn tabled Commons written question UIN 59280 to Department for Education. The recorded question text is: To ask the Secretary of State for Education, if she will take steps to encourage schools to buy food from local food cooperatives through the updated school food standards. Parliament records an answer dated 23 June 2025.",
+      "fact_type": "question",
+      "date": "2025-06-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1812115. Official heading: Schools: Food. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1812123",
+      "section_id": "speeches_and_questions",
+      "statement": "On 12 June 2025, Jeremy Corbyn tabled Commons written question UIN 59283 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, which defence contractors and associated corporate entities were granted sight of the Strategic Defence Review prior to its official presentation to the House. Parliament records an answer dated 18 June 2025.",
+      "fact_type": "question",
+      "date": "2025-06-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1812123. Official heading: Strategic Defence Review. Named-day question: yes. Member interest recorded: yes. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1790123",
+      "section_id": "speeches_and_questions",
+      "statement": "On 28 March 2025, Jeremy Corbyn tabled Commons written question UIN 42207 to Department of Health and Social Care. The recorded question text is: To ask the Secretary of State for Health and Social Care, how many families are receiving Healthy Start in Islington North constituency. Parliament records an answer dated 2 April 2025.",
+      "fact_type": "question",
+      "date": "2025-03-28",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1790123. Official heading: Healthy Start Scheme: Islington North. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1787576",
+      "section_id": "speeches_and_questions",
+      "statement": "On 24 March 2025, Jeremy Corbyn tabled Commons written question UIN 40424 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, pursuant to the Answer of 13 March 2025 to Question 35627 on Strategic Defence Review, what steps his Department is taking to tackle the risks identified by the Infrastructure and Projects Authority. Parliament records an answer dated 27 March 2025.",
+      "fact_type": "question",
+      "date": "2025-03-24",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1787576. Official heading: Strategic Defence Review. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1781202",
+      "section_id": "speeches_and_questions",
+      "statement": "On 4 March 2025, Jeremy Corbyn tabled Commons written question UIN 35627 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, what assessment he has made of the potential impact of the red rating of the Core Production Capability programme by the Infrastructure and Projects Authority in its Annual Report on Major Projects 2023-24, published on 17 January 2025, on the Strategic Defence Review. Parliament records an answer dated 13 March 2025.",
+      "fact_type": "question",
+      "date": "2025-03-04",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1781202. Official heading: Strategic Defence Review. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1762288",
+      "section_id": "speeches_and_questions",
+      "statement": "On 5 February 2025, Jeremy Corbyn tabled Commons written question UIN 28881 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, whether he plans to participate in the UN study on the effects of nuclear war. Parliament records an answer dated 17 February 2025.",
+      "fact_type": "question",
+      "date": "2025-02-05",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1762288. Official heading: Nuclear Weapons. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1762287",
+      "section_id": "speeches_and_questions",
+      "statement": "On 5 February 2025, Jeremy Corbyn tabled Commons written question UIN 28880 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, what research his Department has undertaken on the consequences of nuclear war since the signature of the Treaty on the Non-Proliferation of Nuclear Weapons in 1968. Parliament records an answer dated 17 February 2025.",
+      "fact_type": "question",
+      "date": "2025-02-05",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1762287. Official heading: Nuclear Weapons: Research. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1762289",
+      "section_id": "speeches_and_questions",
+      "statement": "On 5 February 2025, Jeremy Corbyn tabled Commons written question UIN 28882 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, if he will make an assessment of the potential impact of the presence of UK troops as part of the NATO’s Exercise Steadfast Dart 25 in Eastern Europe on the risk of escalating tensions in that region. Parliament records an answer dated 10 February 2025.",
+      "fact_type": "question",
+      "date": "2025-02-05",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1762289. Official heading: Eastern Europe: Armed Forces. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1747302",
+      "section_id": "speeches_and_questions",
+      "statement": "On 5 December 2024, Jeremy Corbyn tabled Commons written question UIN 18102 to Ministry of Housing, Communities and Local Government. The recorded question text is: To ask the Secretary of State for Housing, Communities and Local Government, if she will take steps to ensure that landlords who are found liable for rent repayment orders in tribunal pay back monies owed. Parliament records an answer dated 16 December 2024.",
+      "fact_type": "question",
+      "date": "2024-12-05",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1747302. Official heading: Rent Repayment Orders. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1747303",
+      "section_id": "speeches_and_questions",
+      "statement": "On 5 December 2024, Jeremy Corbyn tabled Commons written question UIN 18103 to Department for Business and Trade. The recorded question text is: To ask the Secretary of State for Business and Trade, if he will take steps to ensure that the Insolvency Service investigates landlords that do not follow tribunal rent rulings to pay back monies owed. Parliament records an answer dated 11 December 2024.",
+      "fact_type": "question",
+      "date": "2024-12-05",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1747303. Official heading: Business Premises: Rents. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1745793",
+      "section_id": "speeches_and_questions",
+      "statement": "On 29 November 2024, Jeremy Corbyn tabled Commons written question UIN 16903 to Department of Health and Social Care. The recorded question text is: To ask the Secretary of State for Health and Social Care, how many prosecutions have been brought against corporate health bodies under section 20 of the Health and Social Care Act 2008 (Regulated Activities) Regulations 2014; how many of those prosecutions were successful; and what penalties were sought. Parliament records an answer dated 5 December 2024.",
+      "fact_type": "question",
+      "date": "2024-11-29",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1745793. Official heading: Health Services: Prosecutions. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1743133",
+      "section_id": "speeches_and_questions",
+      "statement": "On 20 November 2024, Jeremy Corbyn tabled Commons written question UIN 15165 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, if he will take steps to encourage the release of (a) Taj Muhammad Sarparah and (b) other Baloch citizens detained in Pakistan. Parliament records an answer dated 27 November 2024.",
+      "fact_type": "question",
+      "date": "2024-11-20",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1743133. Official heading: Pakistan: Political Prisoners. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1733914",
+      "section_id": "speeches_and_questions",
+      "statement": "On 14 October 2024, Jeremy Corbyn tabled Commons written question UIN 8753 to Department of Health and Social Care. The recorded question text is: To ask the Secretary of State for Health and Social Care, whether he is taking steps to support hospitals that (a) are and (b) have been indebted by Private Finance Initiative (PFI) schemes. Parliament records an answer dated 22 October 2024.",
+      "fact_type": "question",
+      "date": "2024-10-14",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1733914. Official heading: Hospitals: Private Finance Initiative. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1730040",
+      "section_id": "speeches_and_questions",
+      "statement": "On 4 October 2024, Jeremy Corbyn tabled Commons written question UIN 5842 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, when he expects negotiations with Mauritius on the (a) sovereignty of the Chagos Islands and (b) return of Chagossians who wish to resettle will conclude. Parliament records an answer dated 9 October 2024.",
+      "fact_type": "question",
+      "date": "2024-10-04",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1730040. Official heading: Chagos Islands: Sovereignty. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1728919",
+      "section_id": "speeches_and_questions",
+      "statement": "On 11 September 2024, Jeremy Corbyn tabled Commons written question UIN 5253 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, what assessment the Government has made of the potential impact of Israel's use of surveillance data provided by the UK on the UK's role in ensuring adherence to international law. Parliament records an answer dated 9 October 2024.",
+      "fact_type": "question",
+      "date": "2024-09-11",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1728919. Official heading: Israel: Surveillance. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1728918",
+      "section_id": "speeches_and_questions",
+      "statement": "On 11 September 2024, Jeremy Corbyn tabled Commons written question UIN 5252 to Ministry of Defence. The recorded question text is: To ask the Secretary of State for Defence, what (a) intelligence the Government is sharing with Israel on the potential location of remaining UK national hostages in Gaza and (b) other intelligence the Government is sharing with Israel gathered from surveillance flights from RAF Akrotiri. Parliament records an answer dated 9 October 2024.",
+      "fact_type": "question",
+      "date": "2024-09-11",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1728918. Official heading: Israel: Military Intelligence. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1723219",
+      "section_id": "speeches_and_questions",
+      "statement": "On 24 July 2024, Jeremy Corbyn tabled Commons written question UIN 1460 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, what assessment he has made of the potential implications for his policies of recent increases in settler violence in the West Bank. Parliament records an answer dated 30 July 2024.",
+      "fact_type": "question",
+      "date": "2024-07-24",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1723219. Official heading: Occupied Territories: Violence. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1723179",
+      "section_id": "speeches_and_questions",
+      "statement": "On 24 July 2024, Jeremy Corbyn tabled Commons written question UIN 1459 to Department for Culture, Media and Sport. The recorded question text is: To ask the Secretary of State for Culture, Media and Sport, what recent assessment she has made of the potential merits of re-establishing the Leveson Part Two inquiry. Parliament records an answer dated 29 July 2024.",
+      "fact_type": "question",
+      "date": "2024-07-24",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1723179. Official heading: Culture, Practices and Ethics of the Press Inquiry. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1722038",
+      "section_id": "speeches_and_questions",
+      "statement": "On 18 July 2024, Jeremy Corbyn tabled Commons written question UIN 590 to Foreign, Commonwealth and Development Office. The recorded question text is: To ask the Secretary of State for Foreign, Commonwealth and Development Affairs, when he expects to conclude negotiations with Mauritius on the sovereignty of the Chagos Archipelago. Parliament records an answer dated 24 July 2024.",
+      "fact_type": "question",
+      "date": "2024-07-18",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1722038. Official heading: Chagos Islands: Sovereignty. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1722051",
+      "section_id": "speeches_and_questions",
+      "statement": "On 18 July 2024, Jeremy Corbyn tabled Commons written question UIN 592 to Department for Environment, Food and Rural Affairs. The recorded question text is: To ask the Secretary of State for Environment, Food and Rural Affairs, whether he plans to respond to the consultation entitled the Fur market in Great Britain, published on 31 May 2021. Parliament records an answer dated 23 July 2024.",
+      "fact_type": "question",
+      "date": "2024-07-18",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1722051. Official heading: Furs: Trade. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1722052",
+      "section_id": "speeches_and_questions",
+      "statement": "On 18 July 2024, Jeremy Corbyn tabled Commons written question UIN 593 to Department for Environment, Food and Rural Affairs. The recorded question text is: To ask the Secretary of State for Environment, Food and Rural Affairs, if his Department will (a) make an assessment of the potential merits of banning the use of farrowing crates and (b) hold a public consultation on such a ban. Parliament records an answer dated 23 July 2024.",
+      "fact_type": "question",
+      "date": "2024-07-18",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1722052. Official heading: Animal Housing. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1722050",
+      "section_id": "speeches_and_questions",
+      "statement": "On 18 July 2024, Jeremy Corbyn tabled Commons written question UIN 591 to Department for Environment, Food and Rural Affairs. The recorded question text is: To ask the Secretary of State for Environment, Food and Rural Affairs, whether he plans to bring forward legislative proposals to ban the import of hunting trophies. Parliament records an answer dated 23 July 2024.",
+      "fact_type": "question",
+      "date": "2024-07-18",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1722050. Official heading: Animal Products: Imports. Named-day question: yes. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
+    },
+    {
+      "fact_id": "fact-written-question-1919112",
+      "section_id": "speeches_and_questions",
+      "statement": "On 23 June 2026, Jeremy Corbyn tabled Commons written question UIN 12037 to Department of Health and Social Care. The recorded question text is: To ask the Secretary of State for Health and Social Care, whether his Department holds records of declarations of interest, conflict checks, due diligence, security screening and beneficial-interest checks completed before Nicole Junkermann was appointed to the Healthtech Advisory Board in 2018. No answer date or answer text was present in the official detail record at capture time 2026-07-20T20:00:41Z.",
+      "fact_type": "question",
+      "date": "2026-06-23",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-members-api-corbyn-written-questions-2026-07-20",
+        "source-uk-parliament-questions-api-corbyn-written-question-details-2026-07-20"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "UK Parliament internal question ID 1919112. Official heading: Healthtech Advisory Board: Public Appointments. Named-day question: no. Member interest recorded: no. Withdrawn: no. Holding answer: no. Correction recorded: no. Grouped question UINs: none. The full official index item, detail payload and answer text are preserved in the source packet. No topic classification, policy-position, contradiction, motive, influence, legality or propriety inference is made."
     }
   ],
   "claims": [
@@ -2137,17 +3700,17 @@
       "notes": "This lane does not expand beyond the four current Parliament declarations and does not infer ownership, control, remuneration, influence, motive, legality or propriety."
     },
     {
-      "gap_id": "gap-speeches-questions",
+      "gap_id": "gap-speeches-questions-current-parliament-scope",
       "section_id": "speeches_and_questions",
-      "summary": "Hansard contributions and parliamentary questions have not been indexed.",
+      "summary": "The 90 Commons written questions tabled by Jeremy Corbyn from 4 July 2024 through the 20 July 2026 capture have been indexed, but earlier written questions, later updates, oral questions, written statements, Early Day Motions and spoken contributions remain outside this lane.",
       "severity": "high",
-      "reason": "not_researched",
+      "reason": "historic_gap",
       "date_from": null,
-      "date_to": null,
+      "date_to": "2026-07-20",
       "status": "open",
       "blocks_publication": true,
-      "next_action": "Build bounded Hansard and parliamentary-question indexers.",
-      "notes": ""
+      "next_action": "Open separately authorised lanes for pre-current-Parliament written questions, later refreshes, oral questions, written statements, Early Day Motions and bounded Hansard contributions.",
+      "notes": "The Members API reported 251 all-career written-question records; 90 fall inside the authorised current-Parliament date boundary. Question 1919112 / UIN 12037 was unanswered in the fixed capture and may change after the capture timestamp. No question was classified as a policy position or contradiction."
     },
     {
       "gap_id": "gap-positions",
