@@ -11,7 +11,7 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Exact starting head for this lane: `8bdf09238e6c75eb415793c91951e226b0b8184a`.
+- Exact current lane head before this clarification: `d570f0587218637bda33a61b34df6a8aa0d9e8e6`.
 - Jeremy Corbyn current financial-interests baseline is complete at merge `e92262ccafa2e9628bc5e8f5bba6be4c14541750` from exact reviewed head `4dce322af5220c62b7b20537094ab7d683b966d9`.
 - Jeremy Corbyn official roles-and-committees baseline remains complete at merge `968d33dac9e80cdf0f6c9107c195c5f7d7f70a1b`.
 - Jeremy Corbyn official identity-and-career baseline remains complete at merge `93c8da204d9709a1490dfa24a7b722a5f6a85199`.
@@ -37,9 +37,9 @@ Declared-link boundary from the accepted Parliament snapshot:
 
 Official source boundary:
 
-- the accepted UK Parliament current financial-interests packet and the corresponding official Registered Interests entries, used only to record the member’s own declared role wording and dates;
+- the accepted UK Parliament current financial-interests packet and corresponding official Registered Interests entries, used only for the member's declared role wording and dates;
 - official Companies House company overview pages for exact registry identity, company number, status, incorporation date and registered nature of business;
-- official Companies House officer pages or appointment records only for Jeremy Corbyn’s own appointment or termination dates;
+- official Companies House officer pages or appointment records only for Jeremy Corbyn's own appointment or termination dates;
 - official Companies House filing history only when needed to resolve a company-name, status or appointment ambiguity;
 - an explicit unresolved record when an exact official company match cannot be established without guessing.
 
@@ -59,11 +59,24 @@ Authorised implementation scope:
 - `scripts/test_jeremy_corbyn_current_outside_work_company_links_v1.py`
 - `.github/workflows/jeremy-corbyn-current-outside-work-company-links-test.yml`
 
+Authorised prerequisite regression repair, in one separate one-file PR before the five-file implementation PR:
+
+- `scripts/test_jeremy_corbyn_current_financial_interests_v1.py`
+
+The prerequisite repair may only replace the financial-interests regression's closed-world assertion over every non-financial fact with section-scoped non-interference proof. It must continue to require:
+
+- the exact 29 accepted `financial_interests` facts and their order;
+- the accepted official sources, 13/12/4 category reconciliation, source spellings and packet-to-fixture equality;
+- the accepted financial-interests gap, publication state and deterministic outputs;
+- rejection of any later fact incorrectly assigned to `financial_interests`.
+
+It must permit separately authorised facts in other canonical sections. It must not alter the fixture, packet, source note, workflow, accepted financial-interest record, report status or publication authority.
+
 Required behaviour:
 
 - preserve the four Parliament declarations exactly as already captured and link each new company record back to its source entry;
 - establish the exact registered company name and number from Companies House before adding a `company` fact;
-- record only company status, incorporation date, nature of business and Jeremy Corbyn’s own official appointment or termination dates when displayed;
+- record only company status, incorporation date, nature of business and Jeremy Corbyn's own official appointment or termination dates when displayed;
 - distinguish Parliament-declared unpaid director roles from the separately declared unpaid bank-signatory role;
 - do not encode the bank-signatory declaration as a Companies House officer appointment unless Companies House independently records one;
 - preserve any difference between Parliament wording and Companies House wording rather than silently reconciling it;
@@ -74,8 +87,8 @@ Required behaviour:
 - validate the complete fixture through the canonical Complete MP Report validator and deterministic generator;
 - prove each added fact resolves only to the accepted Parliament source and/or official Companies House source records;
 - prove no unrelated company, officer or organisation was added;
-- run the new lane regression, identity-and-career regression, roles-and-committees regression, current financial-interests regression, Complete MP Report fixture test, Complete MP Portfolio view test, Repository release validation and Project control;
-- change exactly the five authorised files.
+- run the new lane regression, identity-and-career regression, roles-and-committees regression, repaired current financial-interests regression, Complete MP Report fixture test, Complete MP Portfolio view test, Repository release validation and Project control;
+- change exactly one file in the prerequisite repair PR and exactly five files in the implementation PR.
 
 ## Done
 
@@ -83,25 +96,25 @@ Required behaviour:
 - January 2003 seed-row shape and vote-review queue preparation are complete.
 - The accepted Streamlit interface exposes `Simple`, `MP Portfolio` and `Advanced` views.
 - Jeremy Corbyn identity-and-career, roles-and-committees and current financial-interests baselines are complete within their declared official-source scopes.
-- The current Parliament snapshot supplies four bounded organisation/company declarations suitable for this lane.
-- The `outside_work_and_company_links` section remains `not_researched` in current `main`.
+- The four bounded organisation/company identities have been resolved against official Companies House records.
+- The clean-worktree implementation generated the authorised four-link packet and passed its new regression, identity regression and roles regression.
+- The implementation stopped before commit or push because the inherited financial-interests regression incorrectly rejected later-section facts.
+- The remote implementation branch remains at the authority merge with no implementation commit.
 
 ## To do
 
-- Resolve the exact Companies House identity for each of the four declared organisations without guessing.
-- Capture the bounded official company and subject-officer records.
-- Create the machine-readable source packet and readable source note.
-- Update only the outside-work-and-company-links section, its official sources, company facts and directly related coverage gap.
-- Add deterministic validation and CI.
+- Merge this `STATUS.md`-only clarification after Project Control passes.
+- Repair the financial-interests regression boundary in one controlled one-file PR.
+- Rebase or fast-forward the empty implementation branch to the repaired current `main`.
+- Regenerate the five authorised outside-work files in a clean worktree.
+- Run all inherited and new regressions with immediate stop on failure.
 - Open and review one five-file implementation PR.
 - After implementation merge, close this lane through a separate `STATUS.md`-only authority PR.
 
 ## Next bounded gate
 
-Merge this authority-only activation PR after Project control passes. Then conduct the bounded official-source research and open one controlled five-file implementation PR.
-
-ChatGPT Work owns bounded official-source collection and exact fact extraction. Codex owns deterministic encoding, tests and fixture integration after the source packet is fixed. Neither may expand beyond the four declared organisations or the authorised source boundary.
+Merge this authority clarification after Project Control passes. Then merge one one-file financial-interests regression repair after its exact checks pass. Only then resume the five-file outside-work implementation.
 
 ## Stop point
 
-Do not research another MP or canonical section; expand to unrelated companies or connected people; alter accepted identity, roles, voting, financial-interests, donations, speeches, positions, relationships or human-review records; infer ownership, control, remuneration, influence, motive, legality or propriety; review January 2003 vote meanings; access or mutate the private server or SQLite; create claims or interpretations; mark the section complete; mark the report publishable; or authorise public output. Stop after the five-file implementation PR is complete, tested and reviewed.
+Do not research another MP or canonical section; expand to unrelated companies or connected people; alter accepted identity, roles, voting, financial-interests, donations, speeches, positions, relationships or human-review records; infer ownership, control, remuneration, influence, motive, legality or propriety; review January 2003 vote meanings; access or mutate the private server or SQLite; create claims or interpretations; mark the section complete; mark the report publishable; or authorise public output. Stop after the prerequisite one-file repair and the separate five-file implementation PR are complete, tested and reviewed.
