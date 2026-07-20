@@ -2,7 +2,7 @@
   "schema_version": "1",
   "report_id": "complete-mp-corbyn-fixture-v1",
   "title": "Complete MP Report fixture — Corbyn, Jeremy",
-  "generated_at": "2026-07-20T12:10:00Z",
+  "generated_at": "2026-07-20T15:53:04Z",
   "subject": {
     "display_name": "Corbyn, Jeremy",
     "sort_name": "Corbyn, Jeremy",
@@ -102,14 +102,44 @@
     {
       "section_id": "financial_interests",
       "title": "Financial interests",
-      "status": "not_researched",
-      "summary": "No official register records are present.",
-      "fact_ids": [],
+      "status": "partial",
+      "summary": "Official UK Parliament records show 29 entries in the current published snapshot dated 13 July 2026; historical coverage remains incomplete because the current display is subject to a twelve-month retention boundary.",
+      "fact_ids": [
+        "fact-financial-interest-001",
+        "fact-financial-interest-002",
+        "fact-financial-interest-003",
+        "fact-financial-interest-004",
+        "fact-financial-interest-005",
+        "fact-financial-interest-006",
+        "fact-financial-interest-007",
+        "fact-financial-interest-008",
+        "fact-financial-interest-009",
+        "fact-financial-interest-010",
+        "fact-financial-interest-011",
+        "fact-financial-interest-012",
+        "fact-financial-interest-013",
+        "fact-financial-interest-014",
+        "fact-financial-interest-015",
+        "fact-financial-interest-016",
+        "fact-financial-interest-017",
+        "fact-financial-interest-018",
+        "fact-financial-interest-019",
+        "fact-financial-interest-020",
+        "fact-financial-interest-021",
+        "fact-financial-interest-022",
+        "fact-financial-interest-023",
+        "fact-financial-interest-024",
+        "fact-financial-interest-025",
+        "fact-financial-interest-026",
+        "fact-financial-interest-027",
+        "fact-financial-interest-028",
+        "fact-financial-interest-029"
+      ],
       "claim_ids": [],
       "interpretation_ids": [],
       "relationship_ids": [],
       "gap_ids": [
-        "gap-financial-interests"
+        "gap-financial-interests-history-retention"
       ]
     },
     {
@@ -360,6 +390,38 @@
       "coverage_to": null,
       "checksum": "",
       "limitations": "Identifies the Justice Committee as a Commons Select Committee. Jeremy Corbyn's membership dates are taken from the official member career record."
+    },
+    {
+      "source_id": "source-uk-parliament-registered-interests-current",
+      "title": "Register of Interests for Jeremy Corbyn",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://members.parliament.uk/member/185/registeredinterests",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": "2026-07-13",
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": null,
+      "checksum": "",
+      "limitations": "Captures the current published member snapshot only. The page states that interests remain in the Register for twelve months after an interest has ended; it is not a complete historical register."
+    },
+    {
+      "source_id": "source-uk-parliament-register-publications-2026-07-13",
+      "title": "Register of Members' Financial Interests as at 13 Jul 2026",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://members.parliament.uk/members/commons/interests/publications",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": "2026-07-13",
+      "capture_date": "2026-07-20",
+      "coverage_from": "2026-07-13",
+      "coverage_to": "2026-07-13",
+      "checksum": "",
+      "limitations": "Identifies the current register version and publication date. Entry content is taken from the official member Registered Interests pages."
     }
   ],
   "facts": [
@@ -649,6 +711,441 @@
       "confidence": "high",
       "evidence_status": "verified",
       "notes": "Membership dates come from the official member career record; the linked committee page identifies the committee as a Commons Select Committee."
+    },
+    {
+      "fact_id": "fact-financial-interest-001",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Peace and Justice Project: Estimated value £63.79; Return train ticket London to Southport, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-20",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-001; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-002",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Peace and Justice Project: Estimated value £39.79; Train ticket from Liverpool to London, after attending a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-21",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-002; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-003",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Peace and Justice Project: Estimated value £78.75; Hotel for one night in Southport, for my attendance at a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-20",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-003; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-004",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Peace and Justice Project: Estimated value £137.66; Return train ticket London to Leicester, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-02",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-004; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-005",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £25.54; Return train ticket London to Luton, to attend a Your Party rally.",
+      "fact_type": "interest",
+      "date": "2026-02-04",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-005; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-006",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Peace and Justice Project: Estimated value £23.04; Return train ticket London to Cambridge, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-006; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-007",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £51.90; Return train ticket London to Bristol, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-14",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-007; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-008",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £32.46; Train ticket from Birmingham to London, after attending a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-01",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-008; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-009",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £47.94; Return train ticket London to Banbury, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-09",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-009; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-010",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £59.39; Train ticket from London to Stoke only, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-01",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-010; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-011",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £71.27; Return train ticket London to Middlesborough, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-11",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-011; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-012",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Pece and Justice Project: Estimated value £48.05; Return train ticket London to Walsall, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-13",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-012; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-013",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from How The Light Gets In (TVF Limited): £155.00; This was travel/petrol money that was reimbursed for an event attended earlier in the month and registered..",
+      "fact_type": "interest",
+      "date": "2025-06-30",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-013; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-014",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Belgium (Brussels) from 13 June 2026 to 14 June 2026, supported by Progressive International, for: To speak at a Progressive International Conference.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-06-13",
+      "date_to": "2026-06-14",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-014; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-015",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Ireland (Dublin) from 6 June 2026 to 7 June 2026, supported by Robert Tressell Festival, for: To speak at the Robert Tressell Festival.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-06-06",
+      "date_to": "2026-06-07",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-015; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-016",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Sweden from 14 May 2026 to 16 May 2026, supported by Zetkin Foundation, Rosa Luxemburg Stiftung, for: To attend and speak at a conference of European left-wing groups..",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-05-14",
+      "date_to": "2026-05-16",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-016; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-017",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Belgium (Brussels) from 22 April 2026 to 22 April 2026, supported by Peace and Justice Project, for: Guest speaker at the Global Sumud Parliamentary Congress.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-04-22",
+      "date_to": "2026-04-22",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-017; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-018",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Belgium (Brussels) from 18 April 2026 to 18 April 2026, supported by The Peace and Justice Project, for: Guest speaker at the Party of the European Left Congress.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-04-18",
+      "date_to": "2026-04-18",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-018; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-019",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Cuba from 19 March 2026 to 23 March 2026, supported by Progressive International, for: Guest speaker at a high-level strategic roundtable Nuestra América.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-03-19",
+      "date_to": "2026-03-23",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-019; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-020",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Netherlands (The Hague) from 6 March 2026 to 8 March 2026, supported by THG Exchange Ltd, for: Guest speaker at the People's Congress for the Hague Group.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-03-06",
+      "date_to": "2026-03-08",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-020; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-021",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to South Africa and Namibia from 26 September 2025 to 4 October 2025, supported by Liyaquat Alli Ahmed, Ismail Ebrahim, Progressive International, for: Raise awareness & fundraising for the crisis in Gaza.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-09-26",
+      "date_to": "2025-10-04",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-021; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-022",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Malaysia (Kuala Lumper) from 12 October 2025 to 14 October 2025, supported by World Network, for: Keynote Address at the Kuala Lumpur Conference on a New Just and Humane International Order.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-10-12",
+      "date_to": "2025-10-14",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-022; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-023",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Italy (Rome) from 11 October 2025 to 12 October 2025, supported by Il nuovo manifesto società cooperativa editrice, for: To speak at the La Manifestival event.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-10-11",
+      "date_to": "2025-10-12",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-023; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-024",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Japan (Hiroshima, Nagasaki) from 1 August 2025 to 18 August 2025, supported by Genseikyo, Rosa Luxemburg Foundation, for: Attend 80th anniversary commemoration Hiroshima and Nagasaki Atomic Bombing.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-08-01",
+      "date_to": "2025-08-18",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-024; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-025",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Belgium (Brussels) from 11 June 2025 to 12 June 2025, supported by The Left in the European Parliament, for: Speaker at The Left in the European Parliament Peace Initiative conference.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-06-11",
+      "date_to": "2025-06-12",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-025; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-026",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 8 miscellaneous interest: Unpaid Director of Your Party UK Ltd, a private company limited by guarantee without share capital which was incorporated on 31 July 2025",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-07-31",
+      "date_to": "2026-04-21",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-026; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-027",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 8 miscellaneous interest: Unpaid Director of Jeremy Corbyn Campaign Ltd, supporting the activities of political organisations",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2024-09-25",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-027; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-028",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 8 miscellaneous interest: I am a bank signatory for Community Unity Limited. This is an unpaid role.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2024-02-27",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-028; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-029",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 8 miscellaneous interest: Unpaid director of the Peace and Justice Project, a company limited by guarantee. The company promotes peace and justice issues, both domestic and international.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2020-10-13",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-029; the complete official fields and source spelling are preserved there without reclassification."
     }
   ],
   "claims": [
@@ -727,17 +1224,17 @@
       "notes": ""
     },
     {
-      "gap_id": "gap-financial-interests",
+      "gap_id": "gap-financial-interests-history-retention",
       "section_id": "financial_interests",
-      "summary": "Register of Members’ Financial Interests records have not been collected.",
+      "summary": "The 13 July 2026 current published register snapshot is captured, but earlier register versions and interests outside the current twelve-month retention display have not been collected.",
       "severity": "high",
-      "reason": "not_researched",
+      "reason": "historic_gap",
       "date_from": null,
-      "date_to": null,
+      "date_to": "2026-07-13",
       "status": "open",
       "blocks_publication": true,
-      "next_action": "Build a versioned official-register evidence lane.",
-      "notes": ""
+      "next_action": "Open a separately authorised historical-register lane if complete longitudinal financial-interest coverage is required.",
+      "notes": "The current snapshot is complete at capture time; the section remains partial because the official current page is not a complete historical record."
     },
     {
       "gap_id": "gap-donations",

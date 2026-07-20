@@ -1,0 +1,1756 @@
+{
+  "schema_version": "1",
+  "packet_id": "jeremy-corbyn-current-financial-interests-v1",
+  "subject": {
+    "official_name": "Jeremy Corbyn",
+    "repository_display_name": "Corbyn, Jeremy",
+    "parliament_member_id": "185"
+  },
+  "section_id": "financial_interests",
+  "captured_at": "2026-07-20T15:53:04Z",
+  "register_snapshot": {
+    "publication_date": "2026-07-13",
+    "title": "Register of Members' Financial Interests as at 13 Jul 2026",
+    "displayed_result_count": 29,
+    "page_count": 2,
+    "pages": [
+      {
+        "page": 1,
+        "url": "https://members.parliament.uk/member/185/registeredinterests",
+        "displayed_result_count": 29,
+        "displayed_page": "1 of 2",
+        "captured_entry_count": 20
+      },
+      {
+        "page": 2,
+        "url": "https://members.parliament.uk/member/185/registeredinterests?page=2",
+        "displayed_result_count": 29,
+        "displayed_page": "2 of 2",
+        "captured_entry_count": 9
+      }
+    ],
+    "category_counts": {
+      "3. Gifts, benefits and hospitality from UK sources": 13,
+      "4. Visits outside the UK": 12,
+      "8. Miscellaneous": 4
+    },
+    "retention_notice": "Interests remain in the Register for twelve months after the interest has ended."
+  },
+  "source_boundary": {
+    "included": [
+      "Official UK Parliament Registered Interests page for member ID 185",
+      "All pagination pages needed to capture the displayed current snapshot",
+      "Official UK Parliament register publications index used to identify the 13 July 2026 register version"
+    ],
+    "excluded": [
+      "Historic register versions",
+      "Electoral Commission records",
+      "Companies House and other company registries",
+      "News reporting, party, campaign and personal websites, social media, Wikipedia and aggregators",
+      "Legality, propriety, influence, motive, benefit or political-significance inference"
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "source-uk-parliament-registered-interests-current",
+      "title": "Register of Interests for Jeremy Corbyn",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://members.parliament.uk/member/185/registeredinterests",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": "2026-07-13",
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": null,
+      "checksum": "",
+      "limitations": "Captures the current published member snapshot only. The page states that interests remain in the Register for twelve months after an interest has ended; it is not a complete historical register."
+    },
+    {
+      "source_id": "source-uk-parliament-register-publications-2026-07-13",
+      "title": "Register of Members' Financial Interests as at 13 Jul 2026",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://members.parliament.uk/members/commons/interests/publications",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": "2026-07-13",
+      "capture_date": "2026-07-20",
+      "coverage_from": "2026-07-13",
+      "coverage_to": "2026-07-13",
+      "checksum": "",
+      "limitations": "Identifies the current register version and publication date. Entry content is taken from the official member Registered Interests pages."
+    }
+  ],
+  "entries": [
+    {
+      "entry_id": "financial-interest-001",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £63.79"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Return train ticket London to Southport, to attend a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "20 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "20 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-002",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £39.79"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Train ticket from Liverpool to London, after attending a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "21 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "21 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-003",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £78.75"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Hotel for one night in Southport, for my attendance at a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "20 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "20 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-004",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £137.66"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Return train ticket London to Leicester, to attend a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "2 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "2 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-005",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "The Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £25.54"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Return train ticket London to Luton, to attend a Your Party rally"
+        },
+        {
+          "label": "Date received",
+          "value": "4 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "4 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-006",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £23.04"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Return train ticket London to Cambridge, to attend a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "12 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "12 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-007",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "The Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £51.90"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Return train ticket London to Bristol, to attend a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "14 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "14 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-008",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "The Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £32.46"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Train ticket from Birmingham to London, after attending a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "1 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "1 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-009",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "The Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £47.94"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Return train ticket London to Banbury, to attend a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "9 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "9 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-010",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "The Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £59.39"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Train ticket from London to Stoke only, to attend a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "1 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "1 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-011",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "The Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £71.27"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Return train ticket London to Middlesborough, to attend a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "11 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "11 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-012",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Pece and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2,1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "Estimated value £48.05"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Return train ticket London to Walsall, to attend a Your Party event"
+        },
+        {
+          "label": "Date received",
+          "value": "13 February 2026"
+        },
+        {
+          "label": "Date accepted",
+          "value": "13 February 2026"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 12945855"
+        },
+        {
+          "label": "Date registered",
+          "value": "25 February 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-013",
+      "page": 1,
+      "category": "3. Gifts, benefits and hospitality from UK sources",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "How The Light Gets In (TVF Limited)"
+        },
+        {
+          "label": "Address of donor",
+          "value": "375 City Road, London EC1V 1NB"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "£155.00"
+        },
+        {
+          "label": "Description of donation",
+          "value": "This was travel/petrol money that was reimbursed for an event attended earlier in the month and registered."
+        },
+        {
+          "label": "Date received",
+          "value": "30 June 2025"
+        },
+        {
+          "label": "Date accepted",
+          "value": "30 June 2025"
+        },
+        {
+          "label": "Donor status",
+          "value": "Company, registration 02830019"
+        },
+        {
+          "label": "Date registered",
+          "value": "1 July 2025"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-014",
+      "page": 1,
+      "category": "4. Visits outside the UK",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Progressive International"
+        },
+        {
+          "label": "Address of donor",
+          "value": "71-75 Shelton Street, London WC2H 9JQ"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "£315.15"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Return train journey (£166.99), hotel (£148.16)"
+        },
+        {
+          "label": "Destination(s) of visit",
+          "value": "Belgium (Brussels)"
+        },
+        {
+          "label": "Start date",
+          "value": "13 June 2026"
+        },
+        {
+          "label": "End date",
+          "value": "14 June 2026"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "To speak at a Progressive International Conference"
+        },
+        {
+          "label": "Date registered",
+          "value": "16 June 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-015",
+      "page": 1,
+      "category": "4. Visits outside the UK",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Robert Tressell Festival"
+        },
+        {
+          "label": "Address of donor",
+          "value": "6, Gardiner Row, Dublin 1"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "£680.00"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Flight (£365), Hotel (£245) and Taxi (£70)"
+        },
+        {
+          "label": "Destination(s) of visit",
+          "value": "Ireland (Dublin)"
+        },
+        {
+          "label": "Start date",
+          "value": "6 June 2026"
+        },
+        {
+          "label": "End date",
+          "value": "7 June 2026"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "To speak at the Robert Tressell Festival"
+        },
+        {
+          "label": "Date registered",
+          "value": "17 June 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-016",
+      "page": 1,
+      "category": "4. Visits outside the UK",
+      "donors": [
+        {
+          "ordinal": 1,
+          "fields": [
+            {
+              "label": "Name of donor",
+              "value": "Zetkin Foundation"
+            },
+            {
+              "label": "Address of donor",
+              "value": "Södra Förstadsgatan 66, 214 20 Malmö Sweden"
+            },
+            {
+              "label": "Amount, or estimate of the probable value",
+              "value": "£293.36"
+            },
+            {
+              "label": "Description of donation",
+              "value": "Flights only"
+            }
+          ]
+        },
+        {
+          "ordinal": 2,
+          "fields": [
+            {
+              "label": "Name of donor",
+              "value": "Rosa Luxemburg Stiftung"
+            },
+            {
+              "label": "Address of donor",
+              "value": "Rosa Luxemburg Stiftung, Brussels office, Rue Saint-Ghislain 62, B-1000 Brussels Belgium."
+            },
+            {
+              "label": "Amount, or estimate of the probable value",
+              "value": "£150.34"
+            },
+            {
+              "label": "Description of donation",
+              "value": "Hotel accommodation only"
+            }
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "label": "Destination(s) of visit",
+          "value": "Sweden"
+        },
+        {
+          "label": "Start date",
+          "value": "14 May 2026"
+        },
+        {
+          "label": "End date",
+          "value": "16 May 2026"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "To attend and speak at a conference of European left-wing groups."
+        },
+        {
+          "label": "Date registered",
+          "value": "8 June 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-017",
+      "page": 1,
+      "category": "4. Visits outside the UK",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2, 1st Floor The London Fashion Centre, 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "£255.00"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Return train ticket to Brussels only"
+        },
+        {
+          "label": "Destination(s) of visit",
+          "value": "Belgium (Brussels)"
+        },
+        {
+          "label": "Start date",
+          "value": "22 April 2026"
+        },
+        {
+          "label": "End date",
+          "value": "22 April 2026"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "Guest speaker at the Global Sumud Parliamentary Congress"
+        },
+        {
+          "label": "Date registered",
+          "value": "27 April 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-018",
+      "page": 1,
+      "category": "4. Visits outside the UK",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "The Peace and Justice Project"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Unit F2, 1st Floor The London Fashion Centre 89-93 Fonthill Road, London N4 3JH"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "£265.00"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Travel only: return Eurostar ticket"
+        },
+        {
+          "label": "Destination(s) of visit",
+          "value": "Belgium (Brussels)"
+        },
+        {
+          "label": "Start date",
+          "value": "18 April 2026"
+        },
+        {
+          "label": "End date",
+          "value": "18 April 2026"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "Guest speaker at the Party of the European Left Congress"
+        },
+        {
+          "label": "Date registered",
+          "value": "27 April 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-019",
+      "page": 1,
+      "category": "4. Visits outside the UK",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Progressive International"
+        },
+        {
+          "label": "Address of donor",
+          "value": "Rue de la Servette 96 Genève 1202, Switzerland"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "£1,383.13"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Flight (£821.77), flight change (£216.25), luggage (£198.95) and hotel (£146.16)"
+        },
+        {
+          "label": "Destination(s) of visit",
+          "value": "Cuba"
+        },
+        {
+          "label": "Start date",
+          "value": "19 March 2026"
+        },
+        {
+          "label": "End date",
+          "value": "23 March 2026"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "Guest speaker at a high-level strategic roundtable Nuestra América"
+        },
+        {
+          "label": "Date registered",
+          "value": "28 March 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-020",
+      "page": 1,
+      "category": "4. Visits outside the UK",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "THG Exchange Ltd"
+        },
+        {
+          "label": "Address of donor",
+          "value": "71-75 Shelton Street London, WC2H 9JQ United Kingdom"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "£839.81"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Hotel (£450.82) and train (£388.99)"
+        },
+        {
+          "label": "Destination(s) of visit",
+          "value": "Netherlands (The Hague)"
+        },
+        {
+          "label": "Start date",
+          "value": "6 March 2026"
+        },
+        {
+          "label": "End date",
+          "value": "8 March 2026"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "Guest speaker at the People's Congress for the Hague Group"
+        },
+        {
+          "label": "Date registered",
+          "value": "26 March 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-021",
+      "page": 2,
+      "category": "4. Visits outside the UK",
+      "donors": [
+        {
+          "ordinal": 1,
+          "fields": [
+            {
+              "label": "Name of donor",
+              "value": "Liyaquat Alli Ahmed"
+            },
+            {
+              "label": "Amount, or estimate of the probable value",
+              "value": "£2,757.26"
+            },
+            {
+              "label": "Description of donation",
+              "value": "Hotels (£286.14) and return flight (£2471.12)"
+            }
+          ]
+        },
+        {
+          "ordinal": 2,
+          "fields": [
+            {
+              "label": "Name of donor",
+              "value": "Ismail Ebrahim"
+            },
+            {
+              "label": "Amount, or estimate of the probable value",
+              "value": "£46.06"
+            },
+            {
+              "label": "Description of donation",
+              "value": "Hotel (£46.06)"
+            }
+          ]
+        },
+        {
+          "ordinal": 3,
+          "fields": [
+            {
+              "label": "Name of donor",
+              "value": "Progressive International"
+            },
+            {
+              "label": "Address of donor",
+              "value": "71-75 Shelton Street, London WC2H 9JQ"
+            },
+            {
+              "label": "Amount, or estimate of the probable value",
+              "value": "£310.69"
+            },
+            {
+              "label": "Description of donation",
+              "value": "Flight (£213.05) and hotel (£97.64)"
+            }
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "label": "Destination(s) of visit",
+          "value": "South Africa and Namibia"
+        },
+        {
+          "label": "Start date",
+          "value": "26 September 2025"
+        },
+        {
+          "label": "End date",
+          "value": "4 October 2025"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "Raise awareness & fundraising for the crisis in Gaza"
+        },
+        {
+          "label": "Date registered",
+          "value": "31 October 2025"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-022",
+      "page": 2,
+      "category": "4. Visits outside the UK",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "World Network"
+        },
+        {
+          "label": "Address of donor",
+          "value": "131, Jalan Macalister, 10400 Penang, Malaysia"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "£4,346.59"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Flights (£4280.22) and accommodation (£66.37)"
+        },
+        {
+          "label": "Destination(s) of visit",
+          "value": "Malaysia (Kuala Lumper)"
+        },
+        {
+          "label": "Start date",
+          "value": "12 October 2025"
+        },
+        {
+          "label": "End date",
+          "value": "14 October 2025"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "Keynote Address at the Kuala Lumpur Conference on a New Just and Humane International Order"
+        },
+        {
+          "label": "Date registered",
+          "value": "31 October 2025"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-023",
+      "page": 2,
+      "category": "4. Visits outside the UK",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "Il nuovo manifesto società cooperativa editrice"
+        },
+        {
+          "label": "Address of donor",
+          "value": "via Angelo Bargoni, 8 – Roma"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "£303.96"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Flights (£173.68) and hotel accommodation (£130.28)"
+        },
+        {
+          "label": "Destination(s) of visit",
+          "value": "Italy (Rome)"
+        },
+        {
+          "label": "Start date",
+          "value": "11 October 2025"
+        },
+        {
+          "label": "End date",
+          "value": "12 October 2025"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "To speak at the La Manifestival event"
+        },
+        {
+          "label": "Date registered",
+          "value": "24 October 2025"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-024",
+      "page": 2,
+      "category": "4. Visits outside the UK",
+      "donors": [
+        {
+          "ordinal": 1,
+          "fields": [
+            {
+              "label": "Name of donor",
+              "value": "Genseikyo"
+            },
+            {
+              "label": "Address of donor",
+              "value": "2-4-4 Yushima, Bunkyo-ku, Tokyo 113-8464"
+            },
+            {
+              "label": "Amount, or estimate of the probable value",
+              "value": "£1,223.01"
+            },
+            {
+              "label": "Description of donation",
+              "value": "Accommodation for me and Laura Alvarez Tonis in Hiroshima and Nagasaki"
+            }
+          ]
+        },
+        {
+          "ordinal": 2,
+          "fields": [
+            {
+              "label": "Name of donor",
+              "value": "Rosa Luxemburg Foundation"
+            },
+            {
+              "label": "Address of donor",
+              "value": "Straße der Pariser Kommune 8A, 10243 Berlin"
+            },
+            {
+              "label": "Amount, or estimate of the probable value",
+              "value": "£1,791.42"
+            },
+            {
+              "label": "Description of donation",
+              "value": "Return flights for me"
+            }
+          ]
+        }
+      ],
+      "fields": [
+        {
+          "label": "Destination(s) of visit",
+          "value": "Japan (Hiroshima, Nagasaki)"
+        },
+        {
+          "label": "Start date",
+          "value": "1 August 2025"
+        },
+        {
+          "label": "End date",
+          "value": "18 August 2025"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "Attend 80th anniversary commemoration Hiroshima and Nagasaki Atomic Bombing"
+        },
+        {
+          "label": "Date registered",
+          "value": "10 September 2025"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-025",
+      "page": 2,
+      "category": "4. Visits outside the UK",
+      "fields": [
+        {
+          "label": "Name of donor",
+          "value": "The Left in the European Parliament"
+        },
+        {
+          "label": "Address of donor",
+          "value": "RUE Wiertz 30 - TRI07V03, Brussels – 1047, Belgium"
+        },
+        {
+          "label": "Amount, or estimate of the probable value",
+          "value": "£796.40"
+        },
+        {
+          "label": "Description of donation",
+          "value": "Travel (£444), taxis (£30.67) and hotel (£321.73)"
+        },
+        {
+          "label": "Destination(s) of visit",
+          "value": "Belgium (Brussels)"
+        },
+        {
+          "label": "Start date",
+          "value": "11 June 2025"
+        },
+        {
+          "label": "End date",
+          "value": "12 June 2025"
+        },
+        {
+          "label": "Purpose of visit",
+          "value": "Speaker at The Left in the European Parliament Peace Initiative conference"
+        },
+        {
+          "label": "Date registered",
+          "value": "1 July 2025"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-026",
+      "page": 2,
+      "category": "8. Miscellaneous",
+      "fields": [
+        {
+          "label": "Description",
+          "value": "Unpaid Director of Your Party UK Ltd, a private company limited by guarantee without share capital which was incorporated on 31 July 2025"
+        },
+        {
+          "label": "Date interest arose",
+          "value": "31 July 2025"
+        },
+        {
+          "label": "Date interest ended",
+          "value": "21 April 2026"
+        },
+        {
+          "label": "Date registered",
+          "value": "10 September 2025"
+        },
+        {
+          "label": "Last Updated",
+          "value": "27 April 2026"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-027",
+      "page": 2,
+      "category": "8. Miscellaneous",
+      "fields": [
+        {
+          "label": "Description",
+          "value": "Unpaid Director of Jeremy Corbyn Campaign Ltd, supporting the activities of political organisations"
+        },
+        {
+          "label": "Date interest arose",
+          "value": "25 September 2024"
+        },
+        {
+          "label": "Date registered",
+          "value": "5 November 2024"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-028",
+      "page": 2,
+      "category": "8. Miscellaneous",
+      "fields": [
+        {
+          "label": "Description",
+          "value": "I am a bank signatory for Community Unity Limited. This is an unpaid role."
+        },
+        {
+          "label": "Date interest arose",
+          "value": "27 February 2024"
+        },
+        {
+          "label": "Date registered",
+          "value": "28 May 2024"
+        }
+      ]
+    },
+    {
+      "entry_id": "financial-interest-029",
+      "page": 2,
+      "category": "8. Miscellaneous",
+      "fields": [
+        {
+          "label": "Description",
+          "value": "Unpaid director of the Peace and Justice Project, a company limited by guarantee. The company promotes peace and justice issues, both domestic and international."
+        },
+        {
+          "label": "Date interest arose",
+          "value": "13 October 2020"
+        },
+        {
+          "label": "Date registered",
+          "value": "26 February 2021"
+        },
+        {
+          "label": "Last Updated",
+          "value": "25 February 2022"
+        }
+      ]
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "fact-financial-interest-001",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Peace and Justice Project: Estimated value £63.79; Return train ticket London to Southport, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-20",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-001; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-002",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Peace and Justice Project: Estimated value £39.79; Train ticket from Liverpool to London, after attending a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-21",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-002; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-003",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Peace and Justice Project: Estimated value £78.75; Hotel for one night in Southport, for my attendance at a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-20",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-003; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-004",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Peace and Justice Project: Estimated value £137.66; Return train ticket London to Leicester, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-02",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-004; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-005",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £25.54; Return train ticket London to Luton, to attend a Your Party rally.",
+      "fact_type": "interest",
+      "date": "2026-02-04",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-005; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-006",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Peace and Justice Project: Estimated value £23.04; Return train ticket London to Cambridge, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-006; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-007",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £51.90; Return train ticket London to Bristol, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-14",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-007; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-008",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £32.46; Train ticket from Birmingham to London, after attending a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-01",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-008; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-009",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £47.94; Return train ticket London to Banbury, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-09",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-009; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-010",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £59.39; Train ticket from London to Stoke only, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-01",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-010; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-011",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from The Peace and Justice Project: Estimated value £71.27; Return train ticket London to Middlesborough, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-11",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-011; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-012",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from Pece and Justice Project: Estimated value £48.05; Return train ticket London to Walsall, to attend a Your Party event.",
+      "fact_type": "interest",
+      "date": "2026-02-13",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-012; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-013",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 3 interest from How The Light Gets In (TVF Limited): £155.00; This was travel/petrol money that was reimbursed for an event attended earlier in the month and registered..",
+      "fact_type": "interest",
+      "date": "2025-06-30",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-013; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-014",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Belgium (Brussels) from 13 June 2026 to 14 June 2026, supported by Progressive International, for: To speak at a Progressive International Conference.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-06-13",
+      "date_to": "2026-06-14",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-014; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-015",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Ireland (Dublin) from 6 June 2026 to 7 June 2026, supported by Robert Tressell Festival, for: To speak at the Robert Tressell Festival.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-06-06",
+      "date_to": "2026-06-07",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-015; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-016",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Sweden from 14 May 2026 to 16 May 2026, supported by Zetkin Foundation, Rosa Luxemburg Stiftung, for: To attend and speak at a conference of European left-wing groups..",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-05-14",
+      "date_to": "2026-05-16",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-016; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-017",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Belgium (Brussels) from 22 April 2026 to 22 April 2026, supported by Peace and Justice Project, for: Guest speaker at the Global Sumud Parliamentary Congress.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-04-22",
+      "date_to": "2026-04-22",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-017; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-018",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Belgium (Brussels) from 18 April 2026 to 18 April 2026, supported by The Peace and Justice Project, for: Guest speaker at the Party of the European Left Congress.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-04-18",
+      "date_to": "2026-04-18",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-018; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-019",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Cuba from 19 March 2026 to 23 March 2026, supported by Progressive International, for: Guest speaker at a high-level strategic roundtable Nuestra América.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-03-19",
+      "date_to": "2026-03-23",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-019; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-020",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Netherlands (The Hague) from 6 March 2026 to 8 March 2026, supported by THG Exchange Ltd, for: Guest speaker at the People's Congress for the Hague Group.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2026-03-06",
+      "date_to": "2026-03-08",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-020; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-021",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to South Africa and Namibia from 26 September 2025 to 4 October 2025, supported by Liyaquat Alli Ahmed, Ismail Ebrahim, Progressive International, for: Raise awareness & fundraising for the crisis in Gaza.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-09-26",
+      "date_to": "2025-10-04",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-021; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-022",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Malaysia (Kuala Lumper) from 12 October 2025 to 14 October 2025, supported by World Network, for: Keynote Address at the Kuala Lumpur Conference on a New Just and Humane International Order.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-10-12",
+      "date_to": "2025-10-14",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-022; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-023",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Italy (Rome) from 11 October 2025 to 12 October 2025, supported by Il nuovo manifesto società cooperativa editrice, for: To speak at the La Manifestival event.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-10-11",
+      "date_to": "2025-10-12",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-023; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-024",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Japan (Hiroshima, Nagasaki) from 1 August 2025 to 18 August 2025, supported by Genseikyo, Rosa Luxemburg Foundation, for: Attend 80th anniversary commemoration Hiroshima and Nagasaki Atomic Bombing.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-08-01",
+      "date_to": "2025-08-18",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-024; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-025",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 4 visit to Belgium (Brussels) from 11 June 2025 to 12 June 2025, supported by The Left in the European Parliament, for: Speaker at The Left in the European Parliament Peace Initiative conference.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-06-11",
+      "date_to": "2025-06-12",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-025; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-026",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 8 miscellaneous interest: Unpaid Director of Your Party UK Ltd, a private company limited by guarantee without share capital which was incorporated on 31 July 2025",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2025-07-31",
+      "date_to": "2026-04-21",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-026; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-027",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 8 miscellaneous interest: Unpaid Director of Jeremy Corbyn Campaign Ltd, supporting the activities of political organisations",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2024-09-25",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-027; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-028",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 8 miscellaneous interest: I am a bank signatory for Community Unity Limited. This is an unpaid role.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2024-02-27",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-028; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-financial-interest-029",
+      "section_id": "financial_interests",
+      "statement": "The current Register records a category 8 miscellaneous interest: Unpaid director of the Peace and Justice Project, a company limited by guarantee. The company promotes peace and justice issues, both domestic and international.",
+      "fact_type": "interest",
+      "date": null,
+      "date_from": "2020-10-13",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps one-to-one to source packet entry financial-interest-029; the complete official fields and source spelling are preserved there without reclassification."
+    }
+  ],
+  "coverage_gaps": [
+    {
+      "gap_id": "gap-financial-interests-history-retention",
+      "section_id": "financial_interests",
+      "summary": "The 13 July 2026 current published register snapshot is captured, but earlier register versions and interests outside the current twelve-month retention display have not been collected.",
+      "severity": "high",
+      "reason": "historic_gap",
+      "date_from": null,
+      "date_to": "2026-07-13",
+      "status": "open",
+      "blocks_publication": true,
+      "next_action": "Open a separately authorised historical-register lane if complete longitudinal financial-interest coverage is required.",
+      "notes": "The current snapshot is complete at capture time; the section remains partial because the official current page is not a complete historical record."
+    }
+  ],
+  "decisions": {
+    "section_status": "partial",
+    "publication_status": "not_ready",
+    "human_review_required": true,
+    "public_output_authorised": false,
+    "notes": "The current published snapshot is fully captured at the declared time. Complete historical coverage is not claimed, and no entry is reclassified into another canonical section."
+  }
+}
