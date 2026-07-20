@@ -58,7 +58,7 @@ The total is only a capture check. It is not presented as money retained. The 38
 - `I0260286` is an `Impermissible Donor` record, has no accepted date and is marked `Returned`.
 - `U0248096` is an `Unidentified Donor` record, has no accepted date and is marked `Returned`.
 - `V0033114` is marked as an aggregation.
-- Five donor-name fields contain source-leading whitespace. That whitespace is preserved in the packet rather than silently corrected.
+- Six donor-name fields contain source-leading whitespace. That whitespace is preserved in the packet rather than silently corrected.
 
 ## Raw preservation
 
