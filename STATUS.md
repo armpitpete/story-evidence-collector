@@ -37,7 +37,7 @@ No implementation or research lane is active.
 - The research packet and shared fixture remain readable, indented JSON after the final formatting repair.
 - Jeremy Corbyn current financial-interests test, identity-and-career test, roles-and-committees test, Complete MP Report fixture test, Complete MP Portfolio view test, Repository release validation and Project control all passed on exact head `4dce322af5220c62b7b20537094ab7d683b966d9`.
 
-## Remaining portfolio work
+## To do
 
 Future work requires separately authorised bounded lanes. Remaining areas include:
 
