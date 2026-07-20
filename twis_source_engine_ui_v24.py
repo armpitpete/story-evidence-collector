@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""
-Local Streamlit interface for the TWIS / Story Evidence Collector pipeline.
+"""Local Streamlit interface for Story Evidence Collector.
 
-This is a local control panel only. It does not run a live Nutch crawl,
-bypass robots.txt, deploy publicly, or change the evidence logic.
+The application provides the existing bounded TWIS source-check controls and a
+read-only Complete MP Portfolio fixture view. It does not run a live Nutch
+crawl, bypass robots.txt, publish outputs or change evidence authority.
 """
 
 from __future__ import annotations
@@ -16,6 +16,13 @@ from typing import Any
 
 import streamlit as st
 
+from scripts.complete_mp_portfolio_view import (
+    DEFAULT_FIXTURE_PATH,
+    PortfolioViewError,
+    generate_temporary_preview,
+    load_fixture_portfolio,
+)
+from scripts.generate_complete_mp_report import load_json as load_complete_mp_report
 
 ROOT = Path(__file__).resolve().parent
 
@@ -62,21 +69,38 @@ SIMPLE_PIPELINE_STEPS = [
         "script": "extract_twis_website_sources_v25.py",
         "args": ["--input", SIMPLE_SOURCE_INPUT],
         "inputs": [SIMPLE_SOURCE_INPUT],
-        "outputs": ["website_source_candidates_v25.json", "website_source_candidates_v25.md"],
+        "outputs": [
+            "website_source_candidates_v25.json",
+            "website_source_candidates_v25.md",
+        ],
     },
     {
         "label": "Make the website check list",
         "script": "build_seed_urls_from_candidates_v26.py",
         "args": ["--input", SIMPLE_CANDIDATE_INPUT, "--roles", "url"],
         "inputs": [SIMPLE_CANDIDATE_INPUT],
-        "outputs": ["seed_urls_from_website_candidates_v26.json", "seed_urls_from_website_candidates_v26.md"],
+        "outputs": [
+            "seed_urls_from_website_candidates_v26.json",
+            "seed_urls_from_website_candidates_v26.md",
+        ],
     },
     {
         "label": "Check five pages safely",
         "script": "extract_source_records_from_seed_file_v27.py",
-        "args": ["--input", SIMPLE_SEED_INPUT, "--max-seeds", "5", "--delay-seconds", "1"],
+        "args": [
+            "--input",
+            SIMPLE_SEED_INPUT,
+            "--max-seeds",
+            "5",
+            "--delay-seconds",
+            "1",
+        ],
         "inputs": [SIMPLE_SEED_INPUT],
-        "outputs": ["sources_raw_v27.json", "link_queue_v27.json", "source_report_v27.json"],
+        "outputs": [
+            "sources_raw_v27.json",
+            "link_queue_v27.json",
+            "source_report_v27.json",
+        ],
     },
 ]
 
@@ -88,38 +112,25 @@ SIMPLE_OUTPUTS = [
     "website_source_candidates_v25.md",
 ]
 
-MAIN_REVIEW_FILES = [
-    {
-        "plain_name": "Review report",
-        "file": "source_report_v27.json",
-        "meaning": "Summary of what worked and what failed.",
-    },
-    {
-        "plain_name": "Pages checked",
-        "file": "sources_raw_v27.json",
-        "meaning": "The public pages that were checked.",
-    },
-    {
-        "plain_name": "Links saved, not checked",
-        "file": "link_queue_v27.json",
-        "meaning": "Links found on pages. These were saved only, not opened.",
-    },
-]
-
 
 def repo_path(relative_path: str) -> Path:
-    """Resolve a local path while allowing the sibling TWIS repo source file."""
+    """Resolve a local path while allowing the sibling TWIS source-list file."""
+
     clean = relative_path.strip().replace("\\", "/")
     path = (ROOT / clean).resolve()
-
-    allowed_extra = (ROOT.parent / "thisweekinsmoke" / "src" / "pages" / "sources" / "index.astro").resolve()
+    allowed_extra = (
+        ROOT.parent
+        / "thisweekinsmoke"
+        / "src"
+        / "pages"
+        / "sources"
+        / "index.astro"
+    ).resolve()
 
     if path == allowed_extra:
         return path
-
     if ROOT != path and ROOT not in path.parents:
         raise ValueError("Path is outside the repository")
-
     return path
 
 
@@ -143,14 +154,24 @@ def count_json_items(data: Any) -> int | None:
     if isinstance(data, list):
         return len(data)
     if isinstance(data, dict):
-        for key in ("records", "candidates", "documents", "urls", "items", "seed_urls", "source_worlds"):
+        for key in (
+            "records",
+            "candidates",
+            "documents",
+            "urls",
+            "items",
+            "seed_urls",
+            "source_worlds",
+        ):
             value = data.get(key)
             if isinstance(value, list):
                 return len(value)
     return None
 
 
-def run_safe_script(script_name: str, extra_args: list[str] | None = None) -> subprocess.CompletedProcess[str]:
+def run_safe_script(
+    script_name: str, extra_args: list[str] | None = None
+) -> subprocess.CompletedProcess[str]:
     script_path = repo_path(script_name)
     if not script_path.exists():
         raise FileNotFoundError(f"Script not found: {script_name}")
@@ -194,7 +215,6 @@ def show_json_preview(relative_path: str) -> None:
     item_count = count_json_items(data)
     if item_count is not None:
         st.caption(f"Detected item count: {item_count}")
-
     st.json(data, expanded=False)
 
 
@@ -204,7 +224,6 @@ def show_markdown_preview(relative_path: str) -> None:
     except Exception as error:  # noqa: BLE001 - user-facing local preview
         st.error(f"Could not read Markdown: {error}")
         return
-
     st.markdown(content)
 
 
@@ -243,24 +262,27 @@ def render_run_result(result: subprocess.CompletedProcess[str]) -> None:
         st.success("Done. This part worked.")
     else:
         st.error(f"This part stopped with code {result.returncode}.")
-
     render_technical_log(result)
 
 
-def run_and_show(script_name: str, args: list[str]) -> subprocess.CompletedProcess[str] | None:
+def run_and_show(
+    script_name: str, args: list[str]
+) -> subprocess.CompletedProcess[str] | None:
     try:
         result = run_safe_script(script_name, args)
     except Exception as error:  # noqa: BLE001 - user-facing local runner
         st.error(str(error))
         return None
-
     render_run_result(result)
     return result
 
 
 def render_simple_status_board() -> None:
     st.subheader("What I found")
-    st.write("When this page opens, it checks the files already on this computer. It does not open websites by itself.")
+    st.write(
+        "When this page opens, it checks files already on this computer. "
+        "It does not open websites by itself."
+    )
 
     candidate_count = safe_count("website_source_candidates_v25.json")
     seed_count = safe_count("seed_urls_from_website_candidates_v26.json")
@@ -269,13 +291,21 @@ def render_simple_status_board() -> None:
 
     col_a, col_b, col_c, col_d = st.columns(4)
     col_a.metric("TWIS list", "Found" if path_exists(SIMPLE_SOURCE_INPUT) else "Missing")
-    col_b.metric("Possible sources", str(candidate_count) if candidate_count is not None else "Missing")
-    col_c.metric("Websites to check", str(seed_count) if seed_count is not None else "Missing")
-    col_d.metric("Pages checked", str(fetched_count) if fetched_count is not None else "Missing")
+    col_b.metric(
+        "Possible sources",
+        str(candidate_count) if candidate_count is not None else "Missing",
+    )
+    col_c.metric(
+        "Websites to check", str(seed_count) if seed_count is not None else "Missing"
+    )
+    col_d.metric(
+        "Pages checked", str(fetched_count) if fetched_count is not None else "Missing"
+    )
 
     if queue_count is not None:
-        st.caption(f"Links saved, not checked: {queue_count}. These are not opened automatically.")
-
+        st.caption(
+            f"Links saved, not checked: {queue_count}. These are not opened automatically."
+        )
     if path_exists("source_report_v27.json"):
         st.success("Review report is ready below.")
     else:
@@ -286,7 +316,6 @@ def render_file_location() -> None:
     st.subheader("Where the files are saved")
     st.write("The review files are saved in this project folder on your computer:")
     st.code(str(ROOT), language="text")
-
     st.markdown(
         """
 | Plain name | File name | Meaning |
@@ -300,8 +329,10 @@ def render_file_location() -> None:
 
 def render_simple_intro() -> None:
     st.subheader("What this means")
-    st.write("This page helps TWIS check public source websites without asking you to understand the technical scripts.")
-
+    st.write(
+        "This page helps TWIS check public source websites without asking you "
+        "to understand the technical scripts."
+    )
     st.markdown(
         """
 | Plain name | Meaning |
@@ -327,7 +358,6 @@ def render_pipeline_details() -> None:
 """
         )
         st.warning("The web check follows robots.txt first. It does not open saved links.")
-
         all_files: list[str] = []
         for step in SIMPLE_PIPELINE_STEPS:
             all_files.extend([step["script"], *step["inputs"], *step["outputs"]])
@@ -346,10 +376,12 @@ def render_simple_runner() -> None:
                 st.write(f"- `{path}`")
         return
 
-    st.success("Ready. Refresh will use the TWIS list, make the website check list, then check five safe pages.")
-
+    st.success(
+        "Ready. Refresh will use the TWIS list, make the website check list, "
+        "then check five safe pages."
+    )
     if st.button("Refresh safe source check", type="primary", key="run-simple-pipeline"):
-        for index, step in enumerate(SIMPLE_PIPELINE_STEPS, start=1):
+        for step in SIMPLE_PIPELINE_STEPS:
             with st.spinner(f"Working: {step['label']}"):
                 result = run_and_show(step["script"], step["args"])
             if result is None or result.returncode != 0:
@@ -359,14 +391,25 @@ def render_simple_runner() -> None:
         summary = plain_report_summary()
         st.success("Safe check finished. Read the review report below.")
         col_a, col_b = st.columns(2)
-        col_a.metric("Pages checked", summary["pages_checked"] if summary["pages_checked"] is not None else "See report")
-        col_b.metric("Links saved, not checked", summary["links_saved_not_checked"] if summary["links_saved_not_checked"] is not None else "See report")
+        col_a.metric(
+            "Pages checked",
+            summary["pages_checked"]
+            if summary["pages_checked"] is not None
+            else "See report",
+        )
+        col_b.metric(
+            "Links saved, not checked",
+            summary["links_saved_not_checked"]
+            if summary["links_saved_not_checked"] is not None
+            else "See report",
+        )
 
 
 def render_simple_review() -> None:
     st.subheader("Review report")
-    st.write("This shows local files. Page-check files are for review, not automatic GitHub commits.")
-
+    st.write(
+        "This shows local files. Page-check files are for review, not automatic GitHub commits."
+    )
     output_choice = st.selectbox(
         "Choose a report to view",
         options=SIMPLE_OUTPUTS,
@@ -374,7 +417,6 @@ def render_simple_review() -> None:
         key="simple-output-choice",
     )
     status_badge(output_choice)
-
     if path_exists(output_choice):
         if output_choice.endswith(".json"):
             show_json_preview(output_choice)
@@ -386,10 +428,13 @@ def render_simple_review() -> None:
 
 def render_simple_mode() -> None:
     st.subheader("Simple mode")
-    st.write("This page shows what it found first. Use refresh only when you want to update the check.")
-
-    st.info("The page does not open websites when it loads. Websites are checked only when you press Refresh safe source check.")
-
+    st.write(
+        "This page shows what it found first. Use refresh only when you want to update the check."
+    )
+    st.info(
+        "The page does not open websites when it loads. Websites are checked "
+        "only when you press Refresh safe source check."
+    )
     render_simple_status_board()
     render_file_location()
     render_simple_intro()
@@ -398,22 +443,200 @@ def render_simple_mode() -> None:
     render_pipeline_details()
 
 
+def _source_text(sources: list[dict[str, Any]]) -> str:
+    return "; ".join(
+        f"{source['source_id']} — {source['title']} ({source['authority_level']})"
+        for source in sources
+    )
+
+
+def _render_portfolio_section(section: dict[str, Any]) -> None:
+    label = (
+        f"{section['position']}. {section['title']} — "
+        f"{section['status'].replace('_', ' ')}"
+    )
+    with st.expander(label, expanded=section["position"] <= 2):
+        st.caption(section["status_message"])
+        st.write(section["summary"])
+
+        if section["facts"]:
+            st.markdown("#### Recorded facts")
+            for fact in section["facts"]:
+                st.markdown(f"- **{fact['fact_id']}** — {fact['statement']}")
+                st.caption(
+                    f"Confidence: {fact['confidence']} · Evidence: {fact['evidence_status']} · "
+                    f"Sources: {_source_text(fact['sources'])}"
+                )
+
+        if section["claims"]:
+            st.markdown("#### Claims")
+            for claim in section["claims"]:
+                wording = (
+                    "public wording allowed"
+                    if claim["public_wording_allowed"]
+                    else "not authorised for public wording"
+                )
+                st.markdown(f"- **{claim['claim_id']}** — {claim['statement']}")
+                st.caption(
+                    f"Status: {claim['status']} · Risk: {claim['risk_level']} · {wording} · "
+                    f"Sources: {_source_text(claim['sources'])}"
+                )
+
+        if section["interpretations"]:
+            st.markdown("#### Labelled interpretations")
+            for interpretation in section["interpretations"]:
+                st.markdown(
+                    f"- **{interpretation['interpretation_id']}** — "
+                    f"{interpretation['statement']}"
+                )
+                st.caption(
+                    f"Risk: {interpretation['risk_level']} · Approved for publication: "
+                    f"{interpretation['approved_for_publication']}"
+                )
+
+        if section["relationships"]:
+            st.markdown("#### Evidenced relationships")
+            for relationship in section["relationships"]:
+                st.markdown(
+                    f"- **{relationship['relationship_id']}** — {relationship['subject']} "
+                    f"{relationship['neutral_label']} {relationship['object']}"
+                )
+                st.caption(
+                    f"Confidence: {relationship['confidence']} · Public chart: "
+                    f"{relationship['public_chart']} · Sources: "
+                    f"{_source_text(relationship['sources'])}"
+                )
+
+        if section["coverage_gaps"]:
+            st.markdown("#### Coverage gaps")
+            for gap in section["coverage_gaps"]:
+                st.warning(
+                    f"{gap['gap_id']}: {gap['summary']}\n\n"
+                    f"Severity: {gap['severity']} · Status: {gap['status']} · "
+                    f"Blocks publication: {gap['blocks_publication']}\n\n"
+                    f"Next action: {gap['next_action']}"
+                )
+
+        if not any(
+            section[key]
+            for key in (
+                "facts",
+                "claims",
+                "interpretations",
+                "relationships",
+                "coverage_gaps",
+            )
+        ):
+            st.info("No structured records are attached to this section.")
+
+
+def render_mp_portfolio() -> None:
+    st.subheader("Complete MP Portfolio")
+    st.info(
+        "Read-only fixture view. It displays validated structured records and "
+        "visible gaps; it does not research, edit, approve or publish anything."
+    )
+
+    try:
+        model = load_fixture_portfolio()
+    except PortfolioViewError as error:
+        st.error(f"Portfolio validation stopped: {error}")
+        return
+
+    subject = model["subject"]
+    publication = model["publication"]
+    st.warning(publication["notes"])
+
+    col_a, col_b, col_c, col_d = st.columns(4)
+    col_a.metric("MP", subject["display_name"])
+    col_b.metric("Report status", publication["status"])
+    col_c.metric("Human review", "Required" if publication["human_review_required"] else "Complete")
+    col_d.metric(
+        "Public output",
+        "Authorised" if publication["public_output_authorised"] else "Not authorised",
+    )
+
+    st.markdown("### Identity and scope")
+    st.dataframe(
+        [
+            {"Field": "Report ID", "Value": model["report_id"]},
+            {"Field": "Parliament member ID", "Value": subject["parliament_member_id"]},
+            {"Field": "Identity status", "Value": subject["identity_status"]},
+            {"Field": "Current constituency", "Value": subject.get("current_constituency", "")},
+            {"Field": "Current party", "Value": subject.get("current_party", "")},
+            {"Field": "As-of date", "Value": model["scope"]["as_of_date"]},
+            {"Field": "Declared scope", "Value": model["scope"]["scope_statement"]},
+        ],
+        width="stretch",
+        hide_index=True,
+    )
+
+    st.markdown("### Portfolio coverage")
+    st.dataframe(
+        [
+            {
+                "Section": section["position"],
+                "Title": section["title"],
+                "Coverage": section["status"],
+                "Facts": len(section["facts"]),
+                "Claims": len(section["claims"]),
+                "Gaps": len(section["coverage_gaps"]),
+            }
+            for section in model["sections"]
+        ],
+        width="stretch",
+        hide_index=True,
+    )
+
+    st.markdown("### Thirteen required sections")
+    for section in model["sections"]:
+        _render_portfolio_section(section)
+
+    st.markdown("### Source register")
+    st.dataframe(model["sources"], width="stretch", hide_index=True)
+
+    st.markdown("### Canonical generator outputs")
+    st.write(
+        "The canonical generator is proved only in an operating-system temporary "
+        "directory outside this repository. The directory is deleted before the result returns."
+    )
+    st.dataframe(
+        [{"Expected file": filename} for filename in model["output_filenames"]],
+        width="stretch",
+        hide_index=True,
+    )
+
+    if st.button("Run disposable generator proof", key="mp-portfolio-generator-proof"):
+        try:
+            report = load_complete_mp_report(DEFAULT_FIXTURE_PATH)
+            preview = generate_temporary_preview(report)
+        except Exception as error:  # noqa: BLE001 - fail-closed user display
+            st.error(f"Disposable generator proof stopped: {error}")
+            return
+        st.success("Five canonical outputs were generated and removed successfully.")
+        st.caption(
+            f"Temporary directory removed: {preview['removed']} · "
+            f"Former path: {preview['temporary_directory']}"
+        )
+        st.dataframe(preview["files"], width="stretch", hide_index=True)
+
+
 def render_advanced_mode() -> None:
     st.subheader("Advanced mode")
-    st.warning("Advanced mode shows internal script names and paths. Use it only when you know which file you are changing.")
+    st.warning(
+        "Advanced mode shows internal script names and paths. Use it only when "
+        "you know which file you are changing."
+    )
 
     with st.expander("Advanced controls", expanded=True):
         st.subheader("1. Load inputs")
-
         input_choice = st.selectbox(
             "Known input files",
             options=KNOWN_INPUTS,
             index=KNOWN_INPUTS.index("seed_urls_from_website_candidates_v26.json"),
         )
-
         custom_input = st.text_input(
-            "Or enter repo-relative input path",
-            value=input_choice,
+            "Or enter repo-relative input path", value=input_choice
         )
 
         col_a, col_b = st.columns([1, 2])
@@ -437,18 +660,21 @@ def render_advanced_mode() -> None:
             help="Modes are labels in v2.7. Only available local scripts can be run.",
         )
         st.info(f"Current mode: `{mode}`")
-
         if mode == "targeted":
             st.write("Use this for known URLs and selected seed files.")
         elif mode == "discovery":
-            st.write("Use this for source discovery outputs, including Nutch-style candidates and TWIS website source-map candidates.")
+            st.write(
+                "Use this for source discovery outputs, including Nutch-style "
+                "candidates and TWIS website source-map candidates."
+            )
         else:
             st.write("Use this later for discovery candidates passed into the evidence pipeline.")
 
         st.subheader("3. Run safe step")
-
-        st.warning("Most steps are local-only. v2.7 fetches selected public seed URLs only after robots.txt checks.")
-
+        st.warning(
+            "Most steps are local-only. v2.7 fetches selected public seed URLs "
+            "only after robots.txt checks."
+        )
         selected_action = st.selectbox("Safe script", options=list(SAFE_SCRIPTS.keys()))
         selected_script = SAFE_SCRIPTS[selected_action]
         status_badge(selected_script)
@@ -458,32 +684,27 @@ def render_advanced_mode() -> None:
             value="testdata/nutch_discovery_sample_v23.json",
             disabled=selected_script != "convert_nutch_output_v23.py",
         )
-
         website_sources_input = st.text_input(
             "v2.5 TWIS website sources input path",
             value="../thisweekinsmoke/src/pages/sources/index.astro",
             disabled=selected_script != "extract_twis_website_sources_v25.py",
         )
-
         seed_builder_input = st.text_input(
             "v2.6 website candidate input path",
             value="website_source_candidates_v25.json",
             disabled=selected_script != "build_seed_urls_from_candidates_v26.py",
         )
-
         seed_builder_roles = st.text_input(
             "v2.6 URL roles to include",
             value="url",
             disabled=selected_script != "build_seed_urls_from_candidates_v26.py",
             help="Default is url only. Optional: url,rssUrl,secondaryUrl",
         )
-
         source_fetch_input = st.text_input(
             "v2.7 seed URL input path",
             value="seed_urls_from_website_candidates_v26.json",
             disabled=selected_script != "extract_source_records_from_seed_file_v27.py",
         )
-
         source_fetch_max_seeds = st.number_input(
             "v2.7 max seeds to fetch",
             min_value=1,
@@ -492,7 +713,6 @@ def render_advanced_mode() -> None:
             step=1,
             disabled=selected_script != "extract_source_records_from_seed_file_v27.py",
         )
-
         source_fetch_delay = st.number_input(
             "v2.7 delay seconds between seed fetches",
             min_value=0.0,
@@ -503,7 +723,10 @@ def render_advanced_mode() -> None:
         )
 
         if selected_script == "extract_source_records_from_seed_file_v27.py":
-            st.error("This step fetches public pages. It checks robots.txt first and fetches seed URLs only. Queued links are not fetched.")
+            st.error(
+                "This step fetches public pages. It checks robots.txt first and "
+                "fetches seed URLs only. Queued links are not fetched."
+            )
 
         if st.button("Run selected safe script", type="primary"):
             if selected_script == "convert_nutch_output_v23.py":
@@ -514,20 +737,20 @@ def render_advanced_mode() -> None:
                 args = ["--input", seed_builder_input, "--roles", seed_builder_roles]
             elif selected_script == "extract_source_records_from_seed_file_v27.py":
                 args = [
-                    "--input", source_fetch_input,
-                    "--max-seeds", str(source_fetch_max_seeds),
-                    "--delay-seconds", str(source_fetch_delay),
+                    "--input",
+                    source_fetch_input,
+                    "--max-seeds",
+                    str(source_fetch_max_seeds),
+                    "--delay-seconds",
+                    str(source_fetch_delay),
                 ]
             else:
                 args = []
-
             run_and_show(selected_script, args)
 
         st.subheader("4. View outputs")
-
         output_choice = st.selectbox("Output file", options=KNOWN_OUTPUTS)
         status_badge(output_choice)
-
         if path_exists(output_choice):
             if output_choice.endswith(".json"):
                 show_json_preview(output_choice)
@@ -537,41 +760,43 @@ def render_advanced_mode() -> None:
                 st.code(read_text(output_choice)[:8000], language="text")
 
     st.subheader("Current file checklist")
-    checklist_rows = []
-    for relative_path in [*KNOWN_INPUTS, *KNOWN_OUTPUTS, *SAFE_SCRIPTS.values()]:
-        checklist_rows.append({
-            "file": relative_path,
-            "exists": path_exists(relative_path),
-        })
+    checklist_rows = [
+        {"file": relative_path, "exists": path_exists(relative_path)}
+        for relative_path in [*KNOWN_INPUTS, *KNOWN_OUTPUTS, *SAFE_SCRIPTS.values()]
+    ]
     st.dataframe(checklist_rows, width="stretch", hide_index=True)
 
 
 def main() -> None:
-    st.set_page_config(
-        page_title="TWIS Source Engine",
-        layout="wide",
-    )
-
+    st.set_page_config(page_title="TWIS Source Engine", layout="wide")
     st.title("TWIS Source Engine")
-    st.caption("Local control panel. Safe scripts only. Simple mode is the normal path.")
+    st.caption(
+        "Local control panel. Safe source checks and a read-only MP Portfolio view."
+    )
 
     with st.sidebar:
         st.header("View")
         view = st.radio(
             "Choose view",
-            options=["Simple", "Advanced"],
+            options=["Simple", "MP Portfolio", "Advanced"],
             index=0,
-            help="Simple is the safe normal path. Advanced shows script names and paths.",
+            help=(
+                "Simple is the normal source-check path. MP Portfolio displays "
+                "validated structured records. Advanced shows scripts and paths."
+            ),
         )
 
         st.header("Safety lock")
         st.write("No live Nutch crawl")
         st.write("No queued-link fetch")
         st.write("No anti-bot behaviour")
+        st.write("No MP portfolio writes")
         st.write("Local use only")
 
     if view == "Simple":
         render_simple_mode()
+    elif view == "MP Portfolio":
+        render_mp_portfolio()
     else:
         render_advanced_mode()
 
