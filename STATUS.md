@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: AUTHORITATIVE
+status: AUTHORISED
 authority_ref: main
 ---
 
@@ -11,54 +11,83 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Jeremy Corbyn official roles-and-committees baseline merged as `968d33dac9e80cdf0f6c9107c195c5f7d7f70a1b` from exact reviewed implementation head `bd5487de67f84a218bd1bb50490e83dc077e9eb4` using a merge commit.
+- Exact starting head for this lane: `f646112b093fdf38343c3e8d2dd5e8518e945fc2`.
+- Jeremy Corbyn official roles-and-committees baseline remains complete at merge `968d33dac9e80cdf0f6c9107c195c5f7d7f70a1b` from exact reviewed head `bd5487de67f84a218bd1bb50490e83dc077e9eb4`.
 - Jeremy Corbyn official identity-and-career baseline remains complete at merge `93c8da204d9709a1490dfa24a7b722a5f6a85199` from exact reviewed head `e22c9d6d262867e19f2b059677acc3ba9e6fcd4c`.
 - Complete MP Portfolio vertical slice and local acceptance remain complete.
-- January 2003 vote-review queue implementation remains complete at merge `7d646f0a68ef6153c58111440ed9bca05ce3ce44`.
-- Repository Release v1 and backup-and-restore hardening remain complete and authoritative.
+- January 2003 vote-review queue, Repository Release v1 and backup-and-restore hardening remain complete and authoritative.
 
 ## Current lane
 
-No implementation or research lane is active.
+Jeremy Corbyn current financial interests baseline.
+
+Goal: replace the unresearched `financial_interests` section with a complete capture of the current published Register of Members’ Financial Interests snapshot displayed by UK Parliament for member ID `185`, without claiming complete historical coverage or reclassifying entries into other canonical sections.
+
+Canonical section:
+
+- `financial_interests`
+
+Official source boundary:
+
+- Jeremy Corbyn's official UK Parliament `Registered Interests` member page;
+- every pagination page and official category-filtered view needed to capture the complete current published snapshot;
+- the official current-register metadata or version page linked from that member page, used only to identify the captured register version or publication date;
+- an official Parliamentary Commissioner for Standards rectification record only when the member entry itself explicitly links to rectification details.
+
+Forbidden source classes and adjacent lanes:
+
+- Wikipedia, newspapers, broadcasters, party, campaign or personal websites, social media, aggregators and search-result snippets;
+- Electoral Commission records, which belong to `donations_and_political_finance`;
+- Companies House or other company-registry expansion, which belongs to `outside_work_and_company_links`;
+- inference about legality, propriety, influence, motive, benefit or political significance;
+- grouping differently named donors, correcting source spelling, deduplicating repeated entries or calculating aggregate values.
+
+Authorised implementation scope:
+
+- `research/complete-mp-reports/jeremy-corbyn/current-financial-interests-v1.json`
+- `docs/jeremy-corbyn-current-financial-interests-source-note-v1.md`
+- `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
+- `scripts/test_jeremy_corbyn_current_financial_interests_v1.py`
+- `.github/workflows/jeremy-corbyn-current-financial-interests-test.yml`
+
+Required behaviour:
+
+- record the source URL, publisher, capture date, captured register version or publication date when available, pagination boundary, total displayed result count and source limitations;
+- capture every entry in the current published member snapshot across all pages and categories at one declared capture time;
+- preserve the official category, names, descriptions, values, relevant dates, destinations, purposes, donor status and rectification wording exactly as displayed, with missing fields left explicitly absent rather than inferred;
+- preserve repeated entries and source spelling variants as separate source records;
+- encode one `interest` fact per captured register entry and prove each fact resolves to its source packet entry;
+- do not create donation, employment, company, relationship or position facts in this lane;
+- do not calculate totals, merge donors, standardise names or infer that an entry remains active beyond the register's own retention rules;
+- set `financial_interests` to `partial`, replacing the generic unresearched gap with an explicit open historical-register and retention-boundary gap;
+- keep every other canonical section, existing fact, claim, interpretation, relationship, gap and review decision unchanged;
+- keep the report `not_ready`, human review required and public output unauthorised;
+- validate the complete fixture through the canonical Complete MP Report validator and deterministic generator;
+- prove the encoded fact count equals the captured source result count and that every added fact has `fact_type: interest`, `confidence: high`, `evidence_status: verified` and only official Parliament source IDs;
+- run the new lane regression, identity-and-career regression, roles-and-committees regression, Complete MP Report fixture test, Complete MP Portfolio view test, Repository release validation and Project control;
+- change exactly the five authorised files.
 
 ## Done
 
-- Repository Release v1 is complete and authoritative.
-- Backup and disposable restore proof are complete.
+- Repository Release v1 and backup/restore proof are complete.
 - January 2003 seed-row shape and vote-review queue preparation are complete.
-- The Streamlit application exposes accepted `Simple`, `MP Portfolio` and `Advanced` views.
-- Jeremy Corbyn's official identity and parliamentary-career baseline is present and verified within its declared scope.
-- Jeremy Corbyn's bounded official roles-and-committees baseline is complete within its declared scope.
-- The roles baseline records three official posts and two official committee memberships from UK Parliament primary records.
-- `roles_and_committees` is now `partial`, with an explicit open historic-coverage gap rather than an unresearched placeholder.
-- The current Parliamentary Leader, Your Party post remains separate from parliamentary party affiliation.
-- No duty, influence, effectiveness, performance or motive was inferred.
-- No claims, interpretations or relationship records were added.
-- The report remains `not_ready`, human review remains required and public output remains unauthorised.
-- Exactly five authorised implementation files changed.
-- The final fixture diff contains no protected identity drift or unrelated data mutation.
-- Jeremy Corbyn roles-and-committees test, identity-and-career test, Complete MP Report fixture test, Complete MP Portfolio view test, Repository release validation and Project control all passed on exact implementation head `bd5487de67f84a218bd1bb50490e83dc077e9eb4`.
+- The accepted Streamlit interface exposes `Simple`, `MP Portfolio` and `Advanced` views.
+- Jeremy Corbyn identity-and-career and roles-and-committees baselines are complete within their bounded official-source scopes.
+- The `financial_interests` section remains `not_researched` in current `main`.
 
 ## To do
 
-Future work requires a separately authorised bounded lane. Remaining portfolio areas include:
-
-- financial interests;
-- donations and political finance;
-- outside work and company links;
-- speeches and parliamentary questions;
-- public positions over time;
-- changes and contradictions;
-- organisations and evidenced relationships;
-- historic voting coverage and human vote-meaning review;
-- final evidence-gap, source-register, human-review and publication closure.
-
-The existing identity-and-career and roles-and-committees sections remain deliberately `partial`; they do not claim exhaustive historical coverage.
+- Capture the full current official Registered Interests snapshot at one declared time.
+- Create the machine-readable source packet and readable source note.
+- Encode only the financial-interest section, official source records, `interest` facts and directly related coverage gap.
+- Add deterministic validation and CI.
+- Open and review one five-file implementation PR.
+- After implementation merge, close this lane through a separate `STATUS.md`-only authority PR.
 
 ## Next bounded gate
 
-None. Open a separate `STATUS.md`-only authority PR naming one canonical section, exact source boundary, authorised files, validation and stop point before beginning further research or implementation.
+Merge this authority-only activation PR after Project control passes. ChatGPT Work then owns the bounded official-source capture and entry extraction. Codex owns deterministic packet encoding, fixture integration, tests and PR preparation after the captured source packet is fixed.
 
 ## Stop point
 
-Do not begin another MP or canonical section; alter the accepted identity, roles, voting, finance, interests, speeches, positions, relationships or human-review records; review January 2003 vote meanings; access or mutate the private server or SQLite; create unsupported claims or interpretations; mark a partial section complete; mark the report publishable; or authorise public output without a separately merged authority update.
+Do not research another MP or canonical section; alter accepted identity, roles, voting, donations, outside-work, speeches, positions, relationships or human-review records; use non-official sources; deduplicate or normalise source entries; calculate aggregates; infer impropriety, influence or motive; review January 2003 vote meanings; access or mutate the private server or SQLite; mark the section complete; mark the report publishable; or authorise public output. Stop after the five-file implementation PR is complete, tested and reviewed.
