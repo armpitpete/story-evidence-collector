@@ -159,6 +159,15 @@ def main() -> int:
         schema_document["properties"]["schema_version"]["const"]
         == queue.SCHEMA_VERSION
     )
+    queue_state_schema = (
+        schema_document["properties"]["items"]["items"]["properties"]["queue_state"]
+    )
+    assert queue_state_schema["enum"] == [
+        "recorded_aye",
+        "recorded_no",
+        "not_recorded",
+    ]
+    assert "source_ambiguity" not in queue_state_schema["enum"]
     review_schema = (
         schema_document["properties"]["items"]["items"]["properties"]["review"]
     )
