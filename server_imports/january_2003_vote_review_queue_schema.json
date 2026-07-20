@@ -61,11 +61,11 @@
             "minimum": 1
           },
           "queue_state": {
+            "description": "Only non-ambiguous technical states are emitted. Source ambiguity causes packet generation to fail.",
             "enum": [
               "recorded_aye",
               "recorded_no",
-              "not_recorded",
-              "source_ambiguity"
+              "not_recorded"
             ]
           },
           "division": {
