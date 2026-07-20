@@ -40,22 +40,6 @@ COMMITTEE_FACT_IDS = [
     "fact-committee-justice-2011-2015",
 ]
 LANE_FACT_IDS = ROLE_FACT_IDS + COMMITTEE_FACT_IDS
-PROTECTED_FACT_IDS = {
-    "fact-fixture-member-id",
-    "fact-current-constituency",
-    "fact-continuous-commons-service",
-    "fact-representation-1983-1997",
-    "fact-representation-1997-2010",
-    "fact-representation-2010-2024",
-    "fact-representation-2024-present",
-    "fact-party-labour-1983-2020",
-    "fact-party-independent-2020-2026",
-    "fact-party-your-party-2026-present",
-    "fact-2024-election-independent",
-    "fact-vote-workflow-exists",
-    "fact-historic-plan-range",
-    "fact-server-live-state-unverified",
-}
 EXPECTED_OUTPUTS = {
     "corbyn-jeremy-full-profile.json",
     "corbyn-jeremy-full-profile.md",
@@ -78,9 +62,7 @@ def by_id(records: list[dict], key: str) -> dict[str, dict]:
 
 
 def section(report: dict, section_id: str) -> dict:
-    return next(
-        item for item in report["sections"] if item["section_id"] == section_id
-    )
+    return next(item for item in report["sections"] if item["section_id"] == section_id)
 
 
 def test_packet_and_fixture() -> None:
@@ -149,9 +131,7 @@ def test_packet_and_fixture() -> None:
         == "2020-04-04"
     )
     assert (
-        report_facts["fact-role-official-opposition-leader-2015-2020"][
-            "statement"
-        ]
+        report_facts["fact-role-official-opposition-leader-2015-2020"]["statement"]
         != report_facts["fact-role-labour-party-leader-2015-2020"]["statement"]
     )
     assert (
@@ -171,10 +151,18 @@ def test_packet_and_fixture() -> None:
         == "2015-03-30"
     )
 
-    non_lane_fact_ids = set(report_facts) - set(LANE_FACT_IDS)
-    assert non_lane_fact_ids == PROTECTED_FACT_IDS
-    for fact_id in PROTECTED_FACT_IDS:
-        assert report_facts[fact_id]["section_id"] != "roles_and_committees"
+    # Future report sections may add their own facts to the shared fixture.
+    # Preserve this baseline by proving that the roles section owns exactly its
+    # five authorised facts and no fact from another section is misclassified
+    # as a role or committee record.
+    assert {
+        fact["fact_id"]
+        for fact in report["facts"]
+        if fact["section_id"] == "roles_and_committees"
+    } == set(LANE_FACT_IDS)
+    for fact in report["facts"]:
+        if fact["fact_id"] not in LANE_FACT_IDS:
+            assert fact["section_id"] != "roles_and_committees"
 
     assert set(packet_gaps) == {"gap-role-committee-history-scope"}
     assert packet_gaps["gap-role-committee-history-scope"] == report_gaps[
