@@ -42,13 +42,19 @@ Forbidden source classes and adjacent lanes:
 - inference about legality, propriety, influence, motive, benefit or political significance;
 - grouping differently named donors, correcting source spelling, deduplicating repeated entries or calculating aggregate values.
 
-Authorised implementation scope:
+Authorised financial-interests implementation scope:
 
 - `research/complete-mp-reports/jeremy-corbyn/current-financial-interests-v1.json`
 - `docs/jeremy-corbyn-current-financial-interests-source-note-v1.md`
 - `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
 - `scripts/test_jeremy_corbyn_current_financial_interests_v1.py`
 - `.github/workflows/jeremy-corbyn-current-financial-interests-test.yml`
+
+Authorised prerequisite regression repair, in one separate one-file PR before the five-file implementation PR:
+
+- `scripts/test_jeremy_corbyn_roles_committees_v1.py`
+
+The prerequisite repair may only replace the roles test's closed-world assertion about all non-role fixture facts with a section-scoped non-interference assertion. It must not change any accepted role, committee, source, date, gap, report data or workflow.
 
 Required behaviour:
 
@@ -64,8 +70,8 @@ Required behaviour:
 - keep the report `not_ready`, human review required and public output unauthorised;
 - validate the complete fixture through the canonical Complete MP Report validator and deterministic generator;
 - prove the encoded fact count equals the captured source result count and that every added fact has `fact_type: interest`, `confidence: high`, `evidence_status: verified` and only official Parliament source IDs;
-- run the new lane regression, identity-and-career regression, roles-and-committees regression, Complete MP Report fixture test, Complete MP Portfolio view test, Repository release validation and Project control;
-- change exactly the five authorised files.
+- run the new lane regression, identity-and-career regression, repaired roles-and-committees regression, Complete MP Report fixture test, Complete MP Portfolio view test, Repository release validation and Project control;
+- change exactly one file in the prerequisite regression-repair PR and exactly five files in the financial-interests implementation PR.
 
 ## Done
 
@@ -74,9 +80,11 @@ Required behaviour:
 - The accepted Streamlit interface exposes `Simple`, `MP Portfolio` and `Advanced` views.
 - Jeremy Corbyn identity-and-career and roles-and-committees baselines are complete within their bounded official-source scopes.
 - The `financial_interests` section remains `not_researched` in current `main`.
+- Repository tracing identified that the roles regression currently rejects any future-section facts added to the shared fixture, which would make the authorised financial-interests fixture integration fail despite leaving the roles section unchanged.
 
 ## To do
 
+- Repair the prior roles regression's closed-world assertion in one controlled one-file PR.
 - Capture the full current official Registered Interests snapshot at one declared time.
 - Create the machine-readable source packet and readable source note.
 - Encode only the financial-interest section, official source records, `interest` facts and directly related coverage gap.
@@ -86,7 +94,7 @@ Required behaviour:
 
 ## Next bounded gate
 
-Merge this authority-only activation PR after Project control passes. ChatGPT Work then owns the bounded official-source capture and entry extraction. Codex owns deterministic packet encoding, fixture integration, tests and PR preparation after the captured source packet is fixed.
+Merge this authority clarification after Project control passes, merge the one-file regression repair after its existing checks pass, then open the five-file financial-interests implementation PR.
 
 ## Stop point
 
