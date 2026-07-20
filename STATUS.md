@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: AUTHORISED
+status: AUTHORITATIVE
 authority_ref: main
 ---
 
@@ -13,6 +13,7 @@ authority_ref: main
 - Governing branch: `main`
 - Complete MP Portfolio authority activation merged as `56c93095614518d66fa37ce3c0def1ffffb5f233`.
 - Complete MP Portfolio implementation PR #170 merged as `da2fa879acd1783ab992c7dd68adb4be4e556123` from exact reviewed head `a183f5374bca4c617660e5a4010ddad0d7af45e0` using a merge commit.
+- Complete MP Portfolio acceptance authority PR #171 merged as `23abc16f064c29318cbef5186a40b753c6fa939e`.
 - January 2003 vote-review queue implementation remains complete at merge `7d646f0a68ef6153c58111440ed9bca05ce3ce44` from exact reviewed implementation head `c546d6417713870e37e8c54ad855b7e12d41d030`.
 - January 2003 seed-row shape implementation remains complete at merge `4cc7cef44ad92af1ed0f0d15f0fb9e9c063bde2b`.
 - Repository Release v1 remains complete and authoritative.
@@ -20,11 +21,9 @@ authority_ref: main
 
 ## Current lane
 
-Complete MP Portfolio local acceptance.
+No implementation or research lane is active.
 
-Goal: prove the merged read-only `MP Portfolio` view works in the actual local Streamlit application without regressing the existing Simple or Advanced source-check views.
-
-No further repository implementation is authorised in this acceptance lane.
+The Complete MP Portfolio vertical slice and local acceptance are complete. Further real MP research, evidence integration, review controls, private-server work or publication work requires a separately authorised bounded lane.
 
 ## Done
 
@@ -36,38 +35,22 @@ No further repository implementation is authorised in this acceptance lane.
 - The accepted restored database baseline remains 33 January 2003 ParlParse divisions, 33 member votes, one member, one source and one import.
 - All 33 vote meanings remain `needs_review`.
 - The repository contains bounded source collection, Evidence Pack v1, Proof Trail v1 and Complete MP Report v1 machinery.
-- The existing Streamlit Simple and Advanced source-check interface remains present.
-- The merged Streamlit application now exposes `Simple`, `MP Portfolio` and `Advanced` as three sidebar views.
-- The `MP Portfolio` view consumes the committed Complete MP Report fixture read-only and validates it through the canonical validator before rendering.
-- All 13 canonical report sections, explicit coverage states, source-linked facts and claims, coverage gaps, source register, publication state and human-review state are represented by the display model.
-- The canonical generator proof writes only to an operating-system temporary directory outside the repository, records filename, byte size and SHA-256 metadata, and removes the directory before returning.
-- The dedicated Complete MP Portfolio view test, Complete MP Report generator regression, Repository release validation and Project control all passed on exact implementation head `a183f5374bca4c617660e5a4010ddad0d7af45e0`.
-- Implementation changed exactly the five authorised files.
+- The Streamlit application exposes `Simple`, `MP Portfolio` and `Advanced` as three sidebar views.
+- Local acceptance on 2026-07-20 confirmed that `Simple` retained the existing source-check status and review controls and `Advanced` retained the existing technical controls.
+- Local acceptance confirmed that `MP Portfolio` displayed `Corbyn, Jeremy`, report status `not_ready`, human review `Required`, public output `Not authorised`, all 13 canonical sections, section facts and claims, visible coverage gaps and the source register.
+- The disposable generator proof generated all five canonical outputs, reported filename, byte size and SHA-256 metadata, returned `Temporary directory removed: True`, and left no generated `corbyn-jeremy-*` files inside the repository.
+- The dedicated Complete MP Portfolio view test, Complete MP Report generator regression, Repository release validation and Project control passed on exact implementation head `a183f5374bca4c617660e5a4010ddad0d7af45e0`.
 - No real MP research, source expansion, SQLite access, private-server access, vote-meaning decision, publication decision or persistent generated portfolio output occurred.
 
 ## To do
 
-Run one local human-facing acceptance check from exact merged `main` `da2fa879acd1783ab992c7dd68adb4be4e556123` and confirm:
-
-- the application opens without a Python or Streamlit error;
-- the sidebar shows `Simple`, `MP Portfolio` and `Advanced`;
-- `Simple` still shows the existing source-check status and review controls;
-- `Advanced` still opens its existing technical controls;
-- `MP Portfolio` shows `Corbyn, Jeremy`, report status `not_ready`, human review `Required` and public output `Not authorised`;
-- the coverage table contains all 13 canonical sections;
-- the section expanders expose facts, claims and visible coverage gaps where present;
-- the source register is visible;
-- `Run disposable generator proof` reports five outputs and `Temporary directory removed: True`;
-- no generated Complete MP Report files appear inside the repository.
-
-After the human-facing acceptance passes, close this lane through a separate `STATUS.md`-only authority PR and activate the first real MP research lane separately.
+- No work remains in the Complete MP Portfolio vertical-slice or local-acceptance lane.
+- The first real MP research lane must be separately authorised with an exact subject, canonical section, source boundary, output files, validation and stop point.
 
 ## Next bounded gate
 
-Human local-interface acceptance only. No code change is authorised unless the acceptance check reveals a reproducible defect.
-
-ChatGPT Work remains parked until this acceptance gate passes. Codex is also parked unless a reproducible implementation defect is found.
+None. Begin the first real MP research lane only through a separate `STATUS.md`-only authority update.
 
 ## Stop point
 
-Do not begin real MP research; edit the fixture, schema, canonical generator or specification; generate or review the real January 2003 packet; accept, reject, correct or rewrite any vote meaning; access the private server or SQLite; write persistent generated portfolio outputs; create human review decisions; mark any report publishable; or authorise public output. Stop for the local human-facing acceptance result.
+Do not begin real MP research; edit the current Complete MP Report fixture; generate or review the real January 2003 packet; accept, reject, correct or rewrite any vote meaning; access the private server or SQLite; write persistent generated portfolio outputs; create human review decisions; mark any report publishable; or authorise public output without a separately merged authority lane.
