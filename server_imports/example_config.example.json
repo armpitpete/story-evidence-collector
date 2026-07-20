@@ -15,5 +15,14 @@
     "seed_id": "parlparse_2003_01",
     "rows_path": "",
     "manifest_path": ""
+  },
+  "vote_review_queue": {
+    "date_from": "2003-01-01",
+    "date_to": "2003-01-31",
+    "target_mp": "",
+    "expected_row_count": 33,
+    "output_dir": "reports/review-queues/january-2003",
+    "json_filename": "january-2003-vote-review-queue.json",
+    "markdown_filename": "january-2003-vote-review-queue.md"
   }
 }
