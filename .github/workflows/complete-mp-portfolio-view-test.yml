@@ -1,0 +1,42 @@
+name: Complete MP Portfolio view test
+
+on:
+  pull_request:
+    paths:
+      - "twis_source_engine_ui_v24.py"
+      - "scripts/complete_mp_portfolio_view.py"
+      - "scripts/test_complete_mp_portfolio_view.py"
+      - "docs/complete-mp-portfolio-view-v1.md"
+      - ".github/workflows/complete-mp-portfolio-view-test.yml"
+      - "fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json"
+      - "schemas/complete-mp-report-v1.schema.json"
+      - "scripts/generate_complete_mp_report.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile authorised implementation
+        run: |
+          python -m py_compile \
+            twis_source_engine_ui_v24.py \
+            scripts/complete_mp_portfolio_view.py \
+            scripts/test_complete_mp_portfolio_view.py
+
+      - name: Prove canonical Complete MP Report generator
+        run: python scripts/test_complete_mp_report_generator.py
+
+      - name: Prove read-only MP Portfolio vertical slice
+        run: python scripts/test_complete_mp_portfolio_view.py
