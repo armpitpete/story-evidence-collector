@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: AUTHORITATIVE
+status: AUTHORISED
 authority_ref: main
 ---
 
@@ -11,55 +11,103 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Jeremy Corbyn current-Parliament written-questions baseline merged as `e1b21c1e4de1eefb827ac1f337017858510bc192` from exact reviewed implementation head `324590ec9c2db1ad3bbbc92ce33de06c2cb430a1` using a merge commit.
-- Jeremy Corbyn regulated-donee donations baseline remains complete at merge `419ac75a5261f66149494805946d154a4ef41339`.
-- Jeremy Corbyn outside-work-and-company-links baseline remains complete at merge `d9bac48a0561b2a807c24f72b32a757607dea9d6`.
-- Jeremy Corbyn current financial-interests baseline remains complete at merge `e92262ccafa2e9628bc5e8f5bba6be4c14541750`.
-- Jeremy Corbyn roles-and-committees baseline remains complete at merge `968d33dac9e80cdf0f6c9107c195c5f7d7f70a1b`.
-- Jeremy Corbyn identity-and-parliamentary-career baseline remains complete at merge `93c8da204d9709a1490dfa24a7b722a5f6a85199`.
-- Complete MP Portfolio vertical slice and local acceptance remain complete.
-- January 2003 vote-review queue, Repository Release v1 and backup-and-restore hardening remain complete and authoritative.
+- Exact starting head for this lane: `95178576da8a24ffa42a50d30c22cba8de3948e0`.
+- Jeremy Corbyn current-Parliament written-questions baseline is complete at merge `e1b21c1e4de1eefb827ac1f337017858510bc192` from exact reviewed head `324590ec9c2db1ad3bbbc92ce33de06c2cb430a1`.
+- Jeremy Corbyn regulated-donee donations, outside-work/company-links, current financial-interests, roles-and-committees and identity-and-career baselines remain complete within their declared official-source scopes.
+- Complete MP Portfolio vertical slice, January 2003 vote-review queue, Repository Release v1 and backup-and-restore hardening remain complete and authoritative.
 
 ## Current lane
 
-No implementation or research lane is active.
+Jeremy Corbyn current-Parliament spoken-contributions baseline.
+
+Goal: add a bounded official Hansard index of individual spoken contribution segments made by Jeremy Corbyn from 4 July 2024 through one declared capture timestamp, without treating the approximate member-page debate count as authoritative and without converting what he said into policy-position, contradiction or significance claims.
+
+Canonical section:
+
+- `speeches_and_questions`
+
+Date and identity boundary:
+
+- Commons records dated from `2024-07-04` through the declared capture timestamp;
+- UK Parliament member ID `185`;
+- individual contribution segments whose official Hansard/member record identifies Jeremy Corbyn as speaker;
+- Commons Chamber and Westminster Hall included;
+- any other venue or committee context remains unresolved unless the official record unambiguously places it inside this authorised Commons spoken-contribution boundary.
+
+Official source boundary:
+
+- UK Parliament member spoken-contributions index at `https://members.parliament.uk/member/185/contributions`, including every page required to cross the 4 July 2024 boundary;
+- Hansard member-contributions search at `https://hansard.parliament.uk/search/MemberContributions?house=Commons&memberId=185` with the authorised date boundary;
+- official Hansard debate, section and contribution pages or official structured responses directly used by those services;
+- official debate title, sitting date, venue, contribution type, member identity, stable debate/section/contribution identifier, permalink, contribution text, ordering and correction/version status when displayed.
+
+Known source limits to preserve:
+
+- the member page states that its contribution counts can be approximate, so summary counts are navigation and reconciliation evidence only;
+- Hansard is an edited record and may expose uncorrected rolling text before a corrected daily version replaces it;
+- the live result set can change after capture;
+- one debate index row may contain several individual contribution segments;
+- contribution type labels record parliamentary form and do not establish a policy position or the truth of any statement.
+
+Forbidden source classes and expansion:
+
+- media, party, campaign or personal websites, social media, Wikipedia, commercial parliamentary databases and search-result snippets;
+- video/audio transcription, Parliament TV, committee oral evidence, correspondence, written statements, Early Day Motions, voting records or tabled oral-question records;
+- topic or sentiment classification, summarisation of political meaning, policy-position inference, contradiction analysis, motive, influence, accuracy, legality, propriety or significance claims;
+- changing `public_positions_over_time`, `changes_and_contradictions`, `organisations_and_relationships` or any other canonical section.
+
+Authorised implementation scope:
+
+- `research/complete-mp-reports/jeremy-corbyn/current-parliament-spoken-contributions-v1.json`
+- `docs/jeremy-corbyn-current-parliament-spoken-contributions-source-note-v1.md`
+- `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
+- `scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py`
+- `.github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml`
+
+Required behaviour:
+
+- capture every official member-index debate row required to cover the date boundary, recording the displayed total and page count only as volatile navigation checks;
+- resolve every in-scope debate row to its individual official contribution segments;
+- preserve official stable identifiers and permalinks; reject duplicate contribution identifiers;
+- reject or explicitly record any segment whose speaker identity, date, venue, identifier or full text cannot be resolved without guessing;
+- preserve exact official contribution text and displayed metadata in the machine-readable packet;
+- preserve whether the source was corrected, uncorrected/rolling or unspecified when the official page exposes that state;
+- create one neutral `speech` fact per accepted individual contribution segment, stating only that Hansard records Jeremy Corbyn making the identified contribution in the named proceeding;
+- do not use the approximate debate-summary count as the individual-contribution count;
+- create no claim, interpretation, relationship or position record;
+- retain all accepted written-question facts and sources unchanged;
+- leave `speeches_and_questions` `partial` with explicit gaps for pre-4-July-2024 spoken history, future contributions and corrections, tabled oral questions, written statements, Early Day Motions, committee oral evidence and unresolved records;
+- keep the report `not_ready`, human review required and public output unauthorised;
+- preserve every accepted identity, roles, voting, financial-interests, donations and outside-work/company record unchanged;
+- validate the complete fixture through the canonical Complete MP Report validator and deterministic generator;
+- run the new lane regression, current-Parliament written-questions regression, identity-and-career regression, roles-and-committees regression, current financial-interests regression, regulated-donee donations regression, outside-work/company-links regression, Complete MP Report fixture test, Complete MP Portfolio view test, Repository Release validation and Project Control;
+- change exactly the five authorised files.
 
 ## Done
 
-- The official UK Parliament Members API capture was fixed at `2026-07-20T20:00:41Z` for member ID `185`.
-- The API reported 251 all-career written-question records across 13 page requests, with 251 unique internal question IDs and 251 unique tabled-date/UIN pairs.
-- Exactly 90 Commons written questions fall inside the authorised `2024-07-04` through `2026-07-20` boundary.
-- All 90 preserved detail payloads directly record `askingMemberId: 185` and match their index item by internal question ID, UIN, tabled date and House.
-- The original diagnostic `STOP` was reconciled as a validator field-path error: the official detail payload uses direct `askingMemberId` and sets nested `askingMember` to null.
-- The diagnostic capture is fixed by SHA-256 `af77384595f9bc8898e3a4812984bd3b3d95d84e1cf175bef386ed2f62ccec4b`.
-- At capture time, 89 questions had answer dates and answer text; internal question ID `1919112`, UIN `12037`, remained unanswered.
-- One neutral `question` fact was created per in-scope official record.
-- No topic classification, policy-position inference, contradiction analysis, relationship, motive, influence, legality, propriety or significance conclusion was created.
-- The canonical `speeches_and_questions` section is now `partial`, with spoken contributions and wider parliamentary record types still outside the accepted baseline.
-- Exactly five authorised implementation files changed in PR #194.
-- Current-Parliament written questions, identity-and-career, roles-and-committees, financial-interests, outside-work/company-links, regulated-donee donations, Complete MP Report fixture, Complete MP Portfolio view, Repository Release validation and Project Control all passed on exact head `324590ec9c2db1ad3bbbc92ce33de06c2cb430a1`.
-- The report remains `not_ready`, human review remains required and public output remains unauthorised.
+- Repository Release v1, backup/restore proof, January 2003 vote-review preparation and the accepted Streamlit interface are complete.
+- Jeremy Corbyn current-Parliament written questions are captured as 90 neutral official records.
+- The UK Parliament member page exposes Jeremy Corbyn's spoken contributions as debate rows with expandable individual segments and warns that displayed contribution counts can be approximate.
+- The official Hansard member-contributions search is separately available for Commons member ID `185`.
+- Hansard is the edited official record of what was said in Parliament and can distinguish rolling/uncorrected from corrected records.
+- The current member page displayed 1,577 all-career debate results across 79 pages during authority research; that volatile all-career figure is not an accepted current-Parliament count and must be re-captured.
 
 ## To do
 
-Future work requires separately authorised bounded lanes. Remaining canonical areas include:
-
-- current-Parliament spoken contributions, with an official Hansard/member-record boundary;
-- pre-4-July-2024 written-question history and future answer-state refreshes;
-- public positions over time;
-- changes and contradictions, only after dated position evidence exists;
-- organisations and evidenced relationships;
-- broader historic voting coverage and human vote-meaning review;
-- final evidence-gap, source-register, human-review and publication closure.
-
-The accepted identity, roles, financial-interests, donations, outside-work/company-links and speeches-and-questions sections remain deliberately `partial`; they do not claim exhaustive historical coverage.
+- Resolve the exact official index, expansion and Hansard detail request shapes without using browser automation or anti-bot workarounds.
+- Capture all debate rows required to cross the `2024-07-04` boundary with polite sequential requests.
+- Reconcile those rows to unique individual contribution segments and stable official identifiers.
+- Record source version/correction status and unresolved records explicitly.
+- Create the machine-readable packet and readable source note.
+- Update only `speeches_and_questions`, adding spoken-contribution sources, `speech` facts and its directly related coverage gap while preserving the 90 written-question facts unchanged.
+- Add deterministic validation and CI.
+- Open and review one five-file implementation PR.
+- After implementation merge, close this lane through a separate `STATUS.md`-only authority PR.
 
 ## Next bounded gate
 
-None. Open a separate `STATUS.md`-only authority PR naming one canonical section, exact official-source boundary, authorised files, validation and stop point before further research or implementation.
-
-The recommended next lane is the current-Parliament spoken-contributions subset of `speeches_and_questions`, bounded by UK Parliament member ID `185`, a declared date range and official Hansard/member contribution records. It must remain an index of what was said, not policy-position or contradiction analysis.
+Merge this authority-only activation PR after Project Control passes. Then ChatGPT Work must resolve the official member-index and Hansard contribution request shapes and produce a fixed capture. Codex may encode the five-file implementation only after the debate-row count, unique contribution count, identifier scheme, date coverage and unresolved-record count are explicit.
 
 ## Stop point
 
-Do not begin another MP or canonical section; collect spoken contributions; alter accepted identity, roles, voting, financial-interests, donations, outside-work/company-links, written questions, positions, relationships or human-review records; infer policy positions, contradictions, influence, motive, legality or propriety; review January 2003 vote meanings; access or mutate the private server or SQLite; create unsupported claims or interpretations; mark a partial section complete; mark the report publishable; or authorise public output without a separately merged authority update.
+Do not research another MP or canonical section; include pre-4-July-2024 spoken contributions; begin policy-position or contradiction analysis; include media, video/audio transcription, committee evidence, written statements, Early Day Motions, voting or oral-question datasets; alter accepted identity, roles, voting, financial-interests, donations, outside-work/company-links or written-question records; infer accuracy, influence, motive, legality, propriety or significance; review January 2003 vote meanings; access or mutate the private server or SQLite; mark the section complete; mark the report publishable; or authorise public output. Stop after one five-file implementation PR is complete, tested and reviewed.
