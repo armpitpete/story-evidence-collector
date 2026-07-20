@@ -2,7 +2,7 @@
   "schema_version": "1",
   "report_id": "complete-mp-corbyn-fixture-v1",
   "title": "Complete MP Report fixture — Corbyn, Jeremy",
-  "generated_at": "2026-07-20T15:53:04Z",
+  "generated_at": "2026-07-20T17:20:00Z",
   "subject": {
     "display_name": "Corbyn, Jeremy",
     "sort_name": "Corbyn, Jeremy",
@@ -158,14 +158,19 @@
     {
       "section_id": "outside_work_and_company_links",
       "title": "Outside work and company links",
-      "status": "not_researched",
-      "summary": "No outside-work or company-link records are present.",
-      "fact_ids": [],
+      "status": "partial",
+      "summary": "The four company or organisation links explicitly displayed in the current 13 July 2026 UK Parliament register snapshot have been resolved against official Companies House records; earlier outside-work and company history remains incomplete.",
+      "fact_ids": [
+        "fact-company-link-your-party-uk-ltd",
+        "fact-company-link-jeremy-corbyn-campaign-limited",
+        "fact-company-link-community-unity-ltd",
+        "fact-company-link-peace-and-justice-project-ltd"
+      ],
       "claim_ids": [],
       "interpretation_ids": [],
       "relationship_ids": [],
       "gap_ids": [
-        "gap-outside-work"
+        "gap-outside-work-company-history-scope"
       ]
     },
     {
@@ -422,6 +427,134 @@
       "coverage_to": "2026-07-13",
       "checksum": "",
       "limitations": "Identifies the current register version and publication date. Entry content is taken from the official member Registered Interests pages."
+    },
+    {
+      "source_id": "source-companies-house-your-party-uk-overview",
+      "title": "YOUR PARTY UK LTD overview",
+      "publisher": "Companies House",
+      "source_type": "company_registry",
+      "authority_level": "primary",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/16619803",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": "2026-07-20",
+      "checksum": "",
+      "limitations": "Company identity, number, status, type, incorporation, dissolution and SIC. Companies House states that it does not verify the accuracy of information filed."
+    },
+    {
+      "source_id": "source-companies-house-your-party-uk-officers",
+      "title": "YOUR PARTY UK LTD people",
+      "publisher": "Companies House",
+      "source_type": "company_registry",
+      "authority_level": "primary",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/16619803/officers",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": "2026-07-20",
+      "checksum": "",
+      "limitations": "Jeremy Bernard Corbyn director appointment. The company overview separately records dissolution."
+    },
+    {
+      "source_id": "source-companies-house-jeremy-corbyn-campaign-overview",
+      "title": "JEREMY CORBYN CAMPAIGN LIMITED overview",
+      "publisher": "Companies House",
+      "source_type": "company_registry",
+      "authority_level": "primary",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/15977146",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": "2026-07-20",
+      "checksum": "",
+      "limitations": "Company identity, number, status, type, incorporation and SIC. Companies House states that it does not verify the accuracy of information filed."
+    },
+    {
+      "source_id": "source-companies-house-jeremy-corbyn-campaign-officers",
+      "title": "JEREMY CORBYN CAMPAIGN LIMITED people",
+      "publisher": "Companies House",
+      "source_type": "company_registry",
+      "authority_level": "primary",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/15977146/officers",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": "2026-07-20",
+      "checksum": "",
+      "limitations": "Jeremy Bernard Corbyn director appointment only; other officers are outside this lane."
+    },
+    {
+      "source_id": "source-companies-house-community-unity-overview",
+      "title": "COMMUNITY UNITY LTD overview",
+      "publisher": "Companies House",
+      "source_type": "company_registry",
+      "authority_level": "primary",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/15392819",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": "2026-07-20",
+      "checksum": "",
+      "limitations": "Company identity, number, status, type, incorporation, dissolution and SIC. It does not evidence bank-signatory status."
+    },
+    {
+      "source_id": "source-companies-house-community-unity-officers",
+      "title": "COMMUNITY UNITY LTD people",
+      "publisher": "Companies House",
+      "source_type": "company_registry",
+      "authority_level": "primary",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/15392819/officers",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": "2026-07-20",
+      "checksum": "",
+      "limitations": "The complete officer page lists four officers and does not list Jeremy Corbyn. Companies House does not record bank signatories."
+    },
+    {
+      "source_id": "source-companies-house-peace-justice-overview",
+      "title": "PEACE AND JUSTICE PROJECT LTD overview",
+      "publisher": "Companies House",
+      "source_type": "company_registry",
+      "authority_level": "primary",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/12945855",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": "2026-07-20",
+      "checksum": "",
+      "limitations": "Company identity, number, status, type, incorporation and SIC. Companies House states that it does not verify the accuracy of information filed."
+    },
+    {
+      "source_id": "source-companies-house-peace-justice-officers",
+      "title": "PEACE AND JUSTICE PROJECT LTD people",
+      "publisher": "Companies House",
+      "source_type": "company_registry",
+      "authority_level": "primary",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/12945855/officers",
+      "repository_path": "",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-20",
+      "coverage_from": null,
+      "coverage_to": "2026-07-20",
+      "checksum": "",
+      "limitations": "Jeremy Bernard Corbyn director appointment only; other officers are outside this lane."
     }
   ],
   "facts": [
@@ -1146,6 +1279,74 @@
       "confidence": "high",
       "evidence_status": "verified",
       "notes": "Maps one-to-one to source packet entry financial-interest-029; the complete official fields and source spelling are preserved there without reclassification."
+    },
+    {
+      "fact_id": "fact-company-link-your-party-uk-ltd",
+      "section_id": "outside_work_and_company_links",
+      "statement": "UK Parliament records Jeremy Corbyn as an unpaid director of Your Party UK Ltd from 31 July 2025 to 21 April 2026. Companies House identifies YOUR PARTY UK LTD as company 16619803, incorporated on 31 July 2025 and dissolved on 21 April 2026, and records Jeremy Bernard Corbyn as a director appointed on 31 July 2025.",
+      "fact_type": "company",
+      "date": null,
+      "date_from": "2025-07-31",
+      "date_to": "2026-04-21",
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current",
+        "source-companies-house-your-party-uk-overview",
+        "source-companies-house-your-party-uk-officers"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps to financial-interest-026 and company-link-your-party-uk-ltd. The officer page's role label is not used to override the overview's dissolved status."
+    },
+    {
+      "fact_id": "fact-company-link-jeremy-corbyn-campaign-limited",
+      "section_id": "outside_work_and_company_links",
+      "statement": "UK Parliament records Jeremy Corbyn as an unpaid director of Jeremy Corbyn Campaign Ltd from 25 September 2024. Companies House identifies JEREMY CORBYN CAMPAIGN LIMITED as company 15977146, active and incorporated on 25 September 2024, and records Jeremy Bernard Corbyn as a director appointed on that date.",
+      "fact_type": "company",
+      "date": null,
+      "date_from": "2024-09-25",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current",
+        "source-companies-house-jeremy-corbyn-campaign-overview",
+        "source-companies-house-jeremy-corbyn-campaign-officers"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps to financial-interest-027 and company-link-jeremy-corbyn-campaign-limited. The Parliament name variant is preserved separately from the registered name."
+    },
+    {
+      "fact_id": "fact-company-link-community-unity-ltd",
+      "section_id": "outside_work_and_company_links",
+      "statement": "UK Parliament records Jeremy Corbyn as an unpaid bank signatory for Community Unity Limited from 27 February 2024, with no end date displayed. Companies House identifies COMMUNITY UNITY LTD as company 15392819, incorporated on 6 January 2024 and dissolved on 20 May 2025; its officer page does not list Jeremy Corbyn.",
+      "fact_type": "company",
+      "date": null,
+      "date_from": "2024-02-27",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current",
+        "source-companies-house-community-unity-overview",
+        "source-companies-house-community-unity-officers"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps to financial-interest-028 and company-link-community-unity-ltd. Bank-signatory status is not reclassified as directorship, employment, ownership or control. No end date is inferred from company dissolution."
+    },
+    {
+      "fact_id": "fact-company-link-peace-and-justice-project-ltd",
+      "section_id": "outside_work_and_company_links",
+      "statement": "UK Parliament records Jeremy Corbyn as an unpaid director of the Peace and Justice Project from 13 October 2020. Companies House identifies PEACE AND JUSTICE PROJECT LTD as company 12945855, active and incorporated on 13 October 2020, and records Jeremy Bernard Corbyn as a director appointed on that date.",
+      "fact_type": "company",
+      "date": null,
+      "date_from": "2020-10-13",
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-registered-interests-current",
+        "source-companies-house-peace-justice-overview",
+        "source-companies-house-peace-justice-officers"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Maps to financial-interest-029 and company-link-peace-and-justice-project-ltd. No ownership or control conclusion is encoded."
     }
   ],
   "claims": [
@@ -1250,17 +1451,17 @@
       "notes": ""
     },
     {
-      "gap_id": "gap-outside-work",
+      "gap_id": "gap-outside-work-company-history-scope",
       "section_id": "outside_work_and_company_links",
-      "summary": "Outside employment, directorship and company-link records have not been researched.",
+      "summary": "The four company or organisation links explicitly displayed in the current 13 July 2026 Parliament register snapshot have been resolved, but earlier outside-work and company links outside that current display have not been researched.",
       "severity": "high",
-      "reason": "not_researched",
+      "reason": "historic_gap",
       "date_from": null,
-      "date_to": null,
+      "date_to": "2026-07-20",
       "status": "open",
       "blocks_publication": true,
-      "next_action": "Collect declared outside work and verify any Companies House matches.",
-      "notes": ""
+      "next_action": "Open a separately authorised historical outside-work and company appointments lane if complete longitudinal coverage is required.",
+      "notes": "This lane does not expand beyond the four current Parliament declarations and does not infer ownership, control, remuneration, influence, motive, legality or propriety."
     },
     {
       "gap_id": "gap-speeches-questions",
