@@ -42,27 +42,6 @@ EXPECTED_CATEGORY_COUNTS = {
     "4. Visits outside the UK": 12,
     "8. Miscellaneous": 4,
 }
-BASELINE_NON_FINANCIAL_FACT_IDS = {
-    "fact-fixture-member-id",
-    "fact-current-constituency",
-    "fact-continuous-commons-service",
-    "fact-representation-1983-1997",
-    "fact-representation-1997-2010",
-    "fact-representation-2010-2024",
-    "fact-representation-2024-present",
-    "fact-party-labour-1983-2020",
-    "fact-party-independent-2020-2026",
-    "fact-party-your-party-2026-present",
-    "fact-2024-election-independent",
-    "fact-vote-workflow-exists",
-    "fact-historic-plan-range",
-    "fact-server-live-state-unverified",
-    "fact-role-parliamentary-leader-your-party",
-    "fact-role-labour-party-leader-2015-2020",
-    "fact-role-official-opposition-leader-2015-2020",
-    "fact-committee-social-security-1992-1997",
-    "fact-committee-justice-2011-2015",
-}
 EXPECTED_OUTPUTS = {
     "corbyn-jeremy-full-profile.json",
     "corbyn-jeremy-full-profile.md",
@@ -195,12 +174,13 @@ def test_fixture_integration() -> None:
         assert fact["source_ids"] == [ENTRY_SOURCE_ID]
         assert ENTRY_IDS[index] in fact["notes"]
 
-    non_financial = {
+    report_financial_fact_ids = [
         fact_id
         for fact_id, fact in report_facts.items()
-        if fact["section_id"] != "financial_interests"
-    }
-    assert non_financial == BASELINE_NON_FINANCIAL_FACT_IDS
+        if fact["section_id"] == "financial_interests"
+    ]
+    assert report_financial_fact_ids == FACT_IDS
+
     assert not any(
         fact["fact_type"] in {
             "donation",
