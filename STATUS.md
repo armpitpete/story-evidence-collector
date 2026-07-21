@@ -81,32 +81,53 @@ Required behaviour:
 - preserve every accepted identity, roles, voting, financial-interests, donations and outside-work/company record unchanged;
 - validate the complete fixture through the canonical Complete MP Report validator and deterministic generator;
 - run the new lane regression, current-Parliament written-questions regression, identity-and-career regression, roles-and-committees regression, current financial-interests regression, regulated-donee donations regression, outside-work/company-links regression, Complete MP Report fixture test, Complete MP Portfolio view test, Repository Release validation and Project Control;
-- change exactly the five authorised files.
+- change exactly the five authorised implementation files after the prerequisite regression repairs are merged.
+
+## Authorised prerequisite repairs
+
+The accepted current-Parliament written-questions regression originally asserted that `speeches_and_questions.fact_ids` equals the exact 90-question list. The authorised spoken-contributions lane must append valid `speech` facts to the same canonical section. PR #199 repaired that closed-world fact assertion while preserving the exact 90 accepted questions.
+
+Verification then exposed a second inherited closed-world assertion: the written-question regression requires the fixture's shared `gap-speeches-questions-current-parliament-scope` object to remain byte-for-byte equal to the pre-speech packet wording. The authorised spoken-contributions lane must update that same gap so it no longer falsely says all spoken contributions remain outside scope and so it records the remaining pre-4-July-2024, future/correction, oral-question, written-statement, Early Day Motion and committee-evidence limits.
+
+Before the five-file spoken-contributions implementation is finalised, one separate follow-up prerequisite PR may change only:
+
+- `scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py`
+
+The follow-up repair may only replace exact shared-gap object equality with section-scoped protection. It must continue to require:
+
+- the same gap ID, section ID, open status and publication-blocking state;
+- preservation of the written-question limits for pre-current-Parliament questions, future question updates, oral questions, written statements and Early Day Motions;
+- no removal or weakening of the human-review and publication restrictions;
+- the exact 90 accepted written-question fact IDs, order, facts and sources;
+- no permission for claims, interpretations or relationships in `speeches_and_questions`.
+
+The follow-up repair must not change the written-question packet, fixture, workflow, any source record, any question record, any spoken-contribution record or publication authority.
 
 ## Done
 
 - Repository Release v1, backup/restore proof, January 2003 vote-review preparation and the accepted Streamlit interface are complete.
 - Jeremy Corbyn current-Parliament written questions are captured as 90 neutral official records.
+- The first one-file written-question fact-boundary repair merged as `5f817cec57d6d8f9f08f7bc2b5e54c94b6f6c04e` after its written-question, Repository Release and Project Control workflows passed.
+- The fixed spoken-contributions capture resolved 202 authorised debate rows to 306 unique official contribution identifiers from 17 July 2024 through 16 July 2026, with no substantive identity, date, venue, text or identifier mismatch.
+- The official permalink resolver returns site-relative Hansard paths; these may be normalised only by prefixing the official `https://hansard.parliament.uk` host.
 - The UK Parliament member page exposes Jeremy Corbyn's spoken contributions as debate rows with expandable individual segments and warns that displayed contribution counts can be approximate.
 - The official Hansard member-contributions search is separately available for Commons member ID `185`.
-- Hansard is the edited official record of what was said in Parliament and can distinguish rolling/uncorrected from corrected records.
-- The current member page displayed 1,577 all-career debate results across 79 pages during authority research; that volatile all-career figure is not an accepted current-Parliament count and must be re-captured.
+- Hansard is the edited official record of what was said in Parliament and can distinguish rolling/uncorrected from corrected records when the source representation is explicit.
 
 ## To do
 
-- Resolve the exact official index, expansion and Hansard detail request shapes without using browser automation or anti-bot workarounds.
-- Capture all debate rows required to cross the `2024-07-04` boundary with polite sequential requests.
-- Reconcile those rows to unique individual contribution segments and stable official identifiers.
-- Record source version/correction status and unresolved records explicitly.
-- Create the machine-readable packet and readable source note.
-- Update only `speeches_and_questions`, adding spoken-contribution sources, `speech` facts and its directly related coverage gap while preserving the 90 written-question facts unchanged.
-- Add deterministic validation and CI.
-- Open and review one five-file implementation PR.
+- Merge this second `STATUS.md`-only clarification after Project Control passes.
+- Open and merge the separate one-file shared-gap regression-boundary repair.
+- Reconcile the spoken-contributions implementation branch against repaired `main`.
+- Encode the fixed 202-row / 306-contribution capture in the authorised machine-readable packet and readable source note.
+- Update only `speeches_and_questions`, adding spoken-contribution sources, `speech` facts and the expanded directly related coverage gap while preserving the 90 written-question facts unchanged.
+- Add deterministic validation and final CI.
+- Complete and review one exact five-file implementation PR.
 - After implementation merge, close this lane through a separate `STATUS.md`-only authority PR.
 
 ## Next bounded gate
 
-Merge this authority-only activation PR after Project Control passes. Then ChatGPT Work must resolve the official member-index and Hansard contribution request shapes and produce a fixed capture. Codex may encode the five-file implementation only after the debate-row count, unique contribution count, identifier scheme, date coverage and unresolved-record count are explicit.
+Merge this `STATUS.md`-only clarification after Project Control passes. Then repair the written-question shared-gap assertion in one separate one-file PR. Resume the already-open five-file spoken-contributions implementation only after that prerequisite passes and merges.
 
 ## Stop point
 

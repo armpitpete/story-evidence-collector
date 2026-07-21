@@ -320,7 +320,13 @@ def test_fixture_integration() -> None:
 
     speeches = section(report, "speeches_and_questions")
     assert speeches["status"] == "partial"
-    assert speeches["fact_ids"] == expected_fact_ids
+    section_fact_ids = speeches["fact_ids"]
+    assert section_fact_ids[: len(expected_fact_ids)] == expected_fact_ids
+    assert [
+        fact_id
+        for fact_id in section_fact_ids
+        if fact_id.startswith("fact-written-question-")
+    ] == expected_fact_ids
     assert speeches["claim_ids"] == []
     assert speeches["interpretation_ids"] == []
     assert speeches["relationship_ids"] == []
@@ -351,18 +357,28 @@ def test_fixture_integration() -> None:
     assert set(packet_gaps) == {
         "gap-speeches-questions-current-parliament-scope"
     }
-    assert packet_gaps[
-        "gap-speeches-questions-current-parliament-scope"
-    ] == report_gaps[
+    packet_gap = packet_gaps[
         "gap-speeches-questions-current-parliament-scope"
     ]
+    shared_gap = report_gaps[
+        "gap-speeches-questions-current-parliament-scope"
+    ]
+    assert packet_gap["section_id"] == shared_gap["section_id"]
+    assert packet_gap["status"] == shared_gap["status"] == "open"
+    assert packet_gap["blocks_publication"] is True
+    assert shared_gap["blocks_publication"] is True
+    shared_gap_text = " ".join(
+        str(shared_gap.get(field, ""))
+        for field in ("summary", "next_action", "notes")
+    )
+    for required_limit in (
+        "written questions",
+        "oral questions",
+        "written statements",
+        "Early Day Motions",
+    ):
+        assert required_limit.casefold() in shared_gap_text.casefold()
     assert "gap-speeches-questions" not in report_gaps
-    assert report_gaps[
-        "gap-speeches-questions-current-parliament-scope"
-    ]["status"] == "open"
-    assert report_gaps[
-        "gap-speeches-questions-current-parliament-scope"
-    ]["blocks_publication"] is True
 
     assert not any(
         item["section_id"] == "speeches_and_questions"
