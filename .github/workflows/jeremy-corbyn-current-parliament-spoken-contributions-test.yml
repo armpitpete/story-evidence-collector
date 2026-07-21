@@ -31,6 +31,8 @@ jobs:
 
       - name: Integrate repaired main authority
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
           git merge --no-edit origin/main
 
@@ -96,8 +98,6 @@ jobs:
 
       - name: Commit exact five-file implementation
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
             research/complete-mp-reports/jeremy-corbyn/current-parliament-spoken-contributions-v1.json \
             docs/jeremy-corbyn-current-parliament-spoken-contributions-source-note-v1.md \
