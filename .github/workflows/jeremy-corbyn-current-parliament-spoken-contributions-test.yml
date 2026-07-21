@@ -43,32 +43,47 @@ jobs:
 
           path = Path("scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py")
           text = path.read_text(encoding="utf-8")
-          text = text.replace(
-              '    "Commons Chamber": 280,\n    "Westminster Hall": 26,',
-              '    "Commons Chamber": 272,\n    "Westminster Hall": 34,',
+
+          old_counts = '    "Commons Chamber": 280,\n    "Westminster Hall": 26,'
+          new_counts = '    "Commons Chamber": 272,\n    "Westminster Hall": 34,'
+          if old_counts not in text:
+              raise SystemExit("Expected venue-count block not found")
+          text = text.replace(old_counts, new_counts)
+
+          assignment = '        member_segment = failure["member_segment"]\n'
+          replacement = (
+              '        member_segment_ids = {\n'
+              '            str(value).upper()\n'
+              '            for value in reconciliation["member_contribution_external_ids"]\n'
+              '        }\n'
           )
-          old = '''        member_segment = failure["member_segment"]
+          if assignment not in text:
+              raise SystemExit("Expected member-segment assignment not found")
+          text = text.replace(assignment, replacement)
 
-          assert str(member_segment["ContentItemExtId"]).upper() == contribution_id
-          assert str(member_segment["DebateSectionExtId"]).upper() == debate_id
-          '''
-          new = '''        member_segment_ids = {
-              str(value).upper()
-              for value in reconciliation["member_contribution_external_ids"]
-          }
+          for assertion in (
+              '        assert str(member_segment["ContentItemExtId"]).upper() == contribution_id\n',
+              '        assert str(member_segment["DebateSectionExtId"]).upper() == debate_id\n',
+          ):
+              if assertion not in text:
+                  raise SystemExit("Expected member-segment assertion not found")
+              text = text.replace(assertion, "")
+          anchor = '        assert search_item["MemberId"] == MEMBER_ID\n'
+          if anchor not in text:
+              raise SystemExit("Expected search member assertion not found")
+          text = text.replace(
+              anchor,
+              '        assert contribution_id in member_segment_ids\n' + anchor,
+          )
 
-          assert contribution_id in member_segment_ids
-          '''
-          if old not in text:
-              raise SystemExit("Expected member-segment block not found")
-          text = text.replace(old, new)
           old_field = '                "member_segment": member_segment,\n'
-          new_field = '''                "member_segment_reference": {
-                      "content_item_external_id": contribution_id,
-                      "debate_section_external_id": debate_id,
-                      "present_in_captured_member_segment_ids": True,
-                  },
-          '''
+          new_field = (
+              '                "member_segment_reference": {\n'
+              '                    "content_item_external_id": contribution_id,\n'
+              '                    "debate_section_external_id": debate_id,\n'
+              '                    "present_in_captured_member_segment_ids": True,\n'
+              '                },\n'
+          )
           if old_field not in text:
               raise SystemExit("Expected member-segment field not found")
           text = text.replace(old_field, new_field)
