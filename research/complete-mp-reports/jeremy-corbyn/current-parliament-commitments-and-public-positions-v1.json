@@ -1,1 +1,1278 @@
-{"capture_id":"corbyn-current-parliament-commitments-public-positions-candidate-capture-v1","subject":{"name":"Jeremy Corbyn","uk_parliament_member_id":185},"authority_merge":"4964c6b00f91c08ef9e06b5150455eaea18e8e47","capture_timestamp_utc":"2026-07-21T13:29:25Z","date_boundary":{"authorised_from":"2024-07-04","authorised_to":"2026-07-21","earliest_accepted_statement_date":"2024-07-18","latest_accepted_statement_date":"2026-07-16"},"stable_record_id_method":"Hansard: statement-hansard-<lowercase ContributionExtId>-s<zero-padded sentence index>-o001. First-party pages: statement-<fixed source key>-o<zero-padded occurrence ordinal>. Record IDs identify source occurrence, not semantic topic; exact duplicate IDs are rejected.","source_inventory_count":8,"source_inventory":[{"source_key":"hansard-current-parliament-spoken-capture","source_type":"fixed_official_packet","publisher":"UK Parliament Hansard","coverage_from":"2024-07-17","coverage_to":"2026-07-16","fixed_capture_timestamp":"2026-07-21T09:59:35Z","document_sha256":"b2776c11a5a17d9605f56434ec5b13d77e75567a9bf01f851bf48e2f440e6a88","source_occurrence_count":306,"notes":"Accepted pre-existing fixed official corpus. Candidate scan used only literal first-person/collective future forms and explicit first-person position verbs."},{"source_key":"jc-assisted-dying-2024-11-29","title":"Assisted Dying Statement","publisher":"Jeremy Corbyn MP","url":"https://jeremycorbyn.org.uk/assisted-dying-statement/","publication_date":"2024-11-29","captured_text":"I wanted to take the time to explain my opposition to this legislation. I am not satisfied that this legislation provides these safeguards – and that is why I cannot support it. I would welcome an independent review on the existing law and a public consultation on proposals for change.","captured_text_sha256":"2a1ff3f3572155a572ccae59c578927183257b7b48eeeaad72745ab44c75cc9f"},{"source_key":"jc-christmas-newsletter-2024","title":"Christmas Newsletter – 2024","publisher":"Jeremy Corbyn MP","url":"https://jeremycorbyn.org.uk/christmas-newsletter-2024/","publication_date":"2025-01-18","captured_text":"I will continue to speak up for rent controls and for a huge council-house-building program. The Archway Campus development site is a hugely contentious issue, and along with many other constituents I strongly oppose the current proposal, and have made this clear to the Council. I will continue to campaign for wealth taxes so we can invest in a more equal and sustainable future. We will continue to call on our government to end all arms sales to Israel. I will continue to speak up for the rights of Kurdish people, and oppose Israel’s illegal occupation of the Golan Heights.","captured_text_sha256":"4a940ee6141354a7c330e9fbbab37b69911660ef4b1052b4ecb0a14ba23a71ef"},{"source_key":"jc-ofwat-2026-02-03","title":"Ofwat deal statement","publisher":"Jeremy Corbyn MP","url":"https://jeremycorbyn.org.uk/ofwat-deal-statement/","publication_date":"2026-02-03","captured_text":"We need a system that puts the environment and public health first, and that means ending the failed experiment of water privatisation once and for all. I will continue to work toward this aim.","captured_text_sha256":"20b5a619ee6f893f00f1b88cd55c759aa4e92f5b1148359736e7c1884efc7106"},{"source_key":"pj-gaza-ceasefire-2025-01-16","title":"Statement on Gaza ceasefire","publisher":"Peace & Justice Project","url":"https://thecorbynproject.com/news/statement-on-gaza-ceasefire/","publication_date":"2025-01-16","captured_text":"Peace & Justice Project will continue to demand accountability for those responsible for genocide and crimes against humanity in Gaza. We call on the British government to cooperate fully with the International Criminal Courts as they pursue justice against all those who have committed war crimes. We will continue to stand in solidarity with the Palestinian people until they can live in peace, dignity and freedom.","captured_text_sha256":"945666b484a07b5676de7bc3daee6cbfdac1de4e9e3454dcc880d5296092b0df"},{"source_key":"pj-gaza-inquiry-2025-06-02","title":"Jeremy Corbyn announces bill to launch inquiry into British involvement in Gaza genocide","publisher":"Peace & Justice Project","url":"https://thecorbynproject.com/news/jeremy-corbyn-announces-bill-to-launch-inquiry-into-british-involvement-in-gaza-genocide/","publication_date":"2025-06-02","captured_text":"The British government is complicit in one of the greatest crimes of our time. We will not give up until we have justice for the people of Palestine.","captured_text_sha256":"26b3dc7729144b8d2763cd78ad714f28015d492bb853c479c226926a44a7d7d9"},{"source_key":"pj-palestine-action-2025-06-23","title":"Jeremy Corbyn on the proscription of Palestine Action","publisher":"Peace & Justice Project","url":"https://thecorbynproject.com/news/jeremy-corbyn-on-the-proscription-of-palestine-action/","publication_date":"2025-06-23","captured_text":"The government's proposal to proscribe Palestine Action as a terrorist organisation is as absurd as it is authoritarian. We will keep campaigning for an end to military cooperation with Israel, and we will not rest until we have brought about the only path to peace: freedom and justice for the Palestinian people.","captured_text_sha256":"f5da2fc2c73172948f088e34fe464715c238d7ce6d41ab2a08e33023cab68a4f"},{"source_key":"pj-gaza-tribunal-2025-07-17","title":"Jeremy Corbyn announces The Gaza Tribunal","publisher":"Peace & Justice Project","url":"https://thecorbynproject.com/news/jeremy-corbyn-announces-the-gaza-tribunal/","publication_date":"2025-07-17","captured_text":"That is why we are holding The Gaza Tribunal. We will uncover the truth - and we will bring about justice for the Palestinian people.","captured_text_sha256":"ab7cb89bd628767aa80fb7bc12ff457db966e313edc562d2eff99440e4b7fcdf"}],"candidate_method":{"hansard_narrow_candidate_count":93,"first_party_candidate_count":16,"total_candidate_count":109,"hansard_lexical_gate":["\\b(?:I|we)\\s+(?:will|shall|am going to|are going to)\\b","\\b(?:I|we)\\s+(?:support|oppose|welcome|reject|endorse|condemn|urge|call on|believe|do not believe|agree|disagree)\\b"],"review_rule":"Every gated occurrence was reviewed in adjacent sentence context. Procedural futures, hopes, predictions, hypothetical quotations and non-speaker quotations were excluded rather than promoted."},"fixed_results":{"accepted_explicit_personal_commitment_count":8,"accepted_conditional_personal_commitment_count":0,"accepted_collective_commitment_count":8,"accepted_public_position_count":32,"accepted_total_count":48,"unresolved_statement_form_count":19,"excluded_candidate_count":42,"duplicate_record_id_count":0},"accepted_records":[],"unresolved_candidates":[],"excluded_candidates":[],"interpretation_boundary":{"conduct_comparison_performed":false,"delivery_or_broken_promise_verdicts_created":false,"topic_or_ideology_classification_created":false,"contradiction_analysis_created":false,"fixture_modified":false,"publication_authorised":false},"capture_sha256":"fc5651b9f5647bcbfee822121f3188b0438fc826ad604351d044a8144e3df3db"}
+{
+  "capture_id": "corbyn-current-parliament-commitments-public-positions-candidate-capture-v1",
+  "subject": {
+    "name": "Jeremy Corbyn",
+    "uk_parliament_member_id": 185
+  },
+  "authority_merge": "4964c6b00f91c08ef9e06b5150455eaea18e8e47",
+  "capture_timestamp_utc": "2026-07-21T13:29:25Z",
+  "date_boundary": {
+    "authorised_from": "2024-07-04",
+    "authorised_to": "2026-07-21",
+    "earliest_accepted_statement_date": "2024-07-18",
+    "latest_accepted_statement_date": "2026-07-16"
+  },
+  "stable_record_id_method": "Hansard: statement-hansard-<lowercase ContributionExtId>-s<zero-padded sentence index>-o001. First-party pages: statement-<fixed source key>-o<zero-padded occurrence ordinal>. Record IDs identify source occurrence, not semantic topic; exact duplicate IDs are rejected.",
+  "source_inventory_count": 8,
+  "source_inventory": [
+    {
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_type": "fixed_official_packet",
+      "publisher": "UK Parliament Hansard",
+      "coverage_from": "2024-07-17",
+      "coverage_to": "2026-07-16",
+      "fixed_capture_timestamp": "2026-07-21T09:59:35Z",
+      "document_sha256": "b2776c11a5a17d9605f56434ec5b13d77e75567a9bf01f851bf48e2f440e6a88",
+      "source_occurrence_count": 306,
+      "notes": "Accepted pre-existing fixed official corpus. Candidate scan used only literal first-person/collective future forms and explicit first-person position verbs."
+    },
+    {
+      "source_key": "jc-assisted-dying-2024-11-29",
+      "title": "Assisted Dying Statement",
+      "publisher": "Jeremy Corbyn MP",
+      "url": "https://jeremycorbyn.org.uk/assisted-dying-statement/",
+      "publication_date": "2024-11-29",
+      "captured_text": "I wanted to take the time to explain my opposition to this legislation. I am not satisfied that this legislation provides these safeguards – and that is why I cannot support it. I would welcome an independent review on the existing law and a public consultation on proposals for change.",
+      "captured_text_sha256": "f2db81638cd9d04ea5d3527be4d7e9645b6a303469620807b2c6a83185d3a3c6"
+    },
+    {
+      "source_key": "jc-christmas-newsletter-2024",
+      "title": "Christmas Newsletter – 2024",
+      "publisher": "Jeremy Corbyn MP",
+      "url": "https://jeremycorbyn.org.uk/christmas-newsletter-2024/",
+      "publication_date": "2025-01-18",
+      "captured_text": "I will continue to speak up for rent controls and for a huge council-house-building program. The Archway Campus development site is a hugely contentious issue, and along with many other constituents I strongly oppose the current proposal, and have made this clear to the Council. I will continue to campaign for wealth taxes so we can invest in a more equal and sustainable future. We will continue to call on our government to end all arms sales to Israel. I will continue to speak up for the rights of Kurdish people, and oppose Israel’s illegal occupation of the Golan Heights.",
+      "captured_text_sha256": "9f96b6803a7c438e1a443d61617886c3e27f0c8c346c5384957ab072cb03d78e"
+    },
+    {
+      "source_key": "jc-ofwat-2026-02-03",
+      "title": "Ofwat deal statement",
+      "publisher": "Jeremy Corbyn MP",
+      "url": "https://jeremycorbyn.org.uk/ofwat-deal-statement/",
+      "publication_date": "2026-02-03",
+      "captured_text": "We need a system that puts the environment and public health first, and that means ending the failed experiment of water privatisation once and for all. I will continue to work toward this aim.",
+      "captured_text_sha256": "05172c30cf2c0a3553e9d9fccc0a8a38259bb235f334c558ff47c047c431bc06"
+    },
+    {
+      "source_key": "pj-gaza-ceasefire-2025-01-16",
+      "title": "Statement on Gaza ceasefire",
+      "publisher": "Peace & Justice Project",
+      "url": "https://thecorbynproject.com/news/statement-on-gaza-ceasefire/",
+      "publication_date": "2025-01-16",
+      "captured_text": "Peace & Justice Project will continue to demand accountability for those responsible for genocide and crimes against humanity in Gaza. We call on the British government to cooperate fully with the International Criminal Courts as they pursue justice against all those who have committed war crimes. We will continue to stand in solidarity with the Palestinian people until they can live in peace, dignity and freedom.",
+      "captured_text_sha256": "995a87c67d51bc0a440af0afd167195ad4b0edc38366245eadfdb559affa0ab3"
+    },
+    {
+      "source_key": "pj-gaza-inquiry-2025-06-02",
+      "title": "Jeremy Corbyn announces bill to launch inquiry into British involvement in Gaza genocide",
+      "publisher": "Peace & Justice Project",
+      "url": "https://thecorbynproject.com/news/jeremy-corbyn-announces-bill-to-launch-inquiry-into-british-involvement-in-gaza-genocide/",
+      "publication_date": "2025-06-02",
+      "captured_text": "The British government is complicit in one of the greatest crimes of our time. We will not give up until we have justice for the people of Palestine.",
+      "captured_text_sha256": "bf4b0628c10836447b3cdbbc49c52da093f995fa333c35d828c8b91e770e9605"
+    },
+    {
+      "source_key": "pj-palestine-action-2025-06-23",
+      "title": "Jeremy Corbyn on the proscription of Palestine Action",
+      "publisher": "Peace & Justice Project",
+      "url": "https://thecorbynproject.com/news/jeremy-corbyn-on-the-proscription-of-palestine-action/",
+      "publication_date": "2025-06-23",
+      "captured_text": "The government's proposal to proscribe Palestine Action as a terrorist organisation is as absurd as it is authoritarian. We will keep campaigning for an end to military cooperation with Israel, and we will not rest until we have brought about the only path to peace: freedom and justice for the Palestinian people.",
+      "captured_text_sha256": "036c73784cb504d44360259cb49a077177411cf57b71eee5159643548421752f"
+    },
+    {
+      "source_key": "pj-gaza-tribunal-2025-07-17",
+      "title": "Jeremy Corbyn announces The Gaza Tribunal",
+      "publisher": "Peace & Justice Project",
+      "url": "https://thecorbynproject.com/news/jeremy-corbyn-announces-the-gaza-tribunal/",
+      "publication_date": "2025-07-17",
+      "captured_text": "That is why we are holding The Gaza Tribunal. We will uncover the truth - and we will bring about justice for the Palestinian people.",
+      "captured_text_sha256": "c615b471b028ca33c6a35c5b807016830bc47b5e46ed644fc0ebc8a29a46eaba"
+    }
+  ],
+  "candidate_method": {
+    "hansard_narrow_candidate_count": 93,
+    "first_party_candidate_count": 16,
+    "total_candidate_count": 109,
+    "hansard_lexical_gate": [
+      "\\b(?:I|we)\\s+(?:will|shall|am going to|are going to)\\b",
+      "\\b(?:I|we)\\s+(?:support|oppose|welcome|reject|endorse|condemn|urge|call on|believe|do not believe|agree|disagree)\\b"
+    ],
+    "review_rule": "Every gated occurrence was reviewed in adjacent sentence context. Procedural futures, hopes, predictions, hypothetical quotations and non-speaker quotations were excluded rather than promoted."
+  },
+  "fixed_results": {
+    "accepted_explicit_personal_commitment_count": 8,
+    "accepted_conditional_personal_commitment_count": 0,
+    "accepted_collective_commitment_count": 8,
+    "accepted_public_position_count": 32,
+    "accepted_total_count": 48,
+    "unresolved_statement_form_count": 19,
+    "excluded_candidate_count": 42,
+    "duplicate_record_id_count": 0
+  },
+  "accepted_records": [
+    {
+      "record_id": "statement-hansard-4c38d03c-020c-434b-9278-19ac1060fb86-s002-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "4C38D03C-020C-434B-9278-19AC1060FB86",
+      "statement_date": "2024-07-18",
+      "quotation": "I agree with her call for an immediate ceasefire.",
+      "surrounding_context": "Member on a powerful speech. I agree with her call for an immediate ceasefire. Does she believe that we should also halt arms supplies to Israel, which are being used to bomb Gaza and make us and the United States complicit in the killing of so many people in Gaza?",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-2d2abaa1-9653-4e90-812e-878babd2e646-s048-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "2D2ABAA1-9653-4E90-812E-878BABD2E646",
+      "statement_date": "2024-09-11",
+      "quotation": "I welcome much of what I have read, but unless the Bill addresses the fundamental issue of the cost of private renting, instead of leaving it to the market to set the cost, areas like mine will suffer from social cleansing for a long time to come.",
+      "surrounding_context": "I have been leafing through the Renters’ Rights Bill just produced by the Secretary of State. I welcome much of what I have read, but unless the Bill addresses the fundamental issue of the cost of private renting, instead of leaving it to the market to set the cost, areas like mine will suffer from social cleansing for a long time to come. Working-class families will be moved out because they simply cannot afford to stay.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-0fb385ec-da94-4d7f-a492-c444c0cf75ec-s000-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "0FB385EC-DA94-4D7F-A492-C444C0CF75EC",
+      "statement_date": "2024-10-09",
+      "quotation": "I welcome most of what is in this Bill.",
+      "surrounding_context": "I welcome most of what is in this Bill. A third of my constituents live in the private rented sector.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-fef8e5f5-fb5e-4ec8-9f3a-e8e4f667322d-s006-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "FEF8E5F5-FB5E-4EC8-9F3A-E8E4F667322D",
+      "statement_date": "2024-10-09",
+      "quotation": "I welcome the Bill.",
+      "surrounding_context": "I pay tribute to the many organisations in my area that do a huge amount of work to try to alleviate the problems of homelessness, including Streets Kitchen, the Single Homeless Project, Shelter from the Storm, and Acorn, which represents private sector tenants. I welcome the Bill. Much of it is very good.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-fef8e5f5-fb5e-4ec8-9f3a-e8e4f667322d-s019-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "FEF8E5F5-FB5E-4EC8-9F3A-E8E4F667322D",
+      "statement_date": "2024-10-09",
+      "quotation": "I welcome the Bill, because ending no-fault eviction and providing security of tenure is a huge step forward.",
+      "surrounding_context": "I made this point in my intervention during the Secretary of State’s opening speech. I welcome the Bill, because ending no-fault eviction and providing security of tenure is a huge step forward. Providing for some predictability when it comes to getting repairs done and rights of representation is good, and the role of local government in these measures is also good.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-4a6f3ba4-fb06-4c91-b396-26ac586dab3e-s000-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "4A6F3BA4-FB06-4C91-B396-26AC586DAB3E",
+      "statement_date": "2024-11-04",
+      "quotation": "I welcome the Secretary of State’s announcement that\r\n\r\n“universities must be home to robust discussion and rigorous challenge”.",
+      "surrounding_context": "I welcome the Secretary of State’s announcement that\r\n\r\n“universities must be home to robust discussion and rigorous challenge”. That is very welcome, but she must be aware that many students are put off going to university by the already very high fees.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-5763c6a3-e638-46ae-aa38-563ad13d52b6-s000-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "5763C6A3-E638-46AE-AA38-563AD13D52B6",
+      "statement_date": "2024-11-13",
+      "quotation": "I welcome the Minister’s statement and his assertion that the Post Office is a central part of our community.",
+      "surrounding_context": "I welcome the Minister’s statement and his assertion that the Post Office is a central part of our community. The previous administration of the Post Office seemed to glory in selling off Crown post offices and reducing the service for all of us.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-6e63774d-0f85-4946-8b56-b3de9815f9cf-s021-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "6E63774D-0F85-4946-8B56-B3DE9815F9CF",
+      "statement_date": "2024-12-19",
+      "quotation": "I welcome it, as far as it goes, but we need to have a further, deeper think about housing as a right and as something that people need, and not the exorbitant costs at present.",
+      "surrounding_context": "I appreciate what the Government have brought forward in the Renters’ Rights Bill. I welcome it, as far as it goes, but we need to have a further, deeper think about housing as a right and as something that people need, and not the exorbitant costs at present. With that, I wish you a very happy Christmas, Madam Deputy Speaker.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-a7fc3424-a318-4226-8a3f-a4a65201c61f-s000-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "A7FC3424-A318-4226-8A3F-A4A65201C61F",
+      "statement_date": "2024-12-19",
+      "quotation": "I welcome the Minister’s involvement and preparedness to work with the new Syrian Government, and we hope that that will deliver a future free from war and free from human rights abuse.",
+      "surrounding_context": "I welcome the Minister’s involvement and preparedness to work with the new Syrian Government, and we hope that that will deliver a future free from war and free from human rights abuse. However, the new Government are faced with a country awash with weapons and armed forces from Russia, Turkey, the USA, Israel and ISIS active in the country.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-89c76d9a-ca10-47f4-b932-2b0a146e77d7-s002-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "89C76D9A-CA10-47F4-B932-2B0A146E77D7",
+      "statement_date": "2025-01-14",
+      "quotation": "She has done a very good job on that and I welcome Government new clause 15.",
+      "surrounding_context": "Member for Dulwich and West Norwood (Helen Hayes), and I pay tribute to her for the work she has done in trying to alleviate the pain caused when someone dies and all the demands then descend unexpectedly on those who were rent guarantors. She has done a very good job on that and I welcome Government new clause 15. My constituency, like other constituencies in London and most of our big cities, has a huge number of people living in the private rented sector, with probably more than one-third of the electorate living in private rented accommodation.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-89c76d9a-ca10-47f4-b932-2b0a146e77d7-s016-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "89C76D9A-CA10-47F4-B932-2B0A146E77D7",
+      "statement_date": "2025-01-14",
+      "quotation": "I urge the Minister to consider any kind of urgent action and advice he can give to protect existing tenants in the run-up to the introduction of this legislation.",
+      "surrounding_context": "I realise that the Bill is not yet law and has to go through the House of Lords, and I am not clear what date it will be finally enacted; I just hope it is soon. I urge the Minister to consider any kind of urgent action and advice he can give to protect existing tenants in the run-up to the introduction of this legislation. I pay tribute to the hon.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-89c76d9a-ca10-47f4-b932-2b0a146e77d7-s019-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "89C76D9A-CA10-47F4-B932-2B0A146E77D7",
+      "statement_date": "2025-01-14",
+      "quotation": "While there is much in the Bill that I welcome, it is sadly a bit of a missed opportunity.",
+      "surrounding_context": "Member for Liverpool Wavertree (Paula Barker) for the amendment she has tabled on rent levels. While there is much in the Bill that I welcome, it is sadly a bit of a missed opportunity. Although it restricts the ability of landlords to raise rents in the future, it does not protect those rents being at a reasonable level.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-b2e0b71f-d7f6-4f66-b353-bf896ec6cdd1-s001-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "B2E0B71F-D7F6-4F66-B353-BF896EC6CDD1",
+      "statement_date": "2025-01-29",
+      "quotation": "My concern about the proposal before us is that it recognises an overspend on the welfare cap—I support the idea that we should be allowed to overshoot the cap—but hardwires decisions on welfare spending for the next five years.",
+      "surrounding_context": "I am pleased we are having this debate, although I am sorry that it is relatively short. My concern about the proposal before us is that it recognises an overspend on the welfare cap—I support the idea that we should be allowed to overshoot the cap—but hardwires decisions on welfare spending for the next five years. It therefore restricts any future changes to any element of welfare spending.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-b2e0b71f-d7f6-4f66-b353-bf896ec6cdd1-s029-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "B2E0B71F-D7F6-4F66-B353-BF896EC6CDD1",
+      "statement_date": "2025-01-29",
+      "quotation": "I support the Elizabeth line—it is a wonderful thing—but it was way over budget, like plenty of other projects.",
+      "surrounding_context": "In an intervention in the earlier debate, I pointed out to the Chief Secretary to the Treasury that huge infrastructure projects had gone massively over budget and had been financed. I support the Elizabeth line—it is a wonderful thing—but it was way over budget, like plenty of other projects. There seems to be one approach to investment in major infrastructure projects that run way over budget, and another when it comes to a welfare budget: anything that might go over will be prevented from going over by the Treasury.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-821d2696-7cff-4a1b-b25b-5f7a76a0c8eb-s010-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "821D2696-7CFF-4A1B-B25B-5F7A76A0C8EB",
+      "statement_date": "2025-03-18",
+      "quotation": "In a statement in the Chamber yesterday, in response to the G7 summit that the Foreign Secretary had attended, I asked a specific question about international law and the war crimes that I believe Israel has committed.",
+      "surrounding_context": "We have to be quite clear about that. In a statement in the Chamber yesterday, in response to the G7 summit that the Foreign Secretary had attended, I asked a specific question about international law and the war crimes that I believe Israel has committed. He, it seemed to me, conceded that Israel was in breach of international law.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-b2a9684b-3834-4a18-9255-2e93e8b5c1fe-s005-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "B2A9684B-3834-4A18-9255-2E93E8B5C1FE",
+      "statement_date": "2025-03-18",
+      "quotation": "I believe the Hague declaration is an important step forward.",
+      "surrounding_context": "I was also at The Hague for the launch of the Hague declaration by a number of nations that have dedicated themselves to pursue support for the ICJ and ICC decisions diplomatically, and recognise that Israel is in breach of the fourth Geneva convention on the obligations on occupying powers in countries, which applies to Israel in Gaza and the west bank. I believe the Hague declaration is an important step forward. I would be grateful if the Minister would answer some specific points.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-76ce4e30-7007-44ae-8e79-e8d6de27ac08-s007-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "76CE4E30-7007-44AE-8E79-E8D6DE27AC08",
+      "statement_date": "2025-04-02",
+      "quotation": "It is an utterly desperate situation, yet I believe we are still allowing RAF Akrotiri to be used as a staging point for Israel and still supplying parts for F-35 jets, which are bombing the people of Gaza and bombing the rubble there.",
+      "surrounding_context": "No hospitals are fully functioning. It is an utterly desperate situation, yet I believe we are still allowing RAF Akrotiri to be used as a staging point for Israel and still supplying parts for F-35 jets, which are bombing the people of Gaza and bombing the rubble there. What are the Government doing to ensure that Israel stops the bombing and that food aid gets through very, very urgently for the people of Gaza, merely to help them survive?",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-d776490e-69e5-4620-b6aa-96335a254493-s052-o001",
+      "record_class": "collective_commitment",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "D776490E-69E5-4620-B6AA-96335A254493",
+      "statement_date": "2025-06-04",
+      "quotation": "We will continue our campaigns in the House and outside because we are appalled at what is happening.",
+      "surrounding_context": "Our future history books will report with shame those who had the opportunity to stop the carnage but failed to act to achieve it. We will continue our campaigns in the House and outside because we are appalled at what is happening. Our demonstrations and the huge demonstrations in this country and all around the world are made up of people of all ages and all faiths, and actually quite a wide range of political opinion.",
+      "actor": "collective_we",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-d776490e-69e5-4620-b6aa-96335a254493-s055-o001",
+      "record_class": "collective_commitment",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "D776490E-69E5-4620-B6AA-96335A254493",
+      "statement_date": "2025-06-04",
+      "quotation": "We will continue to campaign for truth, for accountability and, most importantly, for peace and justice for the Palestinian people, who have been denied all that for far too long.",
+      "surrounding_context": "They are united with the simple human request that we stop the bombing and save lives, and we will do that by no longer supplying weapons. We will continue to campaign for truth, for accountability and, most importantly, for peace and justice for the Palestinian people, who have been denied all that for far too long. If the Bill is agreed to—I hope that it will be—this will be a step forward in opening up the murky history of what has gone on, with murky arms sales and complicity in appalling acts of genocide.",
+      "actor": "collective_we",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-2e727e38-1bc4-4178-9927-614039aa40c2-s000-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "2E727E38-1BC4-4178-9927-614039AA40C2",
+      "statement_date": "2025-06-10",
+      "quotation": "I welcome the sanctions that have been announced on these two individuals, but I believe that they should go further.",
+      "surrounding_context": "I welcome the sanctions that have been announced on these two individuals, but I believe that they should go further. The Minister said in his statement that no arms are now going to Israel, but he was unclear about the component parts for F-35 jets, which are still in the global supply chain and presumably could be bought by Israel, and he was silent on the use of RAF Akrotiri and the flights that overfly Gaza.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-0851b92f-0f7d-46e4-9acd-120c670f85db-s005-o001",
+      "record_class": "explicit_personal_commitment",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "0851B92F-0F7D-46E4-9ACD-120C670F85DB",
+      "statement_date": "2025-06-13",
+      "quotation": "I will take your advice, of course, and take this up with the Clerks, because our being held to a different standard would be a very bad thing.",
+      "surrounding_context": "I think that would be a very bad step indeed. I will take your advice, of course, and take this up with the Clerks, because our being held to a different standard would be a very bad thing. We all have to have the right to take part in public protest about human rights abuse, about war, about peace and about anything else.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-822d40ef-8c57-4c81-b7cb-cce612c0b028-s001-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "822D40EF-8C57-4C81-B7CB-CCE612C0B028",
+      "statement_date": "2025-10-22",
+      "quotation": "I welcome the Bill, although it has deficiencies, because it does not regulate the amount of rent that is charged.",
+      "surrounding_context": "I will be brief, because this is a time-limited debate. I welcome the Bill, although it has deficiencies, because it does not regulate the amount of rent that is charged. In my constituency, a two-bedroom flat in the private rented sector goes for about £2,000 a month, which is way above what most people can afford.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-f3a7e66d-f03f-416f-9a02-a89bd55013cc-s000-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "F3A7E66D-F03F-416F-9A02-A89BD55013CC",
+      "statement_date": "2025-11-17",
+      "quotation": "I welcome and support the Bill, which is an important step forward.",
+      "surrounding_context": "I welcome and support the Bill, which is an important step forward. It is a shame that it was not passed before the election so that it could have been dealt with in the wash-up of the previous Parliament.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-10cc762a-b678-4333-8088-c2f2d592f243-s017-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "10CC762A-B678-4333-8088-C2F2D592F243",
+      "statement_date": "2025-11-24",
+      "quotation": "If we believe in international law, as this Parliament and Britain always claim—we helped to write the European convention on human rights and the United Nations universal declaration of human rights—we must stand by it and ensure that the Israeli Government are taken to task for their breaches of human rights around the world.",
+      "surrounding_context": "We need to understand the importance of international law. If we believe in international law, as this Parliament and Britain always claim—we helped to write the European convention on human rights and the United Nations universal declaration of human rights—we must stand by it and ensure that the Israeli Government are taken to task for their breaches of human rights around the world.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-4e4b46de-780d-4a78-9735-791856e25739-s003-o001",
+      "record_class": "explicit_personal_commitment",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "4E4B46DE-780D-4A78-9735-791856E25739",
+      "statement_date": "2025-11-24",
+      "quotation": "I have been on all 36 of them; I have spoken at every single one and I will continue to do that.",
+      "surrounding_context": "The support for Gaza has been incredible, despite the denunciations of all the national demonstrations, which were called “hate marches” by the then Home Secretary. I have been on all 36 of them; I have spoken at every single one and I will continue to do that. I also recognise that all over the country, small and medium-sized demonstrations are being held in often very small communities.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-96840f2d-fb1e-4df8-9efb-a4d365471e3a-s005-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "96840F2D-FB1E-4DF8-9EFB-A4D365471E3A",
+      "statement_date": "2025-12-11",
+      "quotation": "Even though I welcome the end of section 21 evictions, they are still going on and will do so until May.",
+      "surrounding_context": "The second issue is related to the private rented sector. Even though I welcome the end of section 21 evictions, they are still going on and will do so until May. Hundreds—actually, thousands—across the country have been evicted through that process.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-db77c759-447e-45df-928d-17249bb4abd9-s012-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "DB77C759-447E-45DF-928D-17249BB4ABD9",
+      "statement_date": "2025-12-18",
+      "quotation": "I urge Members to think for a moment about how desperate a situation someone must be in to have no alternative but to take hunger strike action to bring attention to it.",
+      "surrounding_context": "The media in general has not reported on this, despite the drama surrounding it and the importance of the issue. I urge Members to think for a moment about how desperate a situation someone must be in to have no alternative but to take hunger strike action to bring attention to it. I hope that the Government will hear this call.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-e8274bff-163d-4766-b9ca-505c09995115-s009-o001",
+      "record_class": "explicit_personal_commitment",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "E8274BFF-163D-4766-B9CA-505C09995115",
+      "statement_date": "2025-12-18",
+      "quotation": "I am very well aware of the sub judice nature of this matter, and I will not stray into issues of the trial itself or of their guilt or otherwise.",
+      "surrounding_context": "Some of them have been in prison for a very long time and have at least a year to go until their trial may or may not be heard. I am very well aware of the sub judice nature of this matter, and I will not stray into issues of the trial itself or of their guilt or otherwise. My contribution solely concerns their conditions in prison and the operation of the prison rules—a matter that I have raised several times in the House.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-616fe001-376a-4368-a799-23371ff7546a-s013-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "616FE001-376A-4368-A799-23371FF7546A",
+      "statement_date": "2026-02-04",
+      "quotation": "If we believe in an independent civil service, we must practise what we believe, even though it is probably quite uncomfortable for Ministers at various times.",
+      "surrounding_context": "That is fair enough, but they should not be running the civil service. If we believe in an independent civil service, we must practise what we believe, even though it is probably quite uncomfortable for Ministers at various times. I conclude by saying to the Government: do not come to some deal today just to get past today.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-86527a02-de05-4d5c-9b74-26e743835777-s011-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "86527A02-DE05-4D5C-9B74-26E743835777",
+      "statement_date": "2026-04-16",
+      "quotation": "I support the Renters’ Rights Act 2025—it is a big step forward, because it gives more security and power to the tenant vis-à-vis the landlord.",
+      "surrounding_context": "First, we could increase the levels of control over the private rented sector, something I have raised before with the Minister. I support the Renters’ Rights Act 2025—it is a big step forward, because it gives more security and power to the tenant vis-à-vis the landlord. However—and this is the big problem, particularly for London, the south-east and every other big city—the lack of rent control means that places become increasingly unaffordable, forcing young people out of these areas altogether.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-906789dd-6a7e-4fa8-a02a-019a3438cb1e-s007-o001",
+      "record_class": "public_position",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "906789DD-6A7E-4FA8-A02A-019A3438CB1E",
+      "statement_date": "2026-05-13",
+      "quotation": "I welcome the development of Great British Railways and the public ownership of the rail companies, particularly the train operating companies and the infrastructure.",
+      "surrounding_context": "There are other areas of public ownership. I welcome the development of Great British Railways and the public ownership of the rail companies, particularly the train operating companies and the infrastructure. However, there is no public ownership of freight, and the retention of the principle of open access to our service is, to me, a sort of Trojan horse to bring the private sector back on to the railway network.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-hansard-74cca2f1-4f0f-4f65-8974-686d8a2bfa58-s026-o001",
+      "record_class": "explicit_personal_commitment",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "74CCA2F1-4F0F-4F65-8974-686D8A2BFA58",
+      "statement_date": "2026-07-16",
+      "quotation": "I appeal to the Home Office—I am sure the Leader of the House will pass this on, and I will follow up with another letter: please show some humanity for this man towards the end of his life, and let him at least have the opportunity to see the rest of his family before he passes on from a most terrible condition.",
+      "surrounding_context": "It has consistently refused to allow him to be visited by his son or any other member of his family. I appeal to the Home Office—I am sure the Leader of the House will pass this on, and I will follow up with another letter: please show some humanity for this man towards the end of his life, and let him at least have the opportunity to see the rest of his family before he passes on from a most terrible condition. The shop Fish & Cook on Blackstock Road is closing.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-jc-assisted-dying-2024-11-29-o001",
+      "record_class": "public_position",
+      "source_key": "jc-assisted-dying-2024-11-29",
+      "source_occurrence_id": null,
+      "statement_date": "2024-11-29",
+      "quotation": "I am not satisfied that this legislation provides these safeguards – and that is why I cannot support it.",
+      "surrounding_context": "I wanted to take the time to explain my opposition to this legislation. I am not satisfied that this legislation provides these safeguards – and that is why I cannot support it. I would welcome an independent review on the existing law and a public consultation on proposals for change.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-jc-assisted-dying-2024-11-29-o002",
+      "record_class": "public_position",
+      "source_key": "jc-assisted-dying-2024-11-29",
+      "source_occurrence_id": null,
+      "statement_date": "2024-11-29",
+      "quotation": "I would welcome an independent review on the existing law and a public consultation on proposals for change.",
+      "surrounding_context": "I wanted to take the time to explain my opposition to this legislation. I am not satisfied that this legislation provides these safeguards – and that is why I cannot support it. I would welcome an independent review on the existing law and a public consultation on proposals for change.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-jc-christmas-newsletter-2024-o001",
+      "record_class": "explicit_personal_commitment",
+      "source_key": "jc-christmas-newsletter-2024",
+      "source_occurrence_id": null,
+      "statement_date": "2025-01-18",
+      "quotation": "I will continue to speak up for rent controls and for a huge council-house-building program.",
+      "surrounding_context": "I will continue to speak up for rent controls and for a huge council-house-building program. The Archway Campus development site is a hugely contentious issue, and along with many other constituents I strongly oppose the current proposal, and have made this clear to the Council. I will continue to campaign for wealth taxes so we can invest in a more equal and sustainable future. We will continue to call on our government to end all arms sales to Israel. I will continue to speak up for the rights of Kurdish people, and oppose Israel’s illegal occupation of the Golan Heights.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-jc-christmas-newsletter-2024-o002",
+      "record_class": "public_position",
+      "source_key": "jc-christmas-newsletter-2024",
+      "source_occurrence_id": null,
+      "statement_date": "2025-01-18",
+      "quotation": "I strongly oppose the current proposal, and have made this clear to the Council.",
+      "surrounding_context": "I will continue to speak up for rent controls and for a huge council-house-building program. The Archway Campus development site is a hugely contentious issue, and along with many other constituents I strongly oppose the current proposal, and have made this clear to the Council. I will continue to campaign for wealth taxes so we can invest in a more equal and sustainable future. We will continue to call on our government to end all arms sales to Israel. I will continue to speak up for the rights of Kurdish people, and oppose Israel’s illegal occupation of the Golan Heights.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-jc-christmas-newsletter-2024-o003",
+      "record_class": "explicit_personal_commitment",
+      "source_key": "jc-christmas-newsletter-2024",
+      "source_occurrence_id": null,
+      "statement_date": "2025-01-18",
+      "quotation": "I will continue to campaign for wealth taxes so we can invest in a more equal and sustainable future.",
+      "surrounding_context": "I will continue to speak up for rent controls and for a huge council-house-building program. The Archway Campus development site is a hugely contentious issue, and along with many other constituents I strongly oppose the current proposal, and have made this clear to the Council. I will continue to campaign for wealth taxes so we can invest in a more equal and sustainable future. We will continue to call on our government to end all arms sales to Israel. I will continue to speak up for the rights of Kurdish people, and oppose Israel’s illegal occupation of the Golan Heights.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-jc-christmas-newsletter-2024-o004",
+      "record_class": "collective_commitment",
+      "source_key": "jc-christmas-newsletter-2024",
+      "source_occurrence_id": null,
+      "statement_date": "2025-01-18",
+      "quotation": "We will continue to call on our government to end all arms sales to Israel.",
+      "surrounding_context": "I will continue to speak up for rent controls and for a huge council-house-building program. The Archway Campus development site is a hugely contentious issue, and along with many other constituents I strongly oppose the current proposal, and have made this clear to the Council. I will continue to campaign for wealth taxes so we can invest in a more equal and sustainable future. We will continue to call on our government to end all arms sales to Israel. I will continue to speak up for the rights of Kurdish people, and oppose Israel’s illegal occupation of the Golan Heights.",
+      "actor": "collective_we",
+      "collective_issuer": "Jeremy Corbyn MP",
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-jc-christmas-newsletter-2024-o005",
+      "record_class": "explicit_personal_commitment",
+      "source_key": "jc-christmas-newsletter-2024",
+      "source_occurrence_id": null,
+      "statement_date": "2025-01-18",
+      "quotation": "I will continue to speak up for the rights of Kurdish people, and oppose Israel’s illegal occupation of the Golan Heights.",
+      "surrounding_context": "I will continue to speak up for rent controls and for a huge council-house-building program. The Archway Campus development site is a hugely contentious issue, and along with many other constituents I strongly oppose the current proposal, and have made this clear to the Council. I will continue to campaign for wealth taxes so we can invest in a more equal and sustainable future. We will continue to call on our government to end all arms sales to Israel. I will continue to speak up for the rights of Kurdish people, and oppose Israel’s illegal occupation of the Golan Heights.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-jc-ofwat-2026-02-03-o001",
+      "record_class": "public_position",
+      "source_key": "jc-ofwat-2026-02-03",
+      "source_occurrence_id": null,
+      "statement_date": "2026-02-03",
+      "quotation": "We need a system that puts the environment and public health first, and that means ending the failed experiment of water privatisation once and for all.",
+      "surrounding_context": "We need a system that puts the environment and public health first, and that means ending the failed experiment of water privatisation once and for all. I will continue to work toward this aim.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-jc-ofwat-2026-02-03-o002",
+      "record_class": "explicit_personal_commitment",
+      "source_key": "jc-ofwat-2026-02-03",
+      "source_occurrence_id": null,
+      "statement_date": "2026-02-03",
+      "quotation": "I will continue to work toward this aim.",
+      "surrounding_context": "We need a system that puts the environment and public health first, and that means ending the failed experiment of water privatisation once and for all. I will continue to work toward this aim.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-pj-gaza-ceasefire-2025-01-16-o001",
+      "record_class": "collective_commitment",
+      "source_key": "pj-gaza-ceasefire-2025-01-16",
+      "source_occurrence_id": null,
+      "statement_date": "2025-01-16",
+      "quotation": "Peace & Justice Project will continue to demand accountability for those responsible for genocide and crimes against humanity in Gaza.",
+      "surrounding_context": "Peace & Justice Project will continue to demand accountability for those responsible for genocide and crimes against humanity in Gaza. We call on the British government to cooperate fully with the International Criminal Courts as they pursue justice against all those who have committed war crimes. We will continue to stand in solidarity with the Palestinian people until they can live in peace, dignity and freedom.",
+      "actor": "collective_we",
+      "collective_issuer": "Peace & Justice Project",
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-pj-gaza-ceasefire-2025-01-16-o002",
+      "record_class": "public_position",
+      "source_key": "pj-gaza-ceasefire-2025-01-16",
+      "source_occurrence_id": null,
+      "statement_date": "2025-01-16",
+      "quotation": "We call on the British government to cooperate fully with the International Criminal Courts as they pursue justice against all those who have committed war crimes.",
+      "surrounding_context": "Peace & Justice Project will continue to demand accountability for those responsible for genocide and crimes against humanity in Gaza. We call on the British government to cooperate fully with the International Criminal Courts as they pursue justice against all those who have committed war crimes. We will continue to stand in solidarity with the Palestinian people until they can live in peace, dignity and freedom.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-pj-gaza-ceasefire-2025-01-16-o003",
+      "record_class": "collective_commitment",
+      "source_key": "pj-gaza-ceasefire-2025-01-16",
+      "source_occurrence_id": null,
+      "statement_date": "2025-01-16",
+      "quotation": "We will continue to stand in solidarity with the Palestinian people until they can live in peace, dignity and freedom.",
+      "surrounding_context": "Peace & Justice Project will continue to demand accountability for those responsible for genocide and crimes against humanity in Gaza. We call on the British government to cooperate fully with the International Criminal Courts as they pursue justice against all those who have committed war crimes. We will continue to stand in solidarity with the Palestinian people until they can live in peace, dignity and freedom.",
+      "actor": "collective_we",
+      "collective_issuer": "Peace & Justice Project",
+      "explicit_condition": "until they can live in peace, dignity and freedom",
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-pj-gaza-inquiry-2025-06-02-o001",
+      "record_class": "collective_commitment",
+      "source_key": "pj-gaza-inquiry-2025-06-02",
+      "source_occurrence_id": null,
+      "statement_date": "2025-06-02",
+      "quotation": "We will not give up until we have justice for the people of Palestine.",
+      "surrounding_context": "The British government is complicit in one of the greatest crimes of our time. We will not give up until we have justice for the people of Palestine.",
+      "actor": "collective_we",
+      "collective_issuer": "Peace & Justice Project",
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-pj-palestine-action-2025-06-23-o001",
+      "record_class": "public_position",
+      "source_key": "pj-palestine-action-2025-06-23",
+      "source_occurrence_id": null,
+      "statement_date": "2025-06-23",
+      "quotation": "The government's proposal to proscribe Palestine Action as a terrorist organisation is as absurd as it is authoritarian.",
+      "surrounding_context": "The government's proposal to proscribe Palestine Action as a terrorist organisation is as absurd as it is authoritarian. We will keep campaigning for an end to military cooperation with Israel, and we will not rest until we have brought about the only path to peace: freedom and justice for the Palestinian people.",
+      "actor": "Jeremy Corbyn",
+      "collective_issuer": null,
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-pj-palestine-action-2025-06-23-o002",
+      "record_class": "collective_commitment",
+      "source_key": "pj-palestine-action-2025-06-23",
+      "source_occurrence_id": null,
+      "statement_date": "2025-06-23",
+      "quotation": "We will keep campaigning for an end to military cooperation with Israel, and we will not rest until we have brought about the only path to peace: freedom and justice for the Palestinian people.",
+      "surrounding_context": "The government's proposal to proscribe Palestine Action as a terrorist organisation is as absurd as it is authoritarian. We will keep campaigning for an end to military cooperation with Israel, and we will not rest until we have brought about the only path to peace: freedom and justice for the Palestinian people.",
+      "actor": "collective_we",
+      "collective_issuer": "Peace & Justice Project",
+      "explicit_condition": null,
+      "explicit_deadline": null
+    },
+    {
+      "record_id": "statement-pj-gaza-tribunal-2025-07-17-o001",
+      "record_class": "collective_commitment",
+      "source_key": "pj-gaza-tribunal-2025-07-17",
+      "source_occurrence_id": null,
+      "statement_date": "2025-07-17",
+      "quotation": "That is why we are holding The Gaza Tribunal. We will uncover the truth - and we will bring about justice for the Palestinian people.",
+      "surrounding_context": "That is why we are holding The Gaza Tribunal. We will uncover the truth - and we will bring about justice for the Palestinian people.",
+      "actor": "collective_we",
+      "collective_issuer": "Peace & Justice Project",
+      "explicit_condition": null,
+      "explicit_deadline": null
+    }
+  ],
+  "unresolved_candidates": [
+    {
+      "candidate_id": "candidate-hansard-6b949895-bd1c-46c3-ac29-9bc88a1b26e2-s017",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "collective_actor_not_explicit",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "6B949895-BD1C-46C3-AC29-9BC88A1B26E2",
+      "statement_date": "2024-07-17",
+      "quotation": "We need something concrete that sets out a strong message about how we will improve living standards and make for a fairer society.",
+      "surrounding_context": "Member for Hayes and Harlington (John McDonnell) said earlier, if the Government do not deliver on improving living standards for the very poorest in our society and deliver on improving the public services that everybody relies on, then the alternative is a turn towards the far right in politics, who will simply blame migrants, refugees or any handy minority for the problems that people face. We need something concrete that sets out a strong message about how we will improve living standards and make for a fairer society. A good start would be ending the two-child benefit cap immediately."
+    },
+    {
+      "candidate_id": "candidate-hansard-cc1353a6-35ea-433f-8d87-cfd31b1a7882-s114",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "quotation_boundary_uncertain",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "CC1353A6-35EA-433F-8D87-CFD31B1A7882",
+      "statement_date": "2024-09-04",
+      "quotation": "We call on the DRC government, through close coordination with MONUSCO, to assume its protection responsibilities for the civilian population in line with the joint disengagement plan.”\r\n\r\nCan the Government elaborate on how they will emphasise this commitment to a sustainable withdrawal?",
+      "surrounding_context": "The UK ambassador to the Congo, James Kariuki, said in a statement to the UN Security Council only a few months ago in April,\r\n\r\n“We also emphasise our commitment to a gradual, responsible and sustainable withdrawal. We call on the DRC government, through close coordination with MONUSCO, to assume its protection responsibilities for the civilian population in line with the joint disengagement plan.”\r\n\r\nCan the Government elaborate on how they will emphasise this commitment to a sustainable withdrawal? While we have condemned the continued advance of UN-sanctioned M23 forces, external actors must withdraw as well, because they are part of the problem."
+    },
+    {
+      "candidate_id": "candidate-hansard-21cbf2ec-86dd-4ea4-a491-70176830645f-s000",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "referenced_statement_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "21CBF2EC-86DD-4EA4-A491-70176830645F",
+      "statement_date": "2025-01-14",
+      "quotation": "I support what the hon.",
+      "surrounding_context": "I support what the hon. Member says about resources for local government."
+    },
+    {
+      "candidate_id": "candidate-hansard-9e846667-716c-497e-a211-2791d1fe657c-s000",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "referenced_statement_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "9E846667-716C-497E-A211-2791D1FE657C",
+      "statement_date": "2025-01-14",
+      "quotation": "I welcome what the Minister just said.",
+      "surrounding_context": "I welcome what the Minister just said. Is he aware that a lot of landlords are using unreasonable arguments to terminate tenancies or raise rents ahead of this legislation coming into force, and is there anything he or his Department can do to protect tenants during this stressful period for them?"
+    },
+    {
+      "candidate_id": "candidate-hansard-b2a9684b-3834-4a18-9255-2e93e8b5c1fe-s001",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "referenced_statement_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "B2A9684B-3834-4A18-9255-2E93E8B5C1FE",
+      "statement_date": "2025-03-18",
+      "quotation": "I endorse what the hon.",
+      "surrounding_context": "I will be brief, Ms Jardine, because we need to get through the debate and have the Front Benchers speak. I endorse what the hon. Gentleman said."
+    },
+    {
+      "candidate_id": "candidate-hansard-09392730-82bb-48c8-9cce-229968640085-s010",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "referenced_statement_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "09392730-82BB-48C8-9CCE-229968640085",
+      "statement_date": "2025-03-28",
+      "quotation": "I urge the hon.",
+      "surrounding_context": "The GMB and other unions took part in the consultation that brought about that policy on water. I urge the hon. Member to consider the Bill put forward by my friend the hon."
+    },
+    {
+      "candidate_id": "candidate-hansard-09392730-82bb-48c8-9cce-229968640085-s026",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "pronoun_referent_not_explicit",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "09392730-82BB-48C8-9CCE-229968640085",
+      "statement_date": "2025-03-28",
+      "quotation": "I believe they do the very opposite.",
+      "surrounding_context": "No. I believe they do the very opposite."
+    },
+    {
+      "candidate_id": "candidate-hansard-3e6564bb-e392-49c6-a9e9-7742949dda3b-s000",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "referenced_statement_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "3E6564BB-E392-49C6-A9E9-7742949DDA3B",
+      "statement_date": "2025-03-28",
+      "quotation": "I agree with what the hon.",
+      "surrounding_context": "I agree with what the hon. Member is saying about levels of pollution."
+    },
+    {
+      "candidate_id": "candidate-hansard-4439b3e0-38cc-4006-bb26-8f89eddee2ca-s036",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "referenced_statement_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "4439B3E0-38CC-4006-BB26-8F89EDDEE2CA",
+      "statement_date": "2025-03-28",
+      "quotation": "I urge Members to look with some imagination at what the hon.",
+      "surrounding_context": "We would have public buy-in to the structure, which would give us a much better and more democratic system. I urge Members to look with some imagination at what the hon. Member for Norwich South has put forward."
+    },
+    {
+      "candidate_id": "candidate-hansard-ec73163e-55bd-49c1-93d3-1c0953f5e408-s042",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "collective_actor_not_explicit",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "EC73163E-55BD-49C1-93D3-1C0953F5E408",
+      "statement_date": "2025-03-28",
+      "quotation": "Instead, let us do something better and say that we are going to provide all the people of this country with good quality clean water.",
+      "surrounding_context": "Member for Norwich South gives us the chance to do something better and do something different: to make our water a public asset and a public resource; and to take it away from those who have done so much damage to it. Instead, let us do something better and say that we are going to provide all the people of this country with good quality clean water. We will stop polluting our rivers and seas, and we will have river basin management to ensure that flooding, if not ended—we are not going to end it completely—will at least be under control through natural as well as other means."
+    },
+    {
+      "candidate_id": "candidate-hansard-ec73163e-55bd-49c1-93d3-1c0953f5e408-s043",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "collective_actor_not_explicit",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "EC73163E-55BD-49C1-93D3-1C0953F5E408",
+      "statement_date": "2025-03-28",
+      "quotation": "We will stop polluting our rivers and seas, and we will have river basin management to ensure that flooding, if not ended—we are not going to end it completely—will at least be under control through natural as well as other means.",
+      "surrounding_context": "Instead, let us do something better and say that we are going to provide all the people of this country with good quality clean water. We will stop polluting our rivers and seas, and we will have river basin management to ensure that flooding, if not ended—we are not going to end it completely—will at least be under control through natural as well as other means. Let us end the waste and start investing in a sustainable future for all of us."
+    },
+    {
+      "candidate_id": "candidate-hansard-bcfd373a-e7e5-4fa8-87d2-5b81554f46bc-s000",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "referenced_statement_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "BCFD373A-E7E5-4FA8-87D2-5B81554F46BC",
+      "statement_date": "2025-04-12",
+      "quotation": "I agree with the right hon.",
+      "surrounding_context": "I agree with the right hon. Member that we need a steel industry in Britain and that we need to invest in it."
+    },
+    {
+      "candidate_id": "candidate-hansard-ce7d757b-4c22-4b99-9502-df19dc0dd734-s000",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "mixed_position_and_collective_commitment_actor_unclear",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "CE7D757B-4C22-4B99-9502-DF19DC0DD734",
+      "statement_date": "2025-07-01",
+      "quotation": "Voting against this Bill will be a clear message to the entire community that we believe in the equality of people’s needs, and that we will bring in new legislation that will meet those needs.",
+      "surrounding_context": "Voting against this Bill will be a clear message to the entire community that we believe in the equality of people’s needs, and that we will bring in new legislation that will meet those needs. The hon."
+    },
+    {
+      "candidate_id": "candidate-hansard-886c7e33-cb90-402b-89c8-176d6a803525-s000",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "action_object_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "886C7E33-CB90-402B-89C8-176D6A803525",
+      "statement_date": "2025-07-02",
+      "quotation": "I will not.",
+      "surrounding_context": "I will not. That letter comes from Bibi Khan, the chair of North London Council of Mosques, and Muhammad Uddin from Newham Muslim Forum, on behalf of the London councils of mosques that are concerned about the chilling effect that this piece of legislation, if agreed today, will have on the rights to protest as a whole."
+    },
+    {
+      "candidate_id": "candidate-hansard-177d8c7e-3cf4-42bb-8037-fd13924f80ce-s000",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "referenced_statement_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "177D8C7E-3CF4-42BB-8037-FD13924F80CE",
+      "statement_date": "2025-07-22",
+      "quotation": "First, I welcome the statement that has been made by the Minister today.",
+      "surrounding_context": "First, I welcome the statement that has been made by the Minister today. It is an enormous step forward, and we should pay a huge tribute to the Orgreave Truth and Justice Campaign, and in particular Kate Flannery and Chris Peace and their colleagues, for all the great work that they have done for a long time."
+    },
+    {
+      "candidate_id": "candidate-hansard-4e4b46de-780d-4a78-9735-791856e25739-s000",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "referenced_statement_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "4E4B46DE-780D-4A78-9735-791856E25739",
+      "statement_date": "2025-11-24",
+      "quotation": "I welcome the hon.",
+      "surrounding_context": "I welcome the hon. Member being returned to the House, as well as the comments that he has just made."
+    },
+    {
+      "candidate_id": "candidate-hansard-616fe001-376a-4368-a799-23371ff7546a-s017",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "collective_actor_not_explicit",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "616FE001-376A-4368-A799-23371FF7546A",
+      "statement_date": "2026-02-04",
+      "quotation": "Let us have an understanding that we will turn the page on the era of patronage, and of close relationships between commercial pressure groups and lobbying—in the Lords, here, in the media and in our society.",
+      "surrounding_context": "We’ll move on.” Let us have the open, public inquiry that is necessary. Let us have an understanding that we will turn the page on the era of patronage, and of close relationships between commercial pressure groups and lobbying—in the Lords, here, in the media and in our society. We should strive to build the open, fair, democratic society that we should all believe in."
+    },
+    {
+      "candidate_id": "candidate-hansard-86527a02-de05-4d5c-9b74-26e743835777-s027",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "requested_action_not_specific",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "86527A02-DE05-4D5C-9B74-26E743835777",
+      "statement_date": "2026-04-16",
+      "quotation": "It is too late to do much about that, but I urge that there be some thoughts about that.",
+      "surrounding_context": "My deep regret is that they did not end in July 2024, because as soon as the Act and its contents were announced the landlords took advantage by implementing large numbers of no-fault evictions ahead of the time when they will not be able to. It is too late to do much about that, but I urge that there be some thoughts about that. The last thing I will say, in the 39 seconds remaining, is this: colleagues have talked about rising up the housing ladder and, while I understand the language and its use, the reality is that as a society we tolerate too much housing stress, homelessness and housing poverty."
+    },
+    {
+      "candidate_id": "candidate-hansard-fbef34ef-c0c4-46de-8b32-055d3b822d79-s000",
+      "record_class": "unresolved_statement_form",
+      "reason_code": "referenced_statement_not_in_candidate_text",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "FBEF34EF-C0C4-46DE-8B32-055D3B822D79",
+      "statement_date": "2026-05-13",
+      "quotation": "I welcome the hon.",
+      "surrounding_context": "I welcome the hon. Lady’s call to take water back into public ownership."
+    }
+  ],
+  "excluded_candidates": [
+    {
+      "candidate_id": "candidate-hansard-6b949895-bd1c-46c3-ac29-9bc88a1b26e2-s024",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "6B949895-BD1C-46C3-AC29-9BC88A1B26E2",
+      "statement_date": "2024-07-17",
+      "quotation": "Why not say, quite simply, “We are going to end the cap”?"
+    },
+    {
+      "candidate_id": "candidate-hansard-6b949895-bd1c-46c3-ac29-9bc88a1b26e2-s043",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "6B949895-BD1C-46C3-AC29-9BC88A1B26E2",
+      "statement_date": "2024-07-17",
+      "quotation": "I will say this very quickly, because I have only a minute left."
+    },
+    {
+      "candidate_id": "candidate-hansard-18d7643a-620b-467b-8247-89b6191622db-s007",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "18D7643A-620B-467B-8247-89B6191622DB",
+      "statement_date": "2024-09-04",
+      "quotation": "I also hope that we will end the idea of the local government internal market and instead have the principle of local government delivery of service as the primary responsibility to ensure that all citizens live in safety, and that council housing grows rapidly over the next few years and we get more good quality, secure council housing built for the good of the people who are living in desperate housing need, often in the private rented sector."
+    },
+    {
+      "candidate_id": "candidate-hansard-908cbcdf-a12c-4257-a871-c61a719d7231-s011",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "908CBCDF-A12C-4257-A871-C61A719D7231",
+      "statement_date": "2024-09-04",
+      "quotation": "Volker Türk, the UN High Commissioner for Human Rights, has said:\r\n\r\n“The insecurity is being fuelled by a seemingly impassable mountain of challenges: from large-scale corruption, to the unbridled race between multiple parties to take control and exploit the country’s wealth of natural resources, to ongoing violent land disputes.”\r\n\r\nI will finish at this point, because I think I have taken up too much time, but I hope I managed to set out my concerns about the DRC."
+    },
+    {
+      "candidate_id": "candidate-hansard-cc1353a6-35ea-433f-8d87-cfd31b1a7882-s032",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "CC1353A6-35EA-433F-8D87-CFD31B1A7882",
+      "statement_date": "2024-09-04",
+      "quotation": "I will take a quote from Adam Hochschild’s brilliant book, “King Leopold’s Ghost”:\r\n\r\n“On the whole continent, perhaps no nation has had a harder time than the Congo in emerging from the shadow of its past.”\r\n\r\nHe wrote that some time ago, but it still applies today."
+    },
+    {
+      "candidate_id": "candidate-hansard-cc1353a6-35ea-433f-8d87-cfd31b1a7882-s079",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "CC1353A6-35EA-433F-8D87-CFD31B1A7882",
+      "statement_date": "2024-09-04",
+      "quotation": "Those children are not getting an education, and too many become involved in the next thing I will talk about: illegal mining and the export of its products."
+    },
+    {
+      "candidate_id": "candidate-hansard-cc1353a6-35ea-433f-8d87-cfd31b1a7882-s086",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "CC1353A6-35EA-433F-8D87-CFD31B1A7882",
+      "statement_date": "2024-09-04",
+      "quotation": "I will read from it."
+    },
+    {
+      "candidate_id": "candidate-hansard-cc1353a6-35ea-433f-8d87-cfd31b1a7882-s112",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "CC1353A6-35EA-433F-8D87-CFD31B1A7882",
+      "statement_date": "2024-09-04",
+      "quotation": "I will conclude with one point and a couple of questions."
+    },
+    {
+      "candidate_id": "candidate-hansard-7fec88a2-0100-449f-a8fd-e7bec725c97f-s004",
+      "reason_code": "not_within_authorised_statement_form_after_context_review",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "7FEC88A2-0100-449F-A8FD-E7BEC725C97F",
+      "statement_date": "2024-09-04",
+      "quotation": "I am not totally aware of how many colleagues wish to speak, but I will try to ensure that my speech is sufficiently short so that everyone is able to get in."
+    },
+    {
+      "candidate_id": "candidate-hansard-fef8e5f5-fb5e-4ec8-9f3a-e8e4f667322d-s021",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "FEF8E5F5-FB5E-4EC8-9F3A-E8E4F667322D",
+      "statement_date": "2024-10-09",
+      "quotation": "However, unless we address the fundamental issue of very high rents in the private rented sector, we will not make any progress."
+    },
+    {
+      "candidate_id": "candidate-hansard-fef8e5f5-fb5e-4ec8-9f3a-e8e4f667322d-s029",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "FEF8E5F5-FB5E-4EC8-9F3A-E8E4F667322D",
+      "statement_date": "2024-10-09",
+      "quotation": "Unless we introduce rent controls, we are going to have a continuing long-term problem."
+    },
+    {
+      "candidate_id": "candidate-hansard-e4c11f8e-c758-4e86-9366-e1d12e321d17-s002",
+      "reason_code": "not_within_authorised_statement_form_after_context_review",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "E4C11F8E-C758-4E86-9366-E1D12E321D17",
+      "statement_date": "2024-10-15",
+      "quotation": "Member for Middlesbrough and Thornaby East (Andy McDonald) was simply this: if we condemn the acts being undertaken by the Israel Defence Forces—the killing of civilians, and the killing of people in hospitals and schools—why are we still supplying Israel with the weapons that enable them to undertake these military activities?"
+    },
+    {
+      "candidate_id": "candidate-hansard-7e79743e-e643-45c8-82ec-91afc1aaffbc-s003",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "7E79743E-E643-45C8-82EC-91AFC1AAFFBC",
+      "statement_date": "2024-10-23",
+      "quotation": "I will conclude my short remarks in a couple of minutes by addressing the question of public ownership."
+    },
+    {
+      "candidate_id": "candidate-hansard-7e79743e-e643-45c8-82ec-91afc1aaffbc-s022",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "7E79743E-E643-45C8-82EC-91AFC1AAFFBC",
+      "statement_date": "2024-10-23",
+      "quotation": "I will finish by saying that were local authorities, the workers in the industry, local communities and the Environment Agency jointly involved in how the water companies are run, their performance would be a lot better than it is with distant shareholders raking in massive profits from our water supply."
+    },
+    {
+      "candidate_id": "candidate-hansard-256a7818-52ae-4f19-974c-229c9a5e9d93-s000",
+      "reason_code": "procedural_debate_welcome",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "256A7818-52AE-4F19-974C-229C9A5E9D93",
+      "statement_date": "2024-11-05",
+      "quotation": "I welcome this debate, which centres on health and inequality within our society."
+    },
+    {
+      "candidate_id": "candidate-hansard-9b46e34f-ba7f-4e47-a850-981a65ecfa04-s009",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "9B46E34F-BA7F-4E47-A850-981A65ECFA04",
+      "statement_date": "2024-12-16",
+      "quotation": "Israel’s intentions in all this are to occupy Gaza, to expel the population of Gaza into the Sinai, and thus to create a new Gaza strip in Sinai—and in 20 years’ time, we will be back here, having exactly the same debate about the plight of Palestinian people who have been expelled from their own land."
+    },
+    {
+      "candidate_id": "candidate-hansard-b2e0b71f-d7f6-4f66-b353-bf896ec6cdd1-s026",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "B2E0B71F-D7F6-4F66-B353-BF896EC6CDD1",
+      "statement_date": "2025-01-29",
+      "quotation": "I hope that we will hear a reply from the Government in which they accept the need for a re-examination of the levels of poverty in society and demonstrate a preparedness to change the welfare cap in the future to accommodate any increased needs that result from it."
+    },
+    {
+      "candidate_id": "candidate-hansard-3c52132d-9560-4395-97e3-8a1c7e46f7a4-s003",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "3C52132D-9560-4395-97E3-8A1C7E46F7A4",
+      "statement_date": "2025-01-29",
+      "quotation": "Later we will discuss the welfare cap, an attempt to control welfare spending for the next five years."
+    },
+    {
+      "candidate_id": "candidate-hansard-322a1ff5-a976-4da2-9f1b-560f5261dcce-s002",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "322A1FF5-A976-4DA2-9F1B-560F5261DCCE",
+      "statement_date": "2025-03-17",
+      "quotation": "When will the British Government finally say to Israel, “We will no longer supply weapons to you and we will no longer continue security co-operation while you continue to illegally occupy territory and commit war crimes in both Gaza and the west bank”?"
+    },
+    {
+      "candidate_id": "candidate-hansard-b2a9684b-3834-4a18-9255-2e93e8b5c1fe-s000",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "B2A9684B-3834-4A18-9255-2E93E8B5C1FE",
+      "statement_date": "2025-03-18",
+      "quotation": "I will be brief, Ms Jardine, because we need to get through the debate and have the Front Benchers speak."
+    },
+    {
+      "candidate_id": "candidate-hansard-ec73163e-55bd-49c1-93d3-1c0953f5e408-s002",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "EC73163E-55BD-49C1-93D3-1C0953F5E408",
+      "statement_date": "2025-03-28",
+      "quotation": "I will finish with a couple of points."
+    },
+    {
+      "candidate_id": "candidate-hansard-354504af-3b43-4e10-b503-e1fc46e2e36d-s000",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "354504AF-3B43-4E10-B503-E1FC46E2E36D",
+      "statement_date": "2025-03-28",
+      "quotation": "I will give way for the last time."
+    },
+    {
+      "candidate_id": "candidate-hansard-062de740-2c7a-4c43-8993-b9387847a95a-s001",
+      "reason_code": "not_within_authorised_statement_form_after_context_review",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "062DE740-2C7A-4C43-8993-B9387847A95A",
+      "statement_date": "2025-04-03",
+      "quotation": "I welcome this crucial debate, the way it was introduced by the hon."
+    },
+    {
+      "candidate_id": "candidate-hansard-d776490e-69e5-4620-b6aa-96335a254493-s054",
+      "reason_code": "not_within_authorised_statement_form_after_context_review",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "D776490E-69E5-4620-B6AA-96335A254493",
+      "statement_date": "2025-06-04",
+      "quotation": "They are united with the simple human request that we stop the bombing and save lives, and we will do that by no longer supplying weapons."
+    },
+    {
+      "candidate_id": "candidate-hansard-ce7d757b-4c22-4b99-9502-df19dc0dd734-s010",
+      "reason_code": "not_within_authorised_statement_form_after_context_review",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "CE7D757B-4C22-4B99-9502-DF19DC0DD734",
+      "statement_date": "2025-07-01",
+      "quotation": "We are going to move into a two-tier benefits system, in which those who got PIP before 2026 will seem to be relatively all right, but the rest will not."
+    },
+    {
+      "candidate_id": "candidate-hansard-53aa2a1f-a362-48e0-9df4-e2e5a60b1636-s001",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "53AA2A1F-A362-48E0-9DF4-E2E5A60B1636",
+      "statement_date": "2025-07-02",
+      "quotation": "I just need an explanation—I hope that we will get one—as to why groups are always put together in these orders and not dealt with separately."
+    },
+    {
+      "candidate_id": "candidate-hansard-0e781877-886d-4637-b2c7-412e3222e05c-s000",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "0E781877-886D-4637-B2C7-412E3222E05C",
+      "statement_date": "2025-10-20",
+      "quotation": "I will be brief, but I am very pleased to be able to speak in this debate as chair of the all-party parliamentary group on the Chagos islands, which last week had its 103rd meeting."
+    },
+    {
+      "candidate_id": "candidate-hansard-822d40ef-8c57-4c81-b7cb-cce612c0b028-s000",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "822D40EF-8C57-4C81-B7CB-CCE612C0B028",
+      "statement_date": "2025-10-22",
+      "quotation": "I will be brief, because this is a time-limited debate."
+    },
+    {
+      "candidate_id": "candidate-hansard-4e4b46de-780d-4a78-9735-791856e25739-s008",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "4E4B46DE-780D-4A78-9735-791856E25739",
+      "statement_date": "2025-11-24",
+      "quotation": "I will finish with this point, because other Members wish to speak."
+    },
+    {
+      "candidate_id": "candidate-hansard-07627946-fa51-49de-93c0-39fae1753aec-s000",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "07627946-FA51-49DE-93C0-39FAE1753AEC",
+      "statement_date": "2025-11-24",
+      "quotation": "I will be brief, Ms McVey."
+    },
+    {
+      "candidate_id": "candidate-hansard-1d65a7e1-f7b4-4c25-9849-cc4b5b338de6-s002",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "1D65A7E1-F7B4-4C25-9849-CC4B5B338DE6",
+      "statement_date": "2025-12-08",
+      "quotation": "I will refer to two quotes that I have received from constituents and that summarise the situation very well."
+    },
+    {
+      "candidate_id": "candidate-hansard-b209de4c-ef40-49bf-94ae-075c45d441c4-s000",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "B209DE4C-EF40-49BF-94AE-075C45D441C4",
+      "statement_date": "2025-12-10",
+      "quotation": "I will be brief, because a lot of colleagues want to get in."
+    },
+    {
+      "candidate_id": "candidate-hansard-18fc82b7-f62a-40db-9fa9-fb33bfd820d4-s009",
+      "reason_code": "not_within_authorised_statement_form_after_context_review",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "18FC82B7-F62A-40DB-9FA9-FB33BFD820D4",
+      "statement_date": "2026-02-05",
+      "quotation": "In the one minute and 15 seconds left to me, I cannot go through that evidence, but I will simply say this."
+    },
+    {
+      "candidate_id": "candidate-hansard-7ccbf97f-c0fa-43b8-b448-1dd1107d7555-s011",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "7CCBF97F-C0FA-43B8-B448-1DD1107D7555",
+      "statement_date": "2026-02-24",
+      "quotation": "We will be wringing our hands here in six months’ time, in a year’s time and so on—as many of us have been for many years—about the treatment of the Palestinian people."
+    },
+    {
+      "candidate_id": "candidate-hansard-6ccda122-5da6-47b7-b8a2-f6a0b3f14e18-s028",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "6CCDA122-5DA6-47B7-B8A2-F6A0B3F14E18",
+      "statement_date": "2026-03-02",
+      "quotation": "Lastly, I will turn to the right to vote."
+    },
+    {
+      "candidate_id": "candidate-hansard-86527a02-de05-4d5c-9b74-26e743835777-s028",
+      "reason_code": "procedural_future_statement",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "86527A02-DE05-4D5C-9B74-26E743835777",
+      "statement_date": "2026-04-16",
+      "quotation": "The last thing I will say, in the 39 seconds remaining, is this: colleagues have talked about rising up the housing ladder and, while I understand the language and its use, the reality is that as a society we tolerate too much housing stress, homelessness and housing poverty."
+    },
+    {
+      "candidate_id": "candidate-hansard-f38e7b6f-dd46-4ff6-8a42-859e91741546-s001",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "F38E7B6F-DD46-4FF6-8A42-859E91741546",
+      "statement_date": "2026-06-03",
+      "quotation": "I am sure that this is not the only time we will debate the issue, and I hope there will be a more thorough public inquiry into it later down the line."
+    },
+    {
+      "candidate_id": "candidate-hansard-f38e7b6f-dd46-4ff6-8a42-859e91741546-s026",
+      "reason_code": "hope_prediction_hypothetical_or_nonundertaking",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "F38E7B6F-DD46-4FF6-8A42-859E91741546",
+      "statement_date": "2026-06-03",
+      "quotation": "I hope that at the end of this, we do have an open public debate about money and politics, and a serious open inquiry that will get to the heart of everything that is going on, because if we do not, we will all be the weaker for it."
+    },
+    {
+      "candidate_id": "candidate-hansard-f38e7b6f-dd46-4ff6-8a42-859e91741546-s030",
+      "reason_code": "not_within_authorised_statement_form_after_context_review",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "F38E7B6F-DD46-4FF6-8A42-859E91741546",
+      "statement_date": "2026-06-03",
+      "quotation": "I know that time is of the essence, so I will just talk briefly about Palantir."
+    },
+    {
+      "candidate_id": "candidate-hansard-bba8cc43-e5f0-48ba-8774-c31daba33582-s001",
+      "reason_code": "not_within_authorised_statement_form_after_context_review",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "BBA8CC43-E5F0-48BA-8774-C31DABA33582",
+      "statement_date": "2026-07-07",
+      "quotation": "I will be very brief because others wish to speak."
+    },
+    {
+      "candidate_id": "candidate-hansard-3c467e2b-9db9-475d-bfa2-918c8c9f7ac1-s000",
+      "reason_code": "procedural_debate_welcome",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "3C467E2B-9DB9-475D-BFA2-918C8C9F7AC1",
+      "statement_date": "2026-07-09",
+      "quotation": "I welcome this debate and say a huge thank you to the hon."
+    },
+    {
+      "candidate_id": "candidate-hansard-3c467e2b-9db9-475d-bfa2-918c8c9f7ac1-s017",
+      "reason_code": "not_within_authorised_statement_form_after_context_review",
+      "source_key": "hansard-current-parliament-spoken-capture",
+      "source_occurrence_id": "3C467E2B-9DB9-475D-BFA2-918C8C9F7AC1",
+      "statement_date": "2026-07-09",
+      "quotation": "I will give the House an example of the day-to-day horror story of the behaviour of the settlers, strongly supported by the state of Israel, the IDF and the Israeli police."
+    }
+  ],
+  "interpretation_boundary": {
+    "conduct_comparison_performed": false,
+    "delivery_or_broken_promise_verdicts_created": false,
+    "topic_or_ideology_classification_created": false,
+    "contradiction_analysis_created": false,
+    "fixture_modified": false,
+    "publication_authorised": false
+  },
+  "capture_sha256": "fc5651b9f5647bcbfee822121f3188b0438fc826ad604351d044a8144e3df3db"
+}
