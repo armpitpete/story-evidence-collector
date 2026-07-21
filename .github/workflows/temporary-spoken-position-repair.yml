@@ -1,9 +1,10 @@
 name: Temporary spoken position repair
 
 on:
-  push:
-    branches:
-      - repair/spoken-position-populated-fixture
+  pull_request:
+    paths:
+      - ".github/workflows/temporary-spoken-position-repair.yml"
+      - "scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py"
 
 permissions:
   contents: write
