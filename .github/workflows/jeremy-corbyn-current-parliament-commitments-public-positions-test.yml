@@ -94,11 +94,34 @@ jobs:
           PY
 
       - name: Integrate fixed candidate capture
+        id: integrate
+        continue-on-error: true
         run: |
-          python -m py_compile scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py
-          python scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py --integrate
-          python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
-          python scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py
+          set +e
+          {
+            python -m py_compile scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py &&
+            python scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py --integrate &&
+            python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py &&
+            python scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py
+          } > integration.log 2>&1
+          status=$?
+          cat integration.log
+          printf '%s\n' "$status" > integration-status.txt
+          exit "$status"
+
+      - name: Upload integration diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr204-integration-diagnostic
+          path: |
+            integration.log
+            integration-status.txt
+          if-no-files-found: error
+
+      - name: Stop after integration failure
+        if: steps.integrate.outcome != 'success'
+        run: exit 1
 
       - name: Commit exact five-file implementation
         run: |
