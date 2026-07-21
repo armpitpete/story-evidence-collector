@@ -1,4 +1,4 @@
-name: Jeremy Corbyn current Parliament commitments and public positions test
+name: Jeremy Corbyn current Parliament commitments and public positions reconciliation
 
 on:
   pull_request:
@@ -12,14 +12,12 @@ on:
 
 permissions:
   contents: write
-  issues: read
-  pull-requests: write
 
 jobs:
-  commitments-public-positions:
+  reconcile:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out implementation branch
+      - name: Check out exact implementation branch
         uses: actions/checkout@v4
         with:
           ref: agent/corbyn-current-parliament-commitments-public-positions
@@ -30,7 +28,15 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Fetch temporary fixed payloads
+      - name: Reconcile exact repaired main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "c214ff202dbd7a7a4d5427a40341aeac161ed250"
+          git merge --no-edit origin/main
+
+      - name: Restore fixed payloads
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -88,67 +94,14 @@ jobs:
           PY
 
       - name: Integrate fixed candidate capture
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
-          set +e
-          {
-            python -m py_compile scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py &&
-            python scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py --integrate &&
-            python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py &&
-            python scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py
-          } > integration.log 2>&1
-          status=$?
-          cat integration.log
-          if [ "$status" -ne 0 ]; then
-            python - <<'PY'
-          import json
-          import os
-          import re
-          import urllib.request
-          from pathlib import Path
-
-          api_url = f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/pulls/204"
-          headers = {
-              "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
-              "Accept": "application/vnd.github+json",
-              "X-GitHub-Api-Version": "2022-11-28",
-              "Content-Type": "application/json",
-          }
-          request = urllib.request.Request(api_url, headers=headers)
-          with urllib.request.urlopen(request) as response:
-              pull = json.loads(response.read().decode("utf-8"))
-
-          original = pull.get("body") or ""
-          marker = "<!-- integration-diagnostic -->"
-          original = re.sub(
-              rf"\n*{re.escape(marker)}.*\Z",
-              "",
-              original,
-              flags=re.S,
-          ).rstrip()
-          log = Path("integration.log").read_text(encoding="utf-8", errors="replace")
-          diagnostic = (
-              f"\n\n{marker}\n## Integration diagnostic\n\n"
-              "```text\n" + log[-12000:] + "\n```"
-          )
-          data = json.dumps({"body": original + diagnostic}).encode("utf-8")
-          request = urllib.request.Request(
-              api_url,
-              data=data,
-              method="PATCH",
-              headers=headers,
-          )
-          with urllib.request.urlopen(request) as response:
-              response.read()
-          PY
-            exit "$status"
-          fi
+          python -m py_compile scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py
+          python scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py --integrate
+          python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
+          python scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py
 
       - name: Commit exact five-file implementation
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add \
             research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json \
             docs/jeremy-corbyn-current-parliament-commitments-and-public-positions-source-note-v1.md \
@@ -156,9 +109,9 @@ jobs:
             scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py \
             .github/workflows/jeremy-corbyn-current-parliament-commitments-public-positions-test.yml
           if ! git diff --cached --quiet; then
-            git commit -m "Add Corbyn commitments and public positions baseline"
-            git push origin HEAD:agent/corbyn-current-parliament-commitments-public-positions
+            git commit -m "Restore Corbyn commitments and public positions implementation"
           fi
+          git push origin HEAD:agent/corbyn-current-parliament-commitments-public-positions
 
       - name: Verify exact implementation scope
         run: |
@@ -170,5 +123,6 @@ jobs:
             fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
             research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json \
             scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py | sort)"
+          printf '%s\n' "Changed files:" "$actual"
           test "$actual" = "$expected"
           git diff --check origin/main...HEAD
