@@ -12,8 +12,8 @@ on:
 
 permissions:
   contents: write
-  issues: write
-  pull-requests: read
+  issues: read
+  pull-requests: write
 
 jobs:
   commitments-public-positions:
@@ -104,22 +104,40 @@ jobs:
             python - <<'PY'
           import json
           import os
+          import re
           import urllib.request
           from pathlib import Path
 
+          api_url = f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/pulls/204"
+          headers = {
+              "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+              "Accept": "application/vnd.github+json",
+              "X-GitHub-Api-Version": "2022-11-28",
+              "Content-Type": "application/json",
+          }
+          request = urllib.request.Request(api_url, headers=headers)
+          with urllib.request.urlopen(request) as response:
+              pull = json.loads(response.read().decode("utf-8"))
+
+          original = pull.get("body") or ""
+          marker = "<!-- integration-diagnostic -->"
+          original = re.sub(
+              rf"\n*{re.escape(marker)}.*\Z",
+              "",
+              original,
+              flags=re.S,
+          ).rstrip()
           log = Path("integration.log").read_text(encoding="utf-8", errors="replace")
-          body = "INTEGRATION DIAGNOSTIC — exact failing output\n\n```text\n" + log[-12000:] + "\n```"
-          data = json.dumps({"body": body}).encode("utf-8")
+          diagnostic = (
+              f"\n\n{marker}\n## Integration diagnostic\n\n"
+              "```text\n" + log[-12000:] + "\n```"
+          )
+          data = json.dumps({"body": original + diagnostic}).encode("utf-8")
           request = urllib.request.Request(
-              f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/issues/204/comments",
+              api_url,
               data=data,
-              method="POST",
-              headers={
-                  "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
-                  "Accept": "application/vnd.github+json",
-                  "X-GitHub-Api-Version": "2022-11-28",
-                  "Content-Type": "application/json",
-              },
+              method="PATCH",
+              headers=headers,
           )
           with urllib.request.urlopen(request) as response:
               response.read()
