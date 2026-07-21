@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""One-shot official-source diagnostic for the authorised spoken-contributions lane."""
+"""Resolve official UK Parliament spoken-contribution response shapes."""
 
 from __future__ import annotations
 
 import hashlib
 import json
 import os
-import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -26,7 +25,7 @@ def fetch(url: str, attempts: int = 4) -> tuple[bytes, dict]:
     for attempt in range(1, attempts + 1):
         try:
             req = Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
-            with urlopen(req, timeout=60) as response:
+            with urlopen(req, timeout=90) as response:
                 raw = response.read()
                 return raw, {
                     "url": url,
@@ -65,39 +64,6 @@ def first_list(value: object) -> list:
     return []
 
 
-def recursive_key_values(value: object, wanted: tuple[str, ...]) -> dict[str, list[object]]:
-    found = {key: [] for key in wanted}
-
-    def walk(node: object) -> None:
-        if isinstance(node, dict):
-            for key, item in node.items():
-                if key in found:
-                    found[key].append(item)
-                walk(item)
-        elif isinstance(node, list):
-            for item in node:
-                walk(item)
-
-    walk(value)
-    return {key: vals for key, vals in found.items() if vals}
-
-
-def date_strings(value: object) -> list[str]:
-    keys = (
-        "date", "Date", "sittingDate", "SittingDate", "contributionDate",
-        "ContributionDate", "debateDate", "DebateDate"
-    )
-    values = recursive_key_values(value, keys)
-    dates: list[str] = []
-    for candidates in values.values():
-        for candidate in candidates:
-            if isinstance(candidate, str) and len(candidate) >= 10:
-                text = candidate[:10]
-                if text[4:5] == "-" and text[7:8] == "-":
-                    dates.append(text)
-    return sorted(set(dates))
-
-
 def main() -> int:
     captured_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     diagnostic: dict[str, object] = {
@@ -110,69 +76,115 @@ def main() -> int:
     }
 
     member_pages: list[dict] = []
+    authorised_rows: list[dict] = []
     page = 1
-    while page <= 30:
+    crossed_boundary = False
+    while page <= 30 and not crossed_boundary:
         url = f"https://members-api.parliament.uk/api/Members/{MEMBER_ID}/ContributionSummary?page={page}"
-        try:
-            payload, meta = fetch_json(url)
-        except Exception as exc:
-            diagnostic["failures"].append({"stage": "members_page", "page": page, "error": str(exc)})
-            break
+        payload, meta = fetch_json(url)
         diagnostic["requests"].append(meta)
         items = first_list(payload)
-        dates = date_strings(items)
-        member_pages.append({
-            "page": page,
-            "item_count": len(items),
-            "dates": dates,
-            "payload": payload,
-            "metadata": meta,
-        })
-        print(f"Members page {page}: {len(items)} items; dates={dates[:1]}..{dates[-1:]}")
-        if dates and min(dates) <= START_DATE:
-            break
-        if not items:
-            break
+        member_pages.append({"page": page, "payload": payload, "metadata": meta})
+        dates: list[str] = []
+        for item in items:
+            value = item.get("value", {}) if isinstance(item, dict) else {}
+            sitting_date = str(value.get("sittingDate", ""))[:10]
+            if sitting_date:
+                dates.append(sitting_date)
+            if sitting_date >= START_DATE and value.get("section") in {"Commons Chamber", "Westminster Hall"}:
+                authorised_rows.append(item)
+            if sitting_date and sitting_date < START_DATE:
+                crossed_boundary = True
+        print(f"Members page {page}: {len(items)} items; {min(dates) if dates else '?'} to {max(dates) if dates else '?'}")
         page += 1
-        time.sleep(0.25)
-    diagnostic["members_pages"] = member_pages
+        time.sleep(0.2)
 
-    query = urlencode({
-        "queryParameters.house": "Commons",
-        "queryParameters.startDate": START_DATE,
-        "queryParameters.endDate": CAPTURE_END_DATE,
-        "queryParameters.memberId": str(MEMBER_ID),
-        "queryParameters.skip": "0",
-        "queryParameters.take": "1000",
-        "queryParameters.orderBy": "SittingDateAsc",
-    })
-    hansard_url = f"https://hansard-api.parliament.uk/search/contributions/Spoken.json?{query}"
-    try:
-        payload, meta = fetch_json(hansard_url)
-        diagnostic["requests"].append(meta)
-        diagnostic["hansard_search"] = {"payload": payload, "metadata": meta}
-        diagnostic["hansard_search_shape"] = {
-            "top_level_type": type(payload).__name__,
-            "top_level_keys": sorted(payload) if isinstance(payload, dict) else [],
-            "result_count_guess": len(first_list(payload)),
-            "first_result_key_values": recursive_key_values(
-                first_list(payload)[:1],
-                (
-                    "MemberId", "memberId", "DebateSectionExtId", "debateSectionExtId",
-                    "ContributionExtId", "contributionExtId", "ExternalId", "externalId",
-                    "SittingDate", "sittingDate", "House", "house", "Section", "section",
-                    "ContributionText", "contributionText", "ContributionType", "contributionType",
-                ),
-            ),
-        }
-        print(json.dumps(diagnostic["hansard_search_shape"], indent=2, ensure_ascii=False))
-    except Exception as exc:
-        diagnostic["failures"].append({"stage": "hansard_search", "error": str(exc), "url": hansard_url})
+    diagnostic["members_pages"] = member_pages
+    diagnostic["authorised_rows"] = authorised_rows
+    diagnostic["member_index_summary"] = {
+        "pages_requested": len(member_pages),
+        "authorised_row_count": len(authorised_rows),
+        "date_from": min(item["value"]["sittingDate"][:10] for item in authorised_rows),
+        "date_to": max(item["value"]["sittingDate"][:10] for item in authorised_rows),
+        "sections": {
+            section: sum(item["value"]["section"] == section for item in authorised_rows)
+            for section in ("Commons Chamber", "Westminster Hall")
+        },
+    }
+
+    samples: list[dict] = []
+    for item in authorised_rows[:3]:
+        value = item["value"]
+        ext_id = value["debateWebsiteId"]
+        member_url = (
+            f"https://hansard-api.parliament.uk/debates/memberdebatecontributions/{MEMBER_ID}.json?"
+            + urlencode({"debateSectionExtId": ext_id})
+        )
+        debate_url = f"https://hansard-api.parliament.uk/debates/debate/{ext_id}.json"
+        member_payload, member_meta = fetch_json(member_url)
+        debate_payload, debate_meta = fetch_json(debate_url)
+        diagnostic["requests"].extend([member_meta, debate_meta])
+        samples.append({
+            "index_item": item,
+            "member_contributions": member_payload,
+            "member_contributions_metadata": member_meta,
+            "debate": debate_payload,
+            "debate_metadata": debate_meta,
+        })
+        print(f"Sample {ext_id}: member type={type(member_payload).__name__}; debate type={type(debate_payload).__name__}")
+        time.sleep(0.2)
+    diagnostic["detail_samples"] = samples
+
+    search_variants: list[dict] = []
+    variants = [
+        {
+            "queryParameters.house": "Commons",
+            "queryParameters.startDate": START_DATE,
+            "queryParameters.endDate": CAPTURE_END_DATE,
+            "queryParameters.memberId": str(MEMBER_ID),
+            "queryParameters.skip": "0",
+            "queryParameters.take": "20",
+            "queryParameters.orderBy": "SittingDateAsc",
+        },
+        {
+            "queryParameters.house": "Commons",
+            "queryParameters.startDate": START_DATE + "T00:00:00",
+            "queryParameters.endDate": CAPTURE_END_DATE + "T23:59:59",
+            "queryParameters.memberId": str(MEMBER_ID),
+            "queryParameters.skip": "0",
+            "queryParameters.take": "20",
+            "queryParameters.orderBy": "SittingDateAsc",
+        },
+        {
+            "house": "Commons",
+            "startDate": START_DATE,
+            "endDate": CAPTURE_END_DATE,
+            "memberId": str(MEMBER_ID),
+            "skip": "0",
+            "take": "20",
+            "orderBy": "SittingDateAsc",
+        },
+        {
+            "queryParameters.memberId": str(MEMBER_ID),
+            "queryParameters.take": "20",
+        },
+    ]
+    for number, params in enumerate(variants, 1):
+        url = "https://hansard-api.parliament.uk/search/contributions/Spoken.json?" + urlencode(params)
+        try:
+            payload, meta = fetch_json(url)
+            diagnostic["requests"].append(meta)
+            search_variants.append({"number": number, "parameters": params, "payload": payload, "metadata": meta})
+            print(f"Search variant {number}: {type(payload).__name__} {list(payload) if isinstance(payload, dict) else len(payload)}")
+        except Exception as exc:
+            search_variants.append({"number": number, "parameters": params, "error": str(exc)})
+            diagnostic["failures"].append({"stage": "search_variant", "number": number, "error": str(exc)})
+    diagnostic["search_variants"] = search_variants
 
     encoded = json.dumps(diagnostic, indent=2, ensure_ascii=False, sort_keys=True).encode("utf-8") + b"\n"
     OUT.write_bytes(encoded)
     print(f"Wrote {OUT} ({len(encoded)} bytes; sha256={hashlib.sha256(encoded).hexdigest()})")
-    return 0 if not diagnostic["failures"] else 1
+    return 0
 
 
 if __name__ == "__main__":
