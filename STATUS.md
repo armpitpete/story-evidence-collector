@@ -1,7 +1,7 @@
 ---
 completion_authority: true
 standard: Recursive Project Improvement Standard v1.0
-status: AUTHORISED
+status: AUTHORITATIVE
 authority_ref: main
 ---
 
@@ -11,124 +11,63 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Exact starting head for this lane: `95178576da8a24ffa42a50d30c22cba8de3948e0`.
-- Jeremy Corbyn current-Parliament written-questions baseline is complete at merge `e1b21c1e4de1eefb827ac1f337017858510bc192` from exact reviewed head `324590ec9c2db1ad3bbbc92ce33de06c2cb430a1`.
-- Jeremy Corbyn regulated-donee donations, outside-work/company-links, current financial-interests, roles-and-committees and identity-and-career baselines remain complete within their declared official-source scopes.
+- Jeremy Corbyn current-Parliament spoken-contributions baseline merged as `098cc5f77ef30e4c259a164f70e79b8451d138c9` from exact reviewed implementation head `ab36c84dd089adbb3bae151bd4547423a297741b` using a merge commit.
+- The prerequisite written-question fact-boundary repair remains complete at merge `5f817cec57d6d8f9f08f7bc2b5e54c94b6f6c04e`.
+- The prerequisite written-question shared-gap repair remains complete at merge `82abd117fce3da51f564cfc0139d9fc2ebc64617`.
+- Jeremy Corbyn current-Parliament written-questions baseline remains complete at merge `e1b21c1e4de1eefb827ac1f337017858510bc192`.
+- Jeremy Corbyn regulated-donee donations, outside-work/company-links, current financial-interests, roles-and-committees and identity-and-parliamentary-career baselines remain complete within their declared official-source scopes.
 - Complete MP Portfolio vertical slice, January 2003 vote-review queue, Repository Release v1 and backup-and-restore hardening remain complete and authoritative.
 
 ## Current lane
 
-Jeremy Corbyn current-Parliament spoken-contributions baseline.
-
-Goal: add a bounded official Hansard index of individual spoken contribution segments made by Jeremy Corbyn from 4 July 2024 through one declared capture timestamp, without treating the approximate member-page debate count as authoritative and without converting what he said into policy-position, contradiction or significance claims.
-
-Canonical section:
-
-- `speeches_and_questions`
-
-Date and identity boundary:
-
-- Commons records dated from `2024-07-04` through the declared capture timestamp;
-- UK Parliament member ID `185`;
-- individual contribution segments whose official Hansard/member record identifies Jeremy Corbyn as speaker;
-- Commons Chamber and Westminster Hall included;
-- any other venue or committee context remains unresolved unless the official record unambiguously places it inside this authorised Commons spoken-contribution boundary.
-
-Official source boundary:
-
-- UK Parliament member spoken-contributions index at `https://members.parliament.uk/member/185/contributions`, including every page required to cross the 4 July 2024 boundary;
-- Hansard member-contributions search at `https://hansard.parliament.uk/search/MemberContributions?house=Commons&memberId=185` with the authorised date boundary;
-- official Hansard debate, section and contribution pages or official structured responses directly used by those services;
-- official debate title, sitting date, venue, contribution type, member identity, stable debate/section/contribution identifier, permalink, contribution text, ordering and correction/version status when displayed.
-
-Known source limits to preserve:
-
-- the member page states that its contribution counts can be approximate, so summary counts are navigation and reconciliation evidence only;
-- Hansard is an edited record and may expose uncorrected rolling text before a corrected daily version replaces it;
-- the live result set can change after capture;
-- one debate index row may contain several individual contribution segments;
-- contribution type labels record parliamentary form and do not establish a policy position or the truth of any statement.
-
-Forbidden source classes and expansion:
-
-- media, party, campaign or personal websites, social media, Wikipedia, commercial parliamentary databases and search-result snippets;
-- video/audio transcription, Parliament TV, committee oral evidence, correspondence, written statements, Early Day Motions, voting records or tabled oral-question records;
-- topic or sentiment classification, summarisation of political meaning, policy-position inference, contradiction analysis, motive, influence, accuracy, legality, propriety or significance claims;
-- changing `public_positions_over_time`, `changes_and_contradictions`, `organisations_and_relationships` or any other canonical section.
-
-Authorised implementation scope:
-
-- `research/complete-mp-reports/jeremy-corbyn/current-parliament-spoken-contributions-v1.json`
-- `docs/jeremy-corbyn-current-parliament-spoken-contributions-source-note-v1.md`
-- `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
-- `scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py`
-- `.github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml`
-
-Required behaviour:
-
-- capture every official member-index debate row required to cover the date boundary, recording the displayed total and page count only as volatile navigation checks;
-- resolve every in-scope debate row to its individual official contribution segments;
-- preserve official stable identifiers and permalinks; reject duplicate contribution identifiers;
-- reject or explicitly record any segment whose speaker identity, date, venue, identifier or full text cannot be resolved without guessing;
-- preserve exact official contribution text and displayed metadata in the machine-readable packet;
-- preserve whether the source was corrected, uncorrected/rolling or unspecified when the official page exposes that state;
-- create one neutral `speech` fact per accepted individual contribution segment, stating only that Hansard records Jeremy Corbyn making the identified contribution in the named proceeding;
-- do not use the approximate debate-summary count as the individual-contribution count;
-- create no claim, interpretation, relationship or position record;
-- retain all accepted written-question facts and sources unchanged;
-- leave `speeches_and_questions` `partial` with explicit gaps for pre-4-July-2024 spoken history, future contributions and corrections, tabled oral questions, written statements, Early Day Motions, committee oral evidence and unresolved records;
-- keep the report `not_ready`, human review required and public output unauthorised;
-- preserve every accepted identity, roles, voting, financial-interests, donations and outside-work/company record unchanged;
-- validate the complete fixture through the canonical Complete MP Report validator and deterministic generator;
-- run the new lane regression, current-Parliament written-questions regression, identity-and-career regression, roles-and-committees regression, current financial-interests regression, regulated-donee donations regression, outside-work/company-links regression, Complete MP Report fixture test, Complete MP Portfolio view test, Repository Release validation and Project Control;
-- change exactly the five authorised implementation files after the prerequisite regression repairs are merged.
-
-## Authorised prerequisite repairs
-
-The accepted current-Parliament written-questions regression originally asserted that `speeches_and_questions.fact_ids` equals the exact 90-question list. The authorised spoken-contributions lane must append valid `speech` facts to the same canonical section. PR #199 repaired that closed-world fact assertion while preserving the exact 90 accepted questions.
-
-Verification then exposed a second inherited closed-world assertion: the written-question regression requires the fixture's shared `gap-speeches-questions-current-parliament-scope` object to remain byte-for-byte equal to the pre-speech packet wording. The authorised spoken-contributions lane must update that same gap so it no longer falsely says all spoken contributions remain outside scope and so it records the remaining pre-4-July-2024, future/correction, oral-question, written-statement, Early Day Motion and committee-evidence limits.
-
-Before the five-file spoken-contributions implementation is finalised, one separate follow-up prerequisite PR may change only:
-
-- `scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py`
-
-The follow-up repair may only replace exact shared-gap object equality with section-scoped protection. It must continue to require:
-
-- the same gap ID, section ID, open status and publication-blocking state;
-- preservation of the written-question limits for pre-current-Parliament questions, future question updates, oral questions, written statements and Early Day Motions;
-- no removal or weakening of the human-review and publication restrictions;
-- the exact 90 accepted written-question fact IDs, order, facts and sources;
-- no permission for claims, interpretations or relationships in `speeches_and_questions`.
-
-The follow-up repair must not change the written-question packet, fixture, workflow, any source record, any question record, any spoken-contribution record or publication authority.
+No implementation or research lane is active.
 
 ## Done
 
-- Repository Release v1, backup/restore proof, January 2003 vote-review preparation and the accepted Streamlit interface are complete.
-- Jeremy Corbyn current-Parliament written questions are captured as 90 neutral official records.
-- The first one-file written-question fact-boundary repair merged as `5f817cec57d6d8f9f08f7bc2b5e54c94b6f6c04e` after its written-question, Repository Release and Project Control workflows passed.
-- The fixed spoken-contributions capture resolved 202 authorised debate rows to 306 unique official contribution identifiers from 17 July 2024 through 16 July 2026, with no substantive identity, date, venue, text or identifier mismatch.
-- The official permalink resolver returns site-relative Hansard paths; these may be normalised only by prefixing the official `https://hansard.parliament.uk` host.
-- The UK Parliament member page exposes Jeremy Corbyn's spoken contributions as debate rows with expandable individual segments and warns that displayed contribution counts can be approximate.
-- The official Hansard member-contributions search is separately available for Commons member ID `185`.
-- Hansard is the edited official record of what was said in Parliament and can distinguish rolling/uncorrected from corrected records when the source representation is explicit.
+- The fixed official-source capture was taken at `2026-07-21T09:59:35Z` for UK Parliament member ID `185`.
+- The accepted spoken-contribution date coverage is `2024-07-17` through `2026-07-16`, inside the authorised current-Parliament boundary beginning `2024-07-04`.
+- Eleven Members API requests returned 220 member-index rows before crossing the boundary; 203 rows fell inside the authorised date period.
+- Exactly 202 in-scope Commons Chamber or Westminster Hall debate rows were accepted. One `Written Corrections` row was excluded because its venue was outside the authorised boundary.
+- The 202 accepted debate rows resolved to exactly 306 unique individual spoken contribution segments.
+- The accepted stable key is the official `ContentItemExtId`, matched exactly to the full-debate `Items[].ExternalId`, UK Parliament member ID `185` and the separate Hansard spoken-search `ContributionExtId`.
+- Exact-identifier duplicate removal found no duplicate accepted contribution identifier.
+- The accepted venue totals are 272 Commons Chamber segments and 34 Westminster Hall segments.
+- The capture made 725 polite sequential official requests: 11 Members API requests and 714 Hansard API requests.
+- Every accepted segment has an official identifier, speaker identity, date, venue, non-empty full text, debate reconciliation and official permalink resolver result.
+- The official permalink resolver returned site-relative `/Commons/...` paths. The packet normalises only by prefixing the official `https://hansard.parliament.uk` host.
+- The unresolved-record count is exactly 0 after that deterministic official-host normalisation.
+- The debate payload exposed raw source value `2` without an explicit corrected, rolling or uncorrected label. All 306 accepted records preserve the raw value and use source status `unspecified` without inferred enum mapping.
+- The member-index rows displayed 306 total contributions while approximate category counters summed to 271. Those counters remain navigation evidence only and do not classify individual segments.
+- The frozen diagnostic is 1,650,782 bytes with SHA-256 `b2776c11a5a17d9605f56434ec5b13d77e75567a9bf01f851bf48e2f440e6a88`; its request-manifest checksum is `93b729e40a8bb6cadd87033f635d825436a2376f42754f46b1c57837dd04fef8`.
+- One neutral `speech` fact was added per accepted individual contribution segment.
+- All 90 accepted current-Parliament written-question facts and sources remain unchanged and in their accepted order before the speech facts in `speeches_and_questions`.
+- No topic classification, summarisation of political meaning, policy-position inference, contradiction analysis, relationship, motive, influence, accuracy, legality, propriety or significance conclusion was created.
+- Exactly five authorised implementation files changed in PR #197.
+- Spoken contributions, written questions, identity-and-career, roles-and-committees, current financial interests, regulated-donee donations, outside-work/company-links, Complete MP Report fixture, Complete MP Portfolio view, Repository Release validation and Project Control all passed on exact head `ab36c84dd089adbb3bae151bd4547423a297741b`.
+- The canonical `speeches_and_questions` section remains `partial` because pre-4-July-2024 spoken history, future contributions and later corrections, tabled oral questions, written statements, Early Day Motions and committee oral evidence remain outside the accepted baseline.
+- The report remains `not_ready`, human review remains required and public output remains unauthorised.
 
 ## To do
 
-- Merge this second `STATUS.md`-only clarification after Project Control passes.
-- Open and merge the separate one-file shared-gap regression-boundary repair.
-- Reconcile the spoken-contributions implementation branch against repaired `main`.
-- Encode the fixed 202-row / 306-contribution capture in the authorised machine-readable packet and readable source note.
-- Update only `speeches_and_questions`, adding spoken-contribution sources, `speech` facts and the expanded directly related coverage gap while preserving the 90 written-question facts unchanged.
-- Add deterministic validation and final CI.
-- Complete and review one exact five-file implementation PR.
-- After implementation merge, close this lane through a separate `STATUS.md`-only authority PR.
+Future work requires separately authorised bounded lanes. Remaining canonical areas include:
+
+- spoken contributions before 4 July 2024 and separately controlled future/correction refreshes;
+- written-question history before 4 July 2024 and future answer-state refreshes;
+- tabled oral questions, written statements, Early Day Motions and committee oral evidence, each through its own official-source lane;
+- public positions over time;
+- changes and contradictions, only after dated position evidence exists;
+- organisations and evidenced relationships;
+- broader historic voting coverage and human vote-meaning review;
+- final evidence-gap, source-register, human-review and publication closure.
+
+The accepted identity, roles, financial-interests, donations, outside-work/company-links and speeches-and-questions sections remain deliberately `partial`; they do not claim exhaustive historical coverage.
 
 ## Next bounded gate
 
-Merge this `STATUS.md`-only clarification after Project Control passes. Then repair the written-question shared-gap assertion in one separate one-file PR. Resume the already-open five-file spoken-contributions implementation only after that prerequisite passes and merges.
+None. Open a separate `STATUS.md`-only authority PR naming one canonical section, exact official-source boundary, authorised files, validation and stop point before further research or implementation.
+
+The commitment-versus-conduct system remains parked. It may not begin until a separately reviewed authority lane defines the required commitment evidence, conduct evidence, comparison method, uncertainty handling and publication boundary.
 
 ## Stop point
 
-Do not research another MP or canonical section; include pre-4-July-2024 spoken contributions; begin policy-position or contradiction analysis; include media, video/audio transcription, committee evidence, written statements, Early Day Motions, voting or oral-question datasets; alter accepted identity, roles, voting, financial-interests, donations, outside-work/company-links or written-question records; infer accuracy, influence, motive, legality, propriety or significance; review January 2003 vote meanings; access or mutate the private server or SQLite; mark the section complete; mark the report publishable; or authorise public output. Stop after one five-file implementation PR is complete, tested and reviewed.
+Do not begin another MP or canonical section; collect pre-4-July-2024 or future spoken contributions; refresh current records; begin commitment-versus-conduct, topic, position or contradiction analysis; include media, party, campaign, personal or commercial sources; include video/audio transcription, committee evidence, written statements, Early Day Motions, voting or oral-question datasets; alter accepted identity, roles, voting, financial-interests, donations, outside-work/company-links, written-question or spoken-contribution records; infer accuracy, influence, motive, legality, propriety or significance; review January 2003 vote meanings; access or mutate the private server or SQLite; create unsupported claims or interpretations; mark a partial section complete; mark the report publishable; or authorise public output without a separately merged authority update.
