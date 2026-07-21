@@ -14,6 +14,7 @@ authority_ref: main
 - Exact starting head for this lane: `dfe99df47a0808ca1bf1ebfe1cf816725fbb758f`.
 - Jeremy Corbyn current-Parliament spoken-contributions baseline is complete at merge `098cc5f77ef30e4c259a164f70e79b8451d138c9` from exact reviewed implementation head `ab36c84dd089adbb3bae151bd4547423a297741b`.
 - Its closure is complete at merge `dfe99df47a0808ca1bf1ebfe1cf816725fbb758f` from exact closure head `56b6aaada7998a33740490599c3716cb3827c1c6`.
+- The current-Parliament explicit-commitments and public-position evidence lane was authorised at merge `4964c6b00f91c08ef9e06b5150455eaea18e8e47` from exact authority head `a29919d21daa9ce38e6390d0c0d47c7b815b507e`.
 - Current-Parliament written questions, regulated-donee donations, outside-work/company links, current financial interests, roles and committees, and identity and parliamentary career remain complete within their declared bounded source scopes.
 - Complete MP Portfolio vertical slice, January 2003 vote-review queue, Repository Release v1 and backup-and-restore hardening remain complete and authoritative.
 
@@ -103,7 +104,7 @@ Literal fields may include actor, collective issuer, stated action, stated posit
 
 ## Authorised implementation scope
 
-One later implementation PR may change exactly:
+The implementation PR may change exactly:
 
 - `research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json`
 - `docs/jeremy-corbyn-current-parliament-commitments-and-public-positions-source-note-v1.md`
@@ -111,54 +112,97 @@ One later implementation PR may change exactly:
 - `scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py`
 - `.github/workflows/jeremy-corbyn-current-parliament-commitments-public-positions-test.yml`
 
-No schema, generator, interface, existing source packet, existing regression, server or database file is authorised. If the current schema cannot represent the bounded neutral records without changing another file, stop and open a separate authority clarification rather than expanding the implementation PR.
+No schema, generator, interface, existing source packet, server or database file is authorised in that implementation PR.
 
-## Required validation
+## Fixed capture accepted for implementation
 
-The implementation must prove:
+The fixed pre-implementation capture records:
 
-- fixed source-document or source-page count;
-- accepted explicit-personal-commitment count;
-- accepted conditional-personal-commitment count;
-- accepted collective-commitment count;
-- accepted public-position count;
-- unresolved-statement-form count;
-- exact earliest and latest accepted statement dates and capture timestamp;
-- unique stable record IDs and deterministic duplicate handling;
+- 8 accepted source documents or pages;
+- 109 reviewed candidate occurrences;
+- 48 accepted statement occurrences;
+- 8 explicit personal commitments;
+- 0 conditional personal commitments;
+- 8 collective commitments;
+- 32 public positions;
+- 19 unresolved statement forms;
+- 42 excluded candidates;
+- 0 duplicate accepted record IDs;
+- accepted statement dates from `2024-07-18` through `2026-07-16`;
+- capture SHA-256 `fc5651b9f5647bcbfee822121f3188b0438fc826ad604351d044a8144e3df3db`.
+
+Draft PR #204 is the parked five-file implementation lane. Its new regression independently passes the fixed counts and boundary. Fixture integration must not resume until the prerequisite repair below has merged.
+
+## Authorised prerequisite regression repair
+
+Validation of draft PR #204 exposed one inherited closed-world assertion in:
+
+- `scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py`
+
+The spoken-contributions regression currently compares a preservation hash over every source and fact outside the spoken packet and every canonical section except `speeches_and_questions`. Any later separately authorised source, fact or change to `public_positions_over_time` therefore fails even when all 306 spoken records, their two source records, their section ordering and all publication restrictions remain unchanged.
+
+One separate prerequisite PR may change only:
+
+- `scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py`
+
+The repair may only make the legacy preservation calculation aware of the separately authorised `public_positions_over_time` lane. It must:
+
+- continue to require the exact 306 spoken contribution IDs, records, facts, dates, venues, text-presence checks and source records;
+- continue to require the exact 90 written-question facts before the 306 speech facts in `speeches_and_questions`;
+- continue to require the exact spoken section status, no claims, no interpretations, no relationships and the accepted spoken coverage gap;
+- continue to require `not_ready`, human-review-required and public-output-unauthorised states;
+- continue to protect every canonical section other than `public_positions_over_time` and `speeches_and_questions`;
+- allow only facts whose declared section is `public_positions_over_time` to be omitted from the old pre-spoken fact preservation hash;
+- allow only new source records referenced by those position facts, excluding the two accepted spoken source IDs, to be omitted from the old pre-spoken source preservation hash;
+- normalise only the current `public_positions_over_time` section back to its exact accepted pre-position baseline object when calculating the legacy section preservation hash;
+- create no permission for changes to the spoken packet, spoken source note, fixture, schema, generator, any other regression, any other section, any claim, interpretation, relationship or publication authority.
+
+The prerequisite repair must prove that the unmodified fixture at authority merge `4964c6b00f91c08ef9e06b5150455eaea18e8e47` still passes. It must also include a bounded regression fixture or in-memory mutation proving that a valid `public_positions_over_time` fact and its exclusively referenced new source can coexist without weakening the spoken baseline. Spoken contributions, written questions, Complete MP Report fixture, Repository Release validation and Project Control must pass.
+
+## Required implementation validation
+
+After the prerequisite repair merges, PR #204 must prove:
+
+- all fixed source and statement-form counts;
+- exact date coverage, unique stable IDs and deterministic duplicate handling;
 - every quotation is present in its preserved source payload or fixed source text;
 - every accepted record is inside the date and identity boundary;
 - every collective commitment preserves collective rather than personal agency;
 - no written-question record has been reclassified as a commitment or position;
-- no claim, interpretation, relationship or contradiction record is created by this lane;
+- no claim, interpretation, relationship or contradiction record is created;
 - all existing accepted facts, sources and ordering remain unchanged outside `public_positions_over_time` and its directly related coverage gap;
 - canonical fixture validation and deterministic report generation pass;
 - current-Parliament spoken-contributions and written-questions regressions pass;
 - identity-and-career, roles-and-committees, current financial-interests, regulated-donee donations and outside-work/company-links regressions pass;
 - Complete MP Report fixture, Complete MP Portfolio view, Repository Release validation and Project Control pass;
-- exactly the five authorised implementation files change.
+- exactly the five authorised implementation files change relative to repaired `main`.
 
 ## Done
 
 - PR #197 was reviewed at exact head `ab36c84dd089adbb3bae151bd4547423a297741b` and merged as `098cc5f77ef30e4c259a164f70e79b8451d138c9` after all 11 required workflows passed.
 - PR #202 closed the spoken-contributions lane at merge `dfe99df47a0808ca1bf1ebfe1cf816725fbb758f`.
-- The accepted current-Parliament evidence now includes 306 spoken contributions and 90 written questions, without position or commitment inference.
+- PR #203 authorised this lane at merge `4964c6b00f91c08ef9e06b5150455eaea18e8e47`.
+- The fixed source inventory and candidate-statement capture are complete with the accepted 8-source, 48-accepted, 19-unresolved and 42-excluded result.
+- The current schema represents the neutral records as `position` facts without schema or generator change.
+- Draft PR #204 confirms its own fixed-capture regression passes.
+- The only observed failure is the inherited spoken-contributions closed-world preservation hash; no spoken record mismatch was reported.
 - The commitment-versus-conduct comparison remains unstarted.
 
 ## To do
 
-- merge this `STATUS.md`-only authority activation after Project Control passes;
-- enumerate the accepted first-party and official source inventory inside the date boundary;
-- freeze the source payloads or texts and their checksums;
-- extract candidate passages without assigning political topics or outcomes;
-- classify only the authorised statement forms, preserving unresolved candidates;
-- publish the fixed counts, date coverage, identifier method and unresolved count before fixture integration;
-- open one exact five-file implementation PR;
-- stop after that implementation PR is complete, tested and reviewed.
+- merge this `STATUS.md`-only clarification after Project Control passes;
+- open one separate one-file prerequisite PR repairing only the spoken-contributions preservation boundary;
+- review and merge that prerequisite after its bounded tests pass;
+- reconcile draft PR #204 against repaired `main`;
+- restore the full fixed packet, source note, fixture integration, deterministic regression and read-only CI in exactly the five authorised files;
+- run the complete required regression matrix;
+- mark PR #204 ready only after exact five-file scope and all checks are green;
+- stop for review without merging PR #204.
 
 ## Next bounded gate
 
-Merge this authority-only activation PR after Project Control passes. Then produce one fixed source inventory and candidate-statement capture. Before implementation begins, report the source count, each accepted statement-form count, exact date coverage, stable record-ID method and unresolved count.
+Merge this `STATUS.md`-only clarification after Project Control passes. Then open one separate one-file prerequisite PR changing only `scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py` as specified above. Do not resume fixture integration in PR #204 until that repair passes and merges.
 
 ## Stop point
 
-Do not compare any commitment or position with votes, questions, speeches, amendments, organisational conduct or outcomes; declare a promise delivered, broken, attempted, blocked, reversed or contradicted; infer a political topic, ideology, personality, motive, sincerity, importance, accuracy, legality, propriety or influence; use media, social media, video/audio transcription, commercial databases or unattributed sources; include pre-4-July-2024 material; alter accepted spoken-contribution, written-question, voting, identity, roles, financial-interest, donation, outside-work or company-link records; change another canonical section; access or mutate the private server or SQLite; mark a partial section complete; mark the report publishable; or authorise public output. Stop after one five-file evidence-baseline implementation PR is complete, tested and reviewed.
+Do not expand PR #204 to a sixth file; change the schema or generator; weaken or replace any accepted spoken contribution, written question, vote, identity, role, financial-interest, donation, outside-work or company-link record; compare any commitment or position with conduct or outcomes; declare a promise delivered, broken, attempted, blocked, reversed or contradicted; infer topic, ideology, personality, motive, sincerity, importance, accuracy, legality, propriety or influence; use excluded source classes; include pre-4-July-2024 material; change another canonical section; access or mutate the private server or SQLite; mark a partial section complete; mark the report publishable; or authorise public output. Stop after the separate one-file repair PR is complete, tested and reviewed, then resume the parked five-file implementation only under this authority.
