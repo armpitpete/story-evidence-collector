@@ -1,4 +1,4 @@
-name: Jeremy Corbyn current Parliament commitments and public positions reconciliation
+name: Jeremy Corbyn current Parliament commitments and public positions test
 
 on:
   pull_request:
@@ -11,16 +11,16 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  reconcile:
+  commitments-public-positions:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out exact implementation branch
+      - name: Check out exact implementation head
         uses: actions/checkout@v4
         with:
-          ref: agent/corbyn-current-parliament-commitments-public-positions
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
 
       - name: Set up Python 3.12
@@ -28,113 +28,17 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Reconcile exact repaired main
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          test "$(git rev-parse origin/main)" = "3bc4b68027efaf1897a1d65f8f5ea02f3233cdb7"
-          git merge --no-edit origin/main
+      - name: Compile commitments and public positions regression
+        run: python -m py_compile scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py
 
-      - name: Restore fixed payloads
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          curl --location --fail --silent --show-error \
-            --header "Authorization: Bearer ${GH_TOKEN}" \
-            --header "Accept: application/vnd.github+json" \
-            --header "X-GitHub-Api-Version: 2022-11-28" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/204/comments?per_page=100" \
-            --output payload-comments.json
+      - name: Verify fixed commitments and public positions baseline
+        run: python scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py
 
-          python - <<'PY'
-          import base64
-          import gzip
-          import json
-          import re
-          from pathlib import Path
+      - name: Verify preserved spoken-contributions baseline
+        run: python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
 
-          comments = json.loads(Path("payload-comments.json").read_text(encoding="utf-8"))
-          pattern = re.compile(
-              r"^PAYLOAD (PACKET|SCRIPT|NOTE) (\d+)/(\d+)\n([A-Za-z0-9+/=]+)$"
-          )
-          parts = {}
-          totals = {}
-          for comment in comments:
-              body = comment.get("body") or ""
-              match = pattern.fullmatch(body.strip())
-              if not match:
-                  continue
-              name, index_text, total_text, payload = match.groups()
-              index = int(index_text)
-              total = int(total_text)
-              if name in totals and totals[name] != total:
-                  raise SystemExit(f"Inconsistent payload total for {name}")
-              totals[name] = total
-              key = (name, index)
-              if key in parts:
-                  raise SystemExit(f"Duplicate payload part: {name} {index}")
-              parts[key] = payload
-
-          expected = {"PACKET": 7, "SCRIPT": 2, "NOTE": 1}
-          if totals != expected:
-              raise SystemExit(f"Payload totals mismatch: {totals!r}")
-
-          targets = {
-              "PACKET": Path("research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json"),
-              "SCRIPT": Path("scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py"),
-              "NOTE": Path("docs/jeremy-corbyn-current-parliament-commitments-and-public-positions-source-note-v1.md"),
-          }
-          for name, total in expected.items():
-              encoded = "".join(parts[(name, index)] for index in range(1, total + 1))
-              data = gzip.decompress(base64.b64decode(encoded))
-              path = targets[name]
-              path.parent.mkdir(parents=True, exist_ok=True)
-              path.write_bytes(data)
-          PY
-
-      - name: Integrate fixed candidate capture
-        id: integrate
-        continue-on-error: true
-        run: |
-          set +e
-          {
-            python -m py_compile scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py &&
-            python scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py --integrate &&
-            python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py &&
-            python scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py
-          } > integration.log 2>&1
-          status=$?
-          cat integration.log
-          printf '%s\n' "$status" > integration-status.txt
-          exit "$status"
-
-      - name: Upload integration diagnostic
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: pr204-integration-diagnostic
-          path: |
-            integration.log
-            integration-status.txt
-          if-no-files-found: error
-
-      - name: Stop after integration failure
-        if: steps.integrate.outcome != 'success'
-        run: exit 1
-
-      - name: Commit exact five-file implementation
-        run: |
-          git add \
-            research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json \
-            docs/jeremy-corbyn-current-parliament-commitments-and-public-positions-source-note-v1.md \
-            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
-            scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py \
-            .github/workflows/jeremy-corbyn-current-parliament-commitments-public-positions-test.yml
-          if ! git diff --cached --quiet; then
-            git commit -m "Restore Corbyn commitments and public positions implementation"
-          fi
-          git push origin HEAD:agent/corbyn-current-parliament-commitments-public-positions
+      - name: Verify preserved written-question baseline
+        run: python scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py
 
       - name: Verify exact implementation scope
         run: |
