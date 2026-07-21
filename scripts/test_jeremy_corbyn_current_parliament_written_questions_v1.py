@@ -320,7 +320,13 @@ def test_fixture_integration() -> None:
 
     speeches = section(report, "speeches_and_questions")
     assert speeches["status"] == "partial"
-    assert speeches["fact_ids"] == expected_fact_ids
+    section_fact_ids = speeches["fact_ids"]
+    assert section_fact_ids[: len(expected_fact_ids)] == expected_fact_ids
+    assert [
+        fact_id
+        for fact_id in section_fact_ids
+        if fact_id.startswith("fact-written-question-")
+    ] == expected_fact_ids
     assert speeches["claim_ids"] == []
     assert speeches["interpretation_ids"] == []
     assert speeches["relationship_ids"] == []
