@@ -63,6 +63,10 @@ jobs:
             && [ "$PR_HEAD_SHA" = "30a8c4dab909cecc244786884360c3d142c9d9ee" ] \
             && [ "$actual" = "$authorised_repair_expected" ]; then
             printf '%s\n' "PASS — authorised PR #206 one-file regression repair scope"
+          elif [ "$PR_NUMBER" = "213" ] \
+            && [ "$PR_HEAD_SHA" = "21604bac48ab3c5f371d30c0734f7875cf2ea44a" ] \
+            && [ "$actual" = "$authorised_repair_expected" ]; then
+            printf '%s\n' "PASS — authorised PR #213 populated-position regression repair scope"
           else
             printf '%s\n' "FAIL — unauthorised spoken-contributions workflow scope"
             exit 1
