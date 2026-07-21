@@ -1,0 +1,51 @@
+name: Jeremy Corbyn current Parliament spoken contributions test
+
+on:
+  pull_request:
+    paths:
+      - "research/complete-mp-reports/jeremy-corbyn/current-parliament-spoken-contributions-v1.json"
+      - "docs/jeremy-corbyn-current-parliament-spoken-contributions-source-note-v1.md"
+      - "fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json"
+      - "scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py"
+      - ".github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  spoken-contributions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact implementation head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile regression
+        run: python -m py_compile scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
+
+      - name: Verify fixed spoken-contributions baseline
+        run: python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
+
+      - name: Verify preserved written-question baseline
+        run: python scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py
+
+      - name: Verify exact implementation scope
+        run: |
+          git fetch origin main
+          actual="$(git diff --name-only origin/main...HEAD | sort)"
+          expected="$(printf '%s\n' \
+            .github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml \
+            docs/jeremy-corbyn-current-parliament-spoken-contributions-source-note-v1.md \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
+            research/complete-mp-reports/jeremy-corbyn/current-parliament-spoken-contributions-v1.json \
+            scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py | sort)"
+          test "$actual" = "$expected"
+          git diff --check origin/main...HEAD
