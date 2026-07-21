@@ -1,0 +1,119 @@
+name: Jeremy Corbyn current Parliament commitments and public positions test
+
+on:
+  push:
+    branches:
+      - "agent/corbyn-current-parliament-commitments-public-positions"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+  pull-requests: read
+
+jobs:
+  commitments-public-positions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out implementation branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/corbyn-current-parliament-commitments-public-positions
+          fetch-depth: 0
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch temporary fixed payloads
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl --location --fail --silent --show-error \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header "Accept: application/vnd.github+json" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/204/comments?per_page=100" \
+            --output payload-comments.json
+
+          python - <<'PY'
+          import base64
+          import gzip
+          import json
+          import re
+          from pathlib import Path
+
+          comments = json.loads(Path("payload-comments.json").read_text(encoding="utf-8"))
+          pattern = re.compile(
+              r"^PAYLOAD (PACKET|SCRIPT|NOTE) (\d+)/(\d+)\n([A-Za-z0-9+/=]+)$"
+          )
+          parts = {}
+          totals = {}
+          for comment in comments:
+              body = comment.get("body") or ""
+              match = pattern.fullmatch(body.strip())
+              if not match:
+                  continue
+              name, index_text, total_text, payload = match.groups()
+              index = int(index_text)
+              total = int(total_text)
+              if name in totals and totals[name] != total:
+                  raise SystemExit(f"Inconsistent payload total for {name}")
+              totals[name] = total
+              key = (name, index)
+              if key in parts:
+                  raise SystemExit(f"Duplicate payload part: {name} {index}")
+              parts[key] = payload
+
+          expected = {"PACKET": 7, "SCRIPT": 2, "NOTE": 1}
+          if totals != expected:
+              raise SystemExit(f"Payload totals mismatch: {totals!r}")
+
+          targets = {
+              "PACKET": Path("research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json"),
+              "SCRIPT": Path("scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py"),
+              "NOTE": Path("docs/jeremy-corbyn-current-parliament-commitments-and-public-positions-source-note-v1.md"),
+          }
+          for name, total in expected.items():
+              encoded = "".join(parts[(name, index)] for index in range(1, total + 1))
+              data = gzip.decompress(base64.b64decode(encoded))
+              path = targets[name]
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_bytes(data)
+          PY
+
+      - name: Integrate fixed candidate capture
+        run: |
+          python -m py_compile scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py
+          python scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py --integrate
+          python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
+          python scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py
+
+      - name: Commit exact five-file implementation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json \
+            docs/jeremy-corbyn-current-parliament-commitments-and-public-positions-source-note-v1.md \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
+            scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py \
+            .github/workflows/jeremy-corbyn-current-parliament-commitments-public-positions-test.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "Add Corbyn commitments and public positions baseline"
+            git push origin HEAD:agent/corbyn-current-parliament-commitments-public-positions
+          fi
+
+      - name: Verify exact implementation scope
+        run: |
+          git fetch origin main
+          actual="$(git diff --name-only origin/main...HEAD | sort)"
+          expected="$(printf '%s\n' \
+            .github/workflows/jeremy-corbyn-current-parliament-commitments-public-positions-test.yml \
+            docs/jeremy-corbyn-current-parliament-commitments-and-public-positions-source-note-v1.md \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
+            research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json \
+            scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py | sort)"
+          test "$actual" = "$expected"
+          git diff --check origin/main...HEAD
