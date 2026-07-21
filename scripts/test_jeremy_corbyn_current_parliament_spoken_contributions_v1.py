@@ -692,36 +692,166 @@ No topic classification, summarisation of political meaning, policy-position inf
 """
 
 
+POSITION_SECTION_ID = "public_positions_over_time"
+POSITION_SECTION_BASELINE = {
+    "section_id": POSITION_SECTION_ID,
+    "title": "Public positions over time",
+    "status": "not_researched",
+    "summary": "No reviewed position timeline is present.",
+    "fact_ids": [],
+    "claim_ids": [],
+    "interpretation_ids": [],
+    "relationship_ids": [],
+    "gap_ids": ["gap-positions"],
+}
+
+
+def exclusively_position_source_ids(report: dict) -> set[str]:
+    position_facts = [
+        item
+        for item in report["facts"]
+        if item["section_id"] == POSITION_SECTION_ID
+    ]
+    candidates = {
+        source_id
+        for fact in position_facts
+        for source_id in fact["source_ids"]
+    }
+    candidates.difference_update({MEMBERS_SOURCE_ID, HANSARD_SOURCE_ID})
+
+    other_references = set(report["subject"].get("identity_source_ids", []))
+    for fact in report["facts"]:
+        if fact["section_id"] != POSITION_SECTION_ID:
+            other_references.update(fact["source_ids"])
+    for claim in report["claims"]:
+        other_references.update(claim["source_ids"])
+    for relationship in report["relationships"]:
+        other_references.update(relationship["source_ids"])
+
+    return candidates - other_references
+
+
+def legacy_sections_for_spoken_hash(report: dict) -> list[dict]:
+    result: list[dict] = []
+    for item in report["sections"]:
+        if item["section_id"] == SECTION_ID:
+            continue
+        if item["section_id"] == POSITION_SECTION_ID:
+            result.append(dict(POSITION_SECTION_BASELINE))
+        else:
+            result.append(item)
+    return result
+
+
 def current_preservation_hashes(report: dict, packet: dict) -> dict:
-    new_source_ids = {item["source_id"] for item in packet["sources"]}
-    new_fact_ids = {item["fact_id"] for item in packet["facts"]}
+    spoken_source_ids = {item["source_id"] for item in packet["sources"]}
+    spoken_fact_ids = {item["fact_id"] for item in packet["facts"]}
+    position_fact_ids = {
+        item["fact_id"]
+        for item in report["facts"]
+        if item["section_id"] == POSITION_SECTION_ID
+    }
+    omitted_source_ids = spoken_source_ids | exclusively_position_source_ids(
+        report
+    )
+    omitted_fact_ids = spoken_fact_ids | position_fact_ids
+
     return {
         "sources_before_spoken_lane": canonical_sha256(
             [
                 item
                 for item in report["sources"]
-                if item["source_id"] not in new_source_ids
+                if item["source_id"] not in omitted_source_ids
             ]
         ),
         "facts_before_spoken_lane": canonical_sha256(
             [
                 item
                 for item in report["facts"]
-                if item["fact_id"] not in new_fact_ids
+                if item["fact_id"] not in omitted_fact_ids
             ]
         ),
         "sections_except_speeches_and_questions": canonical_sha256(
-            [
-                item
-                for item in report["sections"]
-                if item["section_id"] != SECTION_ID
-            ]
+            legacy_sections_for_spoken_hash(report)
         ),
         "claims": canonical_sha256(report["claims"]),
         "interpretations": canonical_sha256(report["interpretations"]),
         "relationships": canonical_sha256(report["relationships"]),
         "publication": canonical_sha256(report["publication"]),
     }
+
+
+def test_position_lane_preservation_boundary() -> None:
+    packet = load_json(PACKET_PATH)
+    report = load_json(FIXTURE_PATH)
+    validate_report(report)
+
+    baseline = packet["preservation_hashes"]
+    assert current_preservation_hashes(report, packet) == baseline
+
+    position_source_id = "source-regression-position-boundary"
+    position_fact_id = "fact-regression-position-boundary"
+    mutated = json.loads(json.dumps(report))
+    mutated["sources"].append(
+        {
+            "source_id": position_source_id,
+            "title": "Synthetic public-position regression source",
+            "publisher": "Story Evidence Collector regression",
+            "source_type": "repository_fixture",
+            "authority_level": "fixture_only",
+            "url": "",
+            "repository_path": "scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py",
+            "server_path": "",
+            "publication_date": "2025-01-01",
+            "capture_date": "2026-07-21",
+            "coverage_from": "2025-01-01",
+            "coverage_to": "2025-01-01",
+            "checksum": "sha256:synthetic-position-boundary",
+            "limitations": "In-memory regression evidence only; never written to the canonical fixture.",
+        }
+    )
+    mutated["facts"].append(
+        {
+            "fact_id": position_fact_id,
+            "section_id": POSITION_SECTION_ID,
+            "statement": "The synthetic source records one neutral public-position occurrence.",
+            "fact_type": "position",
+            "date": "2025-01-01",
+            "date_from": None,
+            "date_to": None,
+            "source_ids": [position_source_id],
+            "confidence": "high",
+            "evidence_status": "source_recorded",
+            "notes": "In-memory regression evidence only; no political interpretation is created.",
+        }
+    )
+    positions = section(mutated, POSITION_SECTION_ID)
+    assert positions == POSITION_SECTION_BASELINE
+    positions["status"] = "partial"
+    positions["summary"] = (
+        "One synthetic neutral position fact is present only for the "
+        "spoken-regression boundary test."
+    )
+    positions["fact_ids"] = [position_fact_id]
+    validate_report(mutated)
+    assert current_preservation_hashes(mutated, packet) == baseline
+
+    shared_source = json.loads(json.dumps(mutated))
+    non_position_fact = next(
+        item
+        for item in shared_source["facts"]
+        if item["section_id"] not in {POSITION_SECTION_ID, SECTION_ID}
+    )
+    non_position_fact["source_ids"].append(position_source_id)
+    validate_report(shared_source)
+    assert current_preservation_hashes(shared_source, packet) != baseline
+
+    unrelated_section = json.loads(json.dumps(mutated))
+    section(unrelated_section, "roles_and_committees")["summary"] += (
+        " Synthetic unauthorised change."
+    )
+    validate_report(unrelated_section)
+    assert current_preservation_hashes(unrelated_section, packet) != baseline
 
 
 def test_packet_and_fixture() -> None:
@@ -900,6 +1030,7 @@ def main(argv: list[str] | None = None) -> int:
         integrate_capture(args.integrate_capture)
     else:
         test_packet_and_fixture()
+        test_position_lane_preservation_boundary()
         test_deterministic_generation()
         print(
             "PASS - Jeremy Corbyn current-Parliament spoken contributions baseline v1"
