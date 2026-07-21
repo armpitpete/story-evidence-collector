@@ -51,6 +51,12 @@ jobs:
             research/complete-mp-reports/jeremy-corbyn/current-parliament-spoken-contributions-v1.json \
             scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py | sort)"
           authorised_repair_expected="scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py"
+          authorised_pr204_expected="$(printf '%s\n' \
+            .github/workflows/jeremy-corbyn-current-parliament-commitments-public-positions-test.yml \
+            docs/jeremy-corbyn-current-parliament-commitments-and-public-positions-source-note-v1.md \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
+            research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json \
+            scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py | sort)"
 
           printf '%s\n' "Evaluated PR number: ${PR_NUMBER:-none}"
           printf '%s\n' "Evaluated PR head: ${PR_HEAD_SHA:-none}"
@@ -67,6 +73,10 @@ jobs:
             && [ "$PR_HEAD_SHA" = "21604bac48ab3c5f371d30c0734f7875cf2ea44a" ] \
             && [ "$actual" = "$authorised_repair_expected" ]; then
             printf '%s\n' "PASS — authorised PR #213 populated-position regression repair scope"
+          elif [ "$PR_NUMBER" = "204" ] \
+            && [ "$PR_HEAD_SHA" = "ca54308f06e5d69831d353e039e71657104945f0" ] \
+            && [ "$actual" = "$authorised_pr204_expected" ]; then
+            printf '%s\n' "PASS — authorised PR #204 commitments and public positions scope"
           else
             printf '%s\n' "FAIL — unauthorised spoken-contributions workflow scope"
             exit 1
