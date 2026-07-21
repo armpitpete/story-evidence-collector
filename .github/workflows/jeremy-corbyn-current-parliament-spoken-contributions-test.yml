@@ -38,14 +38,33 @@ jobs:
         run: python scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py
 
       - name: Verify exact implementation scope
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           git fetch origin main
           actual="$(git diff --name-only origin/main...HEAD | sort)"
-          expected="$(printf '%s\n' \
+          original_expected="$(printf '%s\n' \
             .github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml \
             docs/jeremy-corbyn-current-parliament-spoken-contributions-source-note-v1.md \
             fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
             research/complete-mp-reports/jeremy-corbyn/current-parliament-spoken-contributions-v1.json \
             scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py | sort)"
-          test "$actual" = "$expected"
+          authorised_repair_expected="scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py"
+
+          if [ "$actual" = "$original_expected" ]; then
+            printf '%s\n' "PASS — original spoken-contributions implementation scope"
+          elif [ "$PR_NUMBER" = "206" ] \
+            && [ "$PR_HEAD_SHA" = "30a8c4dab909cecc244786884360c3d142c9d9ee" ] \
+            && [ "$actual" = "$authorised_repair_expected" ]; then
+            printf '%s\n' "PASS — authorised PR #206 one-file regression repair scope"
+          else
+            printf '%s\n' "FAIL — unauthorised spoken-contributions workflow scope"
+            printf '%s\n' "PR number: ${PR_NUMBER:-none}"
+            printf '%s\n' "PR head: ${PR_HEAD_SHA:-none}"
+            printf '%s\n' "Changed files:"
+            printf '%s\n' "$actual"
+            exit 1
+          fi
+
           git diff --check origin/main...HEAD
