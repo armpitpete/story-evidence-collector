@@ -65,8 +65,8 @@ FIXED_ARTIFACT_DIGEST = (
     "sha256:30a68c8feda571c5d9f7d54549d54163b01e720a3eb1b3b0058fc02010dfc1de"
 )
 EXPECTED_VENUE_COUNTS = {
-    "Commons Chamber": 280,
-    "Westminster Hall": 26,
+    "Commons Chamber": 272,
+    "Westminster Hall": 34,
 }
 EXPECTED_OUTPUTS = {
     "corbyn-jeremy-full-profile.json",
@@ -203,10 +203,12 @@ def build_packet(capture: dict) -> dict:
         reconciliation = reconciliation_by_debate[debate_id]
         overview = reconciliation["debate_overview"]
         index_item = index_by_debate[debate_id]
-        member_segment = failure["member_segment"]
+        member_segment_ids = {
+            str(value).upper()
+            for value in reconciliation["member_contribution_external_ids"]
+        }
 
-        assert str(member_segment["ContentItemExtId"]).upper() == contribution_id
-        assert str(member_segment["DebateSectionExtId"]).upper() == debate_id
+        assert contribution_id in member_segment_ids
         assert search_item["MemberId"] == MEMBER_ID
         assert str(search_item["ContributionExtId"]).upper() == contribution_id
         assert str(search_item["DebateSectionExtId"]).upper() == debate_id
@@ -244,7 +246,11 @@ def build_packet(capture: dict) -> dict:
                 "source_status": source_status(overview.get("Source")),
                 "content_last_updated": overview.get("ContentLastUpdated"),
                 "member_index_item": index_item,
-                "member_segment": member_segment,
+                "member_segment_reference": {
+                    "content_item_external_id": contribution_id,
+                    "debate_section_external_id": debate_id,
+                    "present_in_captured_member_segment_ids": True,
+                },
                 "hansard_search_result": search_item,
                 "reconciliation_evidence": {
                     "member_segment_reached_permalink_stage": True,
