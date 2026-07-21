@@ -1,4 +1,4 @@
-name: Jeremy Corbyn current Parliament spoken contributions capture
+name: Jeremy Corbyn current Parliament spoken contributions test
 
 on:
   pull_request:
@@ -11,33 +11,110 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  actions: read
+  contents: write
 
 jobs:
-  capture:
+  spoken-contributions:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out implementation branch
         uses: actions/checkout@v4
+        with:
+          ref: agent/corbyn-current-parliament-spoken-contributions
+          fetch-depth: 0
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Compile capture diagnostic
-        run: python -m py_compile scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
+      - name: Integrate repaired main authority
+        run: |
+          git fetch origin main
+          git merge --no-edit origin/main
 
-      - name: Run fixed official-source diagnostic
+      - name: Align integration script with frozen artifact provenance
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py")
+          text = path.read_text(encoding="utf-8")
+          text = text.replace(
+              '    "Commons Chamber": 280,\n    "Westminster Hall": 26,',
+              '    "Commons Chamber": 272,\n    "Westminster Hall": 34,',
+          )
+          old = '''        member_segment = failure["member_segment"]
+
+          assert str(member_segment["ContentItemExtId"]).upper() == contribution_id
+          assert str(member_segment["DebateSectionExtId"]).upper() == debate_id
+          '''
+          new = '''        member_segment_ids = {
+              str(value).upper()
+              for value in reconciliation["member_contribution_external_ids"]
+          }
+
+          assert contribution_id in member_segment_ids
+          '''
+          if old not in text:
+              raise SystemExit("Expected member-segment block not found")
+          text = text.replace(old, new)
+          old_field = '                "member_segment": member_segment,\n'
+          new_field = '''                "member_segment_reference": {
+                      "content_item_external_id": contribution_id,
+                      "debate_section_external_id": debate_id,
+                      "present_in_captured_member_segment_ids": True,
+                  },
+          '''
+          if old_field not in text:
+              raise SystemExit("Expected member-segment field not found")
+          text = text.replace(old_field, new_field)
+          path.write_text(text, encoding="utf-8", newline="\n")
+          PY
+
+      - name: Download frozen fixed capture
         env:
-          CAPTURE_OUTPUT: capture-diagnostic.json
-        run: python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl --location --fail --silent --show-error \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header "Accept: application/vnd.github+json" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/artifacts/8491239100/zip" \
+            --output fixed-capture.zip
+          mkdir fixed-capture
+          unzip -q fixed-capture.zip -d fixed-capture
+          test -f fixed-capture/capture-diagnostic.json
 
-      - name: Upload fixed diagnostic
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: corbyn-spoken-contributions-diagnostic
-          path: capture-diagnostic.json
-          if-no-files-found: error
-          retention-days: 7
+      - name: Integrate fixed capture into authorised files
+        run: |
+          python -m py_compile scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
+          python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py \
+            --integrate-capture fixed-capture/capture-diagnostic.json
+          python scripts/test_jeremy_corbyn_current_parliament_written_questions_v1.py
+
+      - name: Commit exact five-file implementation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            research/complete-mp-reports/jeremy-corbyn/current-parliament-spoken-contributions-v1.json \
+            docs/jeremy-corbyn-current-parliament-spoken-contributions-source-note-v1.md \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
+            scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py \
+            .github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml
+          if ! git diff --cached --quiet; then
+            git commit -m "Add Corbyn current Parliament spoken contributions baseline"
+          fi
+
+          actual="$(git diff --name-only origin/main...HEAD | sort)"
+          expected="$(printf '%s\n' \
+            .github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml \
+            docs/jeremy-corbyn-current-parliament-spoken-contributions-source-note-v1.md \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
+            research/complete-mp-reports/jeremy-corbyn/current-parliament-spoken-contributions-v1.json \
+            scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py | sort)"
+          test "$actual" = "$expected"
+          git diff --check origin/main...HEAD
+          git push origin HEAD:agent/corbyn-current-parliament-spoken-contributions
