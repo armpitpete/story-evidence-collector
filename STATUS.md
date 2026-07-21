@@ -11,17 +11,18 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Exact starting head for this clarification: `8b08f55a9dafff912e89cc3dcd74ee274f7b0631`.
+- Exact starting head for this clarification: `f160fbad41dad8ceab7d82a96a482ddc194a9e5c`.
 - Jeremy Corbyn current-Parliament spoken-contributions baseline is complete at merge `098cc5f77ef30e4c259a164f70e79b8451d138c9` from exact reviewed implementation head `ab36c84dd089adbb3bae151bd4547423a297741b`.
 - Its closure is complete at merge `dfe99df47a0808ca1bf1ebfe1cf816725fbb758f` from exact closure head `56b6aaada7998a33740490599c3716cb3827c1c6`.
 - The current-Parliament explicit-commitments and public-position evidence lane was authorised at merge `4964c6b00f91c08ef9e06b5150455eaea18e8e47` from exact authority head `a29919d21daa9ce38e6390d0c0d47c7b815b507e`.
 - PR #205 clarified the spoken-regression preservation boundary at merge `8b08f55a9dafff912e89cc3dcd74ee274f7b0631` from exact authority head `6fdb0d7731437bfafd17af4fff1417d50538990d`.
+- PR #208 added the bounded PR-#206 workflow scope exception at merge `f160fbad41dad8ceab7d82a96a482ddc194a9e5c` from exact reviewed head `b6de3964ca9a8b0842f9208a3d5bfbe430255fde`.
 - Current-Parliament written questions, regulated-donee donations, outside-work/company links, current financial interests, roles and committees, and identity and parliamentary career remain complete within their declared bounded source scopes.
 - Complete MP Portfolio vertical slice, January 2003 vote-review queue, Repository Release v1 and backup-and-restore hardening remain complete and authoritative.
 
 ## Current lane
 
-Jeremy Corbyn current-Parliament explicit-commitments and public-position evidence baseline, with one parked prerequisite regression repair.
+Jeremy Corbyn current-Parliament explicit-commitments and public-position evidence baseline, with PR #204 parked, PR #206 unmerged, and one authorised workflow-only event-field correction required before PR #206 may proceed.
 
 Goal: create a bounded, source-verbatim evidence packet of explicit commitments and directly stated public positions attributable to Jeremy Corbyn from `2024-07-04` through one declared capture timestamp. This lane records what was expressly said, who the stated actor was, and any literal condition or deadline. It does not compare statements with later conduct, decide delivery, infer contradiction, classify political character or authorise publication.
 
@@ -132,7 +133,7 @@ The fixed pre-implementation capture records:
 - accepted statement dates from `2024-07-18` through `2026-07-16`;
 - capture SHA-256 `fc5651b9f5647bcbfee822121f3188b0438fc826ad604351d044a8144e3df3db`.
 
-Draft PR #204 remains the parked five-file implementation lane. Fixture integration must not resume until both prerequisite repairs described below have passed and merged.
+Draft PR #204 remains the parked five-file implementation lane. Fixture integration must not resume until the prerequisite repair and workflow correction below have passed and merged.
 
 ## Authorised prerequisite regression repair
 
@@ -140,7 +141,7 @@ PR #206 is the separately authorised one-file repair:
 
 - PR: `#206`;
 - exact head: `30a8c4dab909cecc244786884360c3d142c9d9ee`;
-- base: `8b08f55a9dafff912e89cc3dcd74ee274f7b0631`;
+- current base: `f160fbad41dad8ceab7d82a96a482ddc194a9e5c`;
 - changed path: `scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py` only.
 
 The repair makes the legacy spoken preservation calculation aware only of the separately authorised `public_positions_over_time` lane. It must continue to protect:
@@ -152,36 +153,51 @@ The repair makes the legacy spoken preservation calculation aware only of the se
 - every canonical section other than `public_positions_over_time` and `speeches_and_questions`;
 - all claims, interpretations, relationships and publication authority.
 
-The one-file repair's substantive regression, preserved written-question regression, Repository Release validation and Project Control have passed. Its only failing check is the inherited spoken workflow's hard-coded exact-five-file scope guard.
+Fresh checks against exact head `30a8c4dab909cecc244786884360c3d142c9d9ee` after PR #208 merged show:
 
-PR #206 must remain unmerged until the scope-guard conflict below is repaired and its full required check set is green.
+- Repository release validation: passed;
+- Project Control: passed;
+- Spoken-contributions compilation: passed;
+- 306-record spoken-contributions regression: passed;
+- 90-question preservation regression: passed;
+- Final exact-scope guard: failed.
 
-## Authorised prerequisite workflow scope-guard repair
+GitHub independently confirms that PR #206 changes exactly:
 
-The inherited workflow:
+- `scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py`
+
+PR #206 must remain unmerged until the workflow event-field correction below is merged and every fresh required check is green.
+
+## Authorised second workflow-only correction
+
+PR #208 correctly introduced the bounded PR-#206/head-SHA/file-set rule in:
 
 - `.github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml`
 
-currently requires every pull request invoking it to change the original five files from PR #197. That rule correctly protected the original implementation but cannot recognise the separately authorised one-file repair in PR #206, even though the workflow's compile, spoken-baseline and written-question steps all pass.
-
-One separate prerequisite PR may change only:
+The remaining failure is limited to the PR-number event field used by the final exact-scope guard. One separate correction PR may change only:
 
 - `.github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml`
 
-The workflow repair may alter only the final exact-scope validation. It must:
+The correction may alter only the final exact-scope validation and must:
 
+- change the PR-number source from `github.event.pull_request.number` to `github.event.number`;
+- retain the exact PR requirement `206`;
+- retain exact head `30a8c4dab909cecc244786884360c3d142c9d9ee`;
+- retain the exact one-file set `scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py`;
 - retain the current pull-request path filters;
 - retain read-only permissions;
 - retain exact-head checkout;
-- retain Python setup, compilation, the full spoken-contributions regression and the written-question regression;
+- retain Python setup and compilation;
+- retain the full 306-record spoken-contributions regression;
+- retain the 90-question preservation regression;
+- retain every other substantive test;
 - retain `git diff --check`;
-- continue to accept the original exact five-file spoken implementation scope unchanged;
-- additionally accept only PR `#206` at exact head `30a8c4dab909cecc244786884360c3d142c9d9ee` when its diff relative to `main` is exactly `scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py`;
+- print the evaluated PR number, head SHA and changed-file set before applying the bounded decision;
 - reject the one-file exception if the PR number, head SHA or changed-file set differs;
-- create no general one-file allowance, branch wildcard, title-based allowance, `continue-on-error`, skipped test, reduced permission boundary or silent success path;
+- create no general exception, one-file allowance, branch wildcard, title-based allowance, `continue-on-error`, skipped test, reduced permission boundary or silent success path;
 - make no change to the spoken packet, source note, fixture, schema, generator, regression script or any other workflow.
 
-The workflow-scope repair must pass Project Control and must show exactly one changed file. After it merges, PR #206 must be rerun at the unchanged exact head `30a8c4dab909cecc244786884360c3d142c9d9ee`. PR #206 may merge only when its substantive tests, exact-scope check, Repository Release validation and Project Control are all green.
+The second workflow-only correction must pass Project Control and must show exactly one changed file. After it merges, PR #206 must be retriggered at the unchanged exact head `30a8c4dab909cecc244786884360c3d142c9d9ee`. PR #206 may merge only when Repository Release validation, Project Control, compilation, both substantive regressions, the final exact-scope guard and every other required check are freshly green.
 
 ## Required implementation validation
 
@@ -209,17 +225,19 @@ After both prerequisite repairs merge, PR #204 must prove:
 - The fixed source inventory and candidate-statement capture are complete with the accepted 8-source, 48-accepted, 19-unresolved and 42-excluded result.
 - The current schema represents the neutral records as `position` facts without schema or generator change.
 - PR #205 authorised the bounded spoken-regression preservation repair and merged as `8b08f55a9dafff912e89cc3dcd74ee274f7b0631`.
-- PR #206 is open at exact head `30a8c4dab909cecc244786884360c3d142c9d9ee`, changes exactly one regression file, and passes every substantive test before the inherited exact-five-file scope assertion.
+- PR #208 added the bounded workflow scope exception and merged at `f160fbad41dad8ceab7d82a96a482ddc194a9e5c`.
+- PR #206 remains open at exact head `30a8c4dab909cecc244786884360c3d142c9d9ee`, changes exactly one regression file, and passes every required check except the final exact-scope guard.
 - Draft PR #204 remains parked and unmerged.
 - The commitment-versus-conduct comparison remains unstarted.
 
 ## To do
 
-- merge this `STATUS.md`-only workflow-scope clarification after Project Control passes;
-- open one separate workflow-only prerequisite PR changing only `.github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml`;
-- review and merge that workflow-only repair after its exact scope and Project Control pass;
-- rerun PR #206 at unchanged exact head `30a8c4dab909cecc244786884360c3d142c9d9ee`;
-- review and merge PR #206 only after every required check is green;
+- merge this `STATUS.md`-only clarification after Project Control passes;
+- open one separate workflow-only correction changing only `.github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml`;
+- replace only the PR-number event source, preserve all exact constraints and add explicit evaluated-value diagnostics;
+- review and merge that workflow-only correction after exact one-file scope and Project Control pass;
+- retrigger PR #206 at unchanged exact head `30a8c4dab909cecc244786884360c3d142c9d9ee`;
+- review and merge PR #206 only after every fresh required check is green;
 - reconcile draft PR #204 against repaired `main`;
 - restore the full fixed packet, source note, fixture integration, deterministic regression and read-only CI in exactly the five authorised files;
 - run the complete required regression matrix;
@@ -228,8 +246,8 @@ After both prerequisite repairs merge, PR #204 must prove:
 
 ## Next bounded gate
 
-Merge this `STATUS.md`-only clarification after Project Control passes. Then open one separate workflow-only prerequisite PR implementing the exact PR-#206/head-SHA/file-set exception above. Do not merge PR #206 or resume PR #204 until the workflow-only repair merges and PR #206 is fully green.
+Merge this `STATUS.md`-only clarification after Project Control passes. Then open, review and merge one separate workflow-only correction that changes only the PR-number event source from `github.event.pull_request.number` to `github.event.number`, preserves every exact PR-#206/head-SHA/file-set and substantive validation requirement, and prints the evaluated PR number, head SHA and changed-file set. Retrigger PR #206 at unchanged exact head `30a8c4dab909cecc244786884360c3d142c9d9ee`. Do not merge PR #206 or resume PR #204 until every fresh required check passes.
 
 ## Stop point
 
-Do not merge PR #206 while any required check is red; resume or expand PR #204; create a general one-file scope bypass; weaken, skip or silence any substantive regression; change the spoken packet, source note, fixture, schema, generator or another workflow in the scope-guard repair; weaken or replace any accepted spoken contribution, written question, vote, identity, role, financial-interest, donation, outside-work or company-link record; compare any commitment or position with conduct or outcomes; declare a promise delivered, broken, attempted, blocked, reversed or contradicted; infer topic, ideology, personality, motive, sincerity, importance, accuracy, legality, propriety or influence; use excluded source classes; include pre-4-July-2024 material; change another canonical section; access or mutate the private server or SQLite; mark a partial section complete; mark the report publishable; or authorise public output.
+Do not merge PR #206 while any required check is red; resume or expand PR #204; create a general one-file scope bypass; weaken, skip or silence any substantive regression; change the spoken packet, source note, fixture, schema, generator or another workflow in the workflow-only correction; weaken or replace any accepted spoken contribution, written question, vote, identity, role, financial-interest, donation, outside-work or company-link record; compare any commitment or position with conduct or outcomes; declare a promise delivered, broken, attempted, blocked, reversed or contradicted; infer topic, ideology, personality, motive, sincerity, importance, accuracy, legality, propriety or influence; use excluded source classes; include pre-4-July-2024 material; change another canonical section; access or mutate the private server or SQLite; mark a partial section complete; mark the report publishable; or authorise public output.
