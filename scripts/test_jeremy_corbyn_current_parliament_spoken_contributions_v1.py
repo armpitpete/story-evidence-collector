@@ -781,6 +781,70 @@ def current_preservation_hashes(report: dict, packet: dict) -> dict:
     }
 
 
+def add_synthetic_position_record(
+    report: dict,
+    source_id: str,
+    fact_id: str,
+    record_date: str,
+) -> None:
+    report["sources"].append(
+        {
+            "source_id": source_id,
+            "title": "Synthetic public-position regression source",
+            "publisher": "Story Evidence Collector regression",
+            "source_type": "repository_fixture",
+            "authority_level": "fixture_only",
+            "url": "",
+            "repository_path": "scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py",
+            "server_path": "",
+            "publication_date": record_date,
+            "capture_date": "2026-07-21",
+            "coverage_from": record_date,
+            "coverage_to": record_date,
+            "checksum": f"sha256:{source_id}",
+            "limitations": "In-memory regression evidence only; never written to the canonical fixture.",
+        }
+    )
+    report["facts"].append(
+        {
+            "fact_id": fact_id,
+            "section_id": POSITION_SECTION_ID,
+            "statement": "The synthetic source records one neutral public-position occurrence.",
+            "fact_type": "position",
+            "date": record_date,
+            "date_from": None,
+            "date_to": None,
+            "source_ids": [source_id],
+            "confidence": "high",
+            "evidence_status": "source_recorded",
+            "notes": "In-memory regression evidence only; no political interpretation is created.",
+        }
+    )
+
+    positions = section(report, POSITION_SECTION_ID)
+    existing_position_fact_ids = {
+        item["fact_id"]
+        for item in report["facts"]
+        if item["section_id"] == POSITION_SECTION_ID
+        and item["fact_id"] != fact_id
+    }
+    assert set(positions["fact_ids"]) == existing_position_fact_ids
+    assert not positions["claim_ids"]
+    assert not positions["interpretation_ids"]
+    assert not positions["relationship_ids"]
+
+    if positions == POSITION_SECTION_BASELINE:
+        positions["status"] = "partial"
+        positions["summary"] = (
+            "Synthetic neutral position facts are present only for the "
+            "spoken-regression boundary test."
+        )
+    else:
+        assert positions["status"] == "partial"
+
+    positions["fact_ids"].append(fact_id)
+
+
 def test_position_lane_preservation_boundary() -> None:
     packet = load_json(PACKET_PATH)
     report = load_json(FIXTURE_PATH)
@@ -789,64 +853,41 @@ def test_position_lane_preservation_boundary() -> None:
     baseline = packet["preservation_hashes"]
     assert current_preservation_hashes(report, packet) == baseline
 
-    position_source_id = "source-regression-position-boundary"
-    position_fact_id = "fact-regression-position-boundary"
+    first_source_id = "source-regression-position-boundary-1"
+    first_fact_id = "fact-regression-position-boundary-1"
     mutated = json.loads(json.dumps(report))
-    mutated["sources"].append(
-        {
-            "source_id": position_source_id,
-            "title": "Synthetic public-position regression source",
-            "publisher": "Story Evidence Collector regression",
-            "source_type": "repository_fixture",
-            "authority_level": "fixture_only",
-            "url": "",
-            "repository_path": "scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py",
-            "server_path": "",
-            "publication_date": "2025-01-01",
-            "capture_date": "2026-07-21",
-            "coverage_from": "2025-01-01",
-            "coverage_to": "2025-01-01",
-            "checksum": "sha256:synthetic-position-boundary",
-            "limitations": "In-memory regression evidence only; never written to the canonical fixture.",
-        }
+    add_synthetic_position_record(
+        mutated,
+        first_source_id,
+        first_fact_id,
+        "2025-01-01",
     )
-    mutated["facts"].append(
-        {
-            "fact_id": position_fact_id,
-            "section_id": POSITION_SECTION_ID,
-            "statement": "The synthetic source records one neutral public-position occurrence.",
-            "fact_type": "position",
-            "date": "2025-01-01",
-            "date_from": None,
-            "date_to": None,
-            "source_ids": [position_source_id],
-            "confidence": "high",
-            "evidence_status": "source_recorded",
-            "notes": "In-memory regression evidence only; no political interpretation is created.",
-        }
-    )
-    positions = section(mutated, POSITION_SECTION_ID)
-    assert positions == POSITION_SECTION_BASELINE
-    positions["status"] = "partial"
-    positions["summary"] = (
-        "One synthetic neutral position fact is present only for the "
-        "spoken-regression boundary test."
-    )
-    positions["fact_ids"] = [position_fact_id]
     validate_report(mutated)
     assert current_preservation_hashes(mutated, packet) == baseline
 
-    shared_source = json.loads(json.dumps(mutated))
+    second_source_id = "source-regression-position-boundary-2"
+    second_fact_id = "fact-regression-position-boundary-2"
+    already_populated = json.loads(json.dumps(mutated))
+    add_synthetic_position_record(
+        already_populated,
+        second_source_id,
+        second_fact_id,
+        "2025-01-02",
+    )
+    validate_report(already_populated)
+    assert current_preservation_hashes(already_populated, packet) == baseline
+
+    shared_source = json.loads(json.dumps(already_populated))
     non_position_fact = next(
         item
         for item in shared_source["facts"]
         if item["section_id"] not in {POSITION_SECTION_ID, SECTION_ID}
     )
-    non_position_fact["source_ids"].append(position_source_id)
+    non_position_fact["source_ids"].append(first_source_id)
     validate_report(shared_source)
     assert current_preservation_hashes(shared_source, packet) != baseline
 
-    unrelated_section = json.loads(json.dumps(mutated))
+    unrelated_section = json.loads(json.dumps(already_populated))
     section(unrelated_section, "roles_and_committees")["summary"] += (
         " Synthetic unauthorised change."
     )
