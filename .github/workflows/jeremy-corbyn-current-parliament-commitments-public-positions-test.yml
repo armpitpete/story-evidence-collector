@@ -1,9 +1,13 @@
 name: Jeremy Corbyn current Parliament commitments and public positions test
 
 on:
-  push:
-    branches:
-      - "agent/corbyn-current-parliament-commitments-public-positions"
+  pull_request:
+    paths:
+      - "research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json"
+      - "docs/jeremy-corbyn-current-parliament-commitments-and-public-positions-source-note-v1.md"
+      - "fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json"
+      - "scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py"
+      - ".github/workflows/jeremy-corbyn-current-parliament-commitments-public-positions-test.yml"
   workflow_dispatch:
 
 permissions:
