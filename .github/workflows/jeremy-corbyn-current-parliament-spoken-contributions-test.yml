@@ -1,0 +1,43 @@
+name: Jeremy Corbyn current Parliament spoken contributions capture
+
+on:
+  pull_request:
+    paths:
+      - "research/complete-mp-reports/jeremy-corbyn/current-parliament-spoken-contributions-v1.json"
+      - "docs/jeremy-corbyn-current-parliament-spoken-contributions-source-note-v1.md"
+      - "fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json"
+      - "scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py"
+      - ".github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile capture diagnostic
+        run: python -m py_compile scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
+
+      - name: Run fixed official-source diagnostic
+        env:
+          CAPTURE_OUTPUT: capture-diagnostic.json
+        run: python scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
+
+      - name: Upload fixed diagnostic
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: corbyn-spoken-contributions-diagnostic
+          path: capture-diagnostic.json
+          if-no-files-found: error
+          retention-days: 7
