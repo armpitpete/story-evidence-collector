@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - "fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json"
-      - "scripts/test_jeremy_corbyn_current-parliament-early-day-motions-fixture-integration_v1.py"
+      - "scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py"
       - ".github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml"
   workflow_dispatch:
 
