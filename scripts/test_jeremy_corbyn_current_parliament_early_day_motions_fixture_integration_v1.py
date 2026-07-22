@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Integrate and validate the fixed Jeremy Corbyn current-Parliament EDM records."""
+"""Validate neutral integration of the fixed Jeremy Corbyn EDM records."""
 
 from __future__ import annotations
 
-import argparse
 import copy
 import hashlib
 import json
@@ -191,45 +190,6 @@ def find_section(fixture: dict[str, Any]) -> dict[str, Any]:
     return matches[0]
 
 
-def apply_integration(
-    fixture: dict[str, Any],
-    motions: list[dict[str, Any]],
-) -> None:
-    expected_source = source_record()
-    sources = fixture.setdefault("sources", [])
-    source_matches = [
-        item for item in sources if item.get("source_id") == SOURCE_ID
-    ]
-    if not source_matches:
-        sources.append(expected_source)
-    elif len(source_matches) == 1:
-        source_matches[0].clear()
-        source_matches[0].update(expected_source)
-    else:
-        fail("canonical EDM source is duplicated")
-
-    expected_facts = {
-        fact["fact_id"]: fact for fact in (fact_record(row) for row in motions)
-    }
-    facts = fixture.setdefault("facts", [])
-    retained = [
-        item
-        for item in facts
-        if not str(item.get("fact_id", "")).startswith("fact-early-day-motion-")
-    ]
-    fixture["facts"] = retained + list(expected_facts.values())
-
-    section = find_section(fixture)
-    retained_ids = [
-        value
-        for value in section.get("fact_ids", [])
-        if not str(value).startswith("fact-early-day-motion-")
-    ]
-    section["fact_ids"] = retained_ids + list(expected_facts)
-    section["summary"] = EXPECTED_SUMMARY
-    section["status"] = "partial"
-
-
 def validate_integration(
     fixture: dict[str, Any],
     motions: list[dict[str, Any]],
@@ -303,26 +263,9 @@ def validate_integration(
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--apply",
-        action="store_true",
-        help="apply the deterministic three-file-authorised fixture integration",
-    )
-    args = parser.parse_args()
-
     inventory = load_json(INVENTORY_PATH)
     motions = validate_inventory(inventory)
     fixture = load_json(FIXTURE_PATH)
-
-    if args.apply:
-        apply_integration(fixture, motions)
-        FIXTURE_PATH.write_text(
-            json.dumps(fixture, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
-        fixture = load_json(FIXTURE_PATH)
-
     validate_integration(fixture, motions)
     print(
         "PASS: six fixed current-Parliament EDM records are neutrally integrated "
