@@ -1,110 +1,47 @@
-name: Temporary Jeremy Corbyn oral questions source-interface probe
+name: Jeremy Corbyn current Parliament tabled oral questions source-interface test
 
 on:
   pull_request:
     paths:
-      - ".github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-interface-test.yml"
       - "research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-interface-v1.md"
       - "scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py"
+      - ".github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-interface-test.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  probe-official-interface:
+  validate-source-interface-proof:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Check out exact pull-request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Probe official UK Parliament oral questions API
+      - name: Compile dedicated regression
+        run: python -m py_compile scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
+      - name: Validate fixed source-interface proof
+        run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
+      - name: Enforce exact three-file PR 226 scope
+        if: github.event_name == 'pull_request'
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.number }}
         run: |
-          python - <<'PY'
-          import hashlib
-          import json
-          import urllib.parse
-          import urllib.request
-          from pathlib import Path
-
-          ROOT = "https://oralquestionsandmotions-api.parliament.uk"
-
-          def fetch(path, params=None):
-              url = ROOT + path
-              if params:
-                  url += "?" + urllib.parse.urlencode(params, doseq=True)
-              req = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "story-evidence-collector-source-interface-proof/1"})
-              with urllib.request.urlopen(req, timeout=60) as response:
-                  raw = response.read()
-                  assert response.status == 200
-              return url, raw, json.loads(raw)
-
-          def paging(value):
-              return value.get("PagingInfo")
-
-          def compact_records(value):
-              rows = []
-              for item in value.get("Response") or []:
-                  member = item.get("AskingMember") or {}
-                  rows.append({
-                      "Id": item.get("Id"),
-                      "UIN": item.get("UIN"),
-                      "QuestionType": item.get("QuestionType"),
-                      "Status": item.get("Status"),
-                      "Number": item.get("Number"),
-                      "TabledWhen": item.get("TabledWhen"),
-                      "AnsweringWhen": item.get("AnsweringWhen"),
-                      "AskingMemberId": item.get("AskingMemberId"),
-                      "AskingMemberMnisId": member.get("MnisId"),
-                      "AskingMemberName": member.get("Name"),
-                      "AnsweringBodyId": item.get("AnsweringBodyId"),
-                      "AnsweringBody": item.get("AnsweringBody"),
-                  })
-              return rows
-
-          summary = {"capture_date": "2026-07-22"}
-
-          spec_url, spec_raw, spec = fetch("/swagger/docs/v1")
-          operation = spec["paths"]["/oralquestions/list"]["get"]
-          summary["spec"] = {
-              "url": spec_url,
-              "sha256": hashlib.sha256(spec_raw).hexdigest(),
-              "summary": operation["summary"],
-              "description": operation["description"],
-              "parameters": [p["name"] for p in operation["parameters"]],
-              "statuses": next(p for p in operation["parameters"] if p["name"] == "parameters.statuses")["items"]["enum"],
-          }
-
-          base_params = {"parameters.askingMemberIds": 185, "parameters.skip": 0, "parameters.take": 100}
-          base_url, base_raw, base = fetch("/oralquestions/list", base_params)
-          summary["base"] = {"url": base_url, "sha256": hashlib.sha256(base_raw).hexdigest(), "paging": paging(base), "records": compact_records(base)}
-
-          dated_params = dict(base_params)
-          dated_params.update({"parameters.answeringDateStart": "2024-07-04", "parameters.answeringDateEnd": "2026-07-22"})
-          dated_url, dated_raw, dated = fetch("/oralquestions/list", dated_params)
-          summary["answering_date_window"] = {"url": dated_url, "sha256": hashlib.sha256(dated_raw).hexdigest(), "paging": paging(dated), "records": compact_records(dated)}
-
-          unknown_params = dict(base_params)
-          unknown_params.update({"parameters.tabledStartDate": "2024-07-04", "parameters.tabledEndDate": "2026-07-22"})
-          unknown_url, unknown_raw, unknown = fetch("/oralquestions/list", unknown_params)
-          summary["unsupported_tabled_parameters"] = {"url": unknown_url, "sha256": hashlib.sha256(unknown_raw).hexdigest(), "paging": paging(unknown), "equals_base": unknown == base}
-
-          pages = []
-          for skip in (0, 1, 2):
-              page_url, page_raw, page = fetch("/oralquestions/list", {"parameters.askingMemberIds": 185, "parameters.skip": skip, "parameters.take": 1})
-              records = compact_records(page)
-              pages.append({"url": page_url, "skip": skip, "sha256": hashlib.sha256(page_raw).hexdigest(), "paging": paging(page), "record": records[0] if records else None})
-          summary["pages"] = pages
-
-          wrong_url, wrong_raw, wrong = fetch("/oralquestions/list", {"parameters.askingMemberIds": 999999, "parameters.skip": 0, "parameters.take": 100})
-          summary["wrong_member"] = {"url": wrong_url, "sha256": hashlib.sha256(wrong_raw).hexdigest(), "paging": paging(wrong), "records": compact_records(wrong)}
-
-          Path("oral-questions-source-interface-probe.json").write_text(json.dumps(summary, indent=2, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
-          PY
-      - name: Upload probe evidence
-        uses: actions/upload-artifact@v4
-        with:
-          name: oral-questions-source-interface-probe
-          path: oral-questions-source-interface-probe.json
-          if-no-files-found: error
+          set -euo pipefail
+          git fetch origin main --depth=1
+          git diff --name-only origin/main...HEAD | sort > /tmp/actual-files.txt
+          cat > /tmp/expected-files.txt <<'EOF'
+          .github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-interface-test.yml
+          research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-interface-v1.md
+          scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
+          EOF
+          test "$PR_NUMBER" = "226"
+          diff -u /tmp/expected-files.txt /tmp/actual-files.txt
+          git diff --check origin/main...HEAD
