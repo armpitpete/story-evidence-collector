@@ -33,6 +33,17 @@ jobs:
       - name: Validate fixed inventory and checksums
         run: python scripts/test_jeremy_corbyn_current_parliament_early_day_motions_source_inventory_v1.py
 
+      - name: Capture official result page for diagnostic replay
+        shell: bash
+        run: |
+          query_url="$(python -c 'import json; print(json.load(open("research/complete-mp-reports/jeremy-corbyn/current-parliament-early-day-motions-source-inventory-v1.json"))["capture"]["query"]["official_url"])')"
+          curl --fail --silent --show-error --location \
+            --user-agent "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" \
+            --header "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
+            --header "Accept-Language: en-GB,en;q=0.9" \
+            --output /tmp/edm-live-result-page.html \
+            "$query_url"
+
       - name: Replay official UK Parliament source interface
         id: live
         shell: bash
@@ -45,7 +56,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: edm-live-diagnostic
-          path: /tmp/edm-live.log
+          path: |
+            /tmp/edm-live.log
+            /tmp/edm-live-result-page.html
 
       - name: Enforce exact four-file scope
         shell: bash
