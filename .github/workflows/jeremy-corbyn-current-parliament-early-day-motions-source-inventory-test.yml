@@ -39,6 +39,8 @@ jobs:
           query_url="$(python -c 'import json; print(json.load(open("research/complete-mp-reports/jeremy-corbyn/current-parliament-early-day-motions-source-inventory-v1.json"))["capture"]["query"]["official_url"])')"
           lda_url='https://lda.data.parliament.uk/edmsignatures.json?member=http%3A%2F%2Fdata.parliament.uk%2Fmembers%2F185&isPrimarySponsor=true&isSponsor=false&max-dateSigned=2026-07-22&min-dateSigned=2024-07-04&_pageSize=500'
           members_url='https://members-api.parliament.uk/api/Members/185/Edms?page=1'
+          motions_url='https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotions/list?parameters.memberId=185&parameters.includeSponsoredByMember=false&parameters.tabledStartDate=2024-07-04&parameters.tabledEndDate=2026-07-22&parameters.statuses=Published&parameters.statuses=Withdrawn&parameters.skip=0&parameters.take=100'
+          detail_url='https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotion/66149'
           set +e
           curl --silent --show-error --location \
             --user-agent "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" \
@@ -49,22 +51,22 @@ jobs:
             --write-out '%{http_code}\n' \
             "$query_url" > /tmp/edm-live-result-status.txt
           printf 'curl_exit=%s\n' "$?" >> /tmp/edm-live-result-status.txt
-          curl --silent --show-error --location \
-            --user-agent "Mozilla/5.0" \
-            --header "Accept: application/json" \
-            --dump-header /tmp/edm-lda-headers.txt \
-            --output /tmp/edm-lda.json \
-            --write-out '%{http_code}\n' \
+          curl --silent --show-error --location --header "Accept: application/json" \
+            --dump-header /tmp/edm-lda-headers.txt --output /tmp/edm-lda.json --write-out '%{http_code}\n' \
             "$lda_url" > /tmp/edm-lda-status.txt
           printf 'curl_exit=%s\n' "$?" >> /tmp/edm-lda-status.txt
-          curl --silent --show-error --location \
-            --user-agent "Mozilla/5.0" \
-            --header "Accept: application/json" \
-            --dump-header /tmp/edm-members-api-headers.txt \
-            --output /tmp/edm-members-api.json \
-            --write-out '%{http_code}\n' \
+          curl --silent --show-error --location --header "Accept: application/json" \
+            --dump-header /tmp/edm-members-api-headers.txt --output /tmp/edm-members-api.json --write-out '%{http_code}\n' \
             "$members_url" > /tmp/edm-members-api-status.txt
           printf 'curl_exit=%s\n' "$?" >> /tmp/edm-members-api-status.txt
+          curl --silent --show-error --location --header "Accept: application/json" \
+            --dump-header /tmp/edm-motions-api-headers.txt --output /tmp/edm-motions-api.json --write-out '%{http_code}\n' \
+            "$motions_url" > /tmp/edm-motions-api-status.txt
+          printf 'curl_exit=%s\n' "$?" >> /tmp/edm-motions-api-status.txt
+          curl --silent --show-error --location --header "Accept: application/json" \
+            --dump-header /tmp/edm-motion-detail-headers.txt --output /tmp/edm-motion-detail.json --write-out '%{http_code}\n' \
+            "$detail_url" > /tmp/edm-motion-detail-status.txt
+          printf 'curl_exit=%s\n' "$?" >> /tmp/edm-motion-detail-status.txt
           exit 0
 
       - name: Replay official UK Parliament source interface
@@ -90,6 +92,12 @@ jobs:
             /tmp/edm-members-api.json
             /tmp/edm-members-api-headers.txt
             /tmp/edm-members-api-status.txt
+            /tmp/edm-motions-api.json
+            /tmp/edm-motions-api-headers.txt
+            /tmp/edm-motions-api-status.txt
+            /tmp/edm-motion-detail.json
+            /tmp/edm-motion-detail-headers.txt
+            /tmp/edm-motion-detail-status.txt
 
       - name: Enforce exact four-file scope
         shell: bash
