@@ -46,7 +46,7 @@ jobs:
           .github/workflows/jeremy-corbyn-current-parliament-early-day-motions-source-inventory-test.yml
           docs/jeremy-corbyn-current-parliament-early-day-motions-source-note-v1.md
           research/complete-mp-reports/jeremy-corbyn/current-parliament-early-day-motions-source-inventory-v1.json
-          scripts/test_jeremy_corbyn_current_parliament_early-day-motions-source-inventory-v1.py
+          scripts/test_jeremy_corbyn_current_parliament_early_day_motions_source_inventory_v1.py
           EOF
           diff -u /tmp/expected-files.txt /tmp/actual-files.txt
           git diff --check origin/main...HEAD
