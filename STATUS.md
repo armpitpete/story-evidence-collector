@@ -81,7 +81,7 @@ The dedicated EDM workflow also passed:
 
 PR #220 is closed and merged. Current `main` is exactly the merge commit above.
 
-## Next selected lane
+## Current lane
 
 One bounded **current-Parliament tabled oral questions source-interface proof** lane is authorised from exact main:
 
@@ -169,6 +169,15 @@ The following remain explicitly unstarted and unauthorised:
 - The complete triggered matrix is green.
 - The EDM fixture-integration lane is closed.
 - The next bounded source-interface proof lane is selected and authorised.
+
+## To do
+
+- merge this `STATUS.md`-only closure and lane-authority PR after Project Control passes;
+- from the resulting exact `main`, open one draft three-file tabled oral questions source-interface proof PR;
+- change only the three authorised files;
+- establish the official first-party interface and completeness boundary;
+- run the dedicated, Project Control and Repository Release checks;
+- stop at an exact PR head for owner review.
 
 ## Next bounded gate
 
