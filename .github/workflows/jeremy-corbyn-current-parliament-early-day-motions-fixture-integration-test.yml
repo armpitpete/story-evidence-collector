@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - "fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json"
-      - "scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py"
+      - "scripts/test_jeremy_corbyn_current-parliament-early-day-motions-fixture-integration_v1.py"
       - ".github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml"
   workflow_dispatch:
 
@@ -38,8 +38,10 @@ jobs:
       - name: Run Complete MP Portfolio view regression
         run: python scripts/test_complete_mp_portfolio_view.py
 
-      - name: Enforce exact three-file scope
+      - name: Enforce exact five-file PR 220 scope
         shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.number }}
         run: |
           set -euo pipefail
           git fetch origin main --depth=1
@@ -47,7 +49,13 @@ jobs:
           cat > /tmp/expected-files.txt <<'EOF'
           .github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml
           fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
+          scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py
           scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py
+          scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
           EOF
+          printf '%s\n' "Evaluated PR number: ${PR_NUMBER:-none}"
+          printf '%s\n' "Evaluated changed files:"
+          cat /tmp/actual-files.txt
+          test "$PR_NUMBER" = "220"
           diff -u /tmp/expected-files.txt /tmp/actual-files.txt
           git diff --check origin/main...HEAD
