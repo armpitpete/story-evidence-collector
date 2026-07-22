@@ -218,7 +218,7 @@
       "section_id": "speeches_and_questions",
       "title": "Speeches and parliamentary questions",
       "status": "partial",
-      "summary": "Official UK Parliament records identify 90 Commons written questions tabled by Jeremy Corbyn in the current Parliament and 306 individual Commons Chamber or Westminster Hall spoken contributions from 17 July 2024 through the fixed 21 July 2026 capture. Earlier and future records, later corrections and adjacent parliamentary record types remain outside the completed bounded baselines.",
+      "summary": "Official UK Parliament records identify 90 Commons written questions tabled by Jeremy Corbyn in the current Parliament, 306 individual Commons Chamber or Westminster Hall spoken contributions from 17 July 2024 through the fixed 21 July 2026 capture, and six Early Day Motions officially tabled by him from 2 September 2024 through 23 June 2026. Earlier and future records, later corrections and adjacent parliamentary record types remain outside the completed bounded baselines.",
       "fact_ids": [
         "fact-written-question-1922919",
         "fact-written-question-1922941",
@@ -615,7 +615,13 @@
         "fact-spoken-contribution-05fde9aa-9b10-44b5-ae6f-0553fe733d58",
         "fact-spoken-contribution-c1f4fbe6-650b-4ff8-9d95-1dd1cd949f52",
         "fact-spoken-contribution-9bdd332f-5960-47da-aa3b-9794a8bf6122",
-        "fact-spoken-contribution-74cca2f1-4f0f-4f65-8974-686d8a2bfa58"
+        "fact-spoken-contribution-74cca2f1-4f0f-4f65-8974-686d8a2bfa58",
+        "fact-early-day-motion-62446",
+        "fact-early-day-motion-63037",
+        "fact-early-day-motion-64576",
+        "fact-early-day-motion-65102",
+        "fact-early-day-motion-65889",
+        "fact-early-day-motion-66149"
       ],
       "claim_ids": [],
       "interpretation_ids": [],
@@ -1250,6 +1256,22 @@
       "coverage_to": "2025-07-17",
       "checksum": "sha256:c615b471b028ca33c6a35c5b807016830bc47b5e46ed644fc0ebc8a29a46eaba",
       "limitations": "First-party source establishing the attributable statement text preserved in the fixed packet. It does not establish delivery, accuracy, significance, motive, sincerity or later consistency."
+    },
+    {
+      "source_id": "source-uk-parliament-corbyn-current-parliament-early-day-motions-2026-07-22",
+      "title": "UK Parliament current-Parliament Early Day Motions tabled by Jeremy Corbyn — fixed inventory",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotions/list?parameters.memberId=185&parameters.includeSponsoredByMember=false&parameters.tabledStartDate=2024-07-04&parameters.tabledEndDate=2026-07-22&parameters.statuses=Published&parameters.statuses=Withdrawn&parameters.skip=0&parameters.take=100",
+      "repository_path": "research/complete-mp-reports/jeremy-corbyn/current-parliament-early-day-motions-source-inventory-v1.json",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-22",
+      "coverage_from": "2024-09-02",
+      "coverage_to": "2026-06-23",
+      "checksum": "sha256:4558d82deddbee2168449d64aa4998672ae08faf212ac1338ce17fb8bab0304a",
+      "limitations": "Fixed six-record current-Parliament tabled-by-member inventory. Signature totals are capture-time snapshots. Motions merely signed or secondarily sponsored by Jeremy Corbyn, pre-4-July-2024 records, later source changes and publication assessment are outside this source."
     }
   ],
   "facts": [
@@ -9698,6 +9720,96 @@
       "confidence": "high",
       "evidence_status": "verified",
       "notes": "{\"actor\":\"Jeremy Corbyn\",\"collective_issuer\":null,\"contradiction_assessment\":null,\"delivery_assessment\":null,\"exact_quotation\":\"I appeal to the Home Office—I am sure the Leader of the House will pass this on, and I will follow up with another letter: please show some humanity for this man towards the end of his life, and let him at least have the opportunity to see the rest of his family before he passes on from a most terrible condition.\",\"explicit_condition\":null,\"explicit_deadline\":null,\"statement_form\":\"explicit_personal_commitment\",\"statement_record_id\":\"statement-hansard-74cca2f1-4f0f-4f65-8974-686d8a2bfa58-s026-o001\",\"surrounding_context\":\"It has consistently refused to allow him to be visited by his son or any other member of his family. I appeal to the Home Office—I am sure the Leader of the House will pass this on, and I will follow up with another letter: please show some humanity for this man towards the end of his life, and let him at least have the opportunity to see the rest of his family before he passes on from a most terrible condition. The shop Fish & Cook on Blackstock Road is closing.\"}"
+    },
+    {
+      "fact_id": "fact-early-day-motion-62446",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2024-09-02, UK Parliament recorded Jeremy Corbyn as the primary sponsor of Early Day Motion 123, “Mutual Defence Agreement” (official motion ID 62446).",
+      "fact_type": "other",
+      "date": "2024-09-02",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-early-day-motions-2026-07-22"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Fixed source record edm-62446; session 2024-26; official page https://edm.parliament.uk/early-day-motion/62446/mutual-defence-agreement; API detail https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotion/62446; capture-time signatures 27 total, 27 not withdrawn and 0 withdrawn; unresolved fields: motion_withdrawn, is_prayer. Full official motion text and detail checksum remain in the fixed packet."
+    },
+    {
+      "fact_id": "fact-early-day-motion-63037",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2025-01-22, UK Parliament recorded Jeremy Corbyn as the primary sponsor of Early Day Motion 682, “Israeli violence in the West Bank” (official motion ID 63037).",
+      "fact_type": "other",
+      "date": "2025-01-22",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-early-day-motions-2026-07-22"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Fixed source record edm-63037; session 2024-26; official page https://edm.parliament.uk/early-day-motion/63037/israeli-violence-in-the-west-bank; API detail https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotion/63037; capture-time signatures 20 total, 20 not withdrawn and 0 withdrawn; unresolved fields: motion_withdrawn, is_prayer. Full official motion text and detail checksum remain in the fixed packet."
+    },
+    {
+      "fact_id": "fact-early-day-motion-64576",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2025-10-27, UK Parliament recorded Jeremy Corbyn as the primary sponsor of Early Day Motion 2154, “Media Plurality and Press Freedom in Parliament” (official motion ID 64576).",
+      "fact_type": "other",
+      "date": "2025-10-27",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-early-day-motions-2026-07-22"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Fixed source record edm-64576; session 2024-26; official page https://edm.parliament.uk/early-day-motion/64576/media-plurality-and-press-freedom-in-parliament; API detail https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotion/64576; capture-time signatures 27 total, 26 not withdrawn and 1 withdrawn; unresolved fields: motion_withdrawn, is_prayer. Full official motion text and detail checksum remain in the fixed packet."
+    },
+    {
+      "fact_id": "fact-early-day-motion-65102",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2026-01-21, UK Parliament recorded Jeremy Corbyn as the primary sponsor of Early Day Motion 2664, “Situation of Kurdish people in Syria” (official motion ID 65102).",
+      "fact_type": "other",
+      "date": "2026-01-21",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-early-day-motions-2026-07-22"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Fixed source record edm-65102; session 2024-26; official page https://edm.parliament.uk/early-day-motion/65102; API detail https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotion/65102; capture-time signatures 33 total, 33 not withdrawn and 0 withdrawn; unresolved fields: motion_withdrawn, is_prayer. Full official motion text and detail checksum remain in the fixed packet."
+    },
+    {
+      "fact_id": "fact-early-day-motion-65889",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2026-05-20, UK Parliament recorded Jeremy Corbyn as the primary sponsor of Early Day Motion 171, “Arsenal Football Club, Premier League champions” (official motion ID 65889).",
+      "fact_type": "other",
+      "date": "2026-05-20",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-early-day-motions-2026-07-22"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Fixed source record edm-65889; session 2026-27; official page https://edm.parliament.uk/early-day-motion/65889/arsenal-football-club-premier-league-champions; API detail https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotion/65889; capture-time signatures 8 total, 8 not withdrawn and 0 withdrawn; unresolved fields: motion_withdrawn, is_prayer. Full official motion text and detail checksum remain in the fixed packet."
+    },
+    {
+      "fact_id": "fact-early-day-motion-66149",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2026-06-23, UK Parliament recorded Jeremy Corbyn as the primary sponsor of Early Day Motion 431, “Western Sahara” (official motion ID 66149).",
+      "fact_type": "other",
+      "date": "2026-06-23",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-early-day-motions-2026-07-22"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "Fixed source record edm-66149; session 2026-27; official page https://edm.parliament.uk/early-day-motion/66149/western-sahara; API detail https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotion/66149; capture-time signatures 15 total, 15 not withdrawn and 0 withdrawn; unresolved fields: motion_withdrawn, is_prayer. Full official motion text and detail checksum remain in the fixed packet."
     }
   ],
   "claims": [
