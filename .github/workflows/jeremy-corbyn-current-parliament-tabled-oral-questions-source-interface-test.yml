@@ -26,6 +26,7 @@ jobs:
           import json
           import urllib.parse
           import urllib.request
+          from pathlib import Path
 
           ROOT = "https://oralquestionsandmotions-api.parliament.uk"
 
@@ -62,33 +63,48 @@ jobs:
                   })
               return rows
 
+          summary = {"capture_date": "2026-07-22"}
+
           spec_url, spec_raw, spec = fetch("/swagger/docs/v1")
           operation = spec["paths"]["/oralquestions/list"]["get"]
-          params = [p["name"] for p in operation["parameters"]]
-          statuses = next(p for p in operation["parameters"] if p["name"] == "parameters.statuses")["items"]["enum"]
-          print("SPEC", json.dumps({"url": spec_url, "sha256": hashlib.sha256(spec_raw).hexdigest(), "summary": operation["summary"], "parameters": params, "statuses": statuses}, sort_keys=True))
+          summary["spec"] = {
+              "url": spec_url,
+              "sha256": hashlib.sha256(spec_raw).hexdigest(),
+              "summary": operation["summary"],
+              "description": operation["description"],
+              "parameters": [p["name"] for p in operation["parameters"]],
+              "statuses": next(p for p in operation["parameters"] if p["name"] == "parameters.statuses")["items"]["enum"],
+          }
 
           base_params = {"parameters.askingMemberIds": 185, "parameters.skip": 0, "parameters.take": 100}
           base_url, base_raw, base = fetch("/oralquestions/list", base_params)
-          print("BASE", json.dumps({"url": base_url, "sha256": hashlib.sha256(base_raw).hexdigest(), "paging": paging(base), "records": compact_records(base)}, sort_keys=True))
+          summary["base"] = {"url": base_url, "sha256": hashlib.sha256(base_raw).hexdigest(), "paging": paging(base), "records": compact_records(base)}
 
           dated_params = dict(base_params)
           dated_params.update({"parameters.answeringDateStart": "2024-07-04", "parameters.answeringDateEnd": "2026-07-22"})
           dated_url, dated_raw, dated = fetch("/oralquestions/list", dated_params)
-          print("DATED", json.dumps({"url": dated_url, "sha256": hashlib.sha256(dated_raw).hexdigest(), "paging": paging(dated), "records": compact_records(dated)}, sort_keys=True))
+          summary["answering_date_window"] = {"url": dated_url, "sha256": hashlib.sha256(dated_raw).hexdigest(), "paging": paging(dated), "records": compact_records(dated)}
 
           unknown_params = dict(base_params)
           unknown_params.update({"parameters.tabledStartDate": "2024-07-04", "parameters.tabledEndDate": "2026-07-22"})
           unknown_url, unknown_raw, unknown = fetch("/oralquestions/list", unknown_params)
-          print("UNKNOWN_TABLED", json.dumps({"url": unknown_url, "sha256": hashlib.sha256(unknown_raw).hexdigest(), "paging": paging(unknown), "equals_base": unknown == base}, sort_keys=True))
+          summary["unsupported_tabled_parameters"] = {"url": unknown_url, "sha256": hashlib.sha256(unknown_raw).hexdigest(), "paging": paging(unknown), "equals_base": unknown == base}
 
           pages = []
           for skip in (0, 1, 2):
               page_url, page_raw, page = fetch("/oralquestions/list", {"parameters.askingMemberIds": 185, "parameters.skip": skip, "parameters.take": 1})
               records = compact_records(page)
-              pages.append({"skip": skip, "sha256": hashlib.sha256(page_raw).hexdigest(), "paging": paging(page), "record": records[0] if records else None})
-          print("PAGES", json.dumps(pages, sort_keys=True))
+              pages.append({"url": page_url, "skip": skip, "sha256": hashlib.sha256(page_raw).hexdigest(), "paging": paging(page), "record": records[0] if records else None})
+          summary["pages"] = pages
 
           wrong_url, wrong_raw, wrong = fetch("/oralquestions/list", {"parameters.askingMemberIds": 999999, "parameters.skip": 0, "parameters.take": 100})
-          print("WRONG_MEMBER", json.dumps({"url": wrong_url, "sha256": hashlib.sha256(wrong_raw).hexdigest(), "paging": paging(wrong), "records": compact_records(wrong)}, sort_keys=True))
+          summary["wrong_member"] = {"url": wrong_url, "sha256": hashlib.sha256(wrong_raw).hexdigest(), "paging": paging(wrong), "records": compact_records(wrong)}
+
+          Path("oral-questions-source-interface-probe.json").write_text(json.dumps(summary, indent=2, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
           PY
+      - name: Upload probe evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: oral-questions-source-interface-probe
+          path: oral-questions-source-interface-probe.json
+          if-no-files-found: error
