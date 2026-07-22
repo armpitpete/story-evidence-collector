@@ -1,0 +1,91 @@
+name: Temporary Jeremy Corbyn oral questions source-interface probe
+
+on:
+  push:
+    branches:
+      - agent/corbyn-current-parliament-tabled-oral-questions-source-interface
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe-official-interface:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Probe official UK Parliament oral questions API
+        run: |
+          python - <<'PY'
+          import json
+          import urllib.parse
+          import urllib.request
+
+          ROOT = "https://oralquestionsandmotions-api.parliament.uk"
+
+          def fetch(path, params=None):
+              url = ROOT + path
+              if params:
+                  url += "?" + urllib.parse.urlencode(params, doseq=True)
+              req = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "story-evidence-collector-source-interface-proof/1"})
+              with urllib.request.urlopen(req, timeout=60) as response:
+                  raw = response.read()
+                  print("URL", url)
+                  print("HTTP", response.status)
+                  print("CONTENT-TYPE", response.headers.get("Content-Type"))
+              value = json.loads(raw)
+              return url, value
+
+          spec_url, spec = fetch("/swagger/docs/v1")
+          operation = spec["paths"]["/oralquestions/list"]["get"]
+          print("SPEC-SUMMARY", operation["summary"])
+          print("SPEC-PARAMETERS", json.dumps([p["name"] for p in operation["parameters"]]))
+          print("SPEC-QUESTION-STATUSES", json.dumps(next(p for p in operation["parameters"] if p["name"] == "parameters.statuses")["items"]["enum"]))
+
+          base_params = {
+              "parameters.askingMemberIds": 185,
+              "parameters.skip": 0,
+              "parameters.take": 100,
+          }
+          base_url, base = fetch("/oralquestions/list", base_params)
+          print("BASE-PAGING", json.dumps(base.get("PagingInfo"), sort_keys=True))
+          print("BASE-COUNT", len(base.get("Response") or []))
+          print("BASE-RECORDS", json.dumps(base.get("Response") or [], sort_keys=True, ensure_ascii=False))
+
+          dated_params = dict(base_params)
+          dated_params.update({
+              "parameters.answeringDateStart": "2024-07-04",
+              "parameters.answeringDateEnd": "2026-07-22",
+          })
+          dated_url, dated = fetch("/oralquestions/list", dated_params)
+          print("DATED-PAGING", json.dumps(dated.get("PagingInfo"), sort_keys=True))
+          print("DATED-COUNT", len(dated.get("Response") or []))
+          print("DATED-RECORDS", json.dumps(dated.get("Response") or [], sort_keys=True, ensure_ascii=False))
+
+          unknown_params = dict(base_params)
+          unknown_params.update({
+              "parameters.tabledStartDate": "2024-07-04",
+              "parameters.tabledEndDate": "2026-07-22",
+          })
+          unknown_url, unknown = fetch("/oralquestions/list", unknown_params)
+          print("UNKNOWN-TABLED-PAGING", json.dumps(unknown.get("PagingInfo"), sort_keys=True))
+          print("UNKNOWN-TABLED-EQUALS-BASE", unknown == base)
+
+          for skip in (0, 1, 2):
+              page_url, page = fetch("/oralquestions/list", {
+                  "parameters.askingMemberIds": 185,
+                  "parameters.skip": skip,
+                  "parameters.take": 1,
+              })
+              print("PAGE", skip, json.dumps(page, sort_keys=True, ensure_ascii=False))
+
+          wrong_url, wrong = fetch("/oralquestions/list", {
+              "parameters.askingMemberIds": 999999,
+              "parameters.skip": 0,
+              "parameters.take": 100,
+          })
+          print("WRONG-MEMBER", json.dumps(wrong, sort_keys=True, ensure_ascii=False))
+          PY
