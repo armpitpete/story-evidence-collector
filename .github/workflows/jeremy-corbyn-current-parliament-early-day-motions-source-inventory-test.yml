@@ -37,12 +37,17 @@ jobs:
         shell: bash
         run: |
           query_url="$(python -c 'import json; print(json.load(open("research/complete-mp-reports/jeremy-corbyn/current-parliament-early-day-motions-source-inventory-v1.json"))["capture"]["query"]["official_url"])')"
-          curl --fail --silent --show-error --location \
+          set +e
+          curl --silent --show-error --location \
             --user-agent "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" \
             --header "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
             --header "Accept-Language: en-GB,en;q=0.9" \
+            --dump-header /tmp/edm-live-result-headers.txt \
             --output /tmp/edm-live-result-page.html \
-            "$query_url"
+            --write-out '%{http_code}\n' \
+            "$query_url" > /tmp/edm-live-result-status.txt
+          printf 'curl_exit=%s\n' "$?" >> /tmp/edm-live-result-status.txt
+          exit 0
 
       - name: Replay official UK Parliament source interface
         id: live
@@ -52,13 +57,15 @@ jobs:
           python scripts/test_jeremy_corbyn_current_parliament_early_day_motions_source_inventory_v1.py --live 2>&1 | tee /tmp/edm-live.log
 
       - name: Upload live-source diagnostic on failure
-        if: failure() && steps.live.outcome == 'failure'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: edm-live-diagnostic
           path: |
             /tmp/edm-live.log
             /tmp/edm-live-result-page.html
+            /tmp/edm-live-result-headers.txt
+            /tmp/edm-live-result-status.txt
 
       - name: Enforce exact four-file scope
         shell: bash
