@@ -11,134 +11,151 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Exact starting main for this closure and lane selection: `c7b57bb1d47d934bb0b44901df130d9b65138fb1`.
-- PR #204 merged the Jeremy Corbyn current-Parliament explicit-commitments and public-positions baseline from exact reviewed head `ca54308f06e5d69831d353e039e71657104945f0` as merge commit `c7b57bb1d47d934bb0b44901df130d9b65138fb1`.
+- Exact starting main for this closure and lane selection: `a287ce0054a23821c222b8046c4058b4e5fd6210`.
+- PR #218 merged the Jeremy Corbyn current-Parliament Early Day Motions source-interface and fixed-inventory proof from exact reviewed head `5db8be0706c8ea2b55c5f2e2e45099cb541f8e80` as merge commit `a287ce0054a23821c222b8046c4058b4e5fd6210`.
 - Direct comparison confirms exact main is identical to that merge commit.
-- The accepted spoken-contributions, written-questions, identity-and-career, roles-and-committees, current-financial-interests, regulated-donee-donations, outside-work/company-links, Complete MP Report fixture, Complete MP Portfolio view, Repository Release and Project Control baselines remain authoritative.
+- All previously accepted Complete MP Report baselines remain authoritative.
 
 ## Closed lane
 
-Jeremy Corbyn current-Parliament explicit commitments and public positions baseline.
+Jeremy Corbyn current-Parliament Early Day Motions tabled by him — source-interface and fixed-inventory proof.
 
-The bounded baseline is complete within its declared source, date and statement-form contract. Closure does not mean an exhaustive position history, publication approval or completion of the canonical section.
+The bounded proof is complete within its declared official-source, date, member-role and pagination contract. Closure does not integrate the motions into the canonical fixture, classify their text as commitments or positions, assess support or outcome, or authorise publication.
 
-Canonical section:
+The accepted proof records:
 
-- `public_positions_over_time`
+- Jeremy Corbyn, UK Parliament member ID `185`;
+- Parliament beginning `2024-07-04`;
+- fixed capture timestamp `2026-07-22T07:46:43Z`;
+- six motions officially returned as tabled by Jeremy Corbyn;
+- sessions `2024-26` and `2026-27`;
+- accepted tabled dates from `2024-09-02` through `2026-06-23`;
+- one API page with `Skip=0`, `Take=100`, `Total=6` and `GlobalTotal=6`;
+- exact official motion IDs `62446`, `63037`, `64576`, `65102`, `65889` and `66149`;
+- canonical capture SHA-256 `4558d82deddbee2168449d64aa4998672ae08faf212ac1338ce17fb8bab0304a`.
 
-The accepted baseline records:
+PR #218 changed exactly:
 
-- 8 accepted source documents or pages;
-- 109 reviewed candidate occurrences;
-- 48 accepted statement occurrences;
-- 8 explicit personal commitments;
-- 0 conditional personal commitments;
-- 8 collective commitments;
-- 32 public positions;
-- 19 unresolved statement forms;
-- 42 excluded candidates;
-- 0 duplicate accepted record IDs;
-- accepted dates from `2024-07-18` through `2026-07-16`;
-- fixed capture SHA-256 `fc5651b9f5647bcbfee822121f3188b0438fc826ad604351d044a8144e3df3db`.
+- `research/complete-mp-reports/jeremy-corbyn/current-parliament-early-day-motions-source-inventory-v1.json`
+- `docs/jeremy-corbyn-current-parliament-early-day-motions-source-note-v1.md`
+- `scripts/test_jeremy_corbyn_current_parliament_early_day_motions_source_inventory_v1.py`
+- `.github/workflows/jeremy-corbyn-current-parliament-early-day-motions-source-inventory-test.yml`
 
-PR #204 changed exactly:
-
-- `.github/workflows/jeremy-corbyn-current-parliament-commitments-public-positions-test.yml`
-- `docs/jeremy-corbyn-current-parliament-commitments-and-public-positions-source-note-v1.md`
-- `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
-- `research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json`
-- `scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py`
-
-Before merge, all twelve required workflows passed at the exact implementation head:
+Before merge, the exact implementation head passed:
 
 - Project Control;
 - Repository Release validation;
-- Complete MP Report fixture test;
-- Complete MP Portfolio view test;
-- commitments and public positions test;
-- spoken contributions test;
-- written questions test;
-- identity and career test;
-- roles and committees test;
-- current financial interests test;
-- regulated donee donations test;
-- current outside-work and company-links test.
+- Early Day Motions source inventory test, including compilation, fixed checksum validation, supported official API replay, all six detail endpoints, exact four-file enforcement and `git diff --check`.
 
-The closed baseline:
+The closed proof:
 
-- preserves exact quotations and surrounding context;
-- preserves personal versus collective agency;
+- excludes motions merely signed or secondarily sponsored by Jeremy Corbyn;
+- excludes records tabled before 4 July 2024;
+- preserves full official motion text and explicit primary-sponsor attribution;
+- preserves signature totals only as dated snapshots;
+- leaves page-level prayer and whole-motion-withdrawal fields unresolved where not explicitly labelled;
 - creates no claim, interpretation or relationship record;
-- creates no delivery, fulfilment, broken-promise, reversal, contradiction, consistency or hypocrisy assessment;
-- leaves `public_positions_over_time` `partial`;
-- leaves `changes_and_contradictions` unchanged and human-review-required;
-- keeps the report `not_ready`, human-review-required and unauthorised for public output.
+- creates no commitment, public-position, delivery, fulfilment, contradiction, importance, influence or success assessment;
+- makes no canonical fixture, schema, generator, server or database change;
+- creates no public-output authority.
 
 ## Current lane
 
-Jeremy Corbyn current-Parliament Early Day Motions tabled by him.
+Neutral canonical fixture integration of the six accepted current-Parliament Early Day Motions.
 
-This lane is selected because the accepted fixture identifies Early Day Motions as an unresolved adjacent parliamentary-record type, and UK Parliament maintains a dedicated official Early Day Motions publication with a current-member tabled-by filter.
+This lane is selected because the official inventory is now mechanically complete and the existing Complete MP Report schema can represent each motion without a schema or generator change. The canonical `speeches_and_questions` section already contains adjacent written-question and spoken-contribution facts, and the schema permits neutral `fact_type: other` records.
 
-The lane records parliamentary motion activity only. It does not convert motion text into a commitment or public-position record, assess support, infer ideology or compare any motion with later conduct.
+The lane integrates accepted parliamentary activity only. It must not convert motion text into a commitment or public-position record, infer ideology or motive, assess support or outcome, or compare a motion with later conduct.
 
-## Date and identity boundary
+## Fixed integration authority
 
-- Parliament beginning `2024-07-04`;
-- Jeremy Corbyn, UK Parliament member ID `185`;
-- motions returned by the official current-member `Tabled by Member` filter for Jeremy Corbyn;
-- one declared fixed UTC capture timestamp;
-- no pre-4-July-2024 motion history in this lane.
+The sole research authority for this lane is:
 
-## Accepted source boundary
+- inventory ID `jeremy-corbyn-current-parliament-early-day-motions-source-inventory-v1`;
+- repository packet `research/complete-mp-reports/jeremy-corbyn/current-parliament-early-day-motions-source-inventory-v1.json`;
+- capture SHA-256 `4558d82deddbee2168449d64aa4998672ae08faf212ac1338ce17fb8bab0304a`;
+- exact accepted motion IDs `62446`, `63037`, `64576`, `65102`, `65889` and `66149`.
 
-Primary official source only:
+No live refresh, new motion, changed signature count or later source state may enter this integration lane.
 
-- UK Parliament Early Day Motions publication: `https://edm.parliament.uk/`;
-- the official member-filtered result pages for member ID `185`;
-- each linked official individual motion page;
-- official page metadata and text captured or fixed by checksum.
+## Canonical record contract
 
-Search-engine results, snippets, media reports, member websites, social-media posts, third-party trackers and paraphrases are navigation evidence only and may not become accepted records.
+The integration may add exactly one canonical source record for the fixed packet and exactly six canonical facts.
 
-## Record boundary
+Required source ID:
 
-The lane may capture only records officially attributed as tabled by Jeremy Corbyn.
+- `source-uk-parliament-corbyn-current-parliament-early-day-motions-2026-07-22`
 
-For each accepted official record, preserve where available:
+Required fact IDs:
 
-- stable repository record ID;
-- parliamentary session;
-- EDM number and any official suffix;
-- title;
-- date tabled;
-- full official motion text;
-- official tabled-by member identity;
-- party and constituency exactly as displayed at capture;
-- official URL;
-- prayer, amendment, withdrawn or other official record-type/status labels;
-- signature count as a dated snapshot only;
-- capture timestamp;
-- source checksum;
-- limitations and unresolved fields.
+- `fact-early-day-motion-62446`
+- `fact-early-day-motion-63037`
+- `fact-early-day-motion-64576`
+- `fact-early-day-motion-65102`
+- `fact-early-day-motion-65889`
+- `fact-early-day-motion-66149`
 
-The lane must distinguish:
+Each fact must:
 
-- a motion tabled by Jeremy Corbyn;
-- a motion tabled by another member and merely signed by Jeremy Corbyn;
-- an amendment or other separately labelled record;
-- an original motion;
-- a withdrawn record;
-- a current snapshot from a historical fact.
+- use section `speeches_and_questions`;
+- use `fact_type: other`;
+- preserve the official motion ID, EDM number, title and tabled date;
+- identify Jeremy Corbyn only as the official primary sponsor or tabled-by member;
+- reference the one fixed inventory source;
+- use neutral factual wording;
+- use high confidence and verified or source-recorded evidence status;
+- keep the full motion text, official URLs, signature snapshot and unresolved fields traceable to the fixed packet rather than reinterpreting them;
+- create no claim, interpretation or relationship record.
 
-Motions merely signed by Jeremy Corbyn but tabled by another member are outside this first lane. Signature count must not be presented as support quality, influence, importance or outcome.
+The `speeches_and_questions` section summary and `fact_ids` may be updated only to acknowledge the six integrated EDM records. The section must remain `partial`.
+
+The report must remain:
+
+- `not_ready`;
+- human-review-required;
+- unauthorised for public output.
+
+## Exact first-phase file scope
+
+The first integration PR may change exactly:
+
+- `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
+- `scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py`
+- `.github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml`
+
+No other file is authorised.
+
+The existing Complete MP Report fixture and Complete MP Portfolio workflows are expected to run because the canonical fixture changes. Their source files must not be edited in this lane.
+
+## Required deterministic proof
+
+The dedicated regression must:
+
+- load the fixed source inventory and canonical fixture;
+- verify the fixed inventory ID and capture checksum;
+- derive the accepted six-record set from the fixed packet;
+- require one and only one canonical source record for the packet;
+- require a one-to-one mapping from the six official motion IDs to the six required fact IDs;
+- require all six facts in `speeches_and_questions` with `fact_type: other`;
+- verify exact EDM number, title, tabled date, official motion ID and source reference for every fact;
+- reject missing, duplicate or additional EDM facts;
+- reject any EDM-derived claim, interpretation or relationship record;
+- reject commitment, public-position, delivery, fulfilment, contradiction, ideology, motive, importance, influence, effectiveness or success language;
+- require the section to remain `partial`;
+- require publication to remain `not_ready`, human-review-required and unauthorised;
+- run the existing Complete MP Report generator regression;
+- run the existing Complete MP Portfolio view regression;
+- enforce the exact three-file scope;
+- run `git diff --check`.
+
+If neutral integration cannot be completed within the existing schema and generator, or if any accepted record requires interpretive classification, the lane must stop and return for separate authority.
 
 ## Interpretation exclusions
 
 This lane must create no:
 
+- commitment or public-position promotion;
 - topic, ideology, sentiment, personality or motive classification;
-- commitment or public-position promotion by implication;
 - delivery or fulfilment assessment;
 - contradiction, consistency or hypocrisy assessment;
 - importance, influence, effectiveness or success judgement;
@@ -146,48 +163,20 @@ This lane must create no:
 - relationship record;
 - publication authority.
 
-Absence from the official result set is not evidence that no other motion, amendment, signature or parliamentary action existed.
-
-## First controlled phase
-
-The first phase is a source-interface and fixed-inventory proof only. It must not integrate records into the canonical fixture.
-
-The first implementation PR may change exactly:
-
-- `research/complete-mp-reports/jeremy-corbyn/current-parliament-early-day-motions-source-inventory-v1.json`
-- `docs/jeremy-corbyn-current-parliament-early-day-motions-source-note-v1.md`
-- `scripts/test_jeremy_corbyn_current_parliament_early_day_motions_source_inventory_v1.py`
-- `.github/workflows/jeremy-corbyn-current-parliament-early-day-motions-source-inventory-test.yml`
-
-That proof must:
-
-- resolve the official member-filtered result set at one fixed capture timestamp;
-- derive the record count mechanically rather than authorising a count in advance;
-- preserve every returned result URL and visible result metadata;
-- inspect every linked individual motion page;
-- preserve full official text and available official labels by checksum;
-- prove pagination completeness;
-- reject duplicate stable IDs and duplicate official URLs;
-- preserve tabled-by attribution separately from signatures;
-- classify prayer, amendment, withdrawn and other record labels only when explicitly displayed;
-- record missing or inconsistent fields as unresolved rather than infer them;
-- run read-only CI, deterministic validation and `git diff --check`;
-- make no canonical fixture, schema, generator, existing packet, existing regression, server or database change.
-
-If the official interface cannot support deterministic complete capture, or neutral later integration would require a schema or generator change, the phase must stop and return for separate authority.
+A motion's text is an official parliamentary record. Its presence in the fixture does not establish that the motion was debated, adopted, implemented, influential or representative of all later conduct.
 
 ## Deferred work
 
 The following remain explicitly unstarted and unauthorised:
 
+- any schema or generator change for Early Day Motions;
+- any live refresh of the fixed EDM inventory;
 - motions merely signed by Jeremy Corbyn but tabled by another member;
 - pre-current-Parliament Early Day Motions;
-- canonical fixture integration of Early Day Motions;
 - tabled oral questions;
 - written statements;
 - committee oral evidence;
-- future refreshes of completed baselines;
-- review of the 19 unresolved statement forms;
+- review of the 19 unresolved commitment or position statement forms;
 - commitment-versus-conduct comparison;
 - delivery, fulfilment or broken-promise assessment;
 - changes-and-contradictions analysis;
@@ -195,23 +184,25 @@ The following remain explicitly unstarted and unauthorised:
 
 ## Done
 
-- PR #204 was reviewed, passed all twelve required workflows and merged with an exact-head guard.
-- The current-Parliament explicit-commitments and public-positions bounded baseline is closed at exact main `c7b57bb1d47d934bb0b44901df130d9b65138fb1`.
-- No commitment-versus-conduct, delivery or contradiction work has begun.
-- The next lane has been selected as current-Parliament Early Day Motions tabled by Jeremy Corbyn.
-- Only the source-interface and fixed-inventory proof is authorised as the first phase.
+- PR #218 was reviewed, passed all required workflows and merged with an exact-head guard.
+- The current-Parliament Early Day Motions source-interface and fixed-inventory proof is closed at exact main `a287ce0054a23821c222b8046c4058b4e5fd6210`.
+- Six official tabled-by-member records are fixed and checksum-bound.
+- No canonical fixture integration, interpretation, conduct comparison, delivery or contradiction work has begun.
+- The next lane has been selected as neutral canonical fixture integration of those six fixed records.
+- The first phase is limited to one fixture, one dedicated regression and one read-only workflow.
 
 ## To do
 
 - merge this `STATUS.md`-only closure and lane-authority change after Project Control passes;
-- from the resulting exact main, open one draft four-file Early Day Motions source-inventory PR;
-- verify official interface completeness, deterministic capture and exact four-file scope;
-- stop for owner review before any fixture integration or scope expansion.
+- from the resulting exact main, open one draft three-file EDM fixture-integration PR;
+- prove exact one-to-one integration and all exclusion boundaries;
+- require the existing fixture and portfolio regressions to remain green;
+- stop for owner review before promotion or merge.
 
 ## Next bounded gate
 
-After this closure and authority change merges, open one draft current-Parliament Early Day Motions source-interface and fixed-inventory PR from the exact resulting main. Change exactly the four authorised files, make no canonical fixture change, and stop if the official interface cannot provide a deterministic complete tabled-by-member capture.
+After this closure and authority change merges, open one draft current-Parliament Early Day Motions canonical fixture-integration PR from the exact resulting main. Change exactly the three authorised files, integrate only the six checksum-bound records as neutral `fact_type: other` facts in `speeches_and_questions`, make no schema or generator change, and stop if neutral integration requires interpretation or scope expansion.
 
 ## Stop point
 
-Do not begin commitment-versus-conduct comparison, delivery assessment, fulfilment assessment or contradiction analysis; review or reclassify the 19 unresolved statement forms; include motions merely signed but not tabled by Jeremy Corbyn; include pre-4-July-2024 material; integrate Early Day Motions into the canonical fixture; change schema or generator code; weaken or replace any accepted baseline; access or mutate the private server or SQLite; mark a partial section complete; mark the report publishable; or authorise public output.
+Do not begin commitment-versus-conduct comparison, delivery assessment, fulfilment assessment or contradiction analysis; review or reclassify the 19 unresolved statement forms; include motions merely signed but not tabled by Jeremy Corbyn; include pre-4-July-2024 material; refresh the fixed EDM inventory; change schema or generator code; weaken or replace any accepted baseline; access or mutate the private server or SQLite; mark a partial section complete; mark the report publishable; or authorise public output.
