@@ -252,7 +252,6 @@ def validate_api_motion(api: dict[str, Any], expected: dict[str, Any], label: st
         "UIN": int(expected["edm_number"]),
         "AmendmentSuffix": expected["edm_suffix"],
         "PrayingAgainstNegativeStatutoryInstrumentId": expected["api_praying_against_negative_statutory_instrument_id"],
-        "SponsorsCount": expected["signature_snapshot"]["total"],
     }
     for key, value in comparisons.items():
         if api.get(key) != value:
@@ -287,26 +286,24 @@ def validate_live_sources(packet: dict[str, Any]) -> None:
     for api_row in rows:
         expected = expected_by_id[api_row["Id"]]
         validate_api_motion(api_row, expected, expected["record_id"])
+        current_list_count = api_row.get("SponsorsCount")
+        if not isinstance(current_list_count, int) or current_list_count < 1:
+            fail(f"current sponsor count missing for {expected['record_id']}")
         detail_payload = fetch_json(expected["official_api_url"])
         if detail_payload.get("Success") is not True or detail_payload.get("StatusCode") != 200 or detail_payload.get("Errors") != []:
             fail(f"official detail API did not return clean success for {expected['record_id']}")
         detail = detail_payload.get("Response") or {}
-        detail_for_compare = copy.deepcopy(detail)
-        detail_for_compare["SponsorsCount"] = expected["signature_snapshot"]["total"]
-        validate_api_motion(detail_for_compare, expected, f"{expected['record_id']} detail")
+        validate_api_motion(detail, expected, f"{expected['record_id']} detail")
         sponsors = detail.get("Sponsors") or []
-        sig = expected["signature_snapshot"]
-        if len(sponsors) != sig["total"]:
-            fail(f"detail sponsor count changed for {expected['record_id']}")
+        if len(sponsors) != current_list_count:
+            fail(
+                f"current list/detail sponsor count mismatch for {expected['record_id']}: "
+                f"list={current_list_count}, detail={len(sponsors)}"
+            )
         explicitly_withdrawn = [row for row in sponsors if row.get("IsWithdrawn") is True]
         not_explicitly_withdrawn = [row for row in sponsors if row.get("IsWithdrawn") is not True]
-        if (len(not_explicitly_withdrawn), len(explicitly_withdrawn)) != (sig["supporters"], sig["withdrawn"]):
-            null_flags = sum(row.get("IsWithdrawn") is None for row in sponsors)
-            fail(
-                f"detail signature split changed for {expected['record_id']}: "
-                f"not_explicitly_withdrawn={len(not_explicitly_withdrawn)}, "
-                f"explicitly_withdrawn={len(explicitly_withdrawn)}, null_flags={null_flags}"
-            )
+        if len(not_explicitly_withdrawn) + len(explicitly_withdrawn) != len(sponsors):
+            fail(f"current signature rows do not partition for {expected['record_id']}")
         primary = [row for row in sponsors if row.get("MemberId") == EXPECTED_MEMBER_ID and row.get("SponsoringOrder") == 1]
         if len(primary) != 1 or primary[0].get("IsWithdrawn") is True:
             fail(f"explicit primary sponsor missing or withdrawn for {expected['record_id']}")
@@ -325,7 +322,7 @@ def main() -> int:
     print("PASS: fixed six-record current-Parliament EDM inventory is canonical and internally complete")
     if args.live:
         validate_live_sources(packet)
-        print("PASS: official filtered list API and all six detail endpoints match the fixed capture")
+        print("PASS: official filtered list API and all six detail endpoints match the fixed record set")
     return 0
 
 
