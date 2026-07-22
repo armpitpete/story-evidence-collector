@@ -26,7 +26,7 @@ Official detail template:
 
 `https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotion/{official_motion_id}`
 
-The API response reports `Skip=0`, `Take=100`, `Total=6` and `GlobalTotal=6`. Every returned item has `MemberId=185`, an explicit Jeremy Corbyn primary-sponsor object, full motion text and a stable official motion ID. The regression then reads every corresponding official detail endpoint and reconciles sponsor order, supporter and withdrawn-signature counts, amendment data and primary-sponsor date.
+The API response reports `Skip=0`, `Take=100`, `Total=6` and `GlobalTotal=6`. Every returned item has `MemberId=185`, an explicit Jeremy Corbyn primary-sponsor object, full motion text and a stable official motion ID. The regression then reads every corresponding official detail endpoint and reconciles sponsor order, current list/detail signature totals, explicit withdrawal flags, amendment data and primary-sponsor date.
 
 The human-facing EDM HTML interface applies a managed browser challenge to GitHub-hosted runners. CI therefore uses Parliament's supported JSON motions API rather than bypassing that challenge. The official API result set reconciles exactly with the six human-facing records fixed at capture.
 
@@ -76,7 +76,7 @@ Each fixed record preserves:
 
 The fixed human-facing detail pages did not separately label whole-motion withdrawal or expose a standalone prayer Boolean. Those page-level fields remain `null` and unresolved rather than inferred. The API separately preserves raw status code `0`, a null amendment target and a null praying-against-instrument link for all six records.
 
-Signature totals are capture-time snapshots. The fixed JSON and checksums preserve those values; a future refresh requires separate authority rather than silent mutation.
+Signature totals are capture-time snapshots. The fixed JSON and checksums preserve those values; a future refresh requires separate authority rather than silent mutation. Live CI does not require mutable signature counts or withdrawal splits to remain equal to the fixed snapshot. It requires the current list and detail totals to reconcile, preserves explicit withdrawal flags without inference, and never writes current values back into the packet.
 
 ## Checksums
 
