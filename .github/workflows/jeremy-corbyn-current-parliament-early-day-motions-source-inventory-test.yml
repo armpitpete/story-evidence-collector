@@ -33,10 +33,11 @@ jobs:
       - name: Validate fixed inventory and checksums
         run: python scripts/test_jeremy_corbyn_current_parliament_early_day_motions_source_inventory_v1.py
 
-      - name: Capture official result page for diagnostic replay
+      - name: Capture official source diagnostics
         shell: bash
         run: |
           query_url="$(python -c 'import json; print(json.load(open("research/complete-mp-reports/jeremy-corbyn/current-parliament-early-day-motions-source-inventory-v1.json"))["capture"]["query"]["official_url"])')"
+          lda_url='https://lda.data.parliament.uk/edmsignatures.json?member=http%3A%2F%2Fdata.parliament.uk%2Fmembers%2F185&isPrimarySponsor=true&isSponsor=false&max-dateSigned=2026-07-22&min-dateSigned=2024-07-04&_pageSize=500'
           set +e
           curl --silent --show-error --location \
             --user-agent "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" \
@@ -47,6 +48,14 @@ jobs:
             --write-out '%{http_code}\n' \
             "$query_url" > /tmp/edm-live-result-status.txt
           printf 'curl_exit=%s\n' "$?" >> /tmp/edm-live-result-status.txt
+          curl --silent --show-error --location \
+            --user-agent "Mozilla/5.0" \
+            --header "Accept: application/json" \
+            --dump-header /tmp/edm-lda-headers.txt \
+            --output /tmp/edm-lda.json \
+            --write-out '%{http_code}\n' \
+            "$lda_url" > /tmp/edm-lda-status.txt
+          printf 'curl_exit=%s\n' "$?" >> /tmp/edm-lda-status.txt
           exit 0
 
       - name: Replay official UK Parliament source interface
@@ -66,6 +75,9 @@ jobs:
             /tmp/edm-live-result-page.html
             /tmp/edm-live-result-headers.txt
             /tmp/edm-live-result-status.txt
+            /tmp/edm-lda.json
+            /tmp/edm-lda-headers.txt
+            /tmp/edm-lda-status.txt
 
       - name: Enforce exact four-file scope
         shell: bash
