@@ -34,7 +34,18 @@ jobs:
         run: python scripts/test_jeremy_corbyn_current_parliament_early_day_motions_source_inventory_v1.py
 
       - name: Replay official UK Parliament source interface
-        run: python scripts/test_jeremy_corbyn_current_parliament_early_day_motions_source_inventory_v1.py --live
+        id: live
+        shell: bash
+        run: |
+          set -o pipefail
+          python scripts/test_jeremy_corbyn_current_parliament_early_day_motions_source_inventory_v1.py --live 2>&1 | tee /tmp/edm-live.log
+
+      - name: Upload live-source diagnostic on failure
+        if: failure() && steps.live.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: edm-live-diagnostic
+          path: /tmp/edm-live.log
 
       - name: Enforce exact four-file scope
         shell: bash
