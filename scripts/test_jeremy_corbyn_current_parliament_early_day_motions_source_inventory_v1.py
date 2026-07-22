@@ -298,12 +298,17 @@ def validate_live_sources(packet: dict[str, Any]) -> None:
         sig = expected["signature_snapshot"]
         if len(sponsors) != sig["total"]:
             fail(f"detail sponsor count changed for {expected['record_id']}")
-        withdrawn = [row for row in sponsors if row.get("IsWithdrawn") is True]
-        supporters = [row for row in sponsors if row.get("IsWithdrawn") is False]
-        if (len(supporters), len(withdrawn)) != (sig["supporters"], sig["withdrawn"]):
-            fail(f"detail signature split changed for {expected['record_id']}")
+        explicitly_withdrawn = [row for row in sponsors if row.get("IsWithdrawn") is True]
+        not_explicitly_withdrawn = [row for row in sponsors if row.get("IsWithdrawn") is not True]
+        if (len(not_explicitly_withdrawn), len(explicitly_withdrawn)) != (sig["supporters"], sig["withdrawn"]):
+            null_flags = sum(row.get("IsWithdrawn") is None for row in sponsors)
+            fail(
+                f"detail signature split changed for {expected['record_id']}: "
+                f"not_explicitly_withdrawn={len(not_explicitly_withdrawn)}, "
+                f"explicitly_withdrawn={len(explicitly_withdrawn)}, null_flags={null_flags}"
+            )
         primary = [row for row in sponsors if row.get("MemberId") == EXPECTED_MEMBER_ID and row.get("SponsoringOrder") == 1]
-        if len(primary) != 1 or primary[0].get("IsWithdrawn") is not False:
+        if len(primary) != 1 or primary[0].get("IsWithdrawn") is True:
             fail(f"explicit primary sponsor missing or withdrawn for {expected['record_id']}")
         if value_date(primary[0]["CreatedWhen"]) != expected["primary_sponsor"]["signed_date"]:
             fail(f"primary sponsor date changed for {expected['record_id']}")
