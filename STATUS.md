@@ -74,7 +74,7 @@ The closed baseline:
 - leaves `changes_and_contradictions` unchanged and human-review-required;
 - keeps the report `not_ready`, human-review-required and unauthorised for public output.
 
-## Selected next lane
+## Current lane
 
 Jeremy Corbyn current-Parliament Early Day Motions tabled by him.
 
