@@ -47,8 +47,7 @@ jobs:
           cat > /tmp/expected-files.txt <<'EOF'
           .github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml
           fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
-          scripts/test_jeremy_corbyn_current_parliament_early-day-motions-fixture-integration-v1.py
+          scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py
           EOF
-          sed -i 's/early-day-motions-fixture-integration-v1/early_day_motions_fixture_integration_v1/' /tmp/expected-files.txt
           diff -u /tmp/expected-files.txt /tmp/actual-files.txt
           git diff --check origin/main...HEAD
