@@ -1,9 +1,11 @@
 name: Temporary Jeremy Corbyn oral questions source-interface probe
 
 on:
-  push:
-    branches:
-      - agent/corbyn-current-parliament-tabled-oral-questions-source-interface
+  pull_request:
+    paths:
+      - ".github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-interface-test.yml"
+      - "research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-interface-v1.md"
+      - "scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py"
   workflow_dispatch:
 
 permissions:
