@@ -1,0 +1,61 @@
+name: Jeremy Corbyn current Parliament Early Day Motions fixture integration test
+
+on:
+  pull_request:
+    paths:
+      - "fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json"
+      - "scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py"
+      - ".github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-fixture-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact pull-request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile dedicated regression
+        run: python -m py_compile scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py
+
+      - name: Validate neutral EDM fixture integration
+        run: python scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py
+
+      - name: Run Complete MP Report fixture regression
+        run: python scripts/test_complete_mp_report_generator.py
+
+      - name: Run Complete MP Portfolio view regression
+        run: python scripts/test_complete_mp_portfolio_view.py
+
+      - name: Enforce exact five-file PR 220 scope
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+        run: |
+          set -euo pipefail
+          git fetch origin main --depth=1
+          git diff --name-only origin/main...HEAD | sort > /tmp/actual-files.txt
+          cat > /tmp/expected-files.txt <<'EOF'
+          .github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml
+          fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
+          scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py
+          scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py
+          scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
+          EOF
+          printf '%s\n' "Evaluated PR number: ${PR_NUMBER:-none}"
+          printf '%s\n' "Evaluated changed files:"
+          cat /tmp/actual-files.txt
+          test "$PR_NUMBER" = "220"
+          diff -u /tmp/expected-files.txt /tmp/actual-files.txt
+          git diff --check origin/main...HEAD
