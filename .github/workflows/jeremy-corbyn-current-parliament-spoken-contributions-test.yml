@@ -57,6 +57,12 @@ jobs:
             fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
             research/complete-mp-reports/jeremy-corbyn/current-parliament-commitments-and-public-positions-v1.json \
             scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py | sort)"
+          authorised_pr220_expected="$(printf '%s\n' \
+            .github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
+            scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py \
+            scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py \
+            scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py | sort)"
 
           printf '%s\n' "Evaluated PR number: ${PR_NUMBER:-none}"
           printf '%s\n' "Evaluated PR head: ${PR_HEAD_SHA:-none}"
@@ -77,6 +83,9 @@ jobs:
             && [ "$PR_HEAD_SHA" = "ca54308f06e5d69831d353e039e71657104945f0" ] \
             && [ "$actual" = "$authorised_pr204_expected" ]; then
             printf '%s\n' "PASS — authorised PR #204 commitments and public positions scope"
+          elif [ "$PR_NUMBER" = "220" ] \
+            && [ "$actual" = "$authorised_pr220_expected" ]; then
+            printf '%s\n' "PASS — authorised PR #220 EDM integration and regression-repair scope"
           else
             printf '%s\n' "FAIL — unauthorised spoken-contributions workflow scope"
             exit 1
