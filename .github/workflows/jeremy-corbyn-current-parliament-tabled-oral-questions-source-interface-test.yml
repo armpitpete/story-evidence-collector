@@ -1,0 +1,47 @@
+name: Jeremy Corbyn current Parliament tabled oral questions source-interface test
+
+on:
+  pull_request:
+    paths:
+      - "research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-interface-v1.md"
+      - "scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py"
+      - ".github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-interface-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-source-interface-proof:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact pull-request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile dedicated regression
+        run: python -m py_compile scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
+      - name: Validate fixed source-interface proof
+        run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
+      - name: Enforce exact three-file PR 226 scope
+        if: github.event_name == 'pull_request'
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+        run: |
+          set -euo pipefail
+          git fetch origin main --depth=1
+          git diff --name-only origin/main...HEAD | sort > /tmp/actual-files.txt
+          cat > /tmp/expected-files.txt <<'EOF'
+          .github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-interface-test.yml
+          research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-interface-v1.md
+          scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
+          EOF
+          test "$PR_NUMBER" = "226"
+          diff -u /tmp/expected-files.txt /tmp/actual-files.txt
+          git diff --check origin/main...HEAD
