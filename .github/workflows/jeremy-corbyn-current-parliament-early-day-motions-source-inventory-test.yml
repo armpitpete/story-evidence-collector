@@ -38,6 +38,7 @@ jobs:
         run: |
           query_url="$(python -c 'import json; print(json.load(open("research/complete-mp-reports/jeremy-corbyn/current-parliament-early-day-motions-source-inventory-v1.json"))["capture"]["query"]["official_url"])')"
           lda_url='https://lda.data.parliament.uk/edmsignatures.json?member=http%3A%2F%2Fdata.parliament.uk%2Fmembers%2F185&isPrimarySponsor=true&isSponsor=false&max-dateSigned=2026-07-22&min-dateSigned=2024-07-04&_pageSize=500'
+          members_url='https://members-api.parliament.uk/api/Members/185/Edms?page=1'
           set +e
           curl --silent --show-error --location \
             --user-agent "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36" \
@@ -56,6 +57,14 @@ jobs:
             --write-out '%{http_code}\n' \
             "$lda_url" > /tmp/edm-lda-status.txt
           printf 'curl_exit=%s\n' "$?" >> /tmp/edm-lda-status.txt
+          curl --silent --show-error --location \
+            --user-agent "Mozilla/5.0" \
+            --header "Accept: application/json" \
+            --dump-header /tmp/edm-members-api-headers.txt \
+            --output /tmp/edm-members-api.json \
+            --write-out '%{http_code}\n' \
+            "$members_url" > /tmp/edm-members-api-status.txt
+          printf 'curl_exit=%s\n' "$?" >> /tmp/edm-members-api-status.txt
           exit 0
 
       - name: Replay official UK Parliament source interface
@@ -78,6 +87,9 @@ jobs:
             /tmp/edm-lda.json
             /tmp/edm-lda-headers.txt
             /tmp/edm-lda-status.txt
+            /tmp/edm-members-api.json
+            /tmp/edm-members-api-headers.txt
+            /tmp/edm-members-api-status.txt
 
       - name: Enforce exact four-file scope
         shell: bash
