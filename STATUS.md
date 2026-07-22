@@ -11,165 +11,151 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Exact starting main for this review and repair authority: `56a83febbac218e5ab5482da67b08c1014e0a949`.
-- PR #220 is open and draft from exact base `56a83febbac218e5ab5482da67b08c1014e0a949` at exact reviewed head `0f5538554025193422c642e0a67b155c2fe59f2d`.
-- Direct comparison confirms current `main` remains identical to the exact PR base.
+- Exact current main: `dbb30decff8029b4e775d7faf33194fa6800fe20`
+- PR #220 merged at exact reviewed head `bbf0a5bd457c8f79acdd993140c08c7704a9d9c3`.
+- Merge commit: `dbb30decff8029b4e775d7faf33194fa6800fe20`.
 - All previously accepted Complete MP Report baselines remain authoritative.
 
-## Current lane
+## Closed lane
 
-Neutral canonical fixture integration of the six accepted current-Parliament Early Day Motions.
+The current-Parliament Early Day Motions canonical fixture-integration lane is complete.
 
-The three-file implementation in draft PR #220 is complete within the authorised integration contract but remains blocked by two pre-existing fixture-preservation regressions. The integration must remain draft and unmerged until the separately authorised guard repair is applied and both regressions pass at a new exact PR head.
+The merged five-file scope was exactly:
 
-## Owner review of PR #220
-
-Owner review was completed at exact head:
-
-- `0f5538554025193422c642e0a67b155c2fe59f2d`
-
-The reviewed PR remains:
-
-- open;
-- draft;
-- mergeable;
-- unmerged;
-- based on exact main `56a83febbac218e5ab5482da67b08c1014e0a949`;
-- limited at the reviewed head to the three originally authorised implementation files.
-
-Those three files are:
-
-- `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
-- `scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py`
 - `.github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml`
-
-The reviewed implementation:
-
-- adds exactly one checksum-bound canonical source for inventory `jeremy-corbyn-current-parliament-early-day-motions-source-inventory-v1`;
-- binds the source to capture SHA-256 `4558d82deddbee2168449d64aa4998672ae08faf212ac1338ce17fb8bab0304a`;
-- adds exactly six neutral `fact_type: other` records for official motion IDs `62446`, `63037`, `64576`, `65102`, `65889` and `66149`;
-- places those facts only in `speeches_and_questions`;
-- preserves the section as `partial`;
-- preserves publication as `not_ready`, human-review-required and unauthorised;
-- creates no EDM-derived claim, interpretation or relationship record;
-- creates no commitment, public-position, delivery, fulfilment, contradiction, ideology, motive, importance, influence, effectiveness or success assessment.
-
-No blocking defect was found in the three-file EDM integration itself.
-
-## Validation at the reviewed head
-
-At exact head `0f5538554025193422c642e0a67b155c2fe59f2d`, the following passed:
-
-- Project Control;
-- Repository Release validation;
-- dedicated Early Day Motions fixture-integration test;
-- Complete MP Report fixture test;
-- Complete MP Portfolio view test;
-- written-questions test;
-- identity-and-career test;
-- roles-and-committees test;
-- current-financial-interests test;
-- regulated-donee-donations test;
-- current outside-work and company-links test.
-
-The dedicated workflow passed:
-
-- compilation;
-- exact fixed-inventory checksum verification;
-- exact six-record fixture reconciliation;
-- Complete MP Report generator regression;
-- Complete MP Portfolio regression;
-- exact three-file scope enforcement;
-- `git diff --check`.
-
-## Confirmed regression blockers
-
-Two pre-existing regression guards fail only because they do not yet recognise the separately authorised six-EDM fixture addition.
-
-### Commitments and public positions guard
-
-`scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py` reconstructs the fixture from its historical authority merge, adds only that lane's authorised records and requires whole-fixture equality. It therefore rejects every later separately authorised canonical fixture addition, including the six EDM facts and their one source.
-
-### Spoken contributions guard
-
-`scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py` preserves hashes for the pre-spoken fixture and already omits later public-position additions, but it does not omit the separately authorised EDM source, six EDM facts and the authorised `speeches_and_questions` summary extension. It therefore rejects the EDM integration despite the spoken baseline remaining unchanged.
-
-These are regression-recognition defects. They are not evidence that the accepted commitments, positions, spoken-contribution or EDM records changed.
-
-## Separately authorised repair
-
-A bounded regression-guard repair is authorised on the existing PR #220 branch after this `STATUS.md` authority change merges.
-
-The repair may change exactly:
-
+- `fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json`
 - `scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py`
+- `scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py`
 - `scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py`
 
-No other repair file is authorised.
+The completed lane:
 
-The existing three PR #220 implementation files are frozen except for a separately evidenced defect requiring new owner authority. The repair must not alter the fixture, EDM integration regression, EDM workflow, schema, generator, source inventory, source note, server or database.
+- added one checksum-bound canonical source for inventory `jeremy-corbyn-current-parliament-early-day-motions-source-inventory-v1`;
+- bound the source to capture SHA-256 `4558d82deddbee2168449d64aa4998672ae08faf212ac1338ce17fb8bab0304a`;
+- added exactly six neutral `fact_type: other` records for official motion IDs `62446`, `63037`, `64576`, `65102`, `65889` and `66149`;
+- placed those facts only in `speeches_and_questions`;
+- preserved that section as `partial`;
+- preserved publication as `not_ready`, human-review-required and unauthorised;
+- created no EDM-derived claim, interpretation or relationship record;
+- created no commitment, public-position, delivery, fulfilment, contradiction, ideology, motive, importance, influence, effectiveness or success assessment.
 
-## Repair contract
+## Historical-regression repairs completed
 
-The repair must make each legacy guard recognise only the separately authorised EDM integration while preserving its historical baseline checks.
+The commitments/public-positions and spoken-contributions regressions now recognise only the exact authorised EDM extension while retaining their complete accepted historical baselines.
 
-The commitments and public-positions guard must:
+The repairs:
 
-- continue to reconstruct and verify the exact accepted commitments/public-positions baseline;
-- continue to require the exact 8-source, 48-accepted, 19-unresolved and 42-excluded packet results;
-- continue to preserve its exact source, fact, section, gap, publication and output contracts;
-- permit only the exact EDM source ID `source-uk-parliament-corbyn-current-parliament-early-day-motions-2026-07-22` as a later authorised source addition;
-- permit only the six exact EDM fact IDs as later authorised fact additions;
-- permit only the authorised `speeches_and_questions` fact-reference and summary extension;
-- reject any other unexpected later source, fact, section, claim, interpretation, relationship, publication or gap change.
+- require the live fixture to equal the accepted fixture at exact commit `426920b968927a4293b595eeda726d1b57d388bf` plus only the exact EDM source, six EDM facts and authorised `speeches_and_questions` extension;
+- execute the complete accepted historical regression scripts from that fixed commit;
+- retain exact source, fact, section, gap, packet, count, hash, output and publication assertions;
+- do not use broad prefix exclusions or relaxed collection comparisons;
+- reject every unrelated fixture change.
 
-The spoken-contributions guard must:
+## Closure proof
 
-- continue to verify all 306 accepted spoken contributions and their fixed packet, source and preservation hashes;
-- continue to recognise the separately accepted public-position additions;
-- additionally omit only the exact EDM source, six exact EDM facts and the authorised `speeches_and_questions` EDM extension when reconstructing its pre-spoken preservation boundary;
-- continue to reject any change to spoken facts, spoken sources, contribution counts, source hashes, publication state, claims, interpretations or relationships;
-- reject any other unexpected later fixture change.
+At exact PR head `bbf0a5bd457c8f79acdd993140c08c7704a9d9c3`, the complete triggered matrix passed:
 
-Both repairs must use explicit exact IDs and exact expected values. Broad prefix exclusions, unconstrained filtering, relaxed whole-collection comparisons or removal of historical assertions are forbidden.
-
-## Required proof after repair
-
-At the new exact PR #220 head, require all triggered workflows to complete successfully, including:
-
-- commitments and public positions;
-- spoken contributions;
-- dedicated Early Day Motions fixture integration;
-- Complete MP Report fixture;
-- Complete MP Portfolio view;
 - Project Control;
 - Repository Release validation;
-- every other fixture-triggered baseline regression.
+- Early Day Motions fixture integration;
+- commitments and public positions;
+- spoken contributions;
+- Complete MP Report fixture;
+- Complete MP Portfolio view;
+- written questions;
+- identity and career;
+- roles and committees;
+- current financial interests;
+- regulated donee donations;
+- current outside work and company links.
 
-The repair must also prove:
+The dedicated EDM workflow also passed:
 
-- PR #220 contains only its original three implementation files plus the two separately authorised regression files;
-- no sixth changed file exists;
-- `git diff --check` passes;
-- the PR remains draft and unmerged;
-- the exact head is recorded for a new owner review.
+- compilation;
+- fixed-inventory identity and SHA-256 verification;
+- exact six-record neutral fixture reconciliation;
+- Complete MP Report fixture regression;
+- Complete MP Portfolio regression;
+- exact five-file PR #220 scope enforcement;
+- `git diff --check`.
 
-If either guard cannot be repaired using explicit recognition of the exact authorised EDM additions, stop without weakening the baseline or expanding scope.
+PR #220 is closed and merged. Current `main` is exactly the merge commit above.
+
+## Next selected lane
+
+One bounded **current-Parliament tabled oral questions source-interface proof** lane is authorised from exact main:
+
+- `dbb30decff8029b4e775d7faf33194fa6800fe20`
+
+This lane exists only to establish whether official UK Parliament first-party interfaces can provide a complete, reproducible inventory of oral questions tabled by Jeremy Corbyn in the current Parliament.
+
+## Exact authorised scope
+
+The lane may create or change exactly:
+
+- `research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-interface-v1.md`
+- `scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py`
+- `.github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-interface-test.yml`
+
+No other file is authorised.
+
+## Source-interface proof contract
+
+The lane must:
+
+- use only official UK Parliament first-party pages, APIs or downloadable records;
+- identify the exact interface or interfaces relevant to oral questions tabled by a named member;
+- distinguish tabled oral questions from written questions, answered oral contributions, supplementaries, speeches and Early Day Motions;
+- determine the exact member-attribution semantics, including whether the interface identifies the member who tabled or asked the question;
+- determine current-Parliament date boundaries and how the interface represents sessions;
+- test pagination, result counts, ordering, filtering, duplication and completeness behaviour;
+- record exact request URLs, parameters, response fields and observed limitations;
+- state clearly whether a complete reproducible fixed inventory is possible;
+- record a zero-result outcome neutrally if the official interface returns no qualifying records;
+- provide deterministic regression coverage for the documented interface evidence;
+- keep every conclusion limited to source-interface capability and record availability.
+
+## Required proof
+
+Before the lane can close, require:
+
+- the source-interface note to distinguish confirmed behaviour from unresolved behaviour;
+- every claimed interface behaviour to be supported by fixed first-party evidence;
+- the regression to reject changed interface identity, member semantics, date boundaries, result-count evidence or documented completeness conclusions;
+- the workflow to compile and run the regression;
+- exact three-file scope enforcement;
+- `git diff --check`;
+- Project Control and Repository Release validation to pass;
+- a draft PR at an exact head for owner review.
+
+If no official interface can establish a complete named-member inventory, the lane must stop with that limitation documented. It must not substitute search-engine results, parliamentary-monitoring sites, manually assembled secondary lists or inference from answered-question pages.
+
+## Explicit exclusions
+
+This lane does not authorise:
+
+- capture of a canonical oral-question inventory beyond the minimum fixed evidence needed to prove interface behaviour;
+- canonical fixture integration;
+- source or fact records in the Complete MP fixture;
+- classification of any oral question as a commitment or public position;
+- analysis of content, ideology, motive, importance, influence, effectiveness or outcome;
+- comparison with conduct, delivery, fulfilment, contradiction or broken promises;
+- changes to the existing written-question, spoken-contribution or EDM records;
+- schema, generator, server or database changes;
+- completion of any partial report section;
+- publication, deployment or public-output authority.
 
 ## Deferred work
 
 The following remain explicitly unstarted and unauthorised:
 
-- marking PR #220 ready for review;
-- merging PR #220;
-- any schema or generator change;
-- any live refresh of the fixed EDM inventory;
-- motions merely signed by Jeremy Corbyn but tabled by another member;
-- pre-current-Parliament Early Day Motions;
-- tabled oral questions;
+- a fixed tabled-oral-questions inventory;
+- canonical fixture integration of oral questions;
 - written statements;
 - committee oral evidence;
-- review of the 19 unresolved commitment or position statement forms;
+- pre-current-Parliament EDM coverage;
+- motions merely signed by Jeremy Corbyn;
+- review or reclassification of the 19 unresolved commitment or position statement forms;
 - commitment-versus-conduct comparison;
 - delivery, fulfilment or broken-promise assessment;
 - changes-and-contradictions analysis;
@@ -177,24 +163,17 @@ The following remain explicitly unstarted and unauthorised:
 
 ## Done
 
-- PR #220 was reviewed at exact head `0f5538554025193422c642e0a67b155c2fe59f2d`.
-- No defect was found in the authorised three-file EDM integration.
-- The two failing legacy guards were identified precisely.
-- A two-file repair scope and strict non-weakening contract have been selected.
-- No PR #220 state change, merge or repair implementation has occurred in this authority change.
-
-## To do
-
-- merge this `STATUS.md`-only repair-authority change after Project Control passes;
-- update only the two authorised regression files on the existing PR #220 branch;
-- rerun the complete triggered regression matrix;
-- stop at the resulting new exact head for owner review;
-- do not mark PR #220 ready or merge it.
+- PR #220 merged at exact authorised head.
+- The six current-Parliament EDM records are neutrally integrated.
+- Both historical-regression guards are repaired without weakening their baselines.
+- The complete triggered matrix is green.
+- The EDM fixture-integration lane is closed.
+- The next bounded source-interface proof lane is selected and authorised.
 
 ## Next bounded gate
 
-After this `STATUS.md` authority change merges, apply the bounded two-file regression-guard repair to the existing draft PR #220 branch at reviewed head `0f5538554025193422c642e0a67b155c2fe59f2d`. Change only the two authorised legacy regression files, require both previously failing guards and the entire triggered matrix to pass, verify the resulting five-file PR scope, and stop for owner review at the new exact head.
+From exact main `dbb30decff8029b4e775d7faf33194fa6800fe20`, open one draft three-file current-Parliament tabled oral questions source-interface proof PR. Change only the three authorised files, establish the official first-party interface and completeness boundary, run the dedicated and project-control checks, and stop at an exact PR head for owner review.
 
 ## Stop point
 
-Do not mark PR #220 ready or merge it; change any file other than the two explicitly authorised regression files during the repair; weaken or delete historical baseline assertions; use broad exclusions that could conceal unrelated future fixture changes; modify the accepted fixture integration; begin commitment-versus-conduct comparison, delivery assessment, fulfilment assessment or contradiction analysis; review or reclassify the 19 unresolved statement forms; refresh or expand the EDM inventory; change schema or generator code; access or mutate the private server or SQLite; mark a partial section complete; mark the report publishable; or authorise public output.
+Do not create a fixed oral-question inventory, integrate any oral-question record into the canonical fixture, modify the existing Complete MP fixture, classify content, begin commitment-versus-conduct comparison, assess delivery or fulfilment, perform contradiction analysis, change schema or generator code, access or mutate the private server or SQLite, mark a partial section complete, mark the report publishable, deploy, or authorise public output.
