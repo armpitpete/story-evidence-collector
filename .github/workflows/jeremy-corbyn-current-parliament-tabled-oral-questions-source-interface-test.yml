@@ -22,6 +22,7 @@ jobs:
       - name: Probe official UK Parliament oral questions API
         run: |
           python - <<'PY'
+          import hashlib
           import json
           import urllib.parse
           import urllib.request
@@ -35,59 +36,59 @@ jobs:
               req = urllib.request.Request(url, headers={"Accept": "application/json", "User-Agent": "story-evidence-collector-source-interface-proof/1"})
               with urllib.request.urlopen(req, timeout=60) as response:
                   raw = response.read()
-                  print("URL", url)
-                  print("HTTP", response.status)
-                  print("CONTENT-TYPE", response.headers.get("Content-Type"))
-              value = json.loads(raw)
-              return url, value
+                  assert response.status == 200
+              return url, raw, json.loads(raw)
 
-          spec_url, spec = fetch("/swagger/docs/v1")
+          def paging(value):
+              return value.get("PagingInfo")
+
+          def compact_records(value):
+              rows = []
+              for item in value.get("Response") or []:
+                  member = item.get("AskingMember") or {}
+                  rows.append({
+                      "Id": item.get("Id"),
+                      "UIN": item.get("UIN"),
+                      "QuestionType": item.get("QuestionType"),
+                      "Status": item.get("Status"),
+                      "Number": item.get("Number"),
+                      "TabledWhen": item.get("TabledWhen"),
+                      "AnsweringWhen": item.get("AnsweringWhen"),
+                      "AskingMemberId": item.get("AskingMemberId"),
+                      "AskingMemberMnisId": member.get("MnisId"),
+                      "AskingMemberName": member.get("Name"),
+                      "AnsweringBodyId": item.get("AnsweringBodyId"),
+                      "AnsweringBody": item.get("AnsweringBody"),
+                  })
+              return rows
+
+          spec_url, spec_raw, spec = fetch("/swagger/docs/v1")
           operation = spec["paths"]["/oralquestions/list"]["get"]
-          print("SPEC-SUMMARY", operation["summary"])
-          print("SPEC-PARAMETERS", json.dumps([p["name"] for p in operation["parameters"]]))
-          print("SPEC-QUESTION-STATUSES", json.dumps(next(p for p in operation["parameters"] if p["name"] == "parameters.statuses")["items"]["enum"]))
+          params = [p["name"] for p in operation["parameters"]]
+          statuses = next(p for p in operation["parameters"] if p["name"] == "parameters.statuses")["items"]["enum"]
+          print("SPEC", json.dumps({"url": spec_url, "sha256": hashlib.sha256(spec_raw).hexdigest(), "summary": operation["summary"], "parameters": params, "statuses": statuses}, sort_keys=True))
 
-          base_params = {
-              "parameters.askingMemberIds": 185,
-              "parameters.skip": 0,
-              "parameters.take": 100,
-          }
-          base_url, base = fetch("/oralquestions/list", base_params)
-          print("BASE-PAGING", json.dumps(base.get("PagingInfo"), sort_keys=True))
-          print("BASE-COUNT", len(base.get("Response") or []))
-          print("BASE-RECORDS", json.dumps(base.get("Response") or [], sort_keys=True, ensure_ascii=False))
+          base_params = {"parameters.askingMemberIds": 185, "parameters.skip": 0, "parameters.take": 100}
+          base_url, base_raw, base = fetch("/oralquestions/list", base_params)
+          print("BASE", json.dumps({"url": base_url, "sha256": hashlib.sha256(base_raw).hexdigest(), "paging": paging(base), "records": compact_records(base)}, sort_keys=True))
 
           dated_params = dict(base_params)
-          dated_params.update({
-              "parameters.answeringDateStart": "2024-07-04",
-              "parameters.answeringDateEnd": "2026-07-22",
-          })
-          dated_url, dated = fetch("/oralquestions/list", dated_params)
-          print("DATED-PAGING", json.dumps(dated.get("PagingInfo"), sort_keys=True))
-          print("DATED-COUNT", len(dated.get("Response") or []))
-          print("DATED-RECORDS", json.dumps(dated.get("Response") or [], sort_keys=True, ensure_ascii=False))
+          dated_params.update({"parameters.answeringDateStart": "2024-07-04", "parameters.answeringDateEnd": "2026-07-22"})
+          dated_url, dated_raw, dated = fetch("/oralquestions/list", dated_params)
+          print("DATED", json.dumps({"url": dated_url, "sha256": hashlib.sha256(dated_raw).hexdigest(), "paging": paging(dated), "records": compact_records(dated)}, sort_keys=True))
 
           unknown_params = dict(base_params)
-          unknown_params.update({
-              "parameters.tabledStartDate": "2024-07-04",
-              "parameters.tabledEndDate": "2026-07-22",
-          })
-          unknown_url, unknown = fetch("/oralquestions/list", unknown_params)
-          print("UNKNOWN-TABLED-PAGING", json.dumps(unknown.get("PagingInfo"), sort_keys=True))
-          print("UNKNOWN-TABLED-EQUALS-BASE", unknown == base)
+          unknown_params.update({"parameters.tabledStartDate": "2024-07-04", "parameters.tabledEndDate": "2026-07-22"})
+          unknown_url, unknown_raw, unknown = fetch("/oralquestions/list", unknown_params)
+          print("UNKNOWN_TABLED", json.dumps({"url": unknown_url, "sha256": hashlib.sha256(unknown_raw).hexdigest(), "paging": paging(unknown), "equals_base": unknown == base}, sort_keys=True))
 
+          pages = []
           for skip in (0, 1, 2):
-              page_url, page = fetch("/oralquestions/list", {
-                  "parameters.askingMemberIds": 185,
-                  "parameters.skip": skip,
-                  "parameters.take": 1,
-              })
-              print("PAGE", skip, json.dumps(page, sort_keys=True, ensure_ascii=False))
+              page_url, page_raw, page = fetch("/oralquestions/list", {"parameters.askingMemberIds": 185, "parameters.skip": skip, "parameters.take": 1})
+              records = compact_records(page)
+              pages.append({"skip": skip, "sha256": hashlib.sha256(page_raw).hexdigest(), "paging": paging(page), "record": records[0] if records else None})
+          print("PAGES", json.dumps(pages, sort_keys=True))
 
-          wrong_url, wrong = fetch("/oralquestions/list", {
-              "parameters.askingMemberIds": 999999,
-              "parameters.skip": 0,
-              "parameters.take": 100,
-          })
-          print("WRONG-MEMBER", json.dumps(wrong, sort_keys=True, ensure_ascii=False))
+          wrong_url, wrong_raw, wrong = fetch("/oralquestions/list", {"parameters.askingMemberIds": 999999, "parameters.skip": 0, "parameters.take": 100})
+          print("WRONG_MEMBER", json.dumps({"url": wrong_url, "sha256": hashlib.sha256(wrong_raw).hexdigest(), "paging": paging(wrong), "records": compact_records(wrong)}, sort_keys=True))
           PY
