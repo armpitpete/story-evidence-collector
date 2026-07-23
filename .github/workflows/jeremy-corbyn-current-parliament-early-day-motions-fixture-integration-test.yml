@@ -38,24 +38,42 @@ jobs:
       - name: Run Complete MP Portfolio view regression
         run: python scripts/test_complete_mp_portfolio_view.py
 
-      - name: Enforce exact five-file PR 220 scope
+      - name: Enforce exact authorised scopes
         shell: bash
         env:
           PR_NUMBER: ${{ github.event.number }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           set -euo pipefail
           git fetch origin main --depth=1
-          git diff --name-only origin/main...HEAD | sort > /tmp/actual-files.txt
-          cat > /tmp/expected-files.txt <<'EOF'
-          .github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml
-          fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
-          scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py
-          scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py
-          scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py
-          EOF
+          actual="$(git diff --name-only origin/main...HEAD | sort)"
+          authorised_pr220_expected="$(printf '%s\n' \
+            .github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
+            scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py \
+            scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py \
+            scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py | sort)"
+          authorised_guard_repair_expected="$(printf '%s\n' \
+            .github/workflows/jeremy-corbyn-current-parliament-commitments-public-positions-test.yml \
+            .github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml \
+            .github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml | sort)"
+          authorised_oral_question_expected="$(printf '%s\n' \
+            .github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-fixture-integration-test.yml \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
+            scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py | sort)"
           printf '%s\n' "Evaluated PR number: ${PR_NUMBER:-none}"
-          printf '%s\n' "Evaluated changed files:"
-          cat /tmp/actual-files.txt
-          test "$PR_NUMBER" = "220"
-          diff -u /tmp/expected-files.txt /tmp/actual-files.txt
+          printf '%s\n' "Evaluated PR base: ${PR_BASE_SHA:-none}"
+          printf '%s\n' "Evaluated changed files:" "$actual"
+          if [ "$PR_NUMBER" = "220" ] \
+            && [ "$actual" = "$authorised_pr220_expected" ]; then
+            printf '%s\n' "PASS — authorised PR #220 EDM integration and regression-repair scope"
+          elif [ "$PR_BASE_SHA" = "c2cf10d7cda08be9102b1ca37b57db5ed8d6b111" ] \
+            && [ "$actual" = "$authorised_guard_repair_expected" ]; then
+            printf '%s\n' "PASS — exact-base oral-question workflow-guard repair scope"
+          elif [ "$actual" = "$authorised_oral_question_expected" ]; then
+            printf '%s\n' "PASS — authorised oral-question fixture-integration scope"
+          else
+            printf '%s\n' "FAIL — unauthorised EDM workflow scope"
+            exit 1
+          fi
           git diff --check origin/main...HEAD
