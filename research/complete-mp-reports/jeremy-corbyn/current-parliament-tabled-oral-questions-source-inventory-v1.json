@@ -1,5 +1,141 @@
 {
+  "authority_base": "6e65e5ccd70bbed91f678e067105933ec049f17b",
+  "capture": {
+    "api_errors": [],
+    "api_status_code": 200,
+    "api_success": true,
+    "capture_date": "2026-07-23",
+    "capture_end_date": "2026-07-23",
+    "captured_at_utc": "2026-07-23T17:27:27Z",
+    "member": {
+      "constituency": "Islington North",
+      "display_name": "Jeremy Corbyn",
+      "member_id": 185,
+      "mnis_id": 185
+    },
+    "paging": {
+      "GlobalStatusCounts": [],
+      "GlobalTotal": 12,
+      "Skip": 0,
+      "StatusCounts": [],
+      "Take": 100,
+      "Total": 12
+    },
+    "parliament_start_date": "2024-07-04",
+    "raw_response_gzip_base64": "H4sIAAAAAAAC/+1a23LbOBL9FRQfdl4km6RE3aqmphw7kzibizZ2Jg9T8wCRkIQ1CXAB0B5tKv8y3zJftqdB0ZYtyZGdiTdTpbLKJYFgE2j0OX3Q4KdgzGdSzU7VVAejT8HZhSyDUdgKzvmFCEZRSF+14zm+x63gRa4nPF9pOHPcVfZYV8rZYPTrb02Xu+2fb7pmsBuT3bMqTYXFZWcq0QqeG6PN0sh7YUutLHr++ik4zehZcbeXtIJ/VcI6qdX5oqThrTSI310wCj7OuWPWidIyOxdMWub4BebHnGZC2coI5qhLpeSlMJbnbC547uYpN743v+Qy55NcMI4fzMjZ3DGpWEozMVLY+nbfWzEjUiFLx/SU2aostXG4bHQ1m8OsYSei5MYVQrkfYExmrDR6ZnhRCHsQNA7BLDCNt1UxEQaOicj1eH72cS4UJhSHcdgOu+24cx6GI/8JyD+FvhTZz0YX5/qZOLIX6zcMz6NklOATH4Qd3HMi0pwbsn2qnDBw24lwmG0wUlWet4KXXFlustdSXcAMbvhw+jYYDWEuGbSCI2WvhIEn1x+zMq7rXs90tqB1i8M7jbj1xi1sqg3zo1GcFhHLcSIuRa5Lurpq741UEstqzqXLsfCBw+KeidRgBmZB/idnii/bsxQMb0Tt7E/BG1j14TVAbI1l4X/E/aiPFeEFPegVPFUs2LE2k4WChdcYxhEWLahbWqzugCvHCFgnXSVUSrM8tTke5bRibxEX85X1Do5Sh+hDyxh+oL6v+URXpmnwA0qWP451TpdGQZaEoffxeK6d/mCwbsHcudKODg8LPyHb5qU8gG9zyWm+B9XFIVoO6+naQ0zycIyxGC7dT6nRJYHox3dK4POPKzH5BZ3gtB8JjsHnDc5vImXVi9feW+tNV8LPrQa//bgbfRm/p1Mgh13JPGc5rLA5MKmnU5lKrKVQMz4TNDXrV/qjyJSwGV+wOHRz9oYvVmGV3KAq2oyqpB3tiKp63o9G0GDY2YagpB2H9yOos46gsZGFYNfL8gWcrPfeo+CrULDisS4tT+OyKBoMr132TBvE7is9V1bfctmyqcV8j3WXffh9YmQ2QwZSGTvTFSL7fSXhx/Je75EVYS75ajMNqnvHhXWoPt59mPHD/LczWZDphi8QfYM4vssX8X18UUCxIGVbSgQ+uSDoiD6y63QDCjG1sJATmUsnb+fhFcIYrvNFpx1G7Th5Cr7odIa9jXzhx9CJvpBxB+uE8bM2Qs4Qc8e6KLS68prHB9hKfmTviGjFI9Pubo84mk65NPb7JaFThXgR+Of1wjWKBneJaBjS3981HXt4dXaR08KRkpUOyCm4VKR/BXuBsDdqKWxLnct0UeviU2u4yCWzwiFg6kwNneyzEM/JtJJcsXNhjHTa62kvpfNczHj+nYKxH+3BuAfjNwTjoA91vOPelracqtniIgDm3G9xhaIdrhE8xTKzTJa5LiAFUsZnRtTp8Ep6jVwBebKylB0Bgmuc+uCwhGsKHOfjiQLseM5n2gLYOTpsS5dRdyNEe+2w/9dANKhXsRnU0Xj8YjmyYDtyk053sA25vTvSf4/cPXIfjtxONAwHg93TKJa9BI4sYZVAu4QxfqVwNfJoRmFA0aGqJt6vKxkl9rkTbmbIwlTQqpS8Sa6pvJQ5I/2PyNsC0sE6RrsAaDsaPEUaDUOiuA1g9GO4ncrXwJhs2AMf84lUYle0NW0eY57X1m7fA+n/CqQk6eyYArm1wlrPg8sEWPBMNLmh1A5XqFwkixLK1MOnrhfRbtCrVdKdy+63q4XHcKYv576q8NhUUN02u5RWE02XGDnWjKwjsDL2mjSrR674Dy2tF7PSEjingM9yNMvHEYOXhqdk1T+8lsoNgN+laVVKGN0kkxctdEvzKiPTz7l1FFmVRc+ixcpqkks7x60YWzTEyHOqh8Xdbbl6uIUH4u6T8ECUdLbzQCfcJ+U9l3wll3TisDN8UFImDpnzrBHXmbRpZa3nDa+am2SRamxU+awSXj7fMA1Qf7EB/JX1rKSqFHcZhrCh2tMDNHS3HUXtKH4KXEZxL9qCSxrD4F5cRtE6LOu1qZF0IqbEj49E38rde1z9hcXrLh3CNl7DyG6cpueKvQTJicWqy+qWlq9przvsPb8quLE1LeKatBN/EvodlPwx0W9Usobla9rp4y95MO146YJcvyJq1oRMgec6u3LKTCwzlhq7+LHR/xapsz9AOIhMcmew53+pbSkdz//8Q6o//3jB/8u3cU5vnXMSvzl+kj1Btz/YXOf2Y7itR/ZaYK8FHqEF+kBo/9sdOyeQ22rbhpuobDO6hk+CrkE/uQddyf7U+W+dvBMSjI3behGpt6XbzqRh/xT4h0mbwvv+2nPLphZrOq0776XOJ9qo+vjZIa+o1HD7PaRxTPlb5XGYbjijG3Z7vUfUIuwDixHQAHeLEXU5sKkM3Hp3zTru9/m+3/No5YStKSHopoTwEZ3ZM64utr1ktint9+g0K+ru/pKZvyEOz6MO7I3C6GB47ztmwVHBOCshUIDK5XSbWgdyra99QuUA7bwoORLsPYV9KK3NzNaMaa8b9nT5VbqhG0WdnY/kNr1uuq1sUJf6syp1LKsEy2QuZ7S5ZVcIYmiPVChfQwBLo7MBAKaYpj8vgP0PSjoA/AgIY88LaRBb/lppEEJ0xFdXGNhE+BMCi76Thb/zPTwLOl++pIpYpCokiOOsyrjayhPDjTwR73zyvryhg895FI8SfMATyde8jToI+71t2PfP2WN/j/3HYf+3z/8DJg0B6Q4vAAA=",
+    "raw_response_storage": "gzip level 9, mtime 0, base64 encoded; decompress to recover exact UTF-8 response bytes",
+    "source": {
+      "authority": "UK Parliament Oral Questions API",
+      "content_type": "application/json; charset=utf-8",
+      "http_status": 200,
+      "official_url": "https://oralquestionsandmotions-api.parliament.uk/oralquestions/list?parameters.askingMemberIds=185&parameters.skip=0&parameters.take=100",
+      "operation": "GET /oralquestions/list",
+      "request_parameters": {
+        "parameters.askingMemberIds": [
+          185
+        ],
+        "parameters.skip": 0,
+        "parameters.take": 100
+      }
+    }
+  },
+  "checksums": {
+    "canonical_payload_sha256": "13c94b8044c54415e6f04c307f79f5a5a0935afe8240121caef3c805eb194fb5",
+    "gzip_response_sha256": "b7126e70594e3d4ce468e00f26dddb13ca5606de9dd1fed26ac138a5d6071a7f",
+    "raw_response_sha256": "9d3b31f77d8e53c018039713fad830bc1e99b73bc5ca7c6a7bd0d67603cd35f9"
+  },
+  "current_parliament_selection": {
+    "accepted_record_count": 7,
+    "earliest_included_tabled_date": "2024-07-18",
+    "excluded_pre_current_parliament_api_ids": [
+      122465,
+      127241,
+      271822,
+      271823,
+      287272
+    ],
+    "excluded_record_count": 5,
+    "included_api_ids": [
+      319088,
+      319553,
+      332039,
+      373735,
+      374007,
+      404663,
+      411372
+    ],
+    "latest_included_tabled_date": "2026-02-25",
+    "rule": "2024-07-04 <= date(TabledWhen) <= 2026-07-23",
+    "selected_records_sha256": "2d59e8ffa579bcb451656cdb0e1a2256d3b5eda3e6214ea5b3fb734d98df7f65"
+  },
+  "explicit_exclusions": [
+    "canonical Complete MP fixture integration",
+    "canonical source or fact creation",
+    "schema or generator changes",
+    "classification",
+    "relationships",
+    "analysis",
+    "section completion",
+    "final-report production",
+    "public output",
+    "publication",
+    "deployment",
+    "generalisation"
+  ],
   "inventory_id": "jeremy-corbyn-current-parliament-tabled-oral-questions-source-inventory-v1",
-  "probe_state": "capture_pending",
-  "schema_version": "1"
+  "limitations": [
+    "No supported tabled-date or parliamentary-session filter exists; the boundary is applied locally to TabledWhen.",
+    "QuestionType and Status are numeric in the response; labels remain unresolved rather than inferred.",
+    "UIN resets by session and is not used as identity.",
+    "Completeness is bounded to the public API universe at the fixed capture time.",
+    "The raw hash differs from the earlier interface capture while IDs, counts, dates, attribution and selection remain stable; prior raw bytes are unavailable for a byte-level diff.",
+    "Later records, corrections and undisclosed records are outside this capture."
+  ],
+  "member_query_universe": {
+    "api_ids": [
+      122465,
+      127241,
+      271822,
+      271823,
+      287272,
+      319088,
+      319553,
+      332039,
+      373735,
+      374007,
+      404663,
+      411372
+    ],
+    "identity_rule": "API Id is the stable inventory and deduplication identity; UIN is preserved as source data and is not treated as globally unique.",
+    "ordering_observed": "ascending TabledWhen in this capture; ordering is not relied upon for completeness",
+    "record_count": 12,
+    "record_sha256": {
+      "122465": "00fb0ca1ed77ba298ce639fdbf4e2fee07531a26b0a2336ec95dc926becc851c",
+      "127241": "f1c8b26645e10e9e090eead9ff72e19b2be8229f3c07ab596ac544d1de448ec2",
+      "271822": "7c472e9159855343bd2eaacab1492e3f9b50e8941e8d26e8b09b60aeac308f22",
+      "271823": "f8def0d65a481371f3cf50cfb43e3e45e8f5879abe152595daf3191696ad9e0e",
+      "287272": "51166c86a9bb34db7fd1e74497a96e02e617b98139f2f43f2bc345f461877b3b",
+      "319088": "a53d6498abb0eaa9fdc597843193f4090b3a819741ce6d3a0adfb2a2ba471be1",
+      "319553": "2eacdc4e43efa87594c87289739370458837186b49c75454c0d8c780da5cfb74",
+      "332039": "aabcf73ad34b6708446a66a428e60ab07be53caeb2cddfe5ad7579b9bdb0d939",
+      "373735": "7d2dc48f7434db750826859203e3bf3e5e005df542a1023562caf5f9403c8a79",
+      "374007": "c7d643af79fd5d66282d99c88d2b04282025b0ab66335cce6344638ba2e4ba97",
+      "404663": "3bedef1c365b359067834c22ce00774c1165d59ce40bc58d19ede55495695d0d",
+      "411372": "fe971b5e15db7f83f8a0dcad9e1a89331d8af5cc31569490f641031456dc9c01"
+    },
+    "records_sha256": "1a33a338e712780ec054e5e991f98b710e7ba500a1dab16f2447ce32c3fc7813"
+  },
+  "schema_version": "1",
+  "source_controls": {
+    "authority": "official UK Parliament API for exposed fields only",
+    "capture": "lossless embedded response plus raw and compressed SHA-256",
+    "correction": "retain v1, capture a new version, identify downstream effects and revalidate before integration",
+    "refresh": [
+      "new official record or correction",
+      "changed total or stable field",
+      "interface/schema change",
+      "separately authorised manual refresh"
+    ],
+    "version": "immutable v1; later captures append a new version"
+  }
 }
