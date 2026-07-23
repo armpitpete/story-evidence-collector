@@ -1,0 +1,47 @@
+name: Complete MP report and analysis architecture contract test
+
+on:
+  pull_request:
+    paths:
+      - "docs/complete-mp-report-and-analysis-architecture-contract-v1.md"
+      - "scripts/test_complete_mp_report_and_analysis_architecture_contract_v1.py"
+      - ".github/workflows/complete-mp-report-and-analysis-architecture-contract-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-architecture-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact pull-request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile dedicated regression
+        run: python -m py_compile scripts/test_complete_mp_report_and_analysis_architecture_contract_v1.py
+      - name: Validate architecture contract
+        run: python scripts/test_complete_mp_report_and_analysis_architecture_contract_v1.py
+      - name: Enforce exact authorised base and three-file scope
+        if: github.event_name == 'pull_request'
+        shell: bash
+        env:
+          AUTHORISED_BASE_SHA: e8273d415d513f055347d71a09d7c61517d609da
+          EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          test "$EVENT_BASE_SHA" = "$AUTHORISED_BASE_SHA"
+          git diff --name-only "$AUTHORISED_BASE_SHA"...HEAD | sort > /tmp/actual-files.txt
+          cat > /tmp/expected-files.txt <<'EOF'
+          .github/workflows/complete-mp-report-and-analysis-architecture-contract-test.yml
+          docs/complete-mp-report-and-analysis-architecture-contract-v1.md
+          scripts/test_complete_mp_report_and_analysis_architecture_contract_v1.py
+          EOF
+          diff -u /tmp/expected-files.txt /tmp/actual-files.txt
+          git diff --check "$AUTHORISED_BASE_SHA"...HEAD
