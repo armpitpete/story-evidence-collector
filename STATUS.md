@@ -60,7 +60,7 @@ All three workflows trigger when `fixtures/complete-mp-reports/jeremy-corbyn-fix
 
 The fixture-integration implementation has not begun. No fixture, inventory, source note, source-interface proof, schema, generator, regression, workflow, server or database implementation file has been changed in this authority record.
 
-## Current bounded prerequisite lane
+## Current lane
 
 One bounded **oral-question fixture workflow-scope guard repair** lane is selected and authorised only after this `STATUS.md`-only authority record merges and the resulting exact `main` is verified.
 
