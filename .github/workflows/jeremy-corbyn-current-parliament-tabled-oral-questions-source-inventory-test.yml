@@ -1,0 +1,51 @@
+name: Jeremy Corbyn current-Parliament tabled oral questions source inventory test
+on:
+  pull_request:
+    paths:
+      - "research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-inventory-v1.json"
+      - "docs/jeremy-corbyn-current-parliament-tabled-oral-questions-source-note-v1.md"
+      - "scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py"
+      - ".github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-inventory-test.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-source-inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact pull-request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile regressions
+        run: |
+          python -m py_compile scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py
+          python -m py_compile scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
+      - name: Validate fixed inventory offline
+        run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py
+      - name: Preserve source-interface proof
+        run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
+      - name: Bounded read-only live replay
+        run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py --live-replay
+      - name: Enforce exact base and four-file scope
+        if: github.event_name == 'pull_request'
+        shell: bash
+        env:
+          AUTHORISED_BASE_SHA: 6e65e5ccd70bbed91f678e067105933ec049f17b
+          EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          test "$EVENT_BASE_SHA" = "$AUTHORISED_BASE_SHA"
+          git diff --name-only "$AUTHORISED_BASE_SHA"...HEAD | sort > /tmp/actual.txt
+          cat > /tmp/expected.txt <<'EOF'
+          .github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-inventory-test.yml
+          docs/jeremy-corbyn-current-parliament-tabled-oral-questions-source-note-v1.md
+          research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-inventory-v1.json
+          scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py
+          EOF
+          diff -u /tmp/expected.txt /tmp/actual.txt
+          git diff --check "$AUTHORISED_BASE_SHA"...HEAD
