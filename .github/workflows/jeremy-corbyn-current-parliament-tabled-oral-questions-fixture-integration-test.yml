@@ -8,7 +8,7 @@ on:
       - ".github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-fixture-integration-test.yml"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate-fixture-integration:
@@ -72,6 +72,31 @@ jobs:
           path: /tmp/oral-question-fixture/jeremy-corbyn-fixture-v1.json
           if-no-files-found: error
           retention-days: 1
+
+      - name: Commit only the deterministic fixture on the controlled bootstrap branch
+        if: steps.scope.outputs.mode == 'bootstrap'
+        shell: bash
+        env:
+          EXPECTED_EVENT_HEAD: ${{ github.event.pull_request.head.sha }}
+          EXPECTED_BRANCH: agent/integrate-corbyn-tabled-oral-questions-fixture
+          EVENT_BRANCH: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+          test "$EVENT_BRANCH" = "$EXPECTED_BRANCH"
+          test "$(git rev-parse HEAD)" = "$EXPECTED_EVENT_HEAD"
+          cp /tmp/oral-question-fixture/jeremy-corbyn-fixture-v1.json \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
+          git diff --name-only | sort > /tmp/actual-worktree-files.txt
+          printf '%s\n' fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json > /tmp/expected-worktree-files.txt
+          diff -u /tmp/expected-worktree-files.txt /tmp/actual-worktree-files.txt
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
+          git diff --cached --name-only | sort > /tmp/actual-staged-files.txt
+          diff -u /tmp/expected-worktree-files.txt /tmp/actual-staged-files.txt
+          git commit -m "Integrate Corbyn tabled oral question facts"
+          git push origin "HEAD:$EVENT_BRANCH"
 
       - name: Compare committed fixture with deterministic build
         if: steps.scope.outputs.mode == 'final'
