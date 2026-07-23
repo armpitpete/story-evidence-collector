@@ -218,7 +218,7 @@
       "section_id": "speeches_and_questions",
       "title": "Speeches and parliamentary questions",
       "status": "partial",
-      "summary": "Official UK Parliament records identify 90 Commons written questions tabled by Jeremy Corbyn in the current Parliament, 306 individual Commons Chamber or Westminster Hall spoken contributions from 17 July 2024 through the fixed 21 July 2026 capture, and six Early Day Motions officially tabled by him from 2 September 2024 through 23 June 2026. Earlier and future records, later corrections and adjacent parliamentary record types remain outside the completed bounded baselines.",
+      "summary": "Official UK Parliament records identify 90 Commons written questions tabled by Jeremy Corbyn in the current Parliament, 306 individual Commons Chamber or Westminster Hall spoken contributions from 17 July 2024 through the fixed 21 July 2026 capture, six Early Day Motions officially tabled by him from 2 September 2024 through 23 June 2026, and seven tabled oral questions from 18 July 2024 through 25 February 2026. Earlier and future records, later corrections, written statements, committee oral evidence and other adjacent parliamentary record types remain outside the completed bounded baselines.",
       "fact_ids": [
         "fact-written-question-1922919",
         "fact-written-question-1922941",
@@ -621,7 +621,14 @@
         "fact-early-day-motion-64576",
         "fact-early-day-motion-65102",
         "fact-early-day-motion-65889",
-        "fact-early-day-motion-66149"
+        "fact-early-day-motion-66149",
+        "fact-tabled-oral-question-319088",
+        "fact-tabled-oral-question-319553",
+        "fact-tabled-oral-question-332039",
+        "fact-tabled-oral-question-373735",
+        "fact-tabled-oral-question-374007",
+        "fact-tabled-oral-question-404663",
+        "fact-tabled-oral-question-411372"
       ],
       "claim_ids": [],
       "interpretation_ids": [],
@@ -1272,6 +1279,22 @@
       "coverage_to": "2026-06-23",
       "checksum": "sha256:4558d82deddbee2168449d64aa4998672ae08faf212ac1338ce17fb8bab0304a",
       "limitations": "Fixed six-record current-Parliament tabled-by-member inventory. Signature totals are capture-time snapshots. Motions merely signed or secondarily sponsored by Jeremy Corbyn, pre-4-July-2024 records, later source changes and publication assessment are outside this source."
+    },
+    {
+      "source_id": "source-uk-parliament-corbyn-current-parliament-tabled-oral-questions-2026-07-23",
+      "title": "Jeremy Corbyn current-Parliament tabled oral questions fixed source inventory",
+      "publisher": "UK Parliament",
+      "source_type": "parliamentary_record",
+      "authority_level": "primary",
+      "url": "https://oralquestionsandmotions-api.parliament.uk/oralquestions/list?parameters.askingMemberIds=185&parameters.skip=0&parameters.take=100",
+      "repository_path": "research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-inventory-v1.json",
+      "server_path": "",
+      "publication_date": null,
+      "capture_date": "2026-07-23",
+      "coverage_from": "2024-07-18",
+      "coverage_to": "2026-02-25",
+      "checksum": "13c94b8044c54415e6f04c307f79f5a5a0935afe8240121caef3c805eb194fb5",
+      "limitations": "Fixed official member-query capture at 2026-07-23T17:27:27Z. The checksum field is the canonical packet payload SHA-256 13c94b8044c54415e6f04c307f79f5a5a0935afe8240121caef3c805eb194fb5; the distinct raw response SHA-256 is 9d3b31f77d8e53c018039713fad830bc1e99b73bc5ca7c6a7bd0d67603cd35f9. Numeric QuestionType and Status values are preserved without inferred labels. Completeness is bounded to the public API universe at capture time; later records and corrections are outside this source."
     }
   ],
   "facts": [
@@ -9810,6 +9833,111 @@
       "confidence": "high",
       "evidence_status": "verified",
       "notes": "Fixed source record edm-66149; session 2026-27; official page https://edm.parliament.uk/early-day-motion/66149/western-sahara; API detail https://oralquestionsandmotions-api.parliament.uk/EarlyDayMotion/66149; capture-time signatures 15 total, 15 not withdrawn and 0 withdrawn; unresolved fields: motion_withdrawn, is_prayer. Full official motion text and detail checksum remain in the fixed packet."
+    },
+    {
+      "fact_id": "fact-tabled-oral-question-319088",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2024-07-18, UK Parliament recorded Jeremy Corbyn as tabling oral question 900072 (official API ID 319088) to Cabinet Office: “Whether he plans to take steps to consolidate the number of national pay bargaining units in the civil service.”",
+      "fact_type": "question",
+      "date": "2024-07-18",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-tabled-oral-questions-2026-07-23"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "{\"answering_body\":\"Cabinet Office\",\"answering_body_id\":53,\"answering_date\":\"2024-07-25\",\"answering_minister_id\":0,\"answering_minister_title\":\"the Minister for the Cabinet Office\",\"answering_when\":\"2024-07-25T00:00:00\",\"api_id\":319088,\"declarable_interest_detail\":null,\"hansard_link\":\"\",\"neutrality\":\"A question asked is recorded only as a question asked. It is not evidence that Jeremy Corbyn adopted the premise, made a commitment, asserted a position or caused an outcome.\",\"number\":8,\"question_text\":\"Whether he plans to take steps to consolidate the number of national pay bargaining units in the civil service.\",\"question_type_label\":null,\"question_type_value\":1,\"removed_from_to_be_asked_when\":null,\"status_label\":null,\"status_value\":5,\"tabled_when\":\"2024-07-18T00:00:00\",\"uin\":900072}"
+    },
+    {
+      "fact_id": "fact-tabled-oral-question-319553",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2024-07-24, UK Parliament recorded Jeremy Corbyn as tabling oral question 900153 (official API ID 319553) to Foreign, Commonwealth and Development Office: “What assessment he has made of the potential implications for his policies of the International Court of Justice's advisory opinion entitled Legal consequences arising from the policies and practices of Israel in the Occupied Palestinian Territory, including East Jerusalem, published on 19 July 2024.”",
+      "fact_type": "question",
+      "date": "2024-07-24",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-tabled-oral-questions-2026-07-23"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "{\"answering_body\":\"Foreign, Commonwealth and Development Office\",\"answering_body_id\":208,\"answering_date\":\"2024-07-30\",\"answering_minister_id\":0,\"answering_minister_title\":\"the Secretary of State for Foreign, Commonwealth and Development Affairs\",\"answering_when\":\"2024-07-30T00:00:00\",\"api_id\":319553,\"declarable_interest_detail\":null,\"hansard_link\":\"\",\"neutrality\":\"A question asked is recorded only as a question asked. It is not evidence that Jeremy Corbyn adopted the premise, made a commitment, asserted a position or caused an outcome.\",\"number\":19,\"question_text\":\"What assessment he has made of the potential implications for his policies of the International Court of Justice's advisory opinion entitled Legal consequences arising from the policies and practices of Israel in the Occupied Palestinian Territory, including East Jerusalem, published on 19 July 2024.\",\"question_type_label\":null,\"question_type_value\":1,\"removed_from_to_be_asked_when\":null,\"status_label\":null,\"status_value\":5,\"tabled_when\":\"2024-07-24T00:00:00\",\"uin\":900153}"
+    },
+    {
+      "fact_id": "fact-tabled-oral-question-332039",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2024-11-12, UK Parliament recorded Jeremy Corbyn as tabling oral question 901261 (official API ID 332039) to Ministry of Defence: “Whether he has had recent discussions with Cabinet colleagues on potential risks arising from the use of nuclear weapons.”",
+      "fact_type": "question",
+      "date": "2024-11-12",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-tabled-oral-questions-2026-07-23"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "{\"answering_body\":\"Ministry of Defence\",\"answering_body_id\":11,\"answering_date\":\"2024-11-18\",\"answering_minister_id\":400,\"answering_minister_title\":\"the Secretary of State for Defence\",\"answering_when\":\"2024-11-18T00:00:00\",\"api_id\":332039,\"declarable_interest_detail\":null,\"hansard_link\":\"\",\"neutrality\":\"A question asked is recorded only as a question asked. It is not evidence that Jeremy Corbyn adopted the premise, made a commitment, asserted a position or caused an outcome.\",\"number\":14,\"question_text\":\"Whether he has had recent discussions with Cabinet colleagues on potential risks arising from the use of nuclear weapons.\",\"question_type_label\":null,\"question_type_value\":1,\"removed_from_to_be_asked_when\":null,\"status_label\":null,\"status_value\":5,\"tabled_when\":\"2024-11-12T00:00:00\",\"uin\":901261}"
+    },
+    {
+      "fact_id": "fact-tabled-oral-question-373735",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2025-06-18, UK Parliament recorded Jeremy Corbyn as tabling oral question 904786 (official API ID 373735) to Foreign, Commonwealth and Development Office: “Whether he has made an assessment of the potential merits of supporting Pious Projects' Paediatric Hospital in Gaza.”",
+      "fact_type": "question",
+      "date": "2025-06-18",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-tabled-oral-questions-2026-07-23"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "{\"answering_body\":\"Foreign, Commonwealth and Development Office\",\"answering_body_id\":208,\"answering_date\":\"2025-06-24\",\"answering_minister_id\":0,\"answering_minister_title\":\"the Secretary of State for Foreign, Commonwealth and Development Affairs\",\"answering_when\":\"2025-06-24T00:00:00\",\"api_id\":373735,\"declarable_interest_detail\":null,\"hansard_link\":\"\",\"neutrality\":\"A question asked is recorded only as a question asked. It is not evidence that Jeremy Corbyn adopted the premise, made a commitment, asserted a position or caused an outcome.\",\"number\":16,\"question_text\":\"Whether he has made an assessment of the potential merits of supporting Pious Projects' Paediatric Hospital in Gaza.\",\"question_type_label\":null,\"question_type_value\":1,\"removed_from_to_be_asked_when\":null,\"status_label\":null,\"status_value\":5,\"tabled_when\":\"2025-06-18T00:00:00\",\"uin\":904786}"
+    },
+    {
+      "fact_id": "fact-tabled-oral-question-374007",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2025-06-19, UK Parliament recorded Jeremy Corbyn as tabling oral question 904875 (official API ID 374007) to Prime Minister: “If he will list his official engagements for Wednesday 25 June.”",
+      "fact_type": "question",
+      "date": "2025-06-19",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-tabled-oral-questions-2026-07-23"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "{\"answering_body\":\"Prime Minister\",\"answering_body_id\":23,\"answering_date\":\"2025-06-25\",\"answering_minister_id\":4514,\"answering_minister_title\":\"the Prime Minister\",\"answering_when\":\"2025-06-25T00:00:00\",\"api_id\":374007,\"declarable_interest_detail\":null,\"hansard_link\":\"\",\"neutrality\":\"A question asked is recorded only as a question asked. It is not evidence that Jeremy Corbyn adopted the premise, made a commitment, asserted a position or caused an outcome.\",\"number\":15,\"question_text\":\"If he will list his official engagements for Wednesday 25 June.\",\"question_type_label\":null,\"question_type_value\":1,\"removed_from_to_be_asked_when\":null,\"status_label\":null,\"status_value\":5,\"tabled_when\":\"2025-06-19T00:00:00\",\"uin\":904875}"
+    },
+    {
+      "fact_id": "fact-tabled-oral-question-404663",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2026-01-14, UK Parliament recorded Jeremy Corbyn as tabling oral question 907375 (official API ID 404663) to Foreign, Commonwealth and Development Office: “What assessment she has made of the potential implications for her policies of the steps Israel is taking to establish the E1 settlement in the occupied West Bank.”",
+      "fact_type": "question",
+      "date": "2026-01-14",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-tabled-oral-questions-2026-07-23"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "{\"answering_body\":\"Foreign, Commonwealth and Development Office\",\"answering_body_id\":208,\"answering_date\":\"2026-01-20\",\"answering_minister_id\":0,\"answering_minister_title\":\"the Secretary of State for Foreign, Commonwealth and Development Affairs\",\"answering_when\":\"2026-01-20T00:00:00\",\"api_id\":404663,\"declarable_interest_detail\":\"Am a patron of the Palestine Solidarity Campaign\",\"hansard_link\":\"\",\"neutrality\":\"A question asked is recorded only as a question asked. It is not evidence that Jeremy Corbyn adopted the premise, made a commitment, asserted a position or caused an outcome.\",\"number\":16,\"question_text\":\"What assessment she has made of the potential implications for her policies of the steps Israel is taking to establish the E1 settlement in the occupied West Bank.\",\"question_type_label\":null,\"question_type_value\":1,\"removed_from_to_be_asked_when\":\"2026-01-20T13:16:01.9\",\"status_label\":null,\"status_value\":11,\"tabled_when\":\"2026-01-14T00:00:00\",\"uin\":907375}"
+    },
+    {
+      "fact_id": "fact-tabled-oral-question-411372",
+      "section_id": "speeches_and_questions",
+      "statement": "On 2026-02-25, UK Parliament recorded Jeremy Corbyn as tabling oral question 908076 (official API ID 411372) to Foreign, Commonwealth and Development Office: “What steps she is taking with Cabinet colleagues to conduct due diligence when licensing arms transfers to the United Arab Emirates to prevent weapons being used by the Rapid Support Forces in Sudan.”",
+      "fact_type": "question",
+      "date": "2026-02-25",
+      "date_from": null,
+      "date_to": null,
+      "source_ids": [
+        "source-uk-parliament-corbyn-current-parliament-tabled-oral-questions-2026-07-23"
+      ],
+      "confidence": "high",
+      "evidence_status": "verified",
+      "notes": "{\"answering_body\":\"Foreign, Commonwealth and Development Office\",\"answering_body_id\":208,\"answering_date\":\"2026-03-03\",\"answering_minister_id\":0,\"answering_minister_title\":\"the Secretary of State for Foreign, Commonwealth and Development Affairs\",\"answering_when\":\"2026-03-03T00:00:00\",\"api_id\":411372,\"declarable_interest_detail\":null,\"hansard_link\":\"\",\"neutrality\":\"A question asked is recorded only as a question asked. It is not evidence that Jeremy Corbyn adopted the premise, made a commitment, asserted a position or caused an outcome.\",\"number\":19,\"question_text\":\"What steps she is taking with Cabinet colleagues to conduct due diligence when licensing arms transfers to the United Arab Emirates to prevent weapons being used by the Rapid Support Forces in Sudan.\",\"question_type_label\":null,\"question_type_value\":1,\"removed_from_to_be_asked_when\":\"2026-03-03T12:52:51.953\",\"status_label\":null,\"status_value\":11,\"tabled_when\":\"2026-02-25T00:00:00\",\"uin\":908076}"
     }
   ],
   "claims": [
@@ -9929,15 +10057,15 @@
     {
       "gap_id": "gap-speeches-questions-current-parliament-scope",
       "section_id": "speeches_and_questions",
-      "summary": "The fixture covers 90 Commons written questions tabled in the current Parliament and 306 individual Commons Chamber or Westminster Hall spoken contributions by Jeremy Corbyn from 17 July 2024 through 16 July 2026. Remaining gaps include written questions and spoken contributions before 4 July 2024, later question updates, future contributions and later Hansard corrections, tabled oral questions, written statements, Early Day Motions, committee oral evidence and any future unresolved official records.",
+      "summary": "The fixture covers 90 Commons written questions tabled in the current Parliament, 306 individual Commons Chamber or Westminster Hall spoken contributions by Jeremy Corbyn from 17 July 2024 through 16 July 2026, six Early Day Motions tabled from 2 September 2024 through 23 June 2026, and seven tabled oral questions from 18 July 2024 through 25 February 2026. Remaining gaps include written questions and spoken contributions before 4 July 2024, later question updates, future records and later Hansard corrections, written statements, committee oral evidence and any future unresolved official records.",
       "severity": "high",
       "reason": "historic_gap",
       "date_from": null,
-      "date_to": "2026-07-21",
+      "date_to": "2026-07-23",
       "status": "open",
       "blocks_publication": true,
-      "next_action": "Open separately authorised lanes for pre-current-Parliament written questions and spoken contributions, future refreshes, tabled oral questions, written statements, Early Day Motions and committee oral evidence.",
-      "notes": "The fixed capture reconciled 202 authorised debate rows to 306 unique official contribution identifiers with zero unresolved records after normalising the official permalink resolver's site-relative paths to the official Hansard host. All source status values remain unspecified because the payload exposed raw numeric value 2 without an explicit corrected/rolling label."
+      "next_action": "Open separately authorised lanes for pre-current-Parliament written questions and spoken contributions, future refreshes, written statements and committee oral evidence.",
+      "notes": "The fixed capture reconciled 202 authorised debate rows to 306 unique official contribution identifiers with zero unresolved records after normalising the official permalink resolver's site-relative paths to the official Hansard host. All spoken-contribution source status values remain unspecified because the payload exposed raw numeric value 2 without an explicit corrected/rolling label. The fixed oral-question inventory preserves a 12-record member-query universe, seven current-Parliament inclusions and five pre-current-Parliament exclusions. Oral-question QuestionType and Status remain numeric because the official payload did not expose labels. A question asked is recorded only as a question asked."
     },
     {
       "gap_id": "gap-positions",

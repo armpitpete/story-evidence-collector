@@ -1,0 +1,78 @@
+name: Jeremy Corbyn current-Parliament tabled oral questions fixture integration test
+
+on:
+  pull_request:
+    paths:
+      - "fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json"
+      - "scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py"
+      - ".github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-fixture-integration-test.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-fixture-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact pull-request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Enforce exact authorised base and three-file scope
+        shell: bash
+        env:
+          AUTHORISED_BASE_SHA: 40ad51d0f1e9f999b9731323dfb0600101046c5d
+          EVENT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          test "$EVENT_BASE_SHA" = "$AUTHORISED_BASE_SHA"
+          git fetch origin main --depth=1
+          git diff --name-only origin/main...HEAD | sort > /tmp/actual-files.txt
+          cat > /tmp/expected-files.txt <<'EOF'
+          .github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-fixture-integration-test.yml
+          fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
+          scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py
+          EOF
+          printf '%s\n' "Evaluated base: $EVENT_BASE_SHA"
+          printf '%s\n' "Evaluated changed files:"
+          cat /tmp/actual-files.txt
+          diff -u /tmp/expected-files.txt /tmp/actual-files.txt
+
+      - name: Compile dedicated and preserved regressions
+        run: |
+          python -m py_compile scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py
+          python -m py_compile scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py
+          python -m py_compile scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
+
+      - name: Build deterministic authorised fixture
+        run: |
+          python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py \
+            --build-output /tmp/jeremy-corbyn-fixture-v1.json
+
+      - name: Compare committed fixture with deterministic build
+        run: cmp /tmp/jeremy-corbyn-fixture-v1.json fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
+
+      - name: Validate neutral oral-question fixture integration
+        run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py
+
+      - name: Preserve fixed oral-question inventory
+        run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py
+
+      - name: Preserve oral-question source-interface proof
+        run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
+
+      - name: Run Complete MP Report fixture regression
+        run: python scripts/test_complete_mp_report_generator.py
+
+      - name: Run Complete MP Portfolio view regression
+        run: python scripts/test_complete_mp_portfolio_view.py
+
+      - name: Enforce clean exact diff
+        run: git diff --check origin/main...HEAD
