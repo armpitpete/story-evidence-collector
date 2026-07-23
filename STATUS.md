@@ -11,110 +11,173 @@ authority_ref: main
 
 - Repository: `armpitpete/story-evidence-collector`
 - Governing branch: `main`
-- Exact current main before this closure record: `97ff94d78fa50f9f8a0d7cf2c3bf68d0aff1eb9f`
-- PR #226 merged at exact reviewed head `2c71dbd139a78a5fd93c57d192d8edcdf02d3fbb`.
-- PR #226 merge commit: `97ff94d78fa50f9f8a0d7cf2c3bf68d0aff1eb9f`.
+- Exact current main: `c186f62a68a944d8dde8c3b20e7a0e6e6d662847`
+- PR #228 merged at exact reviewed head `9eb9e62e74ff21285b1ee50c464a4166da1f1bcf`.
+- PR #228 merge commit: `c186f62a68a944d8dde8c3b20e7a0e6e6d662847`.
+- The Complete MP report and analysis architecture contract v1 is authoritative.
 - All previously accepted Complete MP Report evidence, fixture and regression baselines remain authoritative.
 
 ### Governing project purpose
 
 > Build a complete, traceable public evidence record for each MP, then use that evidence to reveal significant patterns, relationships, changes and inconsistencies that are difficult to see through ordinary human reading—without overstating what the evidence proves.
 
-Every future lane must materially improve the final MP report, its evidence completeness, its traceability, its reproducible analytical capability or its interpretation safeguards. A lane must not be selected merely because another source exists.
+Every future lane must materially improve evidence completeness, traceability, reproducibility or interpretation safety. The existence of another available source is not by itself a reason to add a lane.
 
 ## Closed lane
 
-The **current-Parliament tabled oral questions source-interface proof** lane is complete.
+The **master MP report and analysis architecture contract** lane is complete.
 
 The merged scope was exactly:
-
-- `research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-interface-v1.md`
-- `scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py`
-- `.github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-interface-test.yml`
-
-The lane established that:
-
-- the official UK Parliament Oral Questions API exposes `GET /oralquestions/list`;
-- `parameters.askingMemberIds=185` identifies Jeremy Corbyn as the asking member;
-- the fixed `2026-07-22` capture returned 12 member-filtered records;
-- seven records met the inclusive current-Parliament `TabledWhen` boundary from `2024-07-04` through `2026-07-22`;
-- five records were earlier;
-- the API exposes no supported tabled-date or parliamentary-session filter;
-- current-Parliament selection must therefore be applied locally to `TabledWhen`;
-- API `Id`, not session-resetting `UIN`, is the paging and deduplication identity;
-- an invalid-member control returned zero records;
-- a complete fixed inventory is reproducible for records exposed by the official API at a fixed capture time.
-
-The fixed evidence block is bound to SHA-256:
-
-- `25cd378069d42a50c1a4c36d514f188767c4f2721cf95f6c8c5d2c3a48a40a5b`
-
-The unbounded member-query response is bound to SHA-256:
-
-- `f47822206b73bbac2fc557f6911750eda5165376905e3651323e59ccf02c94aa`
-
-At exact PR head `2c71dbd139a78a5fd93c57d192d8edcdf02d3fbb`, the dedicated regression, compilation, evidence and hash assertions, member and paging assertions, date-boundary assertions, invalid-member control, exact three-file scope enforcement, `git diff --check`, Project Control and Repository Release validation passed.
-
-The lane created no canonical oral-question inventory, Complete MP fixture record, classification, interpretation or public output. PR #226 is closed and merged.
-
-## Current lane
-
-One bounded **master MP report and analysis architecture contract** lane is selected and authorised only after this `STATUS.md`-only closure-and-authority record merges and the resulting exact `main` is verified.
-
-The later architecture lane may create or change exactly:
 
 - `docs/complete-mp-report-and-analysis-architecture-contract-v1.md`
 - `scripts/test_complete_mp_report_and_analysis_architecture_contract_v1.py`
 - `.github/workflows/complete-mp-report-and-analysis-architecture-contract-test.yml`
 
+The merged contract fixes:
+
+- the thirteen-section Complete MP report catalogue;
+- readable-report and evidence-view separation;
+- the complete source-to-public-statement traceability chain;
+- section completeness states;
+- source authority, capture, checksum, version, refresh and correction controls;
+- the nine allowed pattern families;
+- the distinction between fact, measured pattern, supported inference, unresolved possibility and unsupported claim;
+- confidence, materiality, baseline, alternative-explanation, non-proof and peer-comparison safeguards;
+- the pristine-report acceptance standard;
+- the ordered route from Jeremy Corbyn source completion to controlled every-MP expansion;
+- failure and stop conditions;
+- the boundary requiring separate authority for every implementation lane.
+
+At exact PR head `9eb9e62e74ff21285b1ee50c464a4166da1f1bcf`, the dedicated deterministic regression, exact three-file scope enforcement, `git diff --check`, Project Control and Repository Release validation passed.
+
+PR #228 is closed and merged. No evidence capture, fixture integration, analysis implementation, finding, public output, publication or deployment was performed.
+
+## Selected next lane
+
+The next architecture-ordered phase is **Jeremy Corbyn source completion**.
+
+One bounded **current-Parliament tabled oral questions fixed source-inventory proof** lane is selected and authorised only after this `STATUS.md`-only authority record merges and the resulting exact `main` is verified.
+
+This lane exists because the completed source-interface proof established that a complete reproducible fixed inventory is possible from the official UK Parliament Oral Questions API by:
+
+- querying all records with `parameters.askingMemberIds=185`;
+- paging to `PagingInfo.Total`;
+- using API `Id` as the paging and deduplication identity;
+- applying the inclusive current-Parliament boundary locally to `TabledWhen`;
+- excluding records before `2024-07-04`;
+- not using answering-date, unsupported tabled-date or session parameters as the completeness boundary.
+
+The lane must create a fixed, checksum-bound source packet and source note. It must not integrate the records into the canonical Complete MP fixture.
+
+## Exact future implementation scope
+
+The later source-inventory PR may create or change exactly:
+
+- `research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-inventory-v1.json`
+- `docs/jeremy-corbyn-current-parliament-tabled-oral-questions-source-note-v1.md`
+- `scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py`
+- `.github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-inventory-test.yml`
+
 No other file is authorised.
 
-The contract must define:
+## Source-inventory contract
 
-1. the governing project purpose exactly as recorded above;
-2. intended users and the separation between readable report and evidence view;
-3. the evidence-record, report-model, pattern-detection, interpretation-safeguard and controlled-public-presentation layers;
-4. the complete intended MP report section catalogue;
-5. section completeness states and required evidence;
-6. traceability from official source through capture, inventory, canonical fact, report section, measured finding and public statement;
-7. source authority, capture date, checksum, version, refresh and correction rules;
-8. allowed pattern families: frequency, time change, co-occurrence, concentration, network, sequence, gap, cross-channel consistency and peer deviation;
-9. the required distinction between fact, measured pattern, supported inference, unresolved possibility and unsupported claim;
-10. confidence, comparison baseline, materiality, alternative explanation and non-proof requirements;
-11. peer-comparison rules that prevent unlike MPs, roles, periods or coverage from being compared misleadingly;
-12. acceptance criteria for calling one report pristine;
-13. the ordered route from the Jeremy Corbyn proof report to a reusable report for every MP;
-14. stop conditions for incomplete, conflicting, stale, inaccessible or interpretation-inadequate evidence;
-15. the boundary between architecture definition and later implementation.
+The later lane must:
 
-Before that lane can close, require the contract, a deterministic regression, a workflow that compiles and runs it, exact three-file scope enforcement, `git diff --check`, Project Control, Repository Release validation and a draft PR at an exact head for owner review.
+1. use only the official UK Parliament Oral Questions API already established by the merged source-interface proof;
+2. identify Jeremy Corbyn through member and MNIS ID `185`;
+3. record one declared UTC capture timestamp and inclusive current-Parliament boundary from `2024-07-04` through the capture date;
+4. preserve the exact request URL, supported parameters, paging metadata, response ordering and total counts;
+5. page until every record in `PagingInfo.Total` has been retrieved;
+6. preserve every member-query record needed to prove the local date selection, including records excluded as pre-current-Parliament;
+7. use API `Id` as the stable inventory identity and preserve `UIN` only as source data;
+8. require unique API IDs and record any repeated or session-resetting UIN neutrally;
+9. preserve exact official fields needed for later neutral fixture integration, including question text, tabled date, answering date, answering body, question type, status, asking-member identity, UIN and official ID;
+10. store raw-response, page, record and canonical-packet SHA-256 values without presenting a transformed checksum as the raw checksum;
+11. document source authority, coverage, capture, version, refresh trigger, limitations and correction handling;
+12. state precisely what the fixed inventory does and does not establish;
+13. create no classification, interpretation, relationship, delivery, contradiction or public statement;
+14. leave every existing fixture section, gap and publication state unchanged.
 
-The architecture lane does not authorise evidence capture or integration, Complete MP fixture or schema changes, pattern-algorithm implementation, analytical findings, commitment-versus-conduct comparison, delivery or contradiction assessment, reclassification, final-report production, public output, deployment or generalisation to other MPs.
+A read-only live replay may test the supported member query and current totals, but it must not silently refresh or rewrite the fixed packet. A changed live source must be reported as drift and reconciled separately.
+
+## Required validation
+
+Before the later lane can close, require:
+
+- Python compilation of the dedicated regression;
+- deterministic offline validation of the fixed packet and every recorded checksum;
+- exact member attribution, API-ID uniqueness, paging, total-count, ordering and current-Parliament date-boundary assertions;
+- exact inclusion and exclusion reconciliation against the fixed member-query universe;
+- proof that unsupported parameters are not used as the completeness boundary;
+- preservation of the merged source-interface conclusion and limitations;
+- a controlled read-only live replay or a documented network-unavailable result that does not weaken offline proof;
+- exact four-file scope enforcement;
+- `git diff --check`;
+- Project Control;
+- Repository Release validation;
+- the existing tabled oral questions source-interface regression;
+- a draft PR at an exact head for owner review.
+
+## Failure and stop conditions
+
+Stop the later lane if:
+
+- the exact base, head, four-file scope or governing architecture changes;
+- official member attribution is ambiguous or no longer resolves to ID `185`;
+- paging totals, page content, ordering or deduplication cannot be reconciled;
+- a record needed for the bounded inventory lacks a stable API `Id` or usable `TabledWhen`;
+- duplicate API IDs or inconsistent records cannot be resolved without inference;
+- capture bytes, raw checksums, canonical checksums or record lineage cannot be reproduced;
+- the official interface changes materially and the fixed source-interface proof no longer describes it;
+- current-Parliament inclusion cannot be applied deterministically to `TabledWhen`;
+- completing the lane would require a fixture, schema, generator, existing regression, server, database or public-output change;
+- the evidence would support only an unresolved possibility or unsupported claim;
+- any result would be framed as proof of motive, importance, influence, effectiveness, wrongdoing, delivery, fulfilment or contradiction.
+
+A stop must be recorded visibly. Do not substitute search results, secondary parliamentary sites, manual lists, broader claims or relaxed tests to make the inventory appear complete.
+
+## Explicit exclusions
+
+This authority record and the later source-inventory lane do not authorise:
+
+- canonical Complete MP fixture integration;
+- creation of canonical source or fact records in the fixture;
+- changes to the existing source-interface note or regression;
+- schema, generator, server or database changes;
+- oral-question content classification;
+- commitment or public-position promotion;
+- topic, ideology, motive, importance, influence, effectiveness or outcome analysis;
+- commitment-versus-conduct, delivery, fulfilment, broken-promise or contradiction assessment;
+- section completion or pristine-report status;
+- final-report production;
+- public output, publication or deployment;
+- generalisation to another MP.
 
 ## Done
 
-- The current-Parliament Early Day Motions canonical fixture-integration lane is closed.
 - The current-Parliament tabled oral questions source-interface proof lane is closed.
-- PR #226 merged at exact authorised head.
-- The governing project purpose is recorded as repository completion authority.
-- The master MP report and analysis architecture contract lane is selected.
-- Its exact future three-file scope, contract requirements, proof obligations and exclusions are recorded.
+- The master MP report and analysis architecture contract is merged and authoritative.
+- PR #228 merged at exact authorised head.
+- The next ordered phase is Jeremy Corbyn source completion.
+- One bounded tabled oral questions fixed source-inventory lane is selected.
+- Its exact future four-file scope, validation, stop conditions and exclusions are recorded.
 
 ## To do
 
-- merge this `STATUS.md`-only closure, purpose and lane-authority PR after Project Control passes;
-- treat Repository Release validation as path-inapplicable to this metadata-only `STATUS.md` PR under its current trigger contract;
-- verify the resulting exact `main` merge commit;
-- from that exact `main`, open one draft three-file master MP report and analysis architecture contract PR;
-- change only the three authorised architecture-contract files;
-- define the architecture without implementing evidence capture, pattern detection, interpretation or public output;
-- run the dedicated regression, exact-scope check, `git diff --check`, Project Control and Repository Release validation;
-- stop at an exact PR head for owner review.
+- merge this `STATUS.md`-only closure-and-authority PR after Project Control passes;
+- treat Repository Release validation as path-inapplicable if its current workflow does not trigger for `STATUS.md`;
+- verify the resulting exact `main`;
+- from that exact `main`, open one draft four-file tabled oral questions source-inventory PR;
+- change only the four authorised future implementation files;
+- create the fixed official source packet and source note without fixture integration;
+- run every required validation;
+- stop at an exact draft PR head for owner review.
 
 ## Next bounded gate
 
-After this `STATUS.md`-only authority PR merges, verify the resulting exact `main`. From that exact `main`, open one draft three-file master MP report and analysis architecture contract PR using only the authorised scope. Define the complete report model, evidence-to-finding traceability, pattern families, interpretation safeguards, pristine-report acceptance standard and Jeremy-Corbyn-to-all-MPs route. Run all required checks and stop at an exact PR head for owner review.
+After this `STATUS.md`-only authority PR merges, verify the resulting exact `main`. From that exact `main`, open one draft four-file current-Parliament tabled oral questions fixed source-inventory PR using only the authorised scope. Create the checksum-bound packet, source note, deterministic regression and workflow, run every required check, and stop at an exact PR head for owner review.
 
 ## Stop point
 
-Do not begin the architecture contract lane before this closure-and-authority record merges and the resulting exact `main` is verified. Do not create or modify an architecture-contract file in this authority PR. Do not capture or integrate further evidence, modify the Complete MP fixture, implement pattern detection, produce analytical findings, compare commitments with conduct, assess delivery or contradiction, create the final Jeremy Corbyn report, generalise to other MPs, authorise public output, publish or deploy.
+Do not begin the four-file source-inventory implementation before this authority record merges and the resulting exact `main` is verified. Do not capture or integrate oral-question evidence in this authority PR. Do not modify the Complete MP fixture, schema, generator, existing source-interface proof, server or database. Do not classify content, implement analysis, create findings, complete a report section, generalise to another MP, authorise public output, publish or deploy.
