@@ -1,0 +1,32 @@
+name: Jeremy Corbyn current-Parliament tabled oral questions source inventory test
+
+on:
+  pull_request:
+    paths:
+      - "research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-inventory-v1.json"
+      - "docs/jeremy-corbyn-current-parliament-tabled-oral-questions-source-note-v1.md"
+      - "scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py"
+      - ".github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-inventory-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture-probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out pull-request head
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run controlled capture probe
+        run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py
+      - name: Upload fixed capture probe
+        uses: actions/upload-artifact@v4
+        with:
+          name: tabled-oral-questions-capture-probe
+          path: probe-output
+          if-no-files-found: error
