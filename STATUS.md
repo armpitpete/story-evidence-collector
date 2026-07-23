@@ -52,7 +52,7 @@ At exact PR head `9eb9e62e74ff21285b1ee50c464a4166da1f1bcf`, the dedicated deter
 
 PR #228 is closed and merged. No evidence capture, fixture integration, analysis implementation, finding, public output, publication or deployment was performed.
 
-## Selected next lane
+## Current lane
 
 The next architecture-ordered phase is **Jeremy Corbyn source completion**.
 
