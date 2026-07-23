@@ -41,6 +41,7 @@ jobs:
         env:
           PR_NUMBER: ${{ github.event.number }}
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
           git fetch origin main
           actual="$(git diff --name-only origin/main...HEAD | sort)"
@@ -63,9 +64,18 @@ jobs:
             scripts/test_jeremy_corbyn_current_parliament_commitments_and_public_positions_v1.py \
             scripts/test_jeremy_corbyn_current_parliament_early_day_motions_fixture_integration_v1.py \
             scripts/test_jeremy_corbyn_current_parliament_spoken_contributions_v1.py | sort)"
+          authorised_guard_repair_expected="$(printf '%s\n' \
+            .github/workflows/jeremy-corbyn-current-parliament-commitments-public-positions-test.yml \
+            .github/workflows/jeremy-corbyn-current-parliament-early-day-motions-fixture-integration-test.yml \
+            .github/workflows/jeremy-corbyn-current-parliament-spoken-contributions-test.yml | sort)"
+          authorised_oral_question_expected="$(printf '%s\n' \
+            .github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-fixture-integration-test.yml \
+            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
+            scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py | sort)"
 
           printf '%s\n' "Evaluated PR number: ${PR_NUMBER:-none}"
           printf '%s\n' "Evaluated PR head: ${PR_HEAD_SHA:-none}"
+          printf '%s\n' "Evaluated PR base: ${PR_BASE_SHA:-none}"
           printf '%s\n' "Evaluated changed files:"
           printf '%s\n' "$actual"
 
@@ -86,6 +96,11 @@ jobs:
           elif [ "$PR_NUMBER" = "220" ] \
             && [ "$actual" = "$authorised_pr220_expected" ]; then
             printf '%s\n' "PASS — authorised PR #220 EDM integration and regression-repair scope"
+          elif [ "$PR_BASE_SHA" = "c2cf10d7cda08be9102b1ca37b57db5ed8d6b111" ] \
+            && [ "$actual" = "$authorised_guard_repair_expected" ]; then
+            printf '%s\n' "PASS — exact-base oral-question workflow-guard repair scope"
+          elif [ "$actual" = "$authorised_oral_question_expected" ]; then
+            printf '%s\n' "PASS — authorised oral-question fixture-integration scope"
           else
             printf '%s\n' "FAIL — unauthorised spoken-contributions workflow scope"
             exit 1
