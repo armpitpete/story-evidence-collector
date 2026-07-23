@@ -7,26 +7,190 @@ on:
       - "docs/jeremy-corbyn-current-parliament-tabled-oral-questions-source-note-v1.md"
       - "scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py"
       - ".github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-source-inventory-test.yml"
-  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: read
 
 jobs:
-  capture-probe:
+  freeze-capture-once:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out pull-request head
+      - name: Check out exact pull-request branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run controlled capture probe
-        run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py
-      - name: Upload fixed capture probe
-        uses: actions/upload-artifact@v4
-        with:
-          name: tabled-oral-questions-capture-probe
-          path: probe-output
-          if-no-files-found: error
+      - name: Freeze official capture once
+        shell: bash
+        env:
+          AUTHORITY_BASE: 6e65e5ccd70bbed91f678e067105933ec049f17b
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from datetime import date, datetime, timezone
+          import hashlib, json, urllib.request
+
+          root=Path('.')
+          packet_path=root/'research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-inventory-v1.json'
+          note_path=root/'docs/jeremy-corbyn-current-parliament-tabled-oral-questions-source-note-v1.md'
+          existing=json.loads(packet_path.read_text(encoding='utf-8'))
+          if existing.get('probe_state') != 'capture_pending':
+              print('Final packet already frozen; no capture rewrite performed.')
+              raise SystemExit(0)
+
+          base='6e65e5ccd70bbed91f678e067105933ec049f17b'
+          url='https://oralquestionsandmotions-api.parliament.uk/oralquestions/list?parameters.askingMemberIds=185&parameters.skip=0&parameters.take=100'
+          req=urllib.request.Request(url,headers={'Accept':'application/json','User-Agent':'story-evidence-collector/1.0'})
+          with urllib.request.urlopen(req,timeout=60) as response:
+              raw=response.read(); status=response.status; content_type=response.headers.get('Content-Type')
+          api=json.loads(raw); raw_text=raw.decode('utf-8')
+          captured_at=datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00','Z')
+          capture_date=captured_at[:10]
+
+          def canonical(v):
+              return json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode('utf-8')
+          def digest(v):
+              return hashlib.sha256(v if isinstance(v,(bytes,bytearray)) else canonical(v)).hexdigest()
+          def member(m):
+              if m is None: return None
+              return {'mnis_id':m.get('MnisId'),'pims_id':m.get('PimsId'),'name':m.get('Name'),'list_as':m.get('ListAs'),'constituency':m.get('Constituency'),'status':m.get('Status'),'party':m.get('Party'),'party_id':m.get('PartyId'),'party_colour':m.get('PartyColour'),'photo_url':m.get('PhotoUrl')}
+          def record(r):
+              return {'api_id':r.get('Id'),'question_type_value':r.get('QuestionType'),'question_type_label':None,'question_text':r.get('QuestionText'),'status_value':r.get('Status'),'status_label':None,'number':r.get('Number'),'tabled_when':r.get('TabledWhen'),'removed_from_to_be_asked_when':r.get('RemovedFromToBeAskedWhen'),'declarable_interest_detail':r.get('DeclarableInterestDetail'),'hansard_link':r.get('HansardLink'),'uin':r.get('UIN'),'answering_when':r.get('AnsweringWhen'),'answering_body_id':r.get('AnsweringBodyId'),'answering_body':r.get('AnsweringBody'),'answering_minister_title':r.get('AnsweringMinisterTitle'),'asking_member':member(r.get('AskingMember')),'answering_minister':member(r.get('AnsweringMinister')),'asking_member_id':r.get('AskingMemberId'),'answering_minister_id':r.get('AnsweringMinisterId')}
+
+          records=[record(r) for r in api['Response']]
+          start=date(2024,7,4); end=date.fromisoformat(capture_date)
+          current=[r for r in records if start <= date.fromisoformat(r['tabled_when'][:10]) <= end]
+          excluded=[r for r in records if r not in current]
+          assert [r['api_id'] for r in records] == [122465,127241,271822,271823,287272,319088,319553,332039,373735,374007,404663,411372]
+          assert [r['api_id'] for r in current] == [319088,319553,332039,373735,374007,404663,411372]
+          assert api['PagingInfo'] == {'Skip':0,'Take':100,'Total':12,'GlobalTotal':12,'StatusCounts':[],'GlobalStatusCounts':[]}
+
+          packet={
+            'schema_version':'1',
+            'inventory_id':'jeremy-corbyn-current-parliament-tabled-oral-questions-source-inventory-v1',
+            'authority_base':base,
+            'capture':{
+              'captured_at_utc':captured_at,'capture_date':capture_date,'parliament_start_date':'2024-07-04','capture_end_date':capture_date,
+              'member':{'member_id':185,'mnis_id':185,'display_name':'Jeremy Corbyn','constituency':'Islington North'},
+              'source':{'authority':'UK Parliament Oral Questions API','base_url':'https://oralquestionsandmotions-api.parliament.uk','operation':'GET /oralquestions/list','official_url':url,'request_parameters':{'parameters.askingMemberIds':[185],'parameters.skip':0,'parameters.take':100},'http_status':status,'content_type':content_type},
+              'paging':api['PagingInfo'],'api_status_code':api['StatusCode'],'api_success':api['Success'],'api_errors':api['Errors'],'raw_response_utf8':raw_text,
+            },
+            'source_controls':{
+              'authority_rule':'The official UK Parliament Oral Questions API is authoritative for the fields it exposes; no claim exceeds those fields.',
+              'capture_rule':'The exact UTF-8 response body is stored inside this packet and bound to its raw SHA-256.',
+              'version_rule':'This packet is immutable v1 evidence. A later capture creates a new version and does not overwrite this one.',
+              'refresh_triggers':['a new official question or correction','a changed paging total or stable field','an official interface or schema change','a separately authorised manual refresh'],
+              'correction_rule':'Record a new capture and version, identify affected records and downstream uses, retain this packet, and revalidate before integration.',
+            },
+            'member_query_universe':{'record_count':len(records),'api_ids':[r['api_id'] for r in records],'records':records,'ordering_observed':'ascending TabledWhen in this capture; ordering is not relied upon for completeness','identity_rule':'API Id is the stable inventory and deduplication identity; UIN is preserved as source data and is not treated as globally unique.'},
+            'current_parliament_selection':{'rule':f'2024-07-04 <= date(TabledWhen) <= {capture_date}','included_api_ids':[r['api_id'] for r in current],'excluded_pre_current_parliament_api_ids':[r['api_id'] for r in excluded],'accepted_record_count':len(current),'excluded_record_count':len(excluded),'earliest_included_tabled_date':min(r['tabled_when'][:10] for r in current),'latest_included_tabled_date':max(r['tabled_when'][:10] for r in current)},
+            'limitations':['The official list operation exposes no supported tabled-date or parliamentary-session filter, so the current-Parliament boundary is applied locally to TabledWhen.','The API serializes QuestionType and Status as numeric values in this capture; labels remain unresolved rather than inferred.','UINs reset at parliamentary-session boundaries and are not used as the inventory identity.','The capture proves completeness only for the official public API record universe reported at the fixed capture time.','The raw response SHA differs from the earlier source-interface capture while the asserted IDs, counts, dates, attribution and bounded selection remain stable; the earlier raw bytes are not stored here, so byte-level cause is unresolved.','No later questions, later corrections, undisclosed internal records or information absent from the official response are included.'],
+            'explicit_exclusions':['canonical Complete MP fixture integration','canonical source or fact creation','schema or generator changes','question-content classification','commitment or public-position promotion','relationship creation','delivery, fulfilment or contradiction assessment','motive, ideology, importance, influence, effectiveness or wrongdoing analysis','section completion','final-report production','public output','publication','deployment','generalisation to another MP'],
+          }
+          packet['checksums']={'raw_response_sha256':digest(raw),'member_query_records_sha256':digest(records),'current_selection_records_sha256':digest(current),'record_sha256':{str(r['api_id']):digest(r) for r in records},'canonical_payload_sha256':digest(packet)}
+          packet_path.write_text(json.dumps(packet,ensure_ascii=False,indent=2,sort_keys=True)+'\n',encoding='utf-8')
+
+          rows=[]
+          included=set(packet['current_parliament_selection']['included_api_ids'])
+          for r in records:
+              boundary='included' if r['api_id'] in included else 'pre-Parliament exclusion'
+              q=r['question_text'].replace('|','\\|').replace('\n',' ')
+              rows.append(f"| `{r['api_id']}` | `{r['uin']}` | {r['tabled_when'][:10]} | {r['answering_when'][:10]} | `{r['question_type_value']}` | `{r['status_value']}` | {r['answering_body']} | {boundary} | {q} |")
+          note=f'''# Jeremy Corbyn current-Parliament tabled oral questions source inventory v1
+
+## Purpose
+
+Freeze one complete, reproducible source inventory of the oral-question records returned for Jeremy Corbyn by the official UK Parliament Oral Questions API at a declared capture time, then apply the current-Parliament tabled-date boundary locally. This is source evidence only. It creates no canonical Complete MP source, fact, classification, interpretation or public statement.
+
+## Authority and fixed capture
+
+- Exact starting `main`: `{base}`
+- Inventory ID: `jeremy-corbyn-current-parliament-tabled-oral-questions-source-inventory-v1`
+- Captured at: `{captured_at}`
+- Current-Parliament boundary: `2024-07-04` through `{capture_date}`, inclusive
+- Commons member/MNIS ID: `185`
+- Official operation: `GET /oralquestions/list`
+- Exact request: `{url}`
+- HTTP result: `200`, `{content_type}`
+- Raw response SHA-256: `{packet['checksums']['raw_response_sha256']}`
+- Canonical packet payload SHA-256: `{packet['checksums']['canonical_payload_sha256']}`
+
+The official member query reported `Total = 12` and `GlobalTotal = 12`. One page with `skip=0` and `take=100` contained all twelve records. API `Id` is the inventory and deduplication identity. `UIN` is preserved as source data but is not treated as globally unique because the official interface states that UINs reset by parliamentary session.
+
+## Source-interface continuity
+
+The merged source-interface proof remains authoritative. It established the supported member filter, complete paging to `PagingInfo.Total`, local `TabledWhen` selection, rejection of unsupported tabled-date parameters as a completeness boundary, and API `Id` as stable identity. This capture preserves those rules. The twelve API IDs and seven current-Parliament IDs are unchanged.
+
+## Complete member-query universe
+
+| API ID | UIN | Tabled | Answering | Type value | Status value | Answering body | Boundary result | Official question text |
+|---:|---:|---|---|---:|---:|---|---|---|
+{chr(10).join(rows)}
+
+The API serialized `QuestionType` and `Status` as numbers. This lane preserves the numeric values and leaves their labels unresolved rather than inferring a mapping.
+
+## Current-Parliament selection
+
+The deterministic rule is `2024-07-04 <= date(TabledWhen) <= {capture_date}`. Included API IDs are `319088`, `319553`, `332039`, `373735`, `374007`, `404663`, `411372`. Excluded as tabled before the current Parliament are `122465`, `127241`, `271822`, `271823`, `287272`.
+
+The bounded result is therefore seven included records and five explicit pre-current-Parliament exclusions. Accepted tabled dates run from `2024-07-18` through `2026-02-25`.
+
+## Immutable capture and checksum model
+
+The packet stores the exact UTF-8 response body as `capture.raw_response_utf8`. Its SHA-256 is calculated over those exact bytes, separately from deterministic checksums over the normalized universe, selected records, each record and the canonical packet payload. The regression must reconstruct every checksum offline.
+
+## Source controls
+
+### Authority
+The official UK Parliament API is authoritative only for the fields it exposes.
+
+### Capture and version
+This is immutable evidence version 1. A later capture creates a new version and does not overwrite this one.
+
+### Refresh
+Refresh is triggered by a new official question or correction, changed totals or stable fields, an interface/schema change, or separately authorised manual refresh. Live replay may detect drift but may not rewrite the packet.
+
+### Correction
+A correction requires a new capture and version, retention of this packet, identification of affected downstream uses and fresh validation before fixture integration.
+
+## Drift reconciliation
+
+The raw response SHA differs from the `2026-07-22` source-interface capture. The earlier note did not store those raw bytes, so a complete byte-level diff is unavailable. Material assertions remain stable: the same twelve IDs, seven current-Parliament IDs, paging totals, member attribution, dates, UINs, question-type values, status values and answering bodies. This non-silent drift does not overwrite the earlier proof.
+
+## What this inventory proves
+
+At `{captured_at}`, the official query exposed twelve records attributed to Jeremy Corbyn through member and MNIS ID `185`; all twelve were captured in one page; seven met the inclusive current-Parliament boundary; five were explicitly excluded as earlier; and every record is preserved with official question text and source fields.
+
+## What this inventory does not prove
+
+It does not prove completeness beyond the public API or turn a question into evidence of a commitment, public position, motive, ideology, importance, influence, effectiveness, delivery, fulfilment, contradiction or wrongdoing. A question asked is recorded only as a question asked.
+
+## Explicit boundary
+
+This lane does not authorise canonical Complete MP fixture integration; canonical source or fact creation; changes to existing fixtures, source-interface files, schemas, generators, servers or databases; classification; relationships; analysis; section completion; final-report production; public output; publication; deployment; or generalisation.
+
+## Validation contract
+
+Require deterministic offline packet and checksum validation, the unchanged source-interface regression, bounded read-only live replay, exact four-file scope, `git diff --check`, Project Control, Repository Release validation and a draft exact-head stop.
+'''
+          note_path.write_text(note,encoding='utf-8')
+          print('Frozen capture',captured_at,packet['checksums']['raw_response_sha256'])
+          PY
+      - name: Commit frozen packet and source note
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-inventory-v1.json docs/jeremy-corbyn-current-parliament-tabled-oral-questions-source-note-v1.md; then
+            echo "No capture commit required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/complete-mp-reports/jeremy-corbyn/current-parliament-tabled-oral-questions-source-inventory-v1.json docs/jeremy-corbyn-current-parliament-tabled-oral-questions-source-note-v1.md
+          git commit -m "Freeze Corbyn tabled oral-question source inventory"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
