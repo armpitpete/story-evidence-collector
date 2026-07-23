@@ -8,7 +8,7 @@ on:
       - ".github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-fixture-integration-test.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   validate-fixture-integration:
@@ -25,8 +25,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Determine authorised integration phase
-        id: scope
+      - name: Enforce exact authorised base and three-file scope
         shell: bash
         env:
           AUTHORISED_BASE_SHA: 40ad51d0f1e9f999b9731323dfb0600101046c5d
@@ -35,24 +34,16 @@ jobs:
           set -euo pipefail
           test "$EVENT_BASE_SHA" = "$AUTHORISED_BASE_SHA"
           git fetch origin main --depth=1
-          actual="$(git diff --name-only origin/main...HEAD | sort)"
-          bootstrap_expected="$(printf '%s\n' \
-            .github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-fixture-integration-test.yml \
-            scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py | sort)"
-          final_expected="$(printf '%s\n' \
-            .github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-fixture-integration-test.yml \
-            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json \
-            scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py | sort)"
+          git diff --name-only origin/main...HEAD | sort > /tmp/actual-files.txt
+          cat > /tmp/expected-files.txt <<'EOF'
+          .github/workflows/jeremy-corbyn-current-parliament-tabled-oral-questions-fixture-integration-test.yml
+          fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
+          scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py
+          EOF
           printf '%s\n' "Evaluated base: $EVENT_BASE_SHA"
-          printf '%s\n' "Evaluated changed files:" "$actual"
-          if [ "$actual" = "$bootstrap_expected" ]; then
-            echo "mode=bootstrap" >> "$GITHUB_OUTPUT"
-          elif [ "$actual" = "$final_expected" ]; then
-            echo "mode=final" >> "$GITHUB_OUTPUT"
-          else
-            printf '%s\n' "FAIL — unauthorised oral-question fixture scope"
-            exit 1
-          fi
+          printf '%s\n' "Evaluated changed files:"
+          cat /tmp/actual-files.txt
+          diff -u /tmp/expected-files.txt /tmp/actual-files.txt
 
       - name: Compile dedicated and preserved regressions
         run: |
@@ -60,68 +51,28 @@ jobs:
           python -m py_compile scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py
           python -m py_compile scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
 
-      - name: Build deterministic authorised fixture artifact
+      - name: Build deterministic authorised fixture
         run: |
           python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py \
-            --build-output /tmp/oral-question-fixture/jeremy-corbyn-fixture-v1.json
-
-      - name: Upload deterministic fixture artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: jeremy-corbyn-tabled-oral-questions-fixture
-          path: /tmp/oral-question-fixture/jeremy-corbyn-fixture-v1.json
-          if-no-files-found: error
-          retention-days: 1
-
-      - name: Commit only the deterministic fixture on the controlled bootstrap branch
-        if: steps.scope.outputs.mode == 'bootstrap'
-        shell: bash
-        env:
-          EXPECTED_EVENT_HEAD: ${{ github.event.pull_request.head.sha }}
-          EXPECTED_BRANCH: agent/integrate-corbyn-tabled-oral-questions-fixture
-          EVENT_BRANCH: ${{ github.head_ref }}
-        run: |
-          set -euo pipefail
-          test "$EVENT_BRANCH" = "$EXPECTED_BRANCH"
-          test "$(git rev-parse HEAD)" = "$EXPECTED_EVENT_HEAD"
-          cp /tmp/oral-question-fixture/jeremy-corbyn-fixture-v1.json \
-            fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
-          git diff --name-only | sort > /tmp/actual-worktree-files.txt
-          printf '%s\n' fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json > /tmp/expected-worktree-files.txt
-          diff -u /tmp/expected-worktree-files.txt /tmp/actual-worktree-files.txt
-          git diff --check
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
-          git diff --cached --name-only | sort > /tmp/actual-staged-files.txt
-          diff -u /tmp/expected-worktree-files.txt /tmp/actual-staged-files.txt
-          git commit -m "Integrate Corbyn tabled oral question facts"
-          git push origin "HEAD:$EVENT_BRANCH"
+            --build-output /tmp/jeremy-corbyn-fixture-v1.json
 
       - name: Compare committed fixture with deterministic build
-        if: steps.scope.outputs.mode == 'final'
-        run: cmp /tmp/oral-question-fixture/jeremy-corbyn-fixture-v1.json fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
+        run: cmp /tmp/jeremy-corbyn-fixture-v1.json fixtures/complete-mp-reports/jeremy-corbyn-fixture-v1.json
 
       - name: Validate neutral oral-question fixture integration
-        if: steps.scope.outputs.mode == 'final'
         run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_fixture_integration_v1.py
 
       - name: Preserve fixed oral-question inventory
-        if: steps.scope.outputs.mode == 'final'
         run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_inventory_v1.py
 
       - name: Preserve oral-question source-interface proof
-        if: steps.scope.outputs.mode == 'final'
         run: python scripts/test_jeremy_corbyn_current_parliament_tabled_oral_questions_source_interface_v1.py
 
       - name: Run Complete MP Report fixture regression
-        if: steps.scope.outputs.mode == 'final'
         run: python scripts/test_complete_mp_report_generator.py
 
       - name: Run Complete MP Portfolio view regression
-        if: steps.scope.outputs.mode == 'final'
         run: python scripts/test_complete_mp_portfolio_view.py
 
       - name: Enforce clean exact diff
-        if: steps.scope.outputs.mode == 'final'
         run: git diff --check origin/main...HEAD
